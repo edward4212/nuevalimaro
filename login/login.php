@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal Activar Usuario-->
+            <!-- Inicio Modal Activar Usuario-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -147,7 +147,7 @@
                 </div>
             </div>
         </div>
-        <!-- Formulario login fin -->
+        <!-- Fin Formulario login fin -->
         <?php include_once "footer.frm.php" ?>
     </main>
     
