@@ -29,28 +29,16 @@
     <link rel="stylesheet" href="../componente/css/globales/select.dataTables.min.css">
     <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600&family=Kanit:wght@700&family=Oswald:wght@700&display=swap"
-        rel="stylesheet">
-
     <script src="../componente/libreria/globales/jquery-3.6.0.js"></script>
     <script src="../componente/libreria/globales/bootstrap.min.js"></script>
-    <!-- <script src="../componente/libreria/globales/jquery-3.6.0.min.js" ></script>   -->
     <script src="../componente/libreria/globales/all.min.js"></script>
     <script src="../componente/libreria/globales/autoFill.dataTables.min.js"></script>
-    <!-- <script src="../componente/libreria/globales/buttons.dataTables.min.js" ></script>
-    <script src="../componente/libreria/globales/buttons.html5.min.js" ></script> 
-    <script src="../componente/libreria/globales/buttons.jqueryui.min.js" ></script>     
-    <script src="../componente/libreria/globales/buttons.print.min.js" ></script>   -->
     <script src="../componente/libreria/globales/colReorder.dataTables.min.js"></script>
-    <!-- <script src="../componente/libreria/globales/dataTables.buttons.min.js" ></script>   -->
     <script src="../componente/libreria/globales/dataTables.dataTables.min.js"></script>
     <script src="../componente/libreria/globales/dataTables.dateTime.min.js"></script>
     <script src="../componente/libreria/globales/datatables.min.js"></script>
     <script src="../componente/libreria/globales/fixedColumns.dataTables.min.js"></script>
     <script src="../componente/libreria/globales/fixedHeader.dataTables.min.js"></script>
-    <!-- <script src="../componente/libreria/globales/jquery-3.6.0.slim.min.js" ></script>   -->
-    <!-- <script src="../componente/libreria/globales/jquery-ui.min.js" ></script>   -->
     <script src="../componente/libreria/globales/jszip.min.js"></script>
     <script src="../componente/libreria/globales/keyTable.dataTables.min.js"></script>
     <script src="../componente/libreria/globales/pdfmake.min.js"></script>
@@ -58,16 +46,16 @@
     <script src="../componente/libreria/globales/rowGroup.dataTables.min.js"></script>
     <script src="../componente/libreria/globales/rowReorder.dataTables.min.js"></script>
     <script src="../componente/libreria/globales/scroller.dataTables.min.js"></script>
-    <!-- <script src="../componente/libreria/globales/searchBuilder.dataTables.min.js" ></script>  
-    <script src="../componente/libreria/globales/searchPanes.dataTables.min.js" ></script>   -->
     <script src="../componente/libreria/globales/select.dataTables.min.js"></script>
     <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script>
     <script src="../componente/libreria/globales/sweetalert2.min.js"></script>
     <script src="../componente/libreria/globales/vfs_fonts.js"></script>
     <script src="../js/proyecto/global.js"></script>
     <script src="../js/Login/logueo.js"></script>
+
     <!-- Fin Anexo de archivos -->
     <title>Iniciar Sesion</title>
+    
 </head>
 <body class="bg-light d-flex flex-column h-100">    
     <main class="flex-shrink-0">

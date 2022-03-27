@@ -11,9 +11,8 @@ class Inicio {
     public $politica_calidad;
     public $objetivos_calidad;
     public $organigrama;
+    public $mapa_procesos;
     
-
-
     /**
      * Get the value of id_empresa
      */
@@ -170,6 +169,26 @@ class Inicio {
     public function setOrganigrama($organigrama)
     {
         $this->organigrama = $organigrama;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of mapa_procesos
+     */
+    public function getMapaProcesos()
+    {
+        return $this->mapa_procesos;
+    }
+
+    /**
+     * Set the value of mapa_procesos
+     *
+     * @return  self
+     */
+    public function setMapaProcesos($mapa_procesos)
+    {
+        $this->mapa_procesos = $mapa_procesos;
 
         return $this;
     }

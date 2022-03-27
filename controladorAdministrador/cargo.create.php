@@ -4,16 +4,13 @@ include_once "../entidadAdministrador/cargo.entidad.php";
 include_once "../modeloAdministrador/cargo.modelo.php";
 
 $cargos = $_POST['txtCargo'];
-
 $cargo =  ucwords($cargos);
-
 
 if (isset($_FILES["fileCargo"]))
 {
     $foto=$_FILES["fileCargo"]["tmp_name"];
     $tipo =$_FILES['fileCargo']['type'];
     $tamaño =$_FILES['fileCargo']['size'];
-    
     $directorio = "../documentos/cargos/$cargo/";
    
     if(!file_exists($directorio)){
@@ -26,8 +23,8 @@ if (isset($_FILES["fileCargo"]))
             move_uploaded_file($_FILES['fileCargo']['tmp_name'],$directorio.$nombre);
         }    
     }
-}
-else{
+}else{
+    $directorio = "../documentos/cargos/$cargo/";
     $nombre = NULL ;
 }
 

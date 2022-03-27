@@ -17,6 +17,12 @@ header {
 * Se estilo a las etiquetas form
 */
 
+@media (min-width: 1200px){
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1200px !important;
+  }
+}
+
 .form-control {
   position: relative;
   flex: 1 1 auto;
@@ -177,7 +183,7 @@ nav-tabs {
   */
 
   .navbar-collapse {
-    width: 50% !important;
+    width: 70% !important;
   }
 
   .nav-tabs {

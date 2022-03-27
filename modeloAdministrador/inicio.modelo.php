@@ -17,6 +17,7 @@ class Inicio{
      public $politica_calidad;
      public $objetivos_calidad;
      public $organigrama;
+     public $mapa_procesos;
 
      // OTROS ATRIBUTOS //
      public $conexion;
@@ -35,6 +36,7 @@ class Inicio{
           $this->politica_calidad = $inicioE->getPoliticaCalidad();
           $this->objetivos_calidad = $inicioE->getObjetivosCalidad();
           $this->organigrama = $inicioE->getOrganigrama();
+          $this->mapa_procesos = $inicioE->getMapaProcesos();
 
           $this->conexion = \Conexion::singleton();
      }
@@ -135,6 +137,19 @@ class Inicio{
           }
                return $this->retorno;
      }
+
+     public function actualizarMapaProcesos()
+     {
+
+          try {
+               $this->sql = "UPDATE empresa SET mapa_procesos='$this->mapa_procesos' WHERE id_empresa=$this->id_empresa";
+               $this->result = $this->conexion->query($this->sql);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
 
 }
 

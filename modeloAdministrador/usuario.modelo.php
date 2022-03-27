@@ -84,7 +84,7 @@ class Usuario{
           try {
                $this->sql = "CALL create_usuario(1,'$this->usuario',$this->clave,
                '$this->id_rol','C',1,'$this->nombre_completo','usuario.png',
-               '$this->correo_empleado','$this->id_cargo','1','A')";
+               '$this->correo_empleado','$this->id_cargo','1','ACTIVO')";
                $this->result=$this->conexion->query($this->sql);
                $this->retorno =  $this->result->fetchAll(PDO::FETCH_ASSOC);
                // $this->retorno = "Exito: Usuario Creado";
@@ -98,7 +98,7 @@ class Usuario{
      public function newpass()
      {
           try {
-               $this->sql="UPDATE usuario SET  estado = 'C' , clave = AES_ENCRYPT('$this->clave','kddbjw8b3d')
+               $this->sql="UPDATE usuario SET  estado = 'CREADO' , clave = AES_ENCRYPT('$this->clave','kddbjw8b3d')
                WHERE id_usuario = '$this->id_usuario'";
                $this->result=$this->conexion->query($this->sql);
 

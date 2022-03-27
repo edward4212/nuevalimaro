@@ -1,16 +1,15 @@
 <!-- Se agrega Head -->
-<?php include_once "head.Adm.frm.php" ?>
+<?php include_once "head.php" ?>
 <title>Inicio</title>
 </head>
-
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
-    <?php include_once "menu.Adm.frm.php" ?>
+    <?php include_once "menu.php" ?>
     <!-- se Inicia Pagina Inicio  -->
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-empresa-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-empresa" type="button" role="tab" aria-controls="nav-empresa"
                         aria-selected="false">Empresa</button>
@@ -23,6 +22,9 @@
                     <button class="nav-link " id="nav-organigrama-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-organigrama" type="button" role="tab" aria-controls="nav-organigrama"
                         aria-selected="false">Organigrama</button>
+                    <button class="nav-link " id="nav-mapa-tab" data-bs-toggle="tab" data-bs-target="#nav-mapa"
+                        type="button" role="tab" aria-controls="nav-mapa" aria-selected="false">Mapa de
+                        Procesos</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -37,7 +39,7 @@
                             <br>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Empresa</h5>
+                                    <h5 class="card-title text-center"><b>Nombre de la Empresa</b></h5>
                                     <h5 class="card-text" id="empresa"></h5>
                                 </div>
 
@@ -51,8 +53,8 @@
                             <br>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Logo</h5>
-                                   
+                                    <h5 class="card-title text-center"><b>Logo de la Empresa</b></h5>
+
                                 </div>
                                 <h5 class="card-title text-center" id="btnModificarLogo"></h5>
                             </div>
@@ -64,7 +66,8 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modificar Nombre de la Empresa</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Modificar Nombre de la Empresa</b>
+                                    </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -73,7 +76,7 @@
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaMod" name="numEmpresaMod"
                                             hidden>
-                                        <h5 class="card-title">Nombre Empresa</h5>
+                                        <h5 class="card-title"><b>Nombre Empresa</b></h5>
                                         <input type="text" class="card-text" id="txtempresaMod" name="txtempresaMod">
                                     </div>
                                     <div class="modal-footer">
@@ -92,7 +95,8 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modificar Logo de la Empresa</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Modificar Logo de la Empresa</b>
+                                    </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -101,9 +105,9 @@
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaMod1" name="numEmpresaMod1"
                                             hidden>
-                                        <h5 class="card-title">Logo Empresa</h5>
+                                        <h5 class="card-title "><b>Logo Empresa</b></h5>
                                         <input type="file" class="card-text" id="fileLogo" name="fileLogo"
-                                            accept="image/*">
+                                            accept="image/png">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i>
@@ -126,7 +130,7 @@
                             <br>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Misión</h5>
+                                    <h5 class="card-title text-center"><b>Misión</b></h5>
                                     <h5 class="card-text" id="mision"></h5>
                                 </div>
                             </div>
@@ -140,7 +144,7 @@
                             <br>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Visión</h5>
+                                    <h5 class="card-title text-center"><b>Visión</b></h5>
                                     <h5 class="card-text" id="vision"></h5>
                                 </div>
                             </div>
@@ -152,7 +156,8 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modificar Misión de la Empresa</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Modificar Misión de la Empresa</b>
+                                    </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -161,7 +166,7 @@
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaModMis"
                                             name="numEmpresaModMis" hidden>
-                                        <h5 class="card-title">Misión Empresa</h5>
+                                        <h5 class="card-title"><b>Misión de la Empresa</b></h5>
                                         <div class="text-wrap">
                                             <textarea class="card-text form-group" id="txtMisionMod" name="txtMisionMod"
                                                 style="width:450px; height:100px; "></textarea>
@@ -183,7 +188,8 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modificar Visión de la Empresa</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Modificar Visión de la Empresa</b>
+                                    </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -192,7 +198,7 @@
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaModvis"
                                             name="numEmpresaModvis" hidden>
-                                        <h5 class="card-title">Visión Empresa</h5>
+                                        <h5 class="card-title"><b>Visión de la Empresa</b></h5>
                                         <textarea class="card-text form-group" id="txtVisiomMod" name="txtVisiomMod"
                                             style="width:450px; height:100px; "></textarea>
                                     </div>
@@ -217,7 +223,7 @@
                             <br>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Política de Calidad</h5>
+                                    <h5 class="card-title text-center"><b>Política de Calidad</b></h5>
                                     <h5 class="card-text" id="politica"></h5>
                                 </div>
                             </div>
@@ -230,7 +236,7 @@
                             <br>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Objetivo de Calidad</h5>
+                                    <h5 class="card-title text-center"><b>Objetivo de Calidad</b></h5>
                                     <h5 class="card-text" id="objetivo"></h5>
                                 </div>
                             </div>
@@ -242,8 +248,8 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modificar Política de Calidad de la
-                                        Empresa</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Modificar Política de Calidad de
+                                            la Empresa</b></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -252,7 +258,7 @@
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaModPol"
                                             name="numEmpresaModPol" hidden>
-                                        <h5 class="card-title">Política Calidad de la Empresa</h5>
+                                        <h5 class="card-title"><b>Política Calidad de la Empresa</b></h5>
                                         <div class="text-wrap">
                                             <textarea class="card-text form-group" id="txtPoliMod" name="txtPoliMod"
                                                 style="width:450px; height:100px; "></textarea>
@@ -274,7 +280,8 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modificar Objetivo de Calidad de la Empresa</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Modificar Objetivo de Calidad de la
+                                        Empresa</b></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -283,7 +290,7 @@
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaModObj"
                                             name="numEmpresaModObj" hidden>
-                                        <h5 class="card-title"> Objetivo de Calidad</h5>
+                                        <h5 class="card-title"><b>Objetivo de Calidad</b></h5>
                                         <textarea class="card-text form-group" id="txtObjMod" name="txtObjMod"
                                             style="width:450px; height:100px; "></textarea>
                                     </div>
@@ -307,7 +314,7 @@
                             <br>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Organigrama</h5>
+                                    <h5 class="card-title text-center"><b>Organigrama</b></h5>
                                 </div>
                                 <h5 class="card-title text-center" id="btnModificarOrganigrama"></h5>
                             </div>
@@ -321,8 +328,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modificar Organigrama de la Empresa
-                                    </h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Modificar Organigrama de la Empresa</b></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -332,8 +338,57 @@
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaOrganigrama"
                                             name="numEmpresaOrganigrama" hidden>
-                                        <h5 class="card-title">Organigrama Empresa</h5>
+                                        <h5 class="card-title"><b>Organigrama Empresa</b></h5>
                                         <input type="file" class="card-text" id="fileOrg" name="fileOrg"
+                                            accept="image/*">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i>
+                                            Modificar</button>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                                class="fas fa-undo"></i> Volver</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-mapa" role="tabpanel" aria-labelledby="nav-mapa-tab">
+                    <br>
+                    <div class="row  ">
+                        <div class="col-md-3 col-xs-12 col-sm-12">
+                        </div>
+                        <div div class="col-md-6 col-xs-12 col-sm-12">
+                            <br>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center"><b>Mapa de Procesos</b></h5>
+                                </div>
+                                <h5 class="card-title text-center" id="btnModificarMapa"></h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12 col-sm-12">
+                        </div>
+                    </div>
+                    <!-- Modal Modificar organigrama Empresa-->
+                    <div class="modal fade" id="exampleModalmapaprocesos" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Modificar Mapa de Procesos de la
+                                        Empresa</b>
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form class="row g-3 form-group" action="../controladorAdministrador/mapa.update.php"
+                                    method="POST" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <input type="number" class="card-text" id="numEmpresaMapa"
+                                            name="numEmpresaMapa" hidden>
+                                        <h5 class="card-title"><b>Mapa de Procesos de la Empresa</b></h5>
+                                        <input type="file" class="card-text" id="fileMap" name="fileMap"
                                             accept="image/*">
                                     </div>
                                     <div class="modal-footer">
@@ -350,8 +405,8 @@
             </div>
         </div>
     </main>
-
-    <?php include_once "footer.frm.php" ?>
-<script src="../js/administrador/inicio.adm.js"></script>
+    <?php include_once "footer.php" ?>
+    <script src="../js/administrador/inicio.adm.js"></script>
 </body>
+
 </html>

@@ -67,8 +67,8 @@ class login{
     public function newpass()
     {
         try {
-            $this->sql="UPDATE usuario SET  clave = AES_ENCRYPT('$this->clave','kddbjw8b3d'), estado='A'
-            WHERE usuario = '$this->usuario' AND estado = 'C' ";
+            $this->sql="UPDATE usuario SET  clave = AES_ENCRYPT('$this->clave','kddbjw8b3d'), estado='ACTIVO'
+            WHERE usuario = '$this->usuario' AND estado = 'CREADO' ";
             $this->result=$this->conexion->query($this->sql);
             $this->retorno = $this->result->rowCount();
 

@@ -68,24 +68,16 @@ $(document).ready(function () {
             datos += "<table id='tablaRol'  class='table  table-striped table-bordered table-responsive '  >";
             datos += '<thead >';
             datos += '<tr class="table-light border-primary ">';
-            datos += '<th  class="text-wrap align-middle border border-primary " hidden>CÓDIGO  ROL</th>';
-            datos += '<th  class="text-wrap align-middle border border-primary ">ROL</th>';
-            datos += '<th  class="text-wrap align-middle border border-primary ">ESTADO ROL</th>';
-            datos += '<th  class="text-wrap align-middle border border-primary ">ACTUALIZAR ROL</th>';
-            datos += '<th  class="text-wrap align-middle border border-primary ">CAMBIAR ESTADO</th>';
+           
+            datos += '<th  class="text-center align-middle border border-primary ">ROL</th>';
+            datos += '<th  class="text-center align-middle border border-primary ">ESTADO ROL</th>';
+            datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR ROL</th>';
+            datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
             datos += '</tr>';
             datos += '</thead>';
             datos += '<tbody>';
             $.each(json, function (key, value) {
-                if (value.estado == "A") {
-                    value.estado = "ACTIVO";
-                } else {
-                    if (value.estado == "I") {
-                        value.estado = "INACTIVO";
-                    }
-                }
                 datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary text-wrap" hidden id="numIdSolicitud">'+value.id_rol+' </td>';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.rol + '</td>';
                 datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
                 datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarRol(' + value.id_rol + ',\'' + value.rol + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-edit"></i></button></td>';
@@ -239,44 +231,32 @@ $(document).ready(function () {
             dataType: 'json',
             data: null,
         }).done(function (json) {
-            /**
-            * Se crea la tabla para mostrar los datos consultados
-            */
             var datos = '';
             datos += '<table id="tablaCargos"  class="table  table-striped table-bordered table-responsive"  >';
-            datos += '<thead >';
-            datos += '<tr class="table-light border-primary ">';
-            datos += '<th  class="text-center align-middle border border-primary " hidden>CÓDIGO  CARGO</th>';
-            datos += '<th  class="text-wrap align-middle border border-primary ">CARGO</th>';
-            datos += '<th  class="text-wrap align-middle border border-primary " >MANUAL DE FUNCIONES</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">ESTADO CARGO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR CARGO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
-            datos += '</tr>';
-            datos += '</thead>';
-            datos += '<tbody>';
-            $.each(json, function (key, value) {
-                if (value.estado == 'A') {
-                    value.estado = 'ACTIVO';
-                } else {
-                    if (value.estado == 'I') {
-                        value.estado = 'INACTIVO';
-                    }
-                }
-                datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary text-wrap" id="numIdSolicitud" hidden   >' + value.id_cargo + ' </td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.cargo + '</td>';
-                if (value.manual_funciones == null ) {
-                    datos += '<td class=" border border-primary text-wrap align-middle">No ha cargado manual de funciones</td>';
-                } else {
-                    datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/cargos/' + value.cargo + '/' + value.manual_funciones + '"><i class="fas fa-download"></i></a></td>';
-                }
-                datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarCargo(' + value.id_cargo + ',\'' + value.cargo + '\',\'' + value.manual_funciones + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modCargo"><i class="far fa-edit"></i></button></td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoCargo(' + value.id_cargo + ',\'' + value.cargo + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#estadoCargo"><i class="fas fa-times"></i></button></td>';
-                datos += '</tr>';
-            })
-            datos += '</tbody>';
+                datos += '<thead>';
+                    datos += '<tr class="table-light border-primary ">';
+                        datos += '<th  class="text-wrap align-middle border border-primary ">CARGO</th>';
+                        datos += '<th  class="text-wrap align-middle border border-primary " >MANUAL DE FUNCIONES</th>';
+                        datos += '<th  class="text-center align-middle border border-primary ">ESTADO CARGO</th>';
+                        datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR CARGO</th>';
+                        datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
+                    datos += '</tr>';
+                datos += '</thead>';
+                datos += '<tbody>';
+                $.each(json, function (key, value) {
+                    datos += '<tr class="align-middle" >';
+                        datos += '<td class=" border border-primary text-wrap align-middle">' + value.cargo + '</td>';
+                        if (value.manual_funciones = null) {
+                            datos += '<td class=" border border-primary text-wrap align-middle">No ha cargado manual de funciones</td>';
+                        } else {
+                            datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/cargos/' +value.cargo+ '/' +value.manual_funciones+ '"><i class="fas fa-download"></i></a></td>';
+                        }
+                        datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
+                        datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarCargo(' + value.id_cargo + ',\'' + value.cargo + '\',\'' + value.manual_funciones + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modCargo"><i class="far fa-edit"></i></button></td>';
+                        datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoCargo(' + value.id_cargo + ',\'' + value.cargo + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#estadoCargo"><i class="fas fa-times"></i></button></td>';
+                    datos += '</tr>';
+                })
+                datos += '</tbody>';
             datos += '</table>';
             $('#cargos').html(datos);
             $('#tablaCargos').DataTable({
@@ -382,7 +362,7 @@ $(document).ready(function () {
             var prioridad = 0;
             prioridad += '<option disabled selected> - Seleccione una Rol -</option>';
             $.each(json, function (key, value) {
-                if (value.estado == "A") {
+                if (value.estado == "ACTIVO") {
                     prioridad += '<option value=' + value.id_rol + '>' + value.rol + '</option>';
                 }
             })
@@ -403,7 +383,7 @@ $(document).ready(function () {
             var cargos = 0;
             cargos += '<option disabled selected> - Seleccione un Cargo -</option>';
             $.each(json, function (key, value) {
-                if (value.estado == "A") {
+                if (value.estado == "ACTIVO") {
                     cargos += '<option value=' + value.id_cargo + '>' + value.cargo + '</option>';
                 }
             })
@@ -479,29 +459,20 @@ $(document).ready(function () {
             datos += "<table id='tablaUsuarios'   class='table  table-striped table-bordered table-responsive '  >";
             datos += '<thead >';
             datos += '<tr class="table-light border-primary ">';
-            datos += '<th  class="text-wrap  align-middle border border-primary " hidden>CÓDIGO  USUARIO</th>';
-            datos += '<th  class="text-wrap align-middle border border-primary ">NOMBRE EMPLEADO</th>';
-            datos += '<th  class="text-wrap align-middle border border-primary " >CORREO EMPLEADO</th>';
-            datos += '<th  class="text-wrap  align-middle border border-primary ">ROL</th>';
-            datos += '<th  class="text-wrap  align-middle border border-primary ">CARGO</th>';
-            datos += '<th  class="text-wrap  align-middle border border-primary ">USUARIO</th>';
-            datos += '<th  class="text-wrap  align-middle border border-primary ">CLAVE</th>';
-            datos += '<th  class="text-wrap  align-middle border border-primary ">ESTADO</th>';
-            datos += '<th  class="text-wrap  align-middle border border-primary ">ACTUALIZAR INFORMACIÓN</th>';
-            datos += '<th  class="text-wrap  align-middle border border-primary ">CAMBIAR ESTADO</th>';
+            datos += '<th  class="text-center align-middle border border-primary ">NOMBRE EMPLEADO</th>';
+            datos += '<th  class="text-center align-middle border border-primary " >CORREO EMPLEADO</th>';
+            datos += '<th  class="text-center  align-middle border border-primary ">ROL</th>';
+            datos += '<th  class="text-center  align-middle border border-primary ">CARGO</th>';
+            datos += '<th  class="text-center  align-middle border border-primary ">USUARIO</th>';
+            datos += '<th  class="text-center align-middle border border-primary ">CLAVE</th>';
+            datos += '<th  class="text-center  align-middle border border-primary ">ESTADO</th>';
+            datos += '<th  class="text-center  align-middle border border-primary ">ACTUALIZAR INFORMACIÓN</th>';
+            datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
             datos += '</tr>';
             datos += '</thead>';
             datos += '<tbody>';
             $.each(json, function (key, value) {
-                if (value.estado == "A") {
-                    value.estado = "ACTIVO";
-                } else if (value.estado == "I") {
-                    value.estado = "INACTIVO";
-                } else if (value.estado == "C") {
-                    value.estado = "CREADO";
-                }
                 datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary text-wrap" id="numIdSolicitud" hidden>' + value.id_usuario + ' </td>';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.nombre_completo + '</td>';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.correo_empleado + '</td>';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.rol + '</td>';
@@ -619,7 +590,7 @@ $(document).ready(function () {
             var prioridad = 0;
             prioridad += '<option disabled selected> - Seleccione una Rol -</option>';
             $.each(json, function (key, value) {
-                if (value.estado == "A") {
+                if (value.estado == "ACTIVO") {
                     prioridad += '<option value=' + value.id_rol + '>' + value.rol + '</option>';
                 }
             })
@@ -640,7 +611,7 @@ $(document).ready(function () {
             var cargos = 0;
             cargos += '<option disabled selected> - Seleccione un Cargo -</option>';
             $.each(json, function (key, value) {
-                if (value.estado == "A") {
+                if (value.estado == "ACTIVO") {
                     cargos += '<option value=' + value.id_cargo + '>' + value.cargo + '</option>';
                 }
             })

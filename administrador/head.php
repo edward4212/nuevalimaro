@@ -4,21 +4,18 @@ include_once("../controladorLogin/logueo.read.php");
         header("location: ../login/login.php");
     } else {
         if ($_SESSION['id_rol']!=1) {
-          header('location: inicio.Adm.frm.php');
+          header('location: inicio.php');
         }
     }  
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-
 <head>
-
     <!-- Inicio Anexo de archivos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../documentos/limaro/favicon_created_by_logaster.ico" sizes="16x16 24x24 36x36 48x48">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../componente/css/proyecto/style.css">
     <link rel="stylesheet" href="../componente/css/globales/all.min.css">
     <link rel="stylesheet" href="../componente/css/globales/animate.min.css">

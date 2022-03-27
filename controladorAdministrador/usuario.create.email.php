@@ -32,7 +32,9 @@ Para ingresar por primera vez, el sistema solicitará activar el usuario, para l
 
 Bienvenido(a)
 
-LIMARO SOFTWARE - Software de gestión ISO 9001:2015 con funcionalidad de control de documentos";
+LIMARO SOFTWARE - Software de gestión ISO 9001:2015 con funcionalidad de control de documentos
+
+Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje ya que es generado de manera automática y no es un canal oficial de comunicación de LIMARO SOFTWARE";
 
     $fromemail = "notificaciones@limaro.co";
     $fromname = "LIMARO";

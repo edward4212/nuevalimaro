@@ -26,7 +26,7 @@ $(document).ready(function () {
                         text: '¡Campo contraseña vacío!',
                     });
             }else if (obj[0] !== null) {
-                if(obj[0].estadoUsuario =="A"){
+                if(obj[0].estadoUsuario =="ACTIVO"){
                     if (obj[0].id_rol ==1) {
                         Swal.fire({
                             icon: 'success',
@@ -55,21 +55,21 @@ $(document).ready(function () {
                             window.location.href = "../visitante/inicio.php";
                           });
                         }
-                }else if(obj[0].estadoUsuario =="C"){
+                }else if(obj[0].estadoUsuario =="CREADO"){
                     Swal.fire({
                         icon: 'error',
                         title: '¡Usuario No Activo!',
                         showConfirmButton: false,
                         timer: 3000
                       });
-                }else if(obj[0].estadoUsuario =="I"){
+                }else if(obj[0].estadoUsuario =="INACTIVO"){
                     Swal.fire({
                         icon: 'error',
                         title: '¡Usuario Inhabilitado!',
                         showConfirmButton: false,
                         timer: 3000
                       });
-                }else if(obj[0].rolEstado =="I"){
+                }else if(obj[0].rolEstado =="INACTIVO"){
                     Swal.fire({
                         icon: 'error',
                         title: 'Rol Inhabilitado!',

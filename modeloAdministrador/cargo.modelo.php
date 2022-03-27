@@ -28,10 +28,7 @@ class Cargo{
          $this->estado = $cargoE->getEstado();
          $this->conexion = \Conexion::singleton();
     }
-
-    /**
-     * Se realiza la consulta de los procesos vigentes para mostrar en la vistaEmpleado/consultas.frm.php
-     */
+    
      public function read()
      {
           try {
@@ -49,7 +46,7 @@ class Cargo{
      {
          try{
                
-              $this->result = $this->conexion->prepare("INSERT INTO cargo VALUES (NULL , :cargo, :manual_funciones,'A')");
+              $this->result = $this->conexion->prepare("INSERT INTO cargo VALUES (NULL , :cargo, :manual_funciones,'ACTIVO')");
               $this->result->bindParam(':cargo', $this->cargo);
               $this->result->bindParam(':manual_funciones', $this->manual_funciones);
               $this->result->execute();    

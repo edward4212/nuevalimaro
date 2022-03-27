@@ -1,15 +1,14 @@
 <!-- Se agrega Head -->
-<?php include_once "head.Adm.frm.php" ?>
+<?php include_once "head.php" ?>
 <title>Usuarios</title>
-
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
-    <?php include_once "menu.Adm.frm.php" ?>
+    <?php include_once "menu.php" ?>
     <!-- se Inicia Pagina Inicio  -->
     <main class="flex-shrink-0">
         <div class="container">
             <nav class=""> 
-                <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                <div class="nav nav-pills " id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-usuarios-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-usuarios" type="button" role="tab" aria-controls="nav-usuarios"
                         aria-selected="false">Usuarios</button>
@@ -19,7 +18,6 @@
                         type="button" role="tab" aria-controls="nav-rol" aria-selected="false">Roles</button>
                 </div>
             </nav>
-            
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade  show active" id="nav-usuarios" role="tabpanel"
                     aria-labelledby="nav-usuarios-tab">
@@ -222,7 +220,6 @@
                 <div class="tab-pane fade" id="nav-cargo" role="tabpanel" aria-labelledby="nav-cargo-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                        <br>
                             <h3 class="card-title text-center">Cargo</h3>
                             <form class="row g-3 form-group" action="../controladorAdministrador/cargo.create.php"
                                 method="POST" enctype="multipart/form-data">
@@ -246,7 +243,6 @@
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <h3 class="card-title text-center">Cargos Registrados</h3>
                             <div class="col-md-12 col-xs-12 col-sm-12">
-                            <br>
                                 <h5 id="cargos"></h5>
                             </div>
                         </div>
@@ -439,9 +435,7 @@
             </div>
         </div>
     </main>
-
-    <?php include_once "footer.frm.php" ?>
-
+    <?php include_once "footer.php" ?>
 <script src="../js/administrador/usuario.adm.js"></script>
 
 </body>

@@ -4,13 +4,14 @@
         aria-label="Main navigation">
         <div class="container-fluid ">
             <a class="navbar-brand">
-                <img src="../documentos/limaro/horizontal_on_white_by_logaster.png" alt="" width="130"
-                    height="40">
+                <img src="../documentos/limaro/horizontal_on_white_by_logaster.png" alt="" width="100"
+                        height="40">
+                <img src="../documentos/empresa/logo/<?php $logo= $_SESSION['logo']; echo $logo;?>" alt="" width="100"
+                height="40">
             </a>
-            <!-- <a class="navbar-brand p-0 me-2" href="#" aria-label="Bootstrap">Navbar</a> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"><i class="far fa-caret-square-down"></i></span>
+                <span class="navbar-toggler-icon"><i class="fas fa-angle-double-down"></i></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class=" navbar-nav flex-row flex-wrap bd-navbar-nav pt-2 py-md-0  ">
