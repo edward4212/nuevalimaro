@@ -6,8 +6,26 @@ include_once "../modeloAdministrador/cargo.modelo.php";
 $cargos = $_POST['txtCargo'];
 $cargo =  ucwords($cargos);
 
-if (isset($_FILES["fileCargo"]))
+if(!file_exists($_FILES['fileCargo']['tmp_name']) || !is_uploaded_file($_FILES['fileCargo']['tmp_name']))
 {
+    echo '
+    <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
+    <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+    <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
+    <script>    
+    jQuery(function(){
+        Swal.fire({
+            icon: "error",
+            title: "Falta Información para crear el cargo",
+            showConfirmButton: false,
+            timer: 3000
+            }).then(function() {
+            window.location.href = "../administrador/usuarios.php";
+        });
+    });
+    </script>';
+}else{
+
     $foto=$_FILES["fileCargo"]["tmp_name"];
     $tipo =$_FILES['fileCargo']['type'];
     $tamaño =$_FILES['fileCargo']['size'];
@@ -23,36 +41,35 @@ if (isset($_FILES["fileCargo"]))
             move_uploaded_file($_FILES['fileCargo']['tmp_name'],$directorio.$nombre);
         }    
     }
-}else{
-    $directorio = "../documentos/cargos/$cargo/";
-    $nombre = NULL ;
+    $cargoE = new \entidad\Cargo(); 
+    $cargoE -> setCargo($cargo);
+    $cargoE -> setManualFunciones($nombre);
+
+    $cargoM= new \modelo\Cargo($cargoE);
+    $resultado = $cargoM->creacionCargo();
+
+    unset($cargoE);
+    unset($cargoM);
+
+    echo '
+        <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
+        <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+        <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
+        <script>    
+        jQuery(function(){
+            Swal.fire({
+                icon: "success",
+                title: "Cargo Creado con Éxito",
+                showConfirmButton: false,
+                timer: 3000
+                }).then(function() {
+                window.location.href = "../administrador/usuarios.php";
+            });
+        });
+        </script>';
+
 }
 
-$cargoE = new \entidad\Cargo(); 
-$cargoE -> setCargo($cargo);
-$cargoE -> setManualFunciones($nombre);
 
-$cargoM= new \modelo\Cargo($cargoE);
-$resultado = $cargoM->creacionCargo();
-
-unset($cargoE);
-unset($cargoM);
-
-echo '
-    <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
-    <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-    <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
-    <script>    
-    jQuery(function(){
-        Swal.fire({
-            icon: "success",
-            title: "Cargo Creado con Éxito",
-            showConfirmButton: false,
-            timer: 3000
-            }).then(function() {
-            window.location.href = "../administrador/usuarios.php";
-        });
-    });
-    </script>';
 
 ?>  

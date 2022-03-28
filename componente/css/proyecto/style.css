@@ -6,6 +6,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.bordeado {
+  border-top: 2px solid #000 !important;
+}
+
+
 header {
   margin-bottom: 60px;
 }

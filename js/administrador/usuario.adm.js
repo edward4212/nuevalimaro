@@ -25,8 +25,11 @@ function estadoCargo(id_cargo, cargo) {
     $("#txtCargoElim").val(cargo);
 }
 
-function actualiarClaveUsuario(id_cargo, cargo) {
+function actualiarClaveUsuario(id_cargo, nombre_completo, correo_empleado,usuario) {
     $("#numIdUsurioMoClave").val(id_cargo);
+    $("#NombreMoClave").val(nombre_completo);
+    $("#CorreoUsurioMoClave").val(correo_empleado);
+    $("#UsurioMoClave").val(usuario);
 }
 
 function modUsuario(id_usuario, nombre_completo, correo_empleado, id_rol, rol, id_cargo, cargo) {
@@ -169,7 +172,7 @@ $(document).ready(function () {
                 icon: 'success',
                 title: 'Rol Creado Con Éxito',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2500
             }).then((result) => {
                 cargar();
             });
@@ -191,7 +194,7 @@ $(document).ready(function () {
                 icon: 'success',
                 title: 'Rol Actualizado Con Éxito',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2500
             }).then((result) => {
                 cargar();
             });
@@ -213,7 +216,7 @@ $(document).ready(function () {
                 icon: 'success',
                 title: 'Estado Actualizado Con Éxito',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2500
             }).then((result) => {
                 cargar();
             });
@@ -246,11 +249,7 @@ $(document).ready(function () {
                 $.each(json, function (key, value) {
                     datos += '<tr class="align-middle" >';
                         datos += '<td class=" border border-primary text-wrap align-middle">' + value.cargo + '</td>';
-                        if (value.manual_funciones = null) {
-                            datos += '<td class=" border border-primary text-wrap align-middle">No ha cargado manual de funciones</td>';
-                        } else {
-                            datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/cargos/' +value.cargo+ '/' +value.manual_funciones+ '"><i class="fas fa-download"></i></a></td>';
-                        }
+                        datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/cargos/' +value.cargo+ '/' +value.manual_funciones+ '"><i class="fas fa-download"></i></a></td>';
                         datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
                         datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarCargo(' + value.id_cargo + ',\'' + value.cargo + '\',\'' + value.manual_funciones + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modCargo"><i class="far fa-edit"></i></button></td>';
                         datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoCargo(' + value.id_cargo + ',\'' + value.cargo + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#estadoCargo"><i class="fas fa-times"></i></button></td>';
@@ -342,7 +341,7 @@ $(document).ready(function () {
                 icon: 'success',
                 title: 'Estado Actualizado Con Éxito',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2500
             }).then((result) => {
                 cargar();
             })
@@ -407,7 +406,7 @@ $(document).ready(function () {
                     icon: 'success',
                     title: 'Usuario Creado Con Éxito',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2500
                 }).then((result) => {
                     window.location.href = "../administrador/usuarios.php";
                 })
@@ -418,7 +417,7 @@ $(document).ready(function () {
                     icon: 'error',
                     title: ' ¡No se pudo crear el usuario!.. Favor Verifique los datos ingresado! ',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2500
                 }).then((result) => {
                     window.location.href = "../administrador/usuarios.php";
                 })
@@ -461,10 +460,11 @@ $(document).ready(function () {
             datos += '<tr class="table-light border-primary ">';
             datos += '<th  class="text-center align-middle border border-primary ">NOMBRE EMPLEADO</th>';
             datos += '<th  class="text-center align-middle border border-primary " >CORREO EMPLEADO</th>';
-            datos += '<th  class="text-center  align-middle border border-primary ">ROL</th>';
-            datos += '<th  class="text-center  align-middle border border-primary ">CARGO</th>';
             datos += '<th  class="text-center  align-middle border border-primary ">USUARIO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">CLAVE</th>';
+            datos += '<th  class="text-center  align-middle border border-primary ">CARGO</th>';
+            datos += '<th  class="text-center  align-middle border border-primary ">ROL</th>';
+                       
+            datos += '<th  class="text-center align-middle border border-primary "> RESTABLECER CONTRASEÑA</th>';
             datos += '<th  class="text-center  align-middle border border-primary ">ESTADO</th>';
             datos += '<th  class="text-center  align-middle border border-primary ">ACTUALIZAR INFORMACIÓN</th>';
             datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
@@ -475,10 +475,10 @@ $(document).ready(function () {
                 datos += '<tr class="align-middle" >';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.nombre_completo + '</td>';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.correo_empleado + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.rol + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.cargo + '</td>';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.usuario + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="actualiarClaveUsuario(' + value.id_usuario + ')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modClaveUsuario"><i class="fas fa-lock-open"></i></button></td>';
+                datos += '<td class=" border border-primary text-wrap align-middle">' + value.cargo + '</td>';
+                datos += '<td class=" border border-primary text-wrap align-middle">' + value.rol + '</td>';
+                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="actualiarClaveUsuario(' + value.id_usuario + ',\'' + value.nombre_completo + '\',\'' + value.correo_empleado + '\',\'' + value.usuario + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modClaveUsuario"><i class="fas fa-lock-open"></i></button></td>';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.estado + '</td>';
                 datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modUsuario(' + value.id_usuario + ',\'' + value.nombre_completo + '\',\'' + value.correo_empleado + '\',' + value.id_rol + ',\'' + value.rol + '\',' + value.id_cargo + ',\'' + value.cargo + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modUsuario    "><i class="far fa-edit"></i></button></td>';
                 datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoUsuario(' + value.id_usuario + ',\'' + value.estado + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#estadoUsuario"><i class="fas fa-times"></i></button></td>';
@@ -557,8 +557,8 @@ $(document).ready(function () {
         })
     }
 
-    /// CAMBIO DE CONTRASEÑA USUARIO///
-    $(document).on('click', '#btnModClaveUsu', function (event) {
+    /// RESTABLECER CONTRASEÑA USUARIO///
+    $(document).on('click', '#btnModClaveUsu', function (event) {   
         event.preventDefault();
         $.ajax({
             url: '../controladorAdministrador/clave.update.php',
@@ -568,14 +568,36 @@ $(document).ready(function () {
         }).done(function (json) {
             Swal.fire({
                 icon: 'success',
-                title: 'Contraseña Actualizada Con Éxito',
+                title: 'Contraseña restablecida con éxito',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2500
             }).then((result) => {
                 cargar();
             })
         }).fail(function (xhr, status, error) {
-            alert(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al restablecer la contraseña',
+                showConfirmButton: false,
+                timer: 2500
+            }).then((result) => {
+                    cargar();
+                });
+        })
+    })
+
+      /// ENVIAR EMAIL USUARIO RESTABLECER CONTRASEÑA///
+      $(document).on('click', '#btnModClaveUsu', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/clave.update.email.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#modifClaveUsu').serialize(),
+        }).done(function (json) {
+
+        }).fail(function (xhr, status, error) {
+            $('#respuesta').html(error);
         })
     })
 
@@ -632,14 +654,21 @@ $(document).ready(function () {
         }).done(function (json) {
             Swal.fire({
                 icon: 'success',
-                title: 'Usuario Actualizado Con Éxito',
+                title: 'Información del usuario actualizada con éxito',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2500
             }).then((result) => {
                 cargar();
             });
         }).fail(function (xhr, status, error) {
-            alert(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al actualizar la información del empleado',
+                showConfirmButton: false,
+                timer: 2500
+            }).then((result) => {
+                    cargar();
+                });
         })
     })
 
@@ -656,7 +685,7 @@ $(document).ready(function () {
                 icon: 'success',
                 title: 'Estado Actualizado Con Éxito',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2500
             }).then((result) => {
                 cargar();
             })
@@ -664,6 +693,8 @@ $(document).ready(function () {
             alert(error);
         })
     })
+
+
 
 })
 

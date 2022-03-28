@@ -158,12 +158,19 @@ $(document).ready(function(){
                     icon: 'success',
                     title: 'Nombre de la Empresa Actualizado con Éxito',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2500
                   }).then((result) => {
                     cargar();
                   });
             }).fail(function(xhr, status, error){
-                alert (error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar el nombre de la empresa',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                        cargar();
+                    });
         });
     });
 
@@ -180,12 +187,19 @@ $(document).ready(function(){
                     icon: 'success',
                     title: 'Misión Actualizada con Éxito',
                     showConfirmButton: false,
-                    timer: 3000
-                    }).then((result) => {
+                    timer: 2500
+                }).then((result) => {
                         cargar();
-                      });
+                    });
             }).fail(function(xhr, status, error){
-                alert (error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar la misión de la empresa',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                        cargar();
+                    });
         });
     });
 
@@ -202,12 +216,19 @@ $(document).ready(function(){
                     icon: 'success',
                     title: 'Visión Actualizada con Éxito',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2500
                     }).then((result) => {
                         cargar();
                       });
             }).fail(function(xhr, status, error){
-                alert (error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar la visión de la empresa',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                        cargar();
+                    });
         });
     });
 
@@ -224,12 +245,19 @@ $(document).ready(function(){
                     icon: 'success',
                     title: 'Política  de Calidad Actualizada con Éxito',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2500
                     }).then((result) => {
                         cargar();
                       })
             }).fail(function(xhr, status, error){
-                alert (error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar la política de calidad de la empresa',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                        cargar();
+                    });
         })
     })
 
@@ -246,12 +274,19 @@ $(document).ready(function(){
                     icon: 'success',
                     title: 'Objetivo de Calidad Actualizado con Éxito',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2500
                     }).then((result) => {
                         cargar();
                       })
             }).fail(function(xhr, status, error){
-                alert (error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar el objetivo de calidad de la empresa',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                        cargar();
+                    });
         })
     })
 

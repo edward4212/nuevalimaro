@@ -5,7 +5,28 @@ include_once "../modeloAdministrador/inicio.modelo.php";
 
 $id_empresa=$_POST["numEmpresaMod1"];
 
-if (isset($_FILES["fileLogo"]))
+
+if(!file_exists($_FILES['fileLogo']['tmp_name']) || !is_uploaded_file($_FILES['fileLogo']['tmp_name']))
+{
+    echo '
+    <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
+    <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+    <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
+    <script>    
+    jQuery(function(){
+        Swal.fire({
+            icon: "error",
+            title: "Falta Información para actualizar el logo",
+            showConfirmButton: false,
+            timer: 3000
+            }).then(function() {
+            window.location.href = "../administrador/inicio.php";
+        });
+    });
+    </script>';
+}else{
+
+    if (isset($_FILES["fileLogo"]))
 {
     $foto=$_FILES["fileLogo"]["tmp_name"];
     $tipo =$_FILES['fileLogo']['type'];
@@ -49,7 +70,7 @@ echo '
     jQuery(function(){
         Swal.fire({
             icon: "success",
-            title: "Logo Actualizado con Éxito",
+            title: "Logo actualizado con éxito",
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
@@ -57,4 +78,7 @@ echo '
         });
     });
     </script>';
+
+}
+
 ?>  

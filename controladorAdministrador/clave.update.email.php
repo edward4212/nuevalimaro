@@ -6,33 +6,32 @@ include_once "../componente/Mailer/src/PHPMailer.php";
 include_once "../componente/Mailer/src/SMTP.php";
 include_once "../componente/Mailer/src/Exception.php";
 
- $nombre_completo  = $_POST['txtNombreEmpleado'];
- $correo_empleado  = $_POST['txtCorreoEmpleado'];
- $id_cargo  = $_POST['cargosUsuario'];
- $usuario  = $_POST['txtUsuario'];
- $clave  = $_POST['txtClaveInicial'];
- $id_rol  = $_POST['rolesUsuario'];
+ $nombre_completo  = $_POST['NombreMoClave'];
+ $correo_empleado  = $_POST['CorreoUsurioMoClave'];
+ $usuario  = $_POST['UsurioMoClave'];
+ $clave  = '12345';
+ 
 
 try {
 
-    $nombre_completo  = $_POST['txtNombreEmpleado'];
-    $usuario  = $_POST['txtUsuario'];
-    $emailTo =  $_POST['txtCorreoEmpleado'];
-    $clave  = $_POST['txtClaveInicial'];
-    $subject = "LIMARO - Creacion usuario";
+    $nombre_completo  = $_POST['NombreMoClave'];
+    $usuario  = $_POST['UsurioMoClave'];
+    $emailTo =  $_POST['CorreoUsurioMoClave'];
+    $clave  = '12345';
+    $subject = "LIMARO - Restablecimiento Contraseña de usuario";
     $bodyEmail = "Estimado(a) $nombre_completo,
 
-Su usuario dentro del sistema LIMARO SOFTWARE fue creado exitosamente con la siguiente información:
+Su solicitud de restablecimiento de Contraseña dentro del sistema LIMARO SOFTWARE fue realizado exitosamente con la siguiente información:
 
     Url de conexión: https://cop.limaro.co/login/login.php
     Usuario: $usuario
     Contraseña Inicial:  $clave
+    
+Para ingresar nuevamente, el sistema solicitará activar el usuario, para lo cual debe dar clic en el botón 'Activar Usuario' y realizar cambio de clave; No olvide guardar la clave en un sitio seguro.
 
-Para ingresar por primera vez, el sistema solicitará activar el usuario, para lo cual debe dar clic en el botón 'Activar Usuario' y realizar cambio de contraseña; No olvide guardar la contraseña en un sitio seguro.
+Cordialmente,
 
-Bienvenido(a)
-
-LIMARO SOFTWARE - Software de gestión ISO 9001:2015 con funcionalidad de control de documentos
+LIMARO SOFTWARE - Software de gestión ISO 9001:2015 con funcionalidad de control de documentos.
 
 Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje ya que es generado de manera automática y no es un canal oficial de comunicación de LIMARO SOFTWARE.";
 

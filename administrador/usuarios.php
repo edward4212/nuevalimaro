@@ -1,13 +1,15 @@
 <!-- Se agrega Head -->
 <?php include_once "head.php" ?>
 <title>Usuarios</title>
+
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
     <?php include_once "menu.php" ?>
     <!-- se Inicia Pagina Inicio  -->
     <main class="flex-shrink-0">
         <div class="container">
-            <nav class=""> 
+            <nav class="">
+            <br>
                 <div class="nav nav-pills " id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-usuarios-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-usuarios" type="button" role="tab" aria-controls="nav-usuarios"
@@ -22,45 +24,46 @@
                 <div class="tab-pane fade  show active" id="nav-usuarios" role="tabpanel"
                     aria-labelledby="nav-usuarios-tab">
                     <div class="row ">
-                        <div class="col-md-12 col-xs-12 col-sm-12">
+                        <!-- Formulario para la creacion de usuarios-->
+                        <div class="col-md-12 col-xs-12 col-sm-12 ">
+                            <h2 class="card-title text-center"><b>Empleados</b></h2>
                             <br>
-                            <h3 class="card-title text-center">Empleado</h3>
-                            <form class="row g-3 form-group needs-validation" id="usuario" method="POST" >
-                                <h3 class="card-title">Crear Empleado</h3>
+                            <form class="row g-3 form-group needs-validation bordeado" id="usuario" method="POST">
+                                <h4 class="card-title text-center"><b>Crear Empleado</b></h4>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <h5>Nombre Completo Empleado</h5>
+                                    <h5><b>Nombre Completo Empleado*</b></h5>
                                     <input class="form-control inicialM" type="text" name="txtNombreEmpleado"
-                                        id="txtNombreEmpleado" aria-label="E" aria-describedby="basic-addon1"
-                                        required>
+                                        id="txtNombreEmpleado" aria-label="E" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <h5>Correo Electrónico </h5>
+                                    <h5><b>Correo Electrónico* </b></h5>
                                     <input class="form-control" type="email" name="txtCorreoEmpleado"
                                         id="txtCorreoEmpleado" placeholder="name@example.com"
                                         title="Introduzca una direccion de correo valido" aria-label="E"
                                         aria-describedby="basic-addon1" style="text-transform:lowercase;" required>
                                 </div>
                                 <div class="col-md-3 col-xs-12 col-sm-12">
-                                    <h5>Cargo</h5>
+                                    <h5><b>Cargo*</b></h5>
                                     <select class="form-control " id="cargosUsuario" name="cargosUsuario" aria-label="E"
                                         aria-describedby="basic-addon1" required></select>
                                 </div>
                                 <div class="col-md-3 col-xs-12 col-sm-12">
-                                    <h5>Rol</h5>
+                                    <h5><b>Rol*</b></h5>
                                     <select class="form-control " id="rolesUsuario" name="rolesUsuario" aria-label="E"
                                         aria-describedby="basic-addon1" required></select>
                                 </div>
                                 <div class="col-md-3 col-xs-12 col-sm-12">
-                                    <h5>Usuario</h5>
+                                    <h5><b>Usuario*</b></h5>
                                     <input class="form-control" type="text" name="txtUsuario" id="txtUsuario"
                                         aria-label="E" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="col-md-3 col-xs-12 col-sm-12">
-                                    <h5>Clave Inicial</h5>
+                                    <h5><b>Clave Inicial</b></h5>
                                     <input class="form-control" type="password" name="txtClaveInicial"
                                         id="txtClaveInicial" autocomplete="current-password" aria-label="E"
                                         aria-describedby="basic-addon1" value="12345" readonly required>
                                 </div>
+                                <span class="text-muted">* Campos Obligatorios</span>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary mb-3" id="btnRegistrarUsuario"><i
                                             class="fas fa-plus"></i> Crear Usuarios</button>
@@ -69,20 +72,24 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h3 class="card-title text-center">Usuarios Registrados</h3>
+                        <!--Fin Formulario para la creacion de usuarios-->
+                        <!--Se muestras los usuario registrados-->
+                        <div class="col-md-12 col-xs-12 col-sm-12 bordeado">
+                            <h4 class="card-title text-center"><b>Usuarios Registrados</b></h4>
                             <div class="col-md-12 col-xs-12 col-sm-12">
-                            <br>
+                                <br>
                                 <h5 id="usuarios"></h5>
                             </div>
                         </div>
+                          <!--Fin de los usuario registrados-->
                         <!-- Modal para actualizaciones clave usuario-->
                         <div class="modal fade bd-example-modal-lg" id="modClaveUsuario" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Actualizar Clave Usuario</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Restablecer Contraseña de
+                                                Usuario</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -91,17 +98,25 @@
                                             <div class="row">
                                                 <input class="form-control" type="number" name="numIdUsurioMoClave"
                                                     id="numIdUsurioMoClave" hidden>
+                                                <input class="form-control" type="text" name="UsurioMoClave"
+                                                    id="UsurioMoClave" hidden>
+                                                <input class="form-control" type="text" name="NombreMoClave"
+                                                    id="NombreMoClave" hidden>
+                                                <input class="form-control" type="text" name="CorreoUsurioMoClave"
+                                                    id="CorreoUsurioMoClave" hidden>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nueva Contraseña</h5>
+                                                    <h5><b>Restablecer Contraseña</b></h5>
                                                     <input class="form-control" type="password" name="txtClaveMod"
                                                         id="txtClaveMod" autocomplete="current-password" aria-label="E"
-                                                        aria-describedby="basic-addon1" value="12345" readonly>
+                                                        aria-describedby="basic-addon1" value="12345" hidden>
+                                                    <span class="">Se generará una nueva contraseña automática y será
+                                                        notificada al correo registrado </span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" id="btnModClaveUsu" class="btn btn-primary"><i
-                                                    class="far fa-edit"></i> Modificar</button>
+                                                    class="far fa-edit"></i> Restablecer</button>
                                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>
@@ -109,13 +124,14 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Fin para actualizaciones clave usuario-->
                         <!-- Modal para actualizaciones sobre Usuario-->
                         <div class="modal fade bd-example-modal-lg" id="modUsuario" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuario</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Actualizar Información del Usuario</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -126,37 +142,38 @@
                                                 <input class="form-control" type="number" name="numIdUsuMod"
                                                     id="numIdUsuMod" hidden>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nombre Empleado</h5>
-                                                    <input class="form-control inicialM " type="text" name="txtNombreMod"
-                                                        id="txtNombreMod"  >
+                                                    <h5><b>Nombre Empleado</b></h5>
+                                                    <input class="form-control inicialM " type="text"
+                                                        name="txtNombreMod" id="txtNombreMod">
                                                 </div>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Correo Electrónico </h5>
+                                                    <h5><b>Correo Electrónico</b></h5>
                                                     <input class="form-control" type="text" name="txtCorreoMod"
-                                                        id="txtCorreoMod" onkeyup="javascript:this.value=this.value.toLowerCase();" >
+                                                        id="txtCorreoMod"
+                                                        onkeyup="javascript:this.value=this.value.toLowerCase();">
                                                 </div>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Cargo Actual:</h5>
+                                                    <h5><b>Cargo Actual</b></h5>
                                                     <input class="form-control" type="text" name="idCargoActuUsuAnt"
                                                         id="idCargoActuUsuAnt" aria-label="E"
                                                         aria-describedby="basic-addon1" hidden readonly>
                                                     <input class="form-control" type="text" name="cargoActuUsuAnt"
                                                         id="cargoActuUsuAnt" aria-label="E"
                                                         aria-describedby="basic-addon1" readonly>
-                                                    <h5>Cargo Nuevo</h5>
+                                                    <h5><b>Cargo Nuevo</b></h5>
                                                     <select class="form-control " id="cargosUsuarioAct"
                                                         name="cargosUsuarioAct" aria-label="E"
                                                         aria-describedby="basic-addon1"></select>
                                                 </div>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Rol Actual:</h5>
+                                                    <h5><b>Rol Actual</b></h5>
                                                     <input class="form-control" type="text" name="idRolActuUsuAnt"
                                                         id="idRolActuUsuAnt" aria-label="E"
                                                         aria-describedby="basic-addon1" hidden readonly>
                                                     <input class="form-control" type="text" name="rolActuUsuAnt"
                                                         id="rolActuUsuAnt" aria-label="E"
                                                         aria-describedby="basic-addon1" readonly>
-                                                    <h5>Rol Nuevo</h5>
+                                                    <h5><b>Rol Nuevo</b></h5>
                                                     <select class="form-control " id="rolesUsuarioAct"
                                                         name="rolesUsuarioAct" aria-label="E"
                                                         aria-describedby="basic-addon1"></select>
@@ -223,15 +240,17 @@
                             <h3 class="card-title text-center">Cargo</h3>
                             <form class="row g-3 form-group" action="../controladorAdministrador/cargo.create.php"
                                 method="POST" enctype="multipart/form-data">
-                                <h3 class="card-title">Crear Cargo</h3>
+                                <h3 class="card-title"><b>Crear Cargo</b></h3>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <h5>Nombre Cargo</h5>
-                                    <input class="form-control inicialM " type="text" name="txtCargo" id="txtCargo" required>
+                                    <h5>Nombre Cargo*</h5>
+                                    <input class="form-control inicialM " type="text" name="txtCargo" id="txtCargo"
+                                        required>
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <h5>Manual de Funciones</h5>
+                                    <h5>Manual de Funciones*</h5>
                                     <input class="form-control" type="file" id="fileCargo" name="fileCargo" multiple>
                                 </div>
+                                <span class="text-muted">* Campos Obligatorios</span>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Crear
                                         Cargo</button>
@@ -241,7 +260,7 @@
                             </form>
                         </div>
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h3 class="card-title text-center">Cargos Registrados</h3>
+                            <h3 class="card-title">Cargos Registrados</h3>
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <h5 id="cargos"></h5>
                             </div>
@@ -270,7 +289,7 @@
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <h5>Cargo</h5>
                                                     <input class="form-control inicialM" type="text" name="txtCargoMod"
-                                                        id="txtCargoMod" >
+                                                        id="txtCargoMod">
                                                 </div>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <h5>Manual de Funciones</h5>
@@ -335,14 +354,14 @@
                 <div class="tab-pane fade" id="nav-rol" role="tabpanel" aria-labelledby="nav-rol-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                        <br>
                             <h3 class="card-title text-center">Roles</h3>
-                            <form class="row g-3 form-group" id="rol" method="POST">
+                            <form class="form-group" id="rol" method="POST">
                                 <h3 class="card-title">Crear Rol</h3>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                    <h5>Nombre Rol</h5>
-                                    <input class="form-control inicialM" type="text" name="txtRol" id="txtRol" required >
+                                    <h5>Nombre Rol*</h5>
+                                    <input class="form-control inicialM" type="text" name="txtRol" id="txtRol" required>
                                 </div>
+                                <span class="text-muted">* Campos Obligatorios</span>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary mb-3" id="btnRegistrarRol"><i
                                             class="fas fa-plus"></i> Crear Rol</button>
@@ -354,7 +373,6 @@
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <h3 class="card-title text-center">Roles Registrados</h3>
                             <div class="col-md-12 col-xs-12 col-sm-12">
-                            <br>
                                 <h5 id="roles"></h5>
                             </div>
                         </div>
@@ -377,7 +395,7 @@
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <h5>Rol</h5>
                                                     <input class="form-control inicialM" type="text" name="txtRolMod"
-                                                        id="txtRolMod" >
+                                                        id="txtRolMod">
                                                 </div>
                                             </div>
                                         </div>
@@ -436,7 +454,7 @@
         </div>
     </main>
     <?php include_once "footer.php" ?>
-<script src="../js/administrador/usuario.adm.js"></script>
+    <script src="../js/administrador/usuario.adm.js"></script>
 
 </body>
 
