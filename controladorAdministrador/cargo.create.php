@@ -59,7 +59,7 @@ if(!file_exists($_FILES['fileCargo']['tmp_name']) || !is_uploaded_file($_FILES['
         jQuery(function(){
             Swal.fire({
                 icon: "success",
-                title: "Cargo Creado con Éxito",
+                title: "Cargo creado con éxito",
                 showConfirmButton: false,
                 timer: 3000
                 }).then(function() {

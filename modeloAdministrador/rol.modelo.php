@@ -27,9 +27,7 @@ class Rol{
           $this->conexion = \Conexion::singleton();
      }
 
-     /**
-     * Se realiza la consulta de los procesos vigentes para mostrar en la vistaEmpleado/consultas.frm.php
-     */
+     
      public function read()
      {
           try {
@@ -47,7 +45,7 @@ class Rol{
      {
           try{
                
-               $this->result = $this->conexion->prepare("INSERT INTO rol VALUES (NULL , :rol,'A')");
+               $this->result = $this->conexion->prepare("INSERT INTO rol VALUES (NULL , :rol,'ACTIVO')");
                $this->result->bindParam(':rol', $this->rol);
                $this->result->execute();    
           } catch (Exception $e) {

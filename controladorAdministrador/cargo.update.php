@@ -69,7 +69,7 @@ echo '
     jQuery(function(){
         Swal.fire({
             icon: "success",
-            title: "Cargo Actualizado con Éxito",
+            title: "Cargo actualizado con éxito",
             showConfirmButton: false,
             timer: 3000
             }).then(function() {

@@ -42,6 +42,7 @@ function cargar(){
 $(document).ready(function(){
     buscar();
 
+     /// MUESTRA LOS DATOS EN LA PANTALLA INICIO///
     function buscar(){
         $.ajax({
             url:'../controladorAdministrador/inicio.read.php',
@@ -166,11 +167,7 @@ $(document).ready(function(){
                 Swal.fire({
                     icon: 'error',
                     title: 'Error al actualizar el nombre de la empresa',
-                    showConfirmButton: false,
-                    timer: 2500
-                }).then((result) => {
-                        cargar();
-                    });
+                });
         });
     });
 
@@ -195,11 +192,7 @@ $(document).ready(function(){
                 Swal.fire({
                     icon: 'error',
                     title: 'Error al actualizar la misión de la empresa',
-                    showConfirmButton: false,
-                    timer: 2500
-                }).then((result) => {
-                        cargar();
-                    });
+                });
         });
     });
 
@@ -224,11 +217,7 @@ $(document).ready(function(){
                 Swal.fire({
                     icon: 'error',
                     title: 'Error al actualizar la visión de la empresa',
-                    showConfirmButton: false,
-                    timer: 2500
-                }).then((result) => {
-                        cargar();
-                    });
+                });
         });
     });
 
@@ -253,11 +242,7 @@ $(document).ready(function(){
                 Swal.fire({
                     icon: 'error',
                     title: 'Error al actualizar la política de calidad de la empresa',
-                    showConfirmButton: false,
-                    timer: 2500
-                }).then((result) => {
-                        cargar();
-                    });
+                });
         })
     })
 
@@ -282,11 +267,7 @@ $(document).ready(function(){
                 Swal.fire({
                     icon: 'error',
                     title: 'Error al actualizar el objetivo de calidad de la empresa',
-                    showConfirmButton: false,
-                    timer: 2500
-                }).then((result) => {
-                        cargar();
-                    });
+                });
         })
     })
 

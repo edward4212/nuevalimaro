@@ -7,6 +7,16 @@ $id_usuario = $_POST['numIdUsuMod'];
 $nombre_completo = $_POST['txtNombreMod'];
 $correo_empleado = $_POST['txtCorreoMod'];
 
+if (empty($nombre_completo)) 
+{
+
+}else if(empty($correo_empleado)){
+
+}else{
+
+
+
+
 if (isset($_POST['cargosUsuarioAct']))
 {
     $cargo = $_POST['cargosUsuarioAct'];
@@ -40,4 +50,5 @@ unset($usuarioM);
 
 echo json_encode($resultado);
 
+}
 ?>

@@ -9,21 +9,27 @@ $(document).ready(function () {
             var obj = JSON.parse(json);
             if ((document.getElementById('txtUsuario').value ==="") && (document.getElementById('txtClave').value ==="")){
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Error',
-                    text: '¡Campo usuario y contraseña vacío!',
+                    showConfirmButton: false,
+                    title: '¡Campo usuario y contraseña vacío!',
+                    timer: 2000
                 });
             }else if (document.getElementById('txtUsuario').value ==="") {
                     Swal.fire({
-                        type: 'error',
+                        icon: 'error',
                         title: 'Error',
-                        text: '¡Campo usuario vacío!',
+                        showConfirmButton: false,
+                        title: '¡Campo usuario vacío!',
+                        timer: 2000
                     });
             }else if (document.getElementById('txtClave').value ==="") {
                     Swal.fire({
-                        type: 'error',
+                        icon: 'error',
                         title: 'Error',
-                        text: '¡Campo contraseña vacío!',
+                        showConfirmButton: false,
+                        title: '¡Campo contraseña vacío!',
+                        timer: 2000
                     });
             }else if (obj[0] !== null) {
                 if(obj[0].estadoUsuario =="ACTIVO"){
@@ -32,7 +38,7 @@ $(document).ready(function () {
                             icon: 'success',
                             title: 'Te damos la bienvenida '+obj[0].nombre_completo,
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2500
                           }).then((result) => {
                             window.location.href = "../administrador/inicio.php";
                           });
@@ -41,7 +47,7 @@ $(document).ready(function () {
                             icon: 'success',
                             title: 'Te damos la bienvenida '+obj[0].nombre_completo , 
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2500
                           }).then((result) => {
                             window.location.href = "../empleado/inicio.php";
                           });
@@ -50,7 +56,7 @@ $(document).ready(function () {
                             icon: 'success',
                             title: 'Te damos la bienvenida ', 
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2500
                           }).then((result) => {
                             window.location.href = "../visitante/inicio.php";
                           });
@@ -60,21 +66,21 @@ $(document).ready(function () {
                         icon: 'error',
                         title: '¡Usuario No Activo!',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2500
                       });
                 }else if(obj[0].estadoUsuario =="INACTIVO"){
                     Swal.fire({
                         icon: 'error',
                         title: '¡Usuario Inhabilitado!',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2500
                       });
                 }else if(obj[0].rolEstado =="INACTIVO"){
                     Swal.fire({
                         icon: 'error',
                         title: 'Rol Inhabilitado!',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2500
                       });
                 } 
             }else{
@@ -82,7 +88,7 @@ $(document).ready(function () {
                     icon: 'error',
                     title: '¡Por favor Ingrese La Información Correcta!',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2500
                 });
             }
         }).fail(function (xhr, status, error) {
@@ -90,7 +96,7 @@ $(document).ready(function () {
                 icon: 'error',
                 title: '¡Por favor Ingrese La Información Correcta!',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2500
             });
         });
     });
@@ -110,7 +116,7 @@ $(document).ready(function () {
                     icon: 'success',
                     title: 'Usuario Activado con Exito... Por Favor Inicie Sesion',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2500
                 }).then((result) => {
                     window.location.href = "../login/login.php";
                 });
@@ -120,7 +126,7 @@ $(document).ready(function () {
                     icon: 'error',             
                     title: 'Usuario ya se encuentra Activo  o esta Inhabilitado',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2500
                 }).then((result) => {
                     window.location.href = "../login/login.php";
                 });
@@ -130,7 +136,7 @@ $(document).ready(function () {
                 icon: 'error',
                 title: 'Digete los campos completos del formulario',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2500
             }).then((result) => {
                 window.location.href = "../login/login.php";
             });

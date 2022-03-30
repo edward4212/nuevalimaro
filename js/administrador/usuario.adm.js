@@ -170,14 +170,17 @@ $(document).ready(function () {
         }).done(function (json) {
             Swal.fire({
                 icon: 'success',
-                title: 'Rol Creado Con Éxito',
+                title: 'Rol creado con éxito',
                 showConfirmButton: false,
                 timer: 2500
             }).then((result) => {
                 cargar();
             });
         }).fail(function (xhr, status, error) {
-            alert(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear el rol',
+            })
         });
     });
 
@@ -411,19 +414,17 @@ $(document).ready(function () {
                     window.location.href = "../administrador/usuarios.php";
                 })
 
-            } else {
-
+            } else{
                 Swal.fire({
                     icon: 'error',
-                    title: ' ¡No se pudo crear el usuario!.. Favor Verifique los datos ingresado! ',
-                    showConfirmButton: false,
-                    timer: 2500
-                }).then((result) => {
-                    window.location.href = "../administrador/usuarios.php";
-                })
+                    title: 'Error al crear al usuario',
+                });
             }
         }).fail(function (xhr, status, error) {
-            $('#respuesta').html(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear al usuario',
+            })
         })
 
     })
@@ -663,12 +664,8 @@ $(document).ready(function () {
         }).fail(function (xhr, status, error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Error al actualizar la información del empleado',
-                showConfirmButton: false,
-                timer: 2500
-            }).then((result) => {
-                    cargar();
-                });
+                title: 'Error al actualizar la información del usuario',
+           });
         })
     })
 
@@ -690,11 +687,61 @@ $(document).ready(function () {
                 cargar();
             })
         }).fail(function (xhr, status, error) {
-            alert(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al actualizar el estado del usuario',
+           });
         })
     })
 
 
+    /// MOSTRAR FORMULARIO PARA CREAR USUARIO///
+    $(document).on('click','#btnFomularioCrear', function(){
+        $("#btnFomularioCrear").prop("hidden", true);
+        $("#usuario").prop("hidden", false);
+        $("#usuariosRegistrados").prop("hidden", true);
+        $("#volverRegistro").prop("hidden", false);
+    })
+
+    /// MOSTRAR USUARIOS REGISTRADOS///
+    $(document).on('click','#volverRegistro', function(){
+        $("#btnFomularioCrear").prop("hidden", false);
+        $("#usuario").prop("hidden", true);
+        $("#usuariosRegistrados").prop("hidden",false);
+        $("#volverRegistro").prop("hidden", true);
+    })
+
+    /// MOSTRAR FORMULARIO PARA CREAR CARGO///
+    $(document).on('click','#btnFomularioCargo', function(){
+        $("#formCArgo").prop("hidden", false);
+        $("#btnFomularioCargo").prop("hidden", true);
+        $("#cargosRegistradoss").prop("hidden", true);
+        $("#volverRegistroCargo").prop("hidden", false);
+    })
+
+    /// MOSTRAR CARGOS REGISTRADOS///
+    $(document).on('click','#volverRegistroCargo', function(){
+        $("#btnFomularioCargo").prop("hidden", false);
+        $("#formCArgo").prop("hidden", true);
+        $("#cargosRegistradoss").prop("hidden",false);
+        $("#volverRegistroCargo").prop("hidden", true);
+    })
+
+    /// MOSTRAR FORMULARIO PARA CREAR ROL///
+    $(document).on('click','#btnFomularioRol', function(){
+        $("#rol").prop("hidden", false);
+        $("#btnFomularioRol").prop("hidden", true);
+        $("#rolesRegistrados").prop("hidden", true);
+        $("#volverRegistroRol").prop("hidden", false);
+    })
+
+    /// MOSTRAR ROLES REGISTRADOS///
+    $(document).on('click','#volverRegistroRol', function(){
+        $("#btnFomularioRol").prop("hidden", false);
+        $("#rol").prop("hidden", true);
+        $("#rolesRegistrados").prop("hidden",false);
+        $("#volverRegistroRol").prop("hidden", true);
+    })
 
 })
 

@@ -15,7 +15,10 @@
 	$loginM = new \modelo\login($loginE);
 	$retorno =$loginM->read();
 		
-	if(!empty($retorno)){
+	if(empty($retorno)){
+		$retorno[0]= null;
+	}else{
+	
 		if(array_key_exists('usuario',$retorno[0])){
 			$_SESSION['id_usuario']=$retorno[0]['id_usuario'];
 			$_SESSION['usuario']=$retorno[0]['usuario'];
