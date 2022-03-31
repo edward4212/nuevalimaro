@@ -11,16 +11,58 @@ if(!file_exists($_FILES['fileCargoMod']['tmp_name']) || !is_uploaded_file($_FILE
     $cargoAnt = $_POST['txtCargoModAnt'];
     $manual = $_POST['txtManualModAnt']; 
 
+    $cargoE = new \entidad\Cargo();
+    $cargoE -> setIdcargo($id_cargo);
+    $cargoE -> setCargo($cargo);
+    $cargoE -> setManualFunciones($manual);
+
+    $cargoM= new \modelo\Cargo($cargoE);
+    $resultado = $cargoM->actualizarcargo();
+
+    unset($cargoE);
+    unset($cargoM);
+
+    if(($resultado !== null)){
+        echo '
+        <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
+        <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+        <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
+        <script>    
+        jQuery(function(){
+            Swal.fire({
+                icon: "error",
+                title: "Cargo ya creado",
+                showConfirmButton: false,
+                timer: 3000
+                }).then(function() {
+                window.location.href = "../administrador/usuarios.php";
+            });
+        });
+        </script>';
+    }else{
+
     $directorio = "../documentos/cargos/$cargoAnt/";
     $directorioNew = "../documentos/cargos/$cargo/";
 
     rename ($directorio, $directorioNew);
 
-
-    $cargoE = new \entidad\Cargo();
-    $cargoE -> setIdcargo($id_cargo);
-    $cargoE -> setCargo($cargo);
-    $cargoE -> setManualFunciones($manual);
+        echo '
+            <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
+            <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+            <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
+            <script>    
+            jQuery(function(){
+                Swal.fire({
+                    icon: "success",
+                    title: "Cargo actualizado con éxito",
+                    showConfirmButton: false,
+                    timer: 3000
+                    }).then(function() {
+                        window.location.href = "../administrador/usuarios.php";
+                });
+            });
+            </script>';
+        }
 }
 else{
 
@@ -28,11 +70,7 @@ else{
     $cargo = $_POST['txtCargoMod'];
     $cargoAnt = $_POST['txtCargoModAnt'];
 
-    $directorio = "../documentos/cargos/$cargoAnt/";
-    $directorioNew = "../documentos/cargos/$cargo/";
-
-    rename ($directorio, $directorioNew);
-
+    
     $foto=$_FILES["fileCargoMod"]["tmp_name"];
     $tipo =$_FILES['fileCargoMod']['type'];
     $tamaño =$_FILES['fileCargoMod']['size'];
@@ -52,30 +90,55 @@ else{
     $cargoE -> setIdcargo($id_cargo);
     $cargoE -> setCargo($cargo);
     $cargoE -> setManualFunciones($nombre);
-}
 
-
-$cargoM= new \modelo\Cargo($cargoE);
+    $cargoM= new \modelo\Cargo($cargoE);
 $resultado = $cargoM->actualizarcargo();
 
 unset($cargoE);
 unset($cargoM);
 
-echo '
+if(($resultado !== null)){
+    echo '
     <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
     <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
     <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
     <script>    
     jQuery(function(){
         Swal.fire({
-            icon: "success",
-            title: "Cargo actualizado con éxito",
+            icon: "error",
+            title: "Cargo ya creado",
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-                window.location.href = "../administrador/usuarios.php";
+            window.location.href = "../administrador/usuarios.php";
         });
     });
     </script>';
+}else{
+    $directorio = "../documentos/cargos/$cargoAnt/";
+    $directorioNew = "../documentos/cargos/$cargo/";
+
+    rename ($directorio, $directorioNew);
+
+    echo '
+        <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
+        <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+        <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
+        <script>    
+        jQuery(function(){
+            Swal.fire({
+                icon: "success",
+                title: "Cargo actualizado con éxito",
+                showConfirmButton: false,
+                timer: 3000
+                }).then(function() {
+                    window.location.href = "../administrador/usuarios.php";
+            });
+        });
+        </script>';
+    }
+}
+
+
 
 ?>

@@ -1,5 +1,31 @@
+document.getElementById('txtCorreoMod').addEventListener('input', function(event) {
+    campo = event.target;
+    valido = document.getElementById('emailOKM');
+        
+    emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(campo.value)) {
+        valido.innerText = "";
+    } else {
+      valido.innerText = "Formato invalido para correo electrónico";
+    }
+});
 
-function cargar() {
+
+document.getElementById('txtCorreoEmpleado').addEventListener('input', function(event) {
+    campo = event.target;
+    valido = document.getElementById('emailOK');
+        
+    emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(campo.value)) {
+        valido.innerText = "";
+    } else {
+      valido.innerText = "Formato invalido para correo electrónico";
+    }
+});
+
+  function cargar() {
     window.location.href = "../administrador/usuarios.php";
 }
 
@@ -73,8 +99,8 @@ $(document).ready(function () {
             datos += '<tr class="table-light border-primary ">';
            
             datos += '<th  class="text-center align-middle border border-primary ">ROL</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">ESTADO ROL</th>';
             datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR ROL</th>';
+            datos += '<th  class="text-center align-middle border border-primary ">ESTADO ROL</th>';
             datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
             datos += '</tr>';
             datos += '</thead>';
@@ -82,8 +108,8 @@ $(document).ready(function () {
             $.each(json, function (key, value) {
                 datos += '<tr class="align-middle" >';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.rol + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
                 datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarRol(' + value.id_rol + ',\'' + value.rol + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-edit"></i></button></td>';
+                datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
                 datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoRol(' + value.id_rol + ',\'' + value.rol + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-times"></i></button></td>';
                 datos += '</tr>';
             });
@@ -168,14 +194,21 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#rol').serialize(),
         }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Rol creado con éxito',
-                showConfirmButton: false,
-                timer: 2500
-            }).then((result) => {
-                cargar();
-            });
+            if(json !== null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al rol ya existe',
+                })
+            }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Rol creado con éxito',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                    cargar();
+                });
+            }
         }).fail(function (xhr, status, error) {
             Swal.fire({
                 icon: 'error',
@@ -193,16 +226,26 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#ModificarRol').serialize(),
         }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Rol Actualizado Con Éxito',
-                showConfirmButton: false,
-                timer: 2500
-            }).then((result) => {
-                cargar();
-            });
+            if(json !== null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al rol ya existe',
+                })
+            }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Rol Actualizado Con Éxito',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                    cargar();
+                });
+            }
         }).fail(function (xhr, status, error) {
-            alert(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al modificar el rol',
+            })
         });
     });
 
@@ -243,8 +286,8 @@ $(document).ready(function () {
                     datos += '<tr class="table-light border-primary ">';
                         datos += '<th  class="text-wrap align-middle border border-primary ">CARGO</th>';
                         datos += '<th  class="text-wrap align-middle border border-primary " >MANUAL DE FUNCIONES</th>';
-                        datos += '<th  class="text-center align-middle border border-primary ">ESTADO CARGO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR CARGO</th>';
+                        datos += '<th  class="text-center align-middle border border-primary ">ESTADO CARGO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
                     datos += '</tr>';
                 datos += '</thead>';
@@ -253,8 +296,8 @@ $(document).ready(function () {
                     datos += '<tr class="align-middle" >';
                         datos += '<td class=" border border-primary text-wrap align-middle">' + value.cargo + '</td>';
                         datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/cargos/' +value.cargo+ '/' +value.manual_funciones+ '"><i class="fas fa-download"></i></a></td>';
-                        datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
                         datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarCargo(' + value.id_cargo + ',\'' + value.cargo + '\',\'' + value.manual_funciones + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modCargo"><i class="far fa-edit"></i></button></td>';
+                        datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
                         datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoCargo(' + value.id_cargo + ',\'' + value.cargo + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#estadoCargo"><i class="fas fa-times"></i></button></td>';
                     datos += '</tr>';
                 })
@@ -464,25 +507,24 @@ $(document).ready(function () {
             datos += '<th  class="text-center  align-middle border border-primary ">USUARIO</th>';
             datos += '<th  class="text-center  align-middle border border-primary ">CARGO</th>';
             datos += '<th  class="text-center  align-middle border border-primary ">ROL</th>';
-                       
             datos += '<th  class="text-center align-middle border border-primary "> RESTABLECER CONTRASEÑA</th>';
-            datos += '<th  class="text-center  align-middle border border-primary ">ESTADO</th>';
             datos += '<th  class="text-center  align-middle border border-primary ">ACTUALIZAR INFORMACIÓN</th>';
+            datos += '<th  class="text-center  align-middle border border-primary ">ESTADO</th>';
             datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
             datos += '</tr>';
             datos += '</thead>';
             datos += '<tbody>';
             $.each(json, function (key, value) {
                 datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.nombre_completo + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.correo_empleado + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.usuario + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.cargo + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.rol + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="actualiarClaveUsuario(' + value.id_usuario + ',\'' + value.nombre_completo + '\',\'' + value.correo_empleado + '\',\'' + value.usuario + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modClaveUsuario"><i class="fas fa-lock-open"></i></button></td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.estado + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modUsuario(' + value.id_usuario + ',\'' + value.nombre_completo + '\',\'' + value.correo_empleado + '\',' + value.id_rol + ',\'' + value.rol + '\',' + value.id_cargo + ',\'' + value.cargo + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modUsuario    "><i class="far fa-edit"></i></button></td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoUsuario(' + value.id_usuario + ',\'' + value.estado + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#estadoUsuario"><i class="fas fa-times"></i></button></td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.nombre_completo + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.correo_empleado + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.usuario + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.cargo + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.rol + '</td>';
+                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="actualiarClaveUsuario(' + value.id_usuario + ',\'' + value.nombre_completo + '\',\'' + value.correo_empleado + '\',\'' + value.usuario + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modClaveUsuario"><i class="fas fa-lock-open"></i></button></td>';
+                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modUsuario(' + value.id_usuario + ',\'' + value.nombre_completo + '\',\'' + value.correo_empleado + '\',' + value.id_rol + ',\'' + value.rol + '\',' + value.id_cargo + ',\'' + value.cargo + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modUsuario    "><i class="far fa-edit"></i></button></td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.estado + '</td>';
+                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoUsuario(' + value.id_usuario + ',\'' + value.estado + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#estadoUsuario"><i class="fas fa-times"></i></button></td>';
                 datos += '</tr>';
             })
             datos += '</tbody>';

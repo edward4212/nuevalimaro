@@ -10,7 +10,7 @@ $sigla_procesos = $_POST['txtSiglaProceso'];
 $sigla_proceso = strtoupper($sigla_procesos);
 
 
-$directorio = "../documentos/procesos/$sigla_proceso/";
+$directorio = "../documentos/macroprocesos/$macroproceso/$sigla_proceso/";
    
 if(!file_exists($directorio)){
     mkdir($directorio,0777,true);        

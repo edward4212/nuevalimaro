@@ -169,7 +169,8 @@
                                             name="numEmpresaModMis" hidden>
                                         <h5 class="card-title"><b>Misión de la Empresa</b></h5>
                                         <div class="text-wrap">
-                                            <textarea class="card-text form-group" id="txtMisionMod" name="txtMisionMod"
+                                            <label  class="text-muted"> Caracteres restantes: <span></span></label>
+                                            <textarea class="card-text form-group" id="txtMisionMod" name="txtMisionMod" maxlength="600"
                                                 style="width:450px; height:100px; "></textarea>
                                         </div>
                                     </div>
@@ -200,7 +201,8 @@
                                         <input type="number" class="card-text" id="numEmpresaModvis"
                                             name="numEmpresaModvis" hidden>
                                         <h5 class="card-title"><b>Visión de la Empresa</b></h5>
-                                        <textarea class="card-text form-group" id="txtVisiomMod" name="txtVisiomMod"
+                                        <label  class="text-muted"> Caracteres restantes: <span></span></label>
+                                        <textarea class="card-text form-group" id="txtVisiomMod" name="txtVisiomMod" maxlength="600"
                                             style="width:450px; height:100px; "></textarea>
                                     </div>
                                     <div class="modal-footer">
@@ -261,7 +263,8 @@
                                             name="numEmpresaModPol" hidden>
                                         <h5 class="card-title"><b>Política Calidad de la Empresa</b></h5>
                                         <div class="text-wrap">
-                                            <textarea class="card-text form-group" id="txtPoliMod" name="txtPoliMod"
+                                            <label  class="text-muted"> Caracteres restantes: <span></span></label>
+                                            <textarea class="card-text form-group" id="txtPoliMod" name="txtPoliMod"  maxlength="800"
                                                 style="width:450px; height:100px; "></textarea>
                                         </div>
                                     </div>
@@ -292,7 +295,8 @@
                                         <input type="number" class="card-text" id="numEmpresaModObj"
                                             name="numEmpresaModObj" hidden>
                                         <h5 class="card-title"><b>Objetivo de Calidad</b></h5>
-                                        <textarea class="card-text form-group" id="txtObjMod" name="txtObjMod"
+                                        <label  class="text-muted"> Caracteres restantes: <span></span></label>
+                                        <textarea class="card-text form-group" id="txtObjMod" name="txtObjMod"  maxlength="800"
                                             style="width:450px; height:100px; "></textarea>
                                     </div>
                                     <div class="modal-footer">

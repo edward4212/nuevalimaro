@@ -46,10 +46,12 @@
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                     <h5><b>Correo Electrónico* </b></h5>
-                                    <input type="email" class="form-control"  name="txtCorreoEmpleado"
-                                        id="txtCorreoEmpleado" placeholder="name@example.com" pattern="^[a-zA-Z0-9_.-]*$"   
-                                        title="Introduzca una direccion de correo valido" aria-label="E" aria-describedby="emailHelp"
-                                        style="text-transform:lowercase;" required>
+                                    <input type="email" class="form-control" name="txtCorreoEmpleado"
+                                        id="txtCorreoEmpleado" placeholder="name@example.com"
+                                        pattern="^[a-zA-Z0-9_.-]*$" title="Introduzca una direccion de correo valido"
+                                        aria-label="E" aria-describedby="emailHelp" style="text-transform:lowercase;"
+                                        required>
+                                    <span id="emailOK"></span>
                                 </div>
                                 <div class="col-md-3 col-xs-12 col-sm-12">
                                     <h5><b>Cargo*</b></h5>
@@ -162,6 +164,7 @@
                                                     <input class="form-control" type="text" name="txtCorreoMod"
                                                         id="txtCorreoMod"
                                                         onkeyup="javascript:this.value=this.value.toLowerCase();">
+                                                    <span id="emailOKM"></span>
                                                 </div>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <h5><b>Cargo Actual</b></h5>
@@ -255,13 +258,14 @@
                             <br>
                             <button type="button" class="btn btn-primary mb-3" id="btnFomularioCargo"><i
                                     class="fas fa-plus"></i> Crear Cargo</button>
-                            <button type="button" id="volverRegistroCargo" class="btn btn-primary mb-3" hidden ><i
+                            <button type="button" id="volverRegistroCargo" class="btn btn-primary mb-3" hidden><i
                                     class="fas fa-eye"></i>
                                 Ver Cargos Registrados</button>
                             <br>
                             <br>
-                            <form class="row g-3 form-group bordeado" action="../controladorAdministrador/cargo.create.php"
-                                method="POST" enctype="multipart/form-data" hidden id="formCArgo">
+                            <form class="row g-3 form-group bordeado"
+                                action="../controladorAdministrador/cargo.create.php" method="POST"
+                                enctype="multipart/form-data" hidden id="formCArgo">
                                 <h4 class="card-title text-center"><b>Crear Cargo</b></h4>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                     <h5><b>Nombre Cargo*</b></h5>
@@ -284,7 +288,7 @@
                         <div class="col-md-12 col-xs-12 col-sm-12 bordeado" id="cargosRegistradoss">
                             <h4 class="card-title text-center"><b>Cargos Registrados</b></h4>
                             <div class="col-md-12 col-xs-12 col-sm-12">
-                            <br>
+                                <br>
                                 <h5 id="cargos"></h5>
                             </div>
                         </div>
@@ -383,7 +387,7 @@
                             <br>
                             <button type="button" class="btn btn-primary mb-3" id="btnFomularioRol"><i
                                     class="fas fa-plus"></i> Crear Rol</button>
-                            <button type="button" id="volverRegistroRol" class="btn btn-primary mb-3" hidden ><i
+                            <button type="button" id="volverRegistroRol" class="btn btn-primary mb-3" hidden><i
                                     class="fas fa-eye"></i>
                                 Ver Roles Registrados</button>
                             <br>

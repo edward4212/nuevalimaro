@@ -51,6 +51,25 @@ if(!file_exists($_FILES['fileCargo']['tmp_name']) || !is_uploaded_file($_FILES['
     unset($cargoE);
     unset($cargoM);
 
+    if(($resultado !== null)){
+        echo '
+        <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
+        <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+        <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
+        <script>    
+        jQuery(function(){
+            Swal.fire({
+                icon: "error",
+                title: "Cargo ya creado",
+                showConfirmButton: false,
+                timer: 3000
+                }).then(function() {
+                window.location.href = "../administrador/usuarios.php";
+            });
+        });
+        </script>';
+    }else{
+
     echo '
         <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
         <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
@@ -67,7 +86,7 @@ if(!file_exists($_FILES['fileCargo']['tmp_name']) || !is_uploaded_file($_FILES['
             });
         });
         </script>';
-
+    }
 }
 
 

@@ -1,17 +1,20 @@
 <!-- Se agrega Head -->
-<?php include_once "head.Adm.frm.php" ?>
-<title>Procesos y Tipos De Documentos</title>
+<?php include_once "head.php" ?>
+<title>Procesos</title>
 </head>
 
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
-    <?php include_once "menu.Adm.frm.php" ?>
+    <?php include_once "menu.php" ?>
     <!-- se Inicia Pagina Inicio  -->
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                <div class="nav nav-pills" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-macroprocesos" type="button" role="tab" aria-controls="nav-home"
+                        aria-selected="true"> Macroproceso</button>
+                    <button class="nav-link " id="nav-home-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-procesos" type="button" role="tab" aria-controls="nav-home"
                         aria-selected="true"> Proceso</button>
                     <button class="nav-link " id="nav-tiDoc-tab" data-bs-toggle="tab" data-bs-target="#nav-tiDoc"
@@ -21,7 +24,140 @@
             </nav>
 
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-procesos" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade show active" id="nav-macroprocesos" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="row ">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                        <br>
+                            <h2 class="card-title text-center"><b>Macroprocesos</b></h2>
+                            <br>
+                            <button type="button" class="btn btn-primary mb-3" id="btnFomularioCrear"><i
+                                    class="fas fa-plus"></i> Crear Macroproceso</button>
+                            <button type="button" id="volverRegistro" class="btn btn-primary mb-3" hidden><i
+                                    class="fas fa-eye"></i>
+                                Ver Macroprocesos Registrados</button>
+                            <br>
+                            <br>
+                            <form class="row g-3 form-group bordeado " id="macroproceso" method="POST">
+                                <h3 class="card-title">Crear Macroproceso</h3>
+                                <div class="col-md-3 col-xs-12 col-sm-12">
+                                    <h5>Nombre Macroproceso*</h5>
+                                    <label  class="text-muted"> <span></span></label>
+                                    <input class="form-control inicialM" type="text" name="txtmacroproceso" id="txtmacroproceso"
+                                         required >
+                                </div>
+                                <div class="col-md-9 col-xs-12 col-sm-12">
+                                    <h5>Objetivo Principal del macroproceso*</h5>
+                                    <label  class="text-muted"> Caracteres restantes: <span></span></label>
+                                    <textarea class="form-control inicialM" type="text" name="txtObjetivoMacroproceso" id="txtObjetivoMacroproceso"
+                                    maxlength="600" required ></textarea>
+                                    
+                                </div>
+                                <span class="text-muted">* Campo Obligatorio</span>
+                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                    <button type="submit" class="btn btn-primary mb-3" id="btnRegistrarMacroroceso"><i
+                                            class="fas fa-plus"></i> Crear Macroproceso</button>
+                                    <button type="reset" class="btn btn-secondary mb-3"><i class="fas fa-broom"></i>
+                                        Limpiar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-12 col-xs-12 col-sm-12 bordeado">
+                            <h3 class="card-title text-center">Macroproceso Registrados</h3>
+                            <div class="">
+                            <br>
+                                <h5 id="macroprocesos"></h5>
+                            </div>
+                        </div>
+                        <!-- Modal para actualizaciones sobre procesos-->
+                        <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Actualizar Proceso</h5>
+                                        <button type="button" id="btnCerrarModal" class="btn-close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form class="row g-3 form-group" id="ModificarPro" method="POST"
+                                        enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <input class="form-control" type="number" name="numidProcesosMod"
+                                                    id="numidProcesosMod" hidden>
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <h5>Nombre Proceso</h5>
+                                                    <input class="form-control inicialM" type="text" name="txtProcesoMod"
+                                                        id="txtProcesoMod" >
+                                                </div>
+
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <h5>Sigla Proceso</h5>
+                                                    <input class="form-control" type="text" name="txtSiglaProcesoAnt"
+                                                        id="txtSiglaProcesoAnt" hidden>
+                                                    <input class="form-control" type="text" name="txtSiglaProcesoMod"
+                                                        id="txtSiglaProcesoMod" maxlength="4"  onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" id="btnModificarPro" class="btn btn-primary"><i
+                                                    class="far fa-edit"></i> Modificar</button>
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                                    class="fas fa-undo"></i> Volver</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal para actualziacion de estado procesos-->
+                        <div class="modal fade bd-example-modal-lg" id="exampleModala1" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Inactivar Proceso</h5>
+                                        <button type="button" id="btnCerrarModal" class="btn-close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form class="row g-3 form-group" id="inactivarProce" method="POST">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <input class="form-control" type="number" name="numidProcesosElim"
+                                                    id="numidProcesosElim" hidden>
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <h5>Nombre Proceso</h5>
+                                                    <input class="form-control " type="text" name="txtProcesoElim"
+                                                        id="txtProcesoElim" readonly>
+                                                </div>
+
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <h5>Sigla Proceso</h5>
+                                                    <input class="form-control" type="text" name="txtSiglaProcesoElim"
+                                                        id="txtSiglaProcesoElim" readonly>
+                                                </div>
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <h5>Nuevo Estado del Proceso</h5>
+                                                    <select class="form-group" id="estadoModProceso"
+                                                        name="estadoModProceso">
+                                                        <option value="A">Activo</option>
+                                                        <option value="I">Inactivo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" id="btnEliminarPro" class="btn btn-primary"><i
+                                                    class="fas fa-times"></i> Cambiar Estado</button>
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                                    class="fas fa-undo"></i> Volver</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-procesos" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                         <br>
@@ -276,7 +412,7 @@
             </div>
         </div>
     </main>
-<?php include_once "footer.frm.php" ?>
+<?php include_once "footer.php" ?>
 <script src="../js/administrador/procesos.Adm.js"></script>
 </body>
 </html>

@@ -8,7 +8,6 @@ $rol =  ucwords($rols);
 
 if (!empty($rol)) 
 {
-
     $rolE = new \entidad\Rol();
     $rolE -> setrol($rol);
 
