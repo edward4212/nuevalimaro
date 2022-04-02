@@ -64,7 +64,7 @@ class macroproceso{
      {
 
           try {
-               $this->sql = "UPDATE macroproceso SET macroproceso='$this->macroproceso', WHERE id_macroproceso=$this->id_macroproceso";
+               $this->sql = "UPDATE macroproceso SET macroproceso='$this->macroproceso', objetivo='$this->objetivo' WHERE id_macroproceso=$this->id_macroproceso";
                $this->result = $this->conexion->query($this->sql);
           } catch (Exception $e) {
                $this->retorno = $e->getMessage();

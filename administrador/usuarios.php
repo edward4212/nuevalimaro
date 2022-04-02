@@ -74,7 +74,7 @@
                                         id="txtClaveInicial" autocomplete="current-password" aria-label="E"
                                         aria-describedby="basic-addon1" value="12345" readonly required>
                                 </div>
-                                <span class="text-muted">* Campos Obligatorios</span>
+                                <span class="text-muted">* Campo Obligatorio</span>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary mb-3" id="btnRegistrarUsuario"><i
                                             class="fas fa-plus"></i> Crear</button>
@@ -276,7 +276,7 @@
                                     <h5><b>Manual de Funciones*</b></h5>
                                     <input class="form-control" type="file" id="fileCargo" name="fileCargo" multiple>
                                 </div>
-                                <span class="text-muted">* Campos Obligatorios</span>
+                                <span class="text-muted">* Campo Obligatorio</span>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Crear
                                         Cargo</button>

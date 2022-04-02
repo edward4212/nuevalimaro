@@ -10,47 +10,44 @@
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
+                <br>
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-macroprocesos" type="button" role="tab" aria-controls="nav-home"
                         aria-selected="true"> Macroproceso</button>
-                    <button class="nav-link " id="nav-home-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-procesos" type="button" role="tab" aria-controls="nav-home"
-                        aria-selected="true"> Proceso</button>
-                    <button class="nav-link " id="nav-tiDoc-tab" data-bs-toggle="tab" data-bs-target="#nav-tiDoc"
-                        type="button" role="tab" aria-controls="nav-crear" aria-selected="true">Tipo De
-                        Documento</button>
+                    <button class="nav-link " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-procesos"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true"> Proceso</button>
                 </div>
             </nav>
-
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-macroprocesos" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade show active" id="nav-macroprocesos" role="tabpanel"
+                    aria-labelledby="nav-home-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                        <br>
+                            <br>
                             <h2 class="card-title text-center"><b>Macroprocesos</b></h2>
                             <br>
-                            <button type="button" class="btn btn-primary mb-3" id="btnFomularioCrear"><i
-                                    class="fas fa-plus"></i> Crear Macroproceso</button>
-                            <button type="button" id="volverRegistro" class="btn btn-primary mb-3" hidden><i
+                            <button type="button" class="btn btn-primary mb-3" id="btnCrearMacro"><i
+                                    class="fas fa-plus text-center"></i> Crear Macroproceso</button>
+                            <button type="button" id="volverRegistroMacro" class="btn btn-primary mb-3" hidden><i
                                     class="fas fa-eye"></i>
                                 Ver Macroprocesos Registrados</button>
                             <br>
                             <br>
-                            <form class="row g-3 form-group bordeado " id="macroproceso" method="POST">
-                                <h3 class="card-title">Crear Macroproceso</h3>
+                            <form class="row g-3 form-group bordeado " id="macroproceso" method="POST" hidden>
+                                <h4 class="card-title text-center"><b>Crear Macroproceso</b></h4>
                                 <div class="col-md-3 col-xs-12 col-sm-12">
-                                    <h5>Nombre Macroproceso*</h5>
-                                    <label  class="text-muted"> <span></span></label>
-                                    <input class="form-control inicialM" type="text" name="txtmacroproceso" id="txtmacroproceso"
-                                         required >
+                                    <h5><b>Nombre Macroproceso*</b></h5>
+                                    <label class="text-muted"> <span></span></label>
+                                    <input class="form-control inicialM" type="text" name="txtmacroproceso"
+                                        id="txtmacroproceso" required>
                                 </div>
                                 <div class="col-md-9 col-xs-12 col-sm-12">
-                                    <h5>Objetivo Principal del macroproceso*</h5>
-                                    <label  class="text-muted"> Caracteres restantes: <span></span></label>
-                                    <textarea class="form-control inicialM" type="text" name="txtObjetivoMacroproceso" id="txtObjetivoMacroproceso"
-                                    maxlength="600" required ></textarea>
-                                    
+                                    <h5><b>Objetivo Principal del macroproceso*</b></h5>
+                                    <label class="text-muted"> Caracteres restantes: <span></span></label>
+                                    <textarea class="form-control inicialM" type="text" name="txtObjetivoMacroproceso"
+                                        id="txtObjetivoMacroproceso" maxlength="600" required></textarea>
+
                                 </div>
                                 <span class="text-muted">* Campo Obligatorio</span>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
@@ -61,10 +58,10 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-12 col-xs-12 col-sm-12 bordeado">
-                            <h3 class="card-title text-center">Macroproceso Registrados</h3>
+                        <div class="col-md-12 col-xs-12 col-sm-12 bordeado" id="macroRegistrados">
+                            <h4 class="card-title text-center"><b>Macroproceso Registrados</b></h4>
                             <div class="">
-                            <br>
+                                <br>
                                 <h5 id="macroprocesos"></h5>
                             </div>
                         </div>
@@ -74,7 +71,8 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Actualizar Proceso</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Actualizar Macroproceso</b>
+                                        </h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -82,20 +80,23 @@
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="row">
-                                                <input class="form-control" type="number" name="numidProcesosMod"
-                                                    id="numidProcesosMod" hidden>
+                                                <input class="form-control" type="number" name="numMacroMod"
+                                                    id="numMacroMod" hidden >
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nombre Proceso</h5>
-                                                    <input class="form-control inicialM" type="text" name="txtProcesoMod"
-                                                        id="txtProcesoMod" >
+                                                    <h5><b>Nombre Macroproceso</b></h5>
+                                                    <input class="form-control inicialM" type="text"
+                                                        name="txtMacroprocesoModAnt" id="txtMacroprocesoModAnt">
+                                                    <input class="form-control inicialM" type="text"
+                                                        name="txtMacroprocesoMod" id="txtMacroprocesoMod">
                                                 </div>
 
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Sigla Proceso</h5>
-                                                    <input class="form-control" type="text" name="txtSiglaProcesoAnt"
-                                                        id="txtSiglaProcesoAnt" hidden>
-                                                    <input class="form-control" type="text" name="txtSiglaProcesoMod"
-                                                        id="txtSiglaProcesoMod" maxlength="4"  onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                                    <h5><b>Objetivo Macroproceso</b></h5>
+                                                    <label class="text-muted"> Caracteres restantes:
+                                                        <span></span></label>
+                                                    <textarea class="form-control inicialM" type="text"
+                                                        name="txtObjetivoMacroprocesoMod" id="txtObjetivoMacroprocesoMod"
+                                                        maxlength="600" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,14 +161,14 @@
                 <div class="tab-pane fade" id="nav-procesos" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                        <br>
+                            <br>
                             <h3 class="card-title text-center">Procesos</h3>
                             <form class="row g-3 form-group" id="proceso" method="POST">
                                 <h3 class="card-title">Crear Proceso</h3>
                                 <div class="col-md-5 col-xs-12 col-sm-12">
                                     <h5>Nombre Proceso</h5>
                                     <input class="form-control inicialM" type="text" name="txtProceso" id="txtProceso"
-                                         required >
+                                        required>
                                 </div>
                                 <div class="col-md-2 col-xs-12 col-sm-12">
                                 </div>
@@ -187,8 +188,8 @@
                         </div>
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <h3 class="card-title text-center">Procesos Registrados</h3>
-                            <div class="">
-                            <br>
+                            <div>
+                                <br>
                                 <h5 id="procesos"></h5>
                             </div>
                         </div>
@@ -210,8 +211,8 @@
                                                     id="numidProcesosMod" hidden>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <h5>Nombre Proceso</h5>
-                                                    <input class="form-control inicialM" type="text" name="txtProcesoMod"
-                                                        id="txtProcesoMod" >
+                                                    <input class="form-control inicialM" type="text"
+                                                        name="txtProcesoMod" id="txtProcesoMod">
                                                 </div>
 
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
@@ -219,7 +220,8 @@
                                                     <input class="form-control" type="text" name="txtSiglaProcesoAnt"
                                                         id="txtSiglaProcesoAnt" hidden>
                                                     <input class="form-control" type="text" name="txtSiglaProcesoMod"
-                                                        id="txtSiglaProcesoMod" maxlength="4"  onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                                        id="txtSiglaProcesoMod" maxlength="4"
+                                                        onkeyup="javascript:this.value=this.value.toUpperCase();">
                                                 </div>
                                             </div>
                                         </div>
@@ -284,16 +286,14 @@
                 <div class="tab-pane fade" id="nav-tiDoc" role="tabpanel" aria-labelledby="nav-tiDoc-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                        <br>
+                            <br>
                             <h3 class="card-title text-center">Tipo Documento</h3>
-                            <form class="row g-3 form-group" id="tipoDocumento" method="POST">
+                            <form class="row g-3 form-group" id="crearTipoDocumentos" method="POST">
                                 <h3 class="card-title">Crear Tipo Documento</h3>
                                 <div class="col-md-5 col-xs-12 col-sm-12">
                                     <h5>Nombre Tipo Documento</h5>
                                     <input class="form-control inicialM" type="text" name="txtTipoDocumento"
-                                        id="txtTipoDocumento" required
-                                       
-                                        >
+                                        id="txtTipoDocumento" required>
                                 </div>
                                 <div class="col-md-2 col-xs-12 col-sm-12">
                                 </div>
@@ -314,7 +314,7 @@
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <h3 class="card-title text-center">Tipo Documento Registrados</h3>
                             <div class="">
-                            <br>
+                                <br>
                                 <h5 id="tipoDocumentos"></h5>
                             </div>
                         </div>
@@ -336,9 +336,8 @@
                                                     id="numidTipoDocumentoMod" hidden>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <h5>Nombre Tipo Documento</h5>
-                                                    <input class="form-control inicialM" type="text" name="txtTipoDocumentoMod"
-                                                        id="txtTipoDocumentoMod" required
-                                                       >
+                                                    <input class="form-control inicialM" type="text"
+                                                        name="txtTipoDocumentoMod" id="txtTipoDocumentoMod" required>
                                                 </div>
 
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
@@ -412,7 +411,8 @@
             </div>
         </div>
     </main>
-<?php include_once "footer.php" ?>
-<script src="../js/administrador/procesos.Adm.js"></script>
+    <?php include_once "footer.php" ?>
+    <script src="../js/administrador/procesos.Adm.js"></script>
 </body>
+
 </html>

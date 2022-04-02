@@ -20,14 +20,15 @@
                                 class="fas fa-home"></i> Inicio</a>
                     </li>
                     <li class="nav-item col-6 col-md-auto">
-                        <a class="nav-link p-2" href="usuarios.php"><i class="fas fa-users"></i> Usuarios</a>
-                    </li>
-                    <li class="nav-item col-6 col-md-auto">
-                        <a class="nav-link p-2 " href="procesos.php"><i class="fas fa-file"></i> Procesos</a>
+                        <a class="nav-link p-2 " href="macroprocesos.php"><i class="fas fa-file"></i> Macroprocesos</a>
                     </li>
                     <li class="nav-item col-6 col-md-auto">
                         <a class="nav-link p-2" href="documentos.php"><i class="far fa-address-book"></i>
                             Documentos</a>
+                    </li>
+                    <li class="nav-item col-6 col-md-auto">
+                        <a class="nav-link p-2" href="documentos.php"><i class="far fa-address-book"></i>
+                            Versionamiento</a>
                     </li>
                     <li class="nav-item col-6 col-md-auto">
                         <a class="nav-link p-2" href="solicitudes.php"><i class="fas fa-check-double"></i>
@@ -37,7 +38,7 @@
                         <a class="nav-link p-2" href="tareas.php"><i class="fas fa-list"></i> Tareas</a>
                     </li>
                     <li class="nav-item col-6 col-md-auto">
-                        <a class="nav-link p-2" href="perfil.php"><i class="fas fa-user-circle"></i> Perfil</a>
+                        <a class="nav-link p-2" href="usuarios.php"><i class="fas fa-users"></i> Usuarios</a>
                     </li>
                     <li class="nav-item col-6 col-md-auto">
                         <a class="nav-link p-2" href=""></a>
@@ -45,8 +46,8 @@
                 </ul>
             </div>
             <form class="d-flex">
-                <label href="perfil.php"
-                    class="nav-link p-2"><?php $usuario= $_SESSION['usuario']; echo $usuario;?></label>
+                <a href="perfil.php"
+                    class="nav-link p-2"><?php $usuario= $_SESSION['usuario']; echo $usuario;?></a>
                 <img href="perfil.php"
                     src="../documentos/usuarios/<?php $usuario= $_SESSION['usuario']; echo $usuario;?>/imagen/<?php $img_empleado= $_SESSION['img_empleado']; echo $img_empleado; ?>"
                     alt="mdo" width="32" height="32" class="rounded-circle">

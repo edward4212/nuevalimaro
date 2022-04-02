@@ -15,11 +15,9 @@
                         data-bs-target="#nav-empresa" type="button" role="tab" aria-controls="nav-empresa"
                         aria-selected="false">Empresa</button>
                     <button class="nav-link " id="nav-inicio-tab" data-bs-toggle="tab" data-bs-target="#nav-inicio"
-                        type="button" role="tab" aria-controls="nav-inicio" aria-selected="true">Misión y
-                        Visión</button>
+                        type="button" role="tab" aria-controls="nav-inicio" aria-selected="true">Misión - Visión</button>
                     <button class="nav-link " id="nav-politica-tab" data-bs-toggle="tab" data-bs-target="#nav-politica"
-                        type="button" role="tab" aria-controls="nav-politica" aria-selected="true">Política y Objetivo
-                        de Calidad</button>
+                        type="button" role="tab" aria-controls="nav-politica" aria-selected="true">Política de Calidad</button>
                     <button class="nav-link " id="nav-organigrama-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-organigrama" type="button" role="tab" aria-controls="nav-organigrama"
                         aria-selected="false">Organigrama</button>

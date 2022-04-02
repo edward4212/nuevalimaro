@@ -12,11 +12,20 @@
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-documentos-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-documentos" type="button" role="tab" aria-controls="nav-documentos"
-                        aria-selected="true">Tipo de Documentos</button>
-                    <button class="nav-link " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-crear"
+                        aria-selected="true">Matriz de Documentos Vigentes</button>
+                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-obsoletos"
+                        type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Matriz de Documentos
+                        Obsoletos</button>
+                    <button class="nav-link" id="nav-tramite-tab" data-bs-toggle="tab" data-bs-target="#nav-tramite"
+                        type="button" role="tab" aria-controls="nav-tramite" aria-selected="false">Documentos En
+                        Tramites</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-crear"
                         type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Creación de
                         Documentos
-                    </button>   
+                    </button>
+                    <button class="nav-link " id="nav-creacion1-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-creacion1" type="button" role="tab" aria-controls="nav-creacion1"
+                        aria-selected="true">Versionamiento</button>
                     <button class="nav-link " id="nav-inactivar-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-inactivar" type="button" role="tab" aria-controls="nav-inactivar"
                         aria-selected="true">Inactivar Documentos Vigentes</button>
@@ -27,127 +36,32 @@
                     aria-labelledby="nav-documentos-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                        <br>
-                            <h3 class="card-title text-center">Tipo Documento</h3>
-                            <form class="row g-3 form-group" id="crearTipoDocumentos" method="POST">
-                                <h3 class="card-title">Crear Tipo Documento</h3>
-                                <div class="col-md-5 col-xs-12 col-sm-12">
-                                    <h5>Nombre Tipo Documento</h5>
-                                    <input class="form-control inicialM" type="text" name="txtTipoDocumento"
-                                        id="txtTipoDocumento" required
-                                       
-                                        >
-                                </div>
-                                <div class="col-md-2 col-xs-12 col-sm-12">
-                                </div>
-                                <div class="col-md-5 col-xs-12 col-sm-12">
-                                    <h5>Siglas Tipo Documento</h5>
-                                    <input class="form-control" type="text" name="txtSiglaTipoDocumento"
-                                        id="txtSiglaTipoDocumento" maxlength="4" required
-                                        onkeyup="javascript:this.value=this.value.toUpperCase(); ">
-                                </div>
-                                <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <button type="submit" class="btn btn-primary mb-3" id="btnRegistrarTipoDocumento"><i
-                                            class="fas fa-plus"></i> Crear Tipo Documento</button>
-                                    <button type="reset" class="btn btn-secondary mb-3"><i class="fas fa-broom"></i>
-                                        Limpiar</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h3 class="card-title text-center">Tipo Documento Registrados</h3>
-                            <div class="">
                             <br>
-                                <h5 id="tipoDocumentos"></h5>
+                            <h3 class="card-title text-center">Documentos Vigentes</h3>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <h5 id="consulta"></h5>
                             </div>
                         </div>
-                        <!-- Modal para actualizaciones sobre Tipo Documento-->
-                        <div class="modal fade bd-example-modal-lg" id="actualizarTipoDocuento" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Actualizar Tipo Documento</h5>
-                                        <button type="button" id="btnCerrarModal" class="btn-close"
-                                            data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <form class="row g-3 form-group" id="ModificarTipoDoc" method="POST"
-                                        enctype="multipart/form-data">
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <input class="form-control" type="number" name="numidTipoDocumentoMod"
-                                                    id="numidTipoDocumentoMod" hidden>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nombre Tipo Documento</h5>
-                                                    <input class="form-control inicialM" type="text" name="txtTipoDocumentoMod"
-                                                        id="txtTipoDocumentoMod" required
-                                                       >
-                                                </div>
-
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Sigla Tipo Documento</h5>
-                                                    <input class="form-control" type="text"
-                                                        name="txtSiglaTipoDocumentoMod" id="txtSiglaTipoDocumentoMod"
-                                                        required
-                                                        onkeyup="javascript:this.value=this.value.toUpperCase(); ">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" id="btnModificarTipoDoc" class="btn btn-primary"><i
-                                                    class="far fa-edit"></i> Modificar</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
-                                                    class="fas fa-undo"></i> Volver</button>
-                                        </div>
-                                    </form>
-                                </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-obsoletos" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    <div class="row ">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <br>
+                            <h3 class="card-title text-center">Documentos Obsoletos</h3>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <h5 id="documentosObs"></h5>
                             </div>
                         </div>
-                        <!-- Modal para cambio de estado sobre Tipo Documento-->
-                        <div class="modal fade bd-example-modal-lg" id="cambiarEstadoTipoDoc" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Estado Tipo Documento
-                                        </h5>
-                                        <button type="button" id="btnCerrarModal" class="btn-close"
-                                            data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <form class="row g-3 form-group" id="inactivarTipoDoc" method="POST">
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <input class="form-control" type="number" name="numidTipDocElim"
-                                                    id="numidTipDocElim" hidden>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nombre Tipo Documento</h5>
-                                                    <input class="form-control" type="text" name="txtTipoDocElim"
-                                                        id="txtTipoDocElim" readonly>
-                                                </div>
-
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Sigla Tipo Documento</h5>
-                                                    <input class="form-control" type="text" name="txtSiglaTipDocElim"
-                                                        id="txtSiglaTipDocElim" readonly>
-                                                </div>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nuevo Estado del Proceso</h5>
-                                                    <select class="form-group" id="estadoModTipdoc"
-                                                        name="estadoModTipdoc">
-                                                        <option value="A">Activo</option>
-                                                        <option value="I">Inactivo</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" id="btnEliminarTipDoc" class="btn btn-primary"><i
-                                                    class="fas fa-times"></i> Cambiar Estado</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
-                                                    class="fas fa-undo"></i> Volver</button>
-                                        </div>
-                                    </form>
-                                </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-tramite" role="tabpanel" aria-labelledby="nav-tramite-tab">
+                    <div class="row ">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <br>
+                            <h3 class="card-title text-center">Documentos En Tramite</h3>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <h5 id="Doctramite"></h5>
                             </div>
                         </div>
                     </div>
@@ -252,6 +166,54 @@
                         </div>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="nav-creacion1" role="tabpanel" aria-labelledby="nav-creacion-tab">
+                    <div class="row">
+                        <div>
+                        </div>
+                        <div class="row">
+                            <form class="row g-3 form-group"
+                                action="../controladorAdministrador/versionamiento.create1.php" method="POST"
+                                enctype="multipart/form-data">
+                                <div class="col-md-10 col-xs-12 col-sm-12">
+                                    <input class="form-control" type="text" name="idDocumento1" id="idDocumento1"
+                                        hidden>
+                                    <h5 for="data">Seleccionar Documento</h5>
+                                    <input class="form-control" type="text" name="documentoAuto1" id="documentoAuto1">
+                                    <input class="form-control" type="text" name="proceso1" id="proceso1" hidden>
+                                    <input class="form-control" type="text" name="sigla_tipo_documento1"
+                                        id="sigla_tipo_documento1" hidden>
+                                    <input class="form-control" type="text" name="codigo1" id="codigo1" hidden>
+                                </div>
+                                <div class="col-md-2 col-xs-12 col-sm-12">
+                                    <h5>Versión Siguiente</h5>
+                                    <input class="form-control" type="text" name="versionSig1" id="versionSig1"
+                                        readonly>
+                                </div>
+                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                    <h5>Descripción de la Versión</h5>
+                                    <textarea type="text" class="form-control redondeado" rows="2" id="descriCambio1"
+                                        name="descriCambio1" required></textarea>
+                                </div>
+                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                    <h5>Agregar Documento</h5>
+                                    <input class="form-control" type="file" name="fileDocumento1" id="fileDocumento1"
+                                        required>
+                                </div>
+                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                    <h5>Seleccionar Usuario para Revisión</h5>
+                                    <select class="form-control" id="empleadoCAN" name="empleadoCAN" aria-label="E"
+                                        aria-describedby="basic-addon1" required></select>
+                                </div>
+                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                    <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i>Iniciar
+                                        Versión</button>
+                                    <button type="reset" id="restaurar" class="btn btn-primary"><i class="fas fa-undo"></i>
+                                        Volver</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="tab-pane fade" id="nav-inactivar" role="tabpanel" aria-labelledby="nav-contact-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
@@ -305,7 +267,7 @@
         </div>
     </main>
 
-    <?php include_once "footer.php" ?>
+    <?php include_once "footer.frm.php" ?>
     <script src="../js/administrador/documento.js"></script>
     <script src="../js/administrador/tareas.adm.js"></script>
 </body>

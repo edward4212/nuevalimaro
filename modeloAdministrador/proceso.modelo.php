@@ -35,7 +35,17 @@ class Proceso{
      public function read()
      {
           try {
-               $this->sql = "SELECT * FROM proceso";
+               $this->sql = "SELECT 
+               macroproceso.`macropoceso`,
+               proceso.`id_proceso`,
+               proceso.`proceso`,
+               proceso.`sigla_proceso`,
+               proceso.`objetivo`,
+               proceso.`estado`
+               
+          FROM proceso
+          
+          INNER JOIN macroproceso  ON  proceso.`id_macroproceso` = macroproceso.`id_macroproceso`";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
                     
