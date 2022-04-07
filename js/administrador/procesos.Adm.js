@@ -31,11 +31,12 @@ $(document).on('keyup', "[maxlength]", function (e) {
     }	
 });
 
-function modificarProceso (id_proceso, proceso, sigla_proceso,macroproceso,objetivo){
+function modificarProceso (id_proceso, proceso, sigla_proceso,id_macroproceso,macroproceso,objetivo){
     $("#numidProcesosMod").val(id_proceso);
+    $("#idMacroAnt").val(id_macroproceso);
     $("#txtMacroActual").val(macroproceso);
     $("#txtProcesoMod").val(proceso);
-    $("#txtSiglaProcesoAnt").val(sigla_proceso);
+    $("#txtProcesoAnt").val(proceso);
     $("#txtSiglaProcesoMod").val(sigla_proceso);
     $("#txtObjetiProMod").val(objetivo);
 }
@@ -74,8 +75,6 @@ function eliminacionTipoDoc (id_tipo_documento, tipo_documento, sigla_tipo_docum
     $("#txtSiglaTipDocElim").val(sigla_tipo_documento);
     
 }
-
-
 
 $(document).ready(function(){
 
@@ -323,8 +322,6 @@ $(document).ready(function(){
         });
     }
 
-
-
     /// REGISTRAR PROCESO ///
     $(document).on('click','#btnRegistrarProceso',function(event){
         event.preventDefault();
@@ -396,7 +393,7 @@ $(document).ready(function(){
                                 datos += '<td class=" border border-primary text-wrap align-middle">'+value.proceso+'</td>';
                                 datos += '<td class=" border border-primary text-center align-middle">'+value.sigla_proceso+'</td>';
                                 datos += '<td class=" border border-primary text-break align-middle">'+value.objetivo+'</td>';
-                                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarProceso('+value.id_proceso+',\''+value.proceso+'\',\''+value.sigla_proceso+'\',\''+value.macroproceso+'\',\''+value.objetivo+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModale"><i class="far fa-edit"></i></button></td>';
+                                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarProceso('+value.id_proceso+',\''+value.proceso+'\',\''+value.sigla_proceso+'\','+value.id_macroproceso+',\''+value.macroproceso+'\',\''+value.objetivo+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModale"><i class="far fa-edit"></i></button></td>';
                                 datos += '<td class=" border border-primary text-center align-middle">'+value.estado+'</td>';
                                 datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="eliminacionProceso('+value.id_proceso+',\''+value.proceso+'\',\''+value.sigla_proceso+'\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-times"></i></button></td>';
                             datos += '</tr>';
@@ -488,7 +485,7 @@ $(document).ready(function(){
             }).done(function(json){
                 Swal.fire({
                     icon: 'success',
-                    title: 'Proceso Actualizado con éxito',
+                    title: 'Proceso actualizado con éxito',
                     showConfirmButton: false,
                     timer: 2500
                   }).then((result) => {

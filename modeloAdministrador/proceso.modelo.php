@@ -15,6 +15,7 @@ class Proceso{
      public $sigla_proceso;
      public $objetivo;
      public $estado;
+     public $macroproceso;
 
      // OTROS ATRIBUTOS //
      public $conexion;
@@ -30,6 +31,7 @@ class Proceso{
           $this->sigla_proceso = $procesoE->getSiglaProceso();
           $this->objetivo = $procesoE->getObjetivo();
           $this->estado = $procesoE->getEstado();
+          $this->macroproceso = $procesoE->getMacroproceso();
           $this->conexion = \Conexion::singleton();
      }
 

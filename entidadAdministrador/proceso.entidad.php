@@ -9,6 +9,7 @@ class Proceso {
     public $sigla_proceso;
     public $objetivo;
     public $estado;
+    public $macroproceso;
 
 
 
@@ -128,6 +129,26 @@ class Proceso {
     public function setEstado($estado)
     {
         $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of macroproceso
+     */
+    public function getMacroproceso()
+    {
+        return $this->macroproceso;
+    }
+
+    /**
+     * Set the value of macroproceso
+     *
+     * @return  self
+     */
+    public function setMacroproceso($macroproceso)
+    {
+        $this->macroproceso = $macroproceso;
 
         return $this;
     }

@@ -232,23 +232,25 @@
                                                     id="numidProcesosMod" hidden>
                                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5>Macroproceso Actual</h5>
+                                                    <input type="text" id="idMacroAnt" name="idMacroAnt" class="input" hidden  >
                                                     <input class="form-control inicialM" type="text"
                                                         name="txtMacroActual" id="txtMacroActual" readonly>
                                                 </div>
                                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5>Nuevo Macroproceso</h5>
                                                     <select class="form-control redondeado inicialM"
-                                                        id="macroproActuPro" name="macroproActuPro" required></select>
+                                                        id="macroproActuPro" name="macroproActuPro"  onchange='estafuncion1(this);' required></select>
+                                                    <input type="text" id="idInput1" name="idInput1" class="input" hidden >
                                                 </div>
                                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5>Nombre Proceso</h5>
+                                                    <input class="form-control" type="text" name="txtProcesoAnt"
+                                                        id="txtProcesoAnt" hidden> 
                                                     <input class="form-control inicialM" type="text"
                                                         name="txtProcesoMod" id="txtProcesoMod">
                                                 </div>
                                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5>Sigla Proceso</h5>
-                                                    <input class="form-control" type="text" name="txtSiglaProcesoAnt"
-                                                        id="txtSiglaProcesoAnt"hidden> 
                                                     <input class="form-control" type="text" name="txtSiglaProcesoMod"
                                                         id="txtSiglaProcesoMod" maxlength="2"
                                                         onkeyup="javascript:this.value=this.value.toUpperCase();">
@@ -332,6 +334,11 @@
         var indice = inputSelect.selectedIndex;
         var selectedOption = inputSelect.options[indice]
         document.getElementById("idInput").value = selectedOption.text;
+    }
+    function estafuncion1(inputSelect) {
+        var indice = inputSelect.selectedIndex;
+        var selectedOption = inputSelect.options[indice]
+        document.getElementById("idInput1").value = selectedOption.text;
     }
     </script>
 </body>
