@@ -4,9 +4,12 @@ namespace entidad;
 class Proceso {
 
     public $id_proceso;
+    public $id_macroproceso;
     public $proceso;
     public $sigla_proceso;
+    public $objetivo;
     public $estado;
+
 
 
     /**
@@ -25,6 +28,26 @@ class Proceso {
     public function setIdProceso($id_proceso)
     {
         $this->id_proceso = $id_proceso;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_macroproceso
+     */
+    public function getIdMacroproceso()
+    {
+        return $this->id_macroproceso;
+    }
+
+    /**
+     * Set the value of id_macroproceso
+     *
+     * @return  self
+     */
+    public function setIdMacroproceso($id_macroproceso)
+    {
+        $this->id_macroproceso = $id_macroproceso;
 
         return $this;
     }
@@ -65,6 +88,26 @@ class Proceso {
     public function setSiglaProceso($sigla_proceso)
     {
         $this->sigla_proceso = $sigla_proceso;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of objetivo
+     */
+    public function getObjetivo()
+    {
+        return $this->objetivo;
+    }
+
+    /**
+     * Set the value of objetivo
+     *
+     * @return  self
+     */
+    public function setObjetivo($objetivo)
+    {
+        $this->objetivo = $objetivo;
 
         return $this;
     }

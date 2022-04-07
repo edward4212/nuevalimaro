@@ -138,10 +138,10 @@
                         </div>
                         <!-- Fin para actualizaciones clave usuario-->
                         <!-- Modal para actualizaciones sobre Usuario-->
-                        <div class="modal fade bd-example-modal-lg" id="modUsuario" tabindex="-1"
+                        <div class="modal fade bd-example-modal-xl" id="modUsuario" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content ">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel"><b>Actualizar Información del
                                                 Usuario</b></h5>
@@ -154,19 +154,21 @@
                                             <div class="row">
                                                 <input class="form-control" type="number" name="numIdUsuMod"
                                                     id="numIdUsuMod" hidden>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5><b>Nombre Empleado</b></h5>
                                                     <input class="form-control inicialM " type="text"
                                                         name="txtNombreMod" id="txtNombreMod">
+                                                    <br>
                                                 </div>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5><b>Correo Electrónico</b></h5>
                                                     <input class="form-control" type="text" name="txtCorreoMod"
                                                         id="txtCorreoMod"
                                                         onkeyup="javascript:this.value=this.value.toLowerCase();">
                                                     <span id="emailOKM"></span>
+                                                    <br>
                                                 </div>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5><b>Cargo Actual</b></h5>
                                                     <input class="form-control" type="text" name="idCargoActuUsuAnt"
                                                         id="idCargoActuUsuAnt" aria-label="E"
@@ -174,12 +176,14 @@
                                                     <input class="form-control" type="text" name="cargoActuUsuAnt"
                                                         id="cargoActuUsuAnt" aria-label="E"
                                                         aria-describedby="basic-addon1" readonly>
+                                                    <br>
                                                     <h5><b>Cargo Nuevo</b></h5>
                                                     <select class="form-control " id="cargosUsuarioAct"
                                                         name="cargosUsuarioAct" aria-label="E"
                                                         aria-describedby="basic-addon1"></select>
+                                                    <br>
                                                 </div>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5><b>Rol Actual</b></h5>
                                                     <input class="form-control" type="text" name="idRolActuUsuAnt"
                                                         id="idRolActuUsuAnt" aria-label="E"
@@ -187,10 +191,11 @@
                                                     <input class="form-control" type="text" name="rolActuUsuAnt"
                                                         id="rolActuUsuAnt" aria-label="E"
                                                         aria-describedby="basic-addon1" readonly>
+                                                    <br>
                                                     <h5><b>Rol Nuevo</b></h5>
                                                     <select class="form-control " id="rolesUsuarioAct"
                                                         name="rolesUsuarioAct" aria-label="E"
-                                                        aria-describedby="basic-addon1"></select>
+                                                        aria-describedby="basic-addon1"></select>   
                                                 </div>
 
                                             </div>
@@ -209,7 +214,7 @@
                         <!-- Modal para actualziacion de estado Cargo-->
                         <div class="modal fade bd-example-modal-lg" id="estadoUsuario" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel"><b>Cambiar estado del usuario</b>
@@ -222,13 +227,16 @@
                                             <div class="row">
                                                 <input class="form-control" type="number" name="numidUsuElim"
                                                     id="numidUsuElim" hidden>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5><b>Estado actual del usuario</b></h5>
                                                     <input class="form-control" type="text" name="estadoUsuActu"
                                                         id="estadoUsuActu" aria-label="E"
                                                         aria-describedby="basic-addon1" readonly>
+                                                    <br>
+                                                </div>
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5><b>Nuevo estado del usuario</b></h5>
-                                                    <select class="form-group" id="estadoModusuario"
+                                                    <select class="form-group select1" id="estadoModusuario"
                                                         name="estadoModusuario">
                                                         <option value="ACTIVO">Activo</option>
                                                         <option value="INACTIVO">Inactivo</option>
@@ -317,10 +325,10 @@
                                                     <h5><b>Cargo</b></h5>
                                                     <input class="form-control inicialM" type="text" name="txtCargoMod"
                                                         id="txtCargoMod">
+                                                    <br>
                                                 </div>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <h5><b>Manual de Funciones</b></h5>
-
                                                     <input class="form-control" type="file" id="fileCargoMod"
                                                         name="fileCargoMod" multiple>
                                                 </div>
@@ -339,10 +347,10 @@
                         <!-- Modal para actualziacion de estado Cargo-->
                         <div class="modal fade bd-example-modal-lg" id="estadoCargo" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Cambiar estado Cargo</b></h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Cambiar estado del cargo</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -351,14 +359,15 @@
                                             <div class="row">
                                                 <input class="form-control" type="number" name="numidCargoElim"
                                                     id="numidCargoElim" hidden>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Estado Actual</h5>
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Estado Actual</b></h5>
                                                     <input class="form-control" type="text" name="txtCargoElim"
                                                         id="txtCargoElim" readonly>
+                                                    <br>
                                                 </div>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nuevo Estado del Rol</h5>
-                                                    <select class="form-group" id="estadoModCargo"
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Nuevo estado del cargo</b></h5>
+                                                    <select class="form-group select1" id="estadoModCargo"
                                                         name="estadoModCargo">
                                                         <option value="ACTIVO">Activo</option>
                                                         <option value="INACTIVO">Inactivo</option>
@@ -418,7 +427,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Actualizar Rol</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Actualizar rol</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -429,7 +438,7 @@
                                                 <input class="form-control" type="number" name="numidRolMod"
                                                     id="numidRolMod" hidden>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Rol</h5>
+                                                    <h5><b>Rol</b></h5>
                                                     <input class="form-control inicialM" type="text" name="txtRolMod"
                                                         id="txtRolMod">
                                                 </div>
@@ -448,10 +457,10 @@
                         <!-- Modal para actualziacion de estado rol-->
                         <div class="modal fade bd-example-modal-lg" id="exampleModal1" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Inactivar Rol</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Cambiar el estado del rol</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -460,14 +469,15 @@
                                             <div class="row">
                                                 <input class="form-control" type="number" name="numidRolElim"
                                                     id="numidRolElim" hidden>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Estado Actual</h5>
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Estado actual</b></h5>
                                                     <input class="form-control" type="text" name="txtRolElim"
                                                         id="txtRolElim" readonly>
+                                                    <br>
                                                 </div>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nuevo Estado del Rol</h5>
-                                                    <select class="form-group" id="estadoModRol" name="estadoModRol">
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Nuevo estado del rol</b></h5>
+                                                    <select class="form-group select1" id="estadoModRol" name="estadoModRol">
                                                         <option value="ACTIVO">Activo</option>
                                                         <option value="INACTIVO">Inactivo</option>
                                                     </select>

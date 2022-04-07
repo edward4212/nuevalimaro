@@ -173,7 +173,7 @@ $(document).ready(function () {
             proceso += '<option disabled selected> - Seleccione un Proceso -</option>';
             $.each(json, function (key, value) {
                 if (value.estado == "A") {
-                    proceso += '<option value=' + value.id_proceso + ' onclick="siglasProcNuevo(' + value.id_proceso + ',\'' + value.sigla_proceso + '\')">' + value.proceso + '</option>';
+                    proceso += '<option value=' + value.id_proceso + ' id="txtmacroproceso" ></option>';
 
                 }
             });

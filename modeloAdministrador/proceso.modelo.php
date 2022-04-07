@@ -10,8 +10,10 @@ include_once '../entorno/conexionSingleton.php';
 class Proceso{
 
      public $id_proceso;
+     public $id_macroproceso;
      public $proceso;
      public $sigla_proceso;
+     public $objetivo;
      public $estado;
 
      // OTROS ATRIBUTOS //
@@ -24,7 +26,9 @@ class Proceso{
      {
           $this->id_proceso = $procesoE->getIdProceso();
           $this->proceso = $procesoE->getProceso();
+          $this->id_macroproceso = $procesoE->getIdMacroproceso();
           $this->sigla_proceso = $procesoE->getSiglaProceso();
+          $this->objetivo = $procesoE->getObjetivo();
           $this->estado = $procesoE->getEstado();
           $this->conexion = \Conexion::singleton();
      }
@@ -36,7 +40,8 @@ class Proceso{
      {
           try {
                $this->sql = "SELECT 
-               macroproceso.`macropoceso`,
+               macroproceso.`id_macroproceso`,
+               macroproceso.`macroproceso`,
                proceso.`id_proceso`,
                proceso.`proceso`,
                proceso.`sigla_proceso`,
@@ -59,9 +64,11 @@ class Proceso{
      {
           try{
                
-               $this->result = $this->conexion->prepare("INSERT INTO proceso VALUES (NULL , :proceso , :sigla_proceso, 'A')");
+               $this->result = $this->conexion->prepare("INSERT INTO proceso VALUES (NULL ,:id_macroproceso, :proceso , :sigla_proceso, :objetivo, 'ACTIVO')");
                $this->result->bindParam(':proceso', $this->proceso);
                $this->result->bindParam(':sigla_proceso', $this->sigla_proceso);
+               $this->result->bindParam(':id_macroproceso', $this->id_macroproceso);
+               $this->result->bindParam(':objetivo', $this->objetivo);
                $this->result->execute();    
           } catch (Exception $e) {
           

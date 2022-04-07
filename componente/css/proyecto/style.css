@@ -40,7 +40,14 @@ header {
 
 @media (min-width: 1200px){
   .container, .container-lg, .container-md, .container-sm, .container-xl {
-      max-width: 1350px !important;
+      max-width: 1200px !important;
+  }
+}
+
+
+@media (min-width: 1200px){
+  .container1, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1200px !important;
   }
 }
 
@@ -362,8 +369,18 @@ select {
   /* background-color: transparent  !important; */
   border-radius: 1rem;
   border: 1px solid #ced4da;
-  width: 100% !important;
+  width: 100%!important;
+  height: auto !important;
 }
+
+.select1 {
+  /* background-color: transparent  !important; */
+  border-radius: 1rem;
+  border: 1px solid #ced4da;
+  width: 100%!important;
+  height: 35px !important;
+}
+
 
 /**
 * Se da aspecto a los textarea

@@ -3,49 +3,54 @@ function cargar(){
 }
 
 var inputs = "textarea[maxlength]";
-	$(document).on('keyup', "[maxlength]", function (e) {
-		var este = $(this),
-			maxlength = este.attr('maxlength'),
-			maxlengthint = parseInt(maxlength),
-			textoActual = este.val(),
-			currentCharacters = este.val().length;
-			remainingCharacters = maxlengthint - currentCharacters,
-			espan = este.prev('label').find('span');	
+$(document).on('keyup', "[maxlength]", function (e) {
+    var este = $(this),
+    maxlength = este.attr('maxlength'),
+    maxlengthint = parseInt(maxlength),
+    textoActual = este.val(),
+    currentCharacters = este.val().length;
+    remainingCharacters = maxlengthint - currentCharacters,
+    espan = este.prev('label').find('span');	
 
-			// Detectamos si es IE9 y si hemos llegado al final, convertir el -1 en 0 - bug ie9 porq. no coge directamente el atributo 'maxlength' de HTML5
-			if (document.addEventListener && !window.requestAnimationFrame) {
-				if (remainingCharacters <= -1) {
-					remainingCharacters = 0;            
-				}
-			}
-			espan.html(remainingCharacters);
-			if (!!maxlength) {
-				var texto = este.val();	
-				if (texto.length >= maxlength) {
-					este.removeClass().addClass("borderojo");
-					e.preventDefault();
-				}
-				else if (texto.length < maxlength) {
-					este.removeClass().addClass("bordegris");
-				}	
-			}	
-		});
+    // Detectamos si es IE9 y si hemos llegado al final, convertir el -1 en 0 - bug ie9 porq. no coge directamente el atributo 'maxlength' de HTML5
+    if (document.addEventListener && !window.requestAnimationFrame) {
+        if (remainingCharacters <= -1) {
+            remainingCharacters = 0;            
+        }
+    }
+    espan.html(remainingCharacters);
+    if (!!maxlength) {
+        var texto = este.val();	
+        if (texto.length >= maxlength) {
+            este.removeClass().addClass("borderojo");
+            e.preventDefault();
+        }
+        else if (texto.length < maxlength) {
+            este.removeClass().addClass("bordegris");
+        }	
+    }	
+});
 
-
-function modificarProceso (id_proceso, proceso, sigla_proceso){
-
+function modificarProceso (id_proceso, proceso, sigla_proceso,macroproceso,objetivo){
     $("#numidProcesosMod").val(id_proceso);
+    $("#txtMacroActual").val(macroproceso);
     $("#txtProcesoMod").val(proceso);
-    $("#txtSiglaProcesoMod").val(sigla_proceso);
     $("#txtSiglaProcesoAnt").val(sigla_proceso);
-    
+    $("#txtSiglaProcesoMod").val(sigla_proceso);
+    $("#txtObjetiProMod").val(objetivo);
 }
 
 function modificarMacroproceso (id_macroproceso, macroproceso, objetivo){
     $("#numMacroMod").val(id_macroproceso);
     $("#txtMacroprocesoMod").val(macroproceso);
     $("#txtMacroprocesoModAnt").val(macroproceso);
-    $("#txtObjetivoMacroprocesoMod").val(objetivo);
+    $("#txtObjetivoMod").val(objetivo);
+}
+
+function eliminacionMacroProceso (id_macroproceso, macroproceso, estado){
+    $("#numidMacroprocesosElim").val(id_macroproceso);
+    $("#txtMacroprocesoElim").val(macroproceso);
+    $("#txtEstadoActualMac").val(estado);
 }
 
 function eliminacionProceso (id_proceso, proceso, sigla_proceso){
@@ -70,11 +75,15 @@ function eliminacionTipoDoc (id_tipo_documento, tipo_documento, sigla_tipo_docum
     
 }
 
+
+
 $(document).ready(function(){
 
     buscarProceso(); 
     buscarTipoDocumento();
     buscarMacroproceso();
+    buscarMacroprocesoP()
+    buscarMacroprocesoActPro();
 
      /// REGISTRAR MACROPROCESO ///
      $(document).on('click','#btnRegistrarMacroroceso',function(event){
@@ -133,11 +142,11 @@ $(document).ready(function(){
                     datos += '<tbody>';
                         $.each(json, function(key, value){
                             datos += '<tr class="align-middle" >';
-                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.macropoceso+'</td>';
-                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.objetivo+'</td>';
-                                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarMacroproceso('+value.id_macroproceso+',\''+value.macropoceso+'\',\''+value.objetivo+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-edit"></i></button></td>';
+                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.macroproceso+'</td>';
+                                datos += '<td class=" border border-primary text-break align-middle">'+value.objetivo+'</td>';
+                                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarMacroproceso('+value.id_macroproceso+',\''+value.macroproceso+'\',\''+value.objetivo+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-edit"></i></button></td>';
                                 datos += '<td class=" border border-primary text-center align-middle">'+value.estado+'</td>';
-                                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="eliminacionProceso('+value.id_macroproceso+',\''+value.macroproceso+'\',\''+value.sigla_proceso+'\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-times"></i></button></td>';
+                                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="eliminacionMacroProceso('+value.id_macroproceso+',\''+value.macroproceso+'\',\''+value.estado+'\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminacionMacroProceso"><i class="fas fa-times"></i></button></td>';
                             datos += '</tr>';
                         });
                     datos += '</tbody>';
@@ -221,7 +230,7 @@ $(document).ready(function(){
                 url:'../controladorAdministrador/macroproceso.update.php',
                 type: 'POST',
                 dataType: 'json',
-                data : $('#ModificarPro').serialize(),
+                data : $('#ModificarMacropro').serialize(),
             }).done(function(json){
                 if(json !== null){
                     Swal.fire({
@@ -242,9 +251,79 @@ $(document).ready(function(){
                 Swal.fire({
                     icon: 'error',
                     title: 'Error al actualizar el macroproceso',
-                })
+                });
         });
     });
+    
+    /// CAMBIO DE ESTADO MACROPROCESO///
+    $(document).on('click','#btnEliminarPro',function(event){
+        event.preventDefault();
+            $.ajax({
+                url:'../controladorAdministrador/macroproceso.delete.php',
+                type: 'POST',
+                dataType: 'json',
+                data : $('#inactivarProce').serialize(),
+            }).done(function(json){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Estado Actualizado con éxito',
+                    showConfirmButton: false,
+                    timer: 2500
+                  }).then((result) => {
+                    cargar();
+                  });
+            }).fail(function(xhr, status, error){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al cambiar el estado del macroproceso',
+                });
+        });
+
+    });
+
+    /// MOSTRAR MACROPROCESO PARA CREAR PROCESO ///
+    function buscarMacroprocesoP() {
+        $.ajax({
+            url: '../controladorAdministrador/macroproceso.read.php',
+            type: 'POST',
+            dataType: 'json',
+            data: null,
+        }).done(function (json) {
+            var macroproceso = 0;
+            macroproceso += '<option disabled selected> - Seleccione un Macroproceso -</option>';
+            $.each(json, function (key, value) {
+                if (value.estado == "ACTIVO") {
+                    macroproceso += '<option value=' + value.id_macroproceso + '>' + value.macroproceso + '</option>';
+                }
+            });
+            $('#tipoMacroProceso').html(macroproceso);
+        }).fail(function (xhr, status, error) {
+            $('#tipoMacroProceso').html(error);
+        });
+    }
+
+    /// MOSTRAR MACROPROCESO PARA ACTUALIZAR PROCESO ///
+    function buscarMacroprocesoActPro() {
+        $.ajax({
+            url: '../controladorAdministrador/macroproceso.read.php',
+            type: 'POST',
+            dataType: 'json',
+            data: null,
+        }).done(function (json) {
+            var macroproceso = 0;
+            macroproceso += '<option disabled selected> - Seleccione un Macroproceso -</option>';
+            $.each(json, function (key, value) {
+                if (value.estado == "ACTIVO") {
+                    macroproceso += '<option value=' + value.id_macroproceso + '>' + value.macroproceso + '</option>';
+                }
+            });
+            $('#macroproActuPro').html(macroproceso);
+        }).fail(function (xhr, status, error) {
+            $('#macroproActuPro').html(error);
+        });
+    }
+
+
 
     /// REGISTRAR PROCESO ///
     $(document).on('click','#btnRegistrarProceso',function(event){
@@ -255,16 +334,26 @@ $(document).ready(function(){
                 dataType: 'json',
                 data : $('#proceso').serialize(),
             }).done(function(json){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Proceso Creado con éxito',
-                    showConfirmButton: false,
-                    timer: 2500
-                  }).then((result) => {
-                    cargar();
-                  });
+                if(json !== null){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error el nombre del proceso o las siglas ya existen',
+                    })
+                }else{
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Proceso creado con éxito',
+                        showConfirmButton: false,
+                        timer: 2500
+                    }).then((result) => {
+                        cargar();
+                    });
+                }
             }).fail(function(xhr, status, error){
-                alert (error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al crear el proceso',
+                })
         });
     });
 
@@ -284,10 +373,10 @@ $(document).ready(function(){
                 datos += "<table id='tablaProcesos' class='table  table-striped table-bordered  '   >"; 
                 datos += '<thead >';
                         datos += '<tr class="table-light border-primary ">';
-                            datos += '<th  class="text-center align-middle border border-primary ">MACROPROCESOa</th>';
-                            datos += '<th  class="text-wrap align-middle border border-primary ">NOMBRE PROCESO</th>';
-                            datos += '<th  class="text-center align-middle border border-primary ">OBJETO PROCESO</th>';
+                            datos += '<th  class="text-center align-middle border border-primary ">MACROPROCESO</th>';
+                            datos += '<th  class="text-center align-middle border border-primary ">NOMBRE PROCESO</th>';
                             datos += '<th  class="text-center align-middle border border-primary ">SIGLA PROCESO</th>';
+                            datos += '<th  class="text-center align-middle border border-primary ">OBJETO PROCESO</th>';
                             datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR PROCESO</th>';
                             datos += '<th  class="text-center align-middle border border-primary ">ESTADO PROCESO</th>';
                             datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
@@ -305,9 +394,9 @@ $(document).ready(function(){
                             datos += '<tr class="align-middle" >';
                                 datos += '<td class=" border border-primary text-wrap" id="numIdSolicitud" >'+value.macroproceso+' </td>';
                                 datos += '<td class=" border border-primary text-wrap align-middle">'+value.proceso+'</td>';
-                                datos += '<td class=" border border-primary text-center align-middle">'+value.objeto+'</td>';
                                 datos += '<td class=" border border-primary text-center align-middle">'+value.sigla_proceso+'</td>';
-                                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarProceso('+value.id_proceso+',\''+value.proceso+'\',\''+value.sigla_proceso+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-edit"></i></button></td>';
+                                datos += '<td class=" border border-primary text-break align-middle">'+value.objetivo+'</td>';
+                                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarProceso('+value.id_proceso+',\''+value.proceso+'\',\''+value.sigla_proceso+'\',\''+value.macroproceso+'\',\''+value.objetivo+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModale"><i class="far fa-edit"></i></button></td>';
                                 datos += '<td class=" border border-primary text-center align-middle">'+value.estado+'</td>';
                                 datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="eliminacionProceso('+value.id_proceso+',\''+value.proceso+'\',\''+value.sigla_proceso+'\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-times"></i></button></td>';
                             datos += '</tr>';
@@ -433,9 +522,7 @@ $(document).ready(function(){
 
     });
 
-     /**
-     * Se realiza el CRUD de los tipos de documentos para mostrar en vistaAdminsitrador/documento.php
-     */
+
        /// MOSTRAR TIPO DOCUMENTOS ///
     function buscarTipoDocumento(){
         $.ajax({
