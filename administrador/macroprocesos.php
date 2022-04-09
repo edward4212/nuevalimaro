@@ -141,6 +141,7 @@
                                                     <h5><b>Nuevo estado del proceso</b></h5>
                                                     <select class="form-group select1" id="estadoModMacroproceso"
                                                         name="estadoModMacroproceso">
+                                                        <option value="">- Seleccione el nuevo estado -</option>
                                                         <option value="ACTIVO">Activo</option>
                                                         <option value="INACTIVO">Inactivo</option>
                                                     </select>
@@ -279,10 +280,10 @@
                         <!-- Modal para actualziacion de estado procesos-->
                         <div class="modal fade bd-example-modal-lg" id="exampleModal1" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Inactivar Proceso</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Cambiar estado al proceso</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -292,22 +293,24 @@
                                                 <input class="form-control" type="number" name="numidProcesosElim"
                                                     id="numidProcesosElim" hidden>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nombre Proceso</h5>
+                                                    <h5><b>Nombre del proceso</b></h5>
                                                     <input class="form-control " type="text" name="txtProcesoElim"
                                                         id="txtProcesoElim" readonly>
+                                                        <br>
                                                 </div>
-
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Sigla Proceso</h5>
-                                                    <input class="form-control" type="text" name="txtSiglaProcesoElim"
-                                                        id="txtSiglaProcesoElim" readonly>
+                                               
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Estado actual del proceso</b></h5>
+                                                    <input class="form-control" type="text" name="txtEstadoActualMac"
+                                                        id="txtEstadoActualMac" readonly>
                                                 </div>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nuevo Estado del Proceso</h5>
-                                                    <select class="form-group" id="estadoModProceso"
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Nuevo Estado del Proceso</b></h5>
+                                                    <select class="form-group  select1" id="estadoModProceso"
                                                         name="estadoModProceso">
-                                                        <option value="A">Activo</option>
-                                                        <option value="I">Inactivo</option>
+                                                        <option value="">- Seleccione el nuevo estado -</option>
+                                                        <option value="ACTIVO">Activo</option>
+                                                        <option value="INACTIVO">Inactivo</option>
                                                     </select>
                                                 </div>
                                             </div>

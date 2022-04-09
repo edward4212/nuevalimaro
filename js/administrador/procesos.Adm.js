@@ -350,7 +350,7 @@ $(document).ready(function(){
                 Swal.fire({
                     icon: 'error',
                     title: 'Error al crear el proceso',
-                })
+                });
         });
     });
 
@@ -483,16 +483,26 @@ $(document).ready(function(){
                 dataType: 'json',
                 data : $('#ModificarPro').serialize(),
             }).done(function(json){
-                // Swal.fire({
-                //     icon: 'success',
-                //     title: 'Proceso actualizado con éxito',
-                //     showConfirmButton: false,
-                //     timer: 2500
-                //   }).then((result) => {
-                //     cargar();
-                //   });
+                if(json !== null){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error el nombre del proceso o las siglas ya existen',
+                    })
+                }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Proceso actualizado con éxito',
+                    showConfirmButton: false,
+                    timer: 2500
+                  }).then((result) => {
+                    cargar();
+                  });
+                }
             }).fail(function(xhr, status, error){
-                // alert (error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar el proceso',
+                });
         });
     });
 	
@@ -505,16 +515,26 @@ $(document).ready(function(){
                 dataType: 'json',
                 data : $('#inactivarProce').serialize(),
             }).done(function(json){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Estado Actualizado con éxito',
-                    showConfirmButton: false,
-                    timer: 2500
-                  }).then((result) => {
-                    cargar();
-                  });
+                if(json !== null){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al cambiar el estado del proceso',
+                    })
+                }else{
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Estado del proceso actualizado con éxito',
+                        showConfirmButton: false,
+                        timer: 2500
+                    }).then((result) => {
+                        cargar();
+                    });
+                }
             }).fail(function(xhr, status, error){
-                alert (error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al cambiar el estado al proceso',
+                });
         });
 
     });

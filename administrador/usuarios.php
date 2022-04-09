@@ -238,6 +238,7 @@
                                                     <h5><b>Nuevo estado del usuario</b></h5>
                                                     <select class="form-group select1" id="estadoModusuario"
                                                         name="estadoModusuario">
+                                                        <option value="">- Seleccione el nuevo estado -</option>
                                                         <option value="ACTIVO">Activo</option>
                                                         <option value="INACTIVO">Inactivo</option>
                                                     </select>
@@ -369,6 +370,7 @@
                                                     <h5><b>Nuevo estado del cargo</b></h5>
                                                     <select class="form-group select1" id="estadoModCargo"
                                                         name="estadoModCargo">
+                                                        <option value="">- Seleccione el nuevo estado -</option>
                                                         <option value="ACTIVO">Activo</option>
                                                         <option value="INACTIVO">Inactivo</option>
                                                     </select>
@@ -478,6 +480,7 @@
                                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5><b>Nuevo estado del rol</b></h5>
                                                     <select class="form-group select1" id="estadoModRol" name="estadoModRol">
+                                                        <option value="">- Seleccione el nuevo estado -</option>
                                                         <option value="ACTIVO">Activo</option>
                                                         <option value="INACTIVO">Inactivo</option>
                                                     </select>
