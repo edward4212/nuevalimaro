@@ -2,7 +2,7 @@
 
 include_once "../entidadAdministrador/tarea.entidad.php";
 include_once "../modeloAdministrador/tarea.modelo.php";
-
+include_once "../controladorLogin/logueo.read.php";
 
 $id_tarea = $_POST['numIdTidTareaCom1Act'];  
 

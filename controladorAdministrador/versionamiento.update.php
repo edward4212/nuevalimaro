@@ -2,6 +2,7 @@
 
 include_once "../entidadAdministrador/documento.entidad.php";
 include_once "../modeloAdministrador/documento.modelo.php";
+include_once "../controladorLogin/logueo.read.php";
 
 $id_versionamiento = $_POST['numeroVersionamiento'];
 $estado_versionamiento = $_POST['nuevoEstadoDocAct'];

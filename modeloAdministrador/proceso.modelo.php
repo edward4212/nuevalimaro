@@ -83,7 +83,7 @@ class Proceso{
      {
 
           try {
-               $this->sql = "UPDATE proceso SET proceso='$this->proceso', sigla_proceso='$this->sigla_proceso' WHERE id_proceso=$this->id_proceso";
+               $this->sql = "UPDATE proceso SET id_macroproceso='$this->id_macroproceso', proceso='$this->proceso', sigla_proceso='$this->sigla_proceso', objetivo='$this->objetivo' WHERE id_proceso=$this->id_proceso";
                $this->result = $this->conexion->query($this->sql);
           } catch (Exception $e) {
                $this->retorno = $e->getMessage();

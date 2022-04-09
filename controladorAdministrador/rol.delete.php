@@ -1,5 +1,5 @@
 <?php
-
+include_once "../controladorLogin/logueo.read.php";
 include_once "../entidadAdministrador/rol.entidad.php";
 include_once "../modeloAdministrador/rol.modelo.php";
 

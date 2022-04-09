@@ -1,9 +1,7 @@
 <?php
-
+include_once "../controladorLogin/logueo.read.php";
 include_once "../entidadAdministrador/documento.entidad.php";
 include_once "../modeloAdministrador/documento.modelo.php";
-include_once "../controladorLogin/logueo.read.php";
-
 
 $id_tipo_documento = $_POST['idsiglasTipDoc12'];
 $sigla_tipo_documento =  $_POST['siglasTipDoc'];

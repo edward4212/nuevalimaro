@@ -1,10 +1,12 @@
 <?php
 
+include_once "../controladorLogin/logueo.read.php";
 include_once "../entidadAdministrador/proceso.entidad.php";
 include_once "../modeloAdministrador/proceso.modelo.php";
 
 $id_proceso = $_POST['numidProcesosMod'];
 $id_macroproces=$_POST['idInput1'];
+$id_macroproces1=$_POST['idMacroAnt'];
 $macroprocesoAnt = $_POST['txtMacroActual'];
 $macroprocesoNuev = $_POST['idInput1'];
 $procesoAnt = $_POST['txtProcesoAnt'];
@@ -13,19 +15,19 @@ $sigla_proceso = $_POST['txtSiglaProcesoMod'];
 $objetivo = $_POST['txtObjetiProMod'];
 
 
-if (!empty($macroprocesoNuev)) 
-{
+// if (!empty($macroprocesoNuev)) 
+// {
     $directorio = "../documentos/macroprocesos/$macroprocesoAnt/$procesoAnt";
-    $directorioNew = "../documentos/macroprocesos/$$macroprocesoNuev/$procesoNuevo ";
+    $directorioNew = "../documentos/macroprocesos/$macroprocesoNuev/$procesoNuevo";
 
     rename ($directorio, $directorioNew);
 
     $procesoE = new \entidad\Proceso();
     $procesoE -> setIdProceso($id_proceso);
+    $procesoE -> setIdMacroproceso($id_macroproces1);
+    $procesoE -> setProceso($procesoNuevo);
     $procesoE -> setSiglaProceso($sigla_proceso);
-    $procesoE -> setProceso($proceso);
-    $procesoE -> setSiglaProceso($sigla_proceso);
-    $procesoE -> setSiglaProceso($sigla_proceso);
+    $procesoE -> setObjetivo($objetivo);
 
     $procesoM= new \modelo\Proceso($procesoE);
     $resultado = $procesoM->actualizarProceso();
@@ -35,25 +37,27 @@ if (!empty($macroprocesoNuev))
 
     echo json_encode($resultado);
     
-}else{
+// }else{
 
-    $directorio = "../documentos/macroprocesos/$macroprocesoAnt/$procesoAnt";
-    $directorioNew = "../documentos/macroprocesos/$$macroprocesoAnt/$procesoNuevo ";
+//     $directorio = "../documentos/macroprocesos/$macroprocesoAnt/$procesoAnt";
+//     $directorioNew = "../documentos/macroprocesos/$macroprocesoAnt/$procesoNuevo ";
 
-    rename ($directorio, $directorioNew);
+//     rename ($directorio, $directorioNew);
 
-    $procesoE = new \entidad\Proceso();
-    $procesoE -> setIdProceso($id_proceso);
-    $procesoE -> setProceso($proceso);
-    $procesoE -> setSiglaProceso($sigla_proceso);
+//     $procesoE = new \entidad\Proceso();
+//     $procesoE -> setIdProceso($id_proceso);
+//     $procesoE -> setIdMacroproceso($id_macroproces);
+//     $procesoE -> setProceso($procesoNuevo);
+//     $procesoE -> setSiglaProceso($sigla_proceso);
+//     $procesoE -> setObjetivo($objetivo);
 
-    $procesoM= new \modelo\Proceso($procesoE);
-    $resultado = $procesoM->actualizarProceso();
+//     $procesoM= new \modelo\Proceso($procesoE);
+//     $resultado = $procesoM->actualizarProceso();
 
-    unset($procesoE);
-    unset($procesoM);
+//     unset($procesoE);
+//     unset($procesoM);
 
-    echo json_encode($resultado);
-}
+//     echo json_encode($resultado);
+// }
 
 ?>

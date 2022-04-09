@@ -11,8 +11,6 @@ class Proceso {
     public $estado;
     public $macroproceso;
 
-
-
     /**
      * Get the value of id_proceso
      */

@@ -483,16 +483,16 @@ $(document).ready(function(){
                 dataType: 'json',
                 data : $('#ModificarPro').serialize(),
             }).done(function(json){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Proceso actualizado con éxito',
-                    showConfirmButton: false,
-                    timer: 2500
-                  }).then((result) => {
-                    cargar();
-                  });
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Proceso actualizado con éxito',
+                //     showConfirmButton: false,
+                //     timer: 2500
+                //   }).then((result) => {
+                //     cargar();
+                //   });
             }).fail(function(xhr, status, error){
-                alert (error);
+                // alert (error);
         });
     });
 	
