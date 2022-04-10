@@ -39,6 +39,190 @@ $(document).ready(function () {
     /**
      * Se realiza la consulta de los documentos vigentes para mostrar en la vistaEmpleado/consultas.frm.php
      */
+           /// MOSTRAR TIPO DOCUMENTOS ///
+           function buscarTipoDocumento(){
+            $.ajax({
+                url:'../controladorAdministrador/tipoDocumento.read.php',
+                type: 'POST',
+                dataType: 'json',
+                data : null,
+            }).done(function(json){
+                 /**
+                 * Se crea la tabla para mostrar los datos consultados
+                 */
+                var datos = '';
+                    datos += "<table id='tablaTipoDoc' class='table  table-striped table-bordered table-responsive '  >"; 
+                    datos += '<thead >';
+                            datos += '<tr class="table-light border-primary ">';
+                                datos += '<th  class="text-wrap align-middle border border-primary " hidden>CÓDIGO  TIPO DOCUMENTO</th>';
+                                datos += '<th  class="text-center align-middle border border-primary ">NOMBRE TIPO DOCUMENTO</th>';
+                                datos += '<th  class="text-wrap align-middle border border-primary ">SIGLA TIPO DOCUMENTO</th>';
+                                datos += '<th  class="text-center align-middle border border-primary ">ESTADO TIPO DOCUMENTO</th>';
+                                datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR TIPO DOCUMENTO</th>';
+                                datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
+                            datos += '</tr>';
+                        datos +=  '</thead>';
+                        datos += '<tbody>';
+                            $.each(json, function(key, value){
+                                if(value.estado == "A"){
+                                    value.estado = "ACTIVO";
+                                }else{
+                                    if(value.estado == "I"){
+                                        value.estado = "INACTIVO";
+                                    }
+                                }
+                                datos += '<tr class="align-middle" >';
+                                    datos += '<td class=" border border-primary text-wrap" id="numIdSolicitud" hidden>'+value.id_tipo_documento+' </td>';
+                                    datos += '<td class=" border border-primary text-center align-middle">'+value.tipo_documento    +'</td>';
+                                    datos += '<td class=" border border-primary text-center align-middle">'+value.sigla_tipo_documento+'</td>';
+                                    datos += '<td class=" border border-primary text-center align-middle">'+value.estado+'</td>';
+                                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarTipoDoc('+value.id_tipo_documento+',\''+value.tipo_documento+'\',\''+value.sigla_tipo_documento+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actualizarTipoDocuento"><i class="far fa-edit"></i></button></td>';
+                                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="eliminacionTipoDoc('+value.id_tipo_documento+',\''+value.tipo_documento+'\',\''+value.sigla_tipo_documento+'\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cambiarEstadoTipoDoc"><i class="fas fa-times"></i></button></td>';
+                                datos += '</tr>';
+                            });
+                        datos += '</tbody>';
+                    datos += '</table>';
+                $('#tipoDocumentos').html(datos);
+                $('#tablaTipoDoc').dataTable({
+                    "destroy" : true,
+                    "autoWidth": true,
+                    "responsive": true,
+                    "searching": true,
+                    "info":     true,
+                    "ordering": true,
+                    "colReorder": true,
+                    "sZeroRecords": true,
+                    
+                    "keys": true,
+                    "deferRender": true,
+                    "lengthMenu":	[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
+                    "iDisplayLength":	20,
+                    "language": {"url": "../componente/libreria/idioma/es-mx.json"},
+                    dom:  'Qfrtip',
+                    dom:  'Bfrtip',
+                    searchBuilder: true,
+                    buttons: [
+                        {
+                            extend: 'pdfHtml5',
+                            orientation: 'landscape',
+                            pageSize: 'A4',
+                            download: 'open',
+                            title: 'Tipo Documentos',
+                            titleAttr: 'Tipo Documentos',
+                            messageTop: 'Tipo Documentos',
+                            text : '<i class="far fa-file-pdf"></i>',
+                            exportOptions : {
+                                columns: [0,1,2,3]
+                            }
+                        },
+                        {
+                            extend: 'print',
+                            title: 'Tipo Documentos',
+                            titleAttr: 'Tipo Documentos',
+                            messageTop: 'Tipo Documentos',
+                            text : '<i class="fas fa-print"></i>',
+                            exportOptions : {
+                                columns: [0,1,2,3]
+                            }
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text : '<i class="fas fa-file-excel"></i>',
+                            autoFiltre : true ,
+                            title: 'Tipo Documentos',
+                            exportOptions : {
+                                columns: [0,1,2,3]
+                            }
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text : '<i class="fas fa-copy"></i>',
+                            autoFiltre : true ,
+                            titleAttr: 'COPIAR',
+                            exportOptions : {
+                                columns: [0,1,2,3]
+                            }
+                        },
+                        {
+                            extend: 'searchBuilder'
+                            
+                        }                      
+                    ],
+                   
+                });
+            }).fail(function(xhr, status, error){
+                $('#tipoDocumentos').html(error);
+            })
+        }
+    
+        /// REGISTRAR TIPO DOCUMENTOS ///
+        $(document).on('click','#btnRegistrarTipoDocumento',function(event){
+            event.preventDefault();
+                $.ajax({
+                    url:'../controladorAdministrador/tipoDocumento.create.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data : $('#crearTipoDocumentos').serialize(),
+                }).done(function(json){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Tipo de Documento Creado con éxito',
+                        showConfirmButton: false,
+                        timer: 2500
+                      }).then((result) => {
+                        cargar();
+                      })
+                      
+                }).fail(function(xhr, status, error){
+                    alert (error);
+            })
+        })
+    
+    
+        /// MODIFICAR TIPO DOCUMENTOS///
+        $(document).on('click','#btnModificarTipoDoc',function(event){
+        event.preventDefault();
+            $.ajax({
+                url:'../controladorAdministrador/tipoDocumento.update.php',
+                type: 'POST',
+                dataType: 'json',
+                data : $('#ModificarTipoDoc').serialize(),
+            }).done(function(json){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tipo de Documento Actualizado con éxito',
+                    showConfirmButton: false,
+                    timer: 2500
+                    }).then((result) => {
+                        cargar();
+                      })
+            }).fail(function(xhr, status, error){
+                alert (error);
+            })
+        })
+    
+        /// CAMBIO DE ESTADO TIPO DOCUMENTOS///
+        $(document).on('click','#btnEliminarTipDoc',function(event){
+            event.preventDefault();
+                $.ajax({
+                    url:'../controladorAdministrador/tipoDocumento.delete.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data : $('#inactivarTipoDoc').serialize(),
+                }).done(function(json){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Estado Actualizado con éxito',
+                        showConfirmButton: false,
+                        timer: 2500
+                        }).then((result) => {
+                            cargar();
+                          })
+                }).fail(function(xhr, status, error){
+                    alert (error);
+            })
+    
+        })
 
     function buscar() {
         $.ajax({

@@ -12,15 +12,15 @@
             <nav>
                 <br>
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
-                    <button class="nav-link " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-macroprocesos"
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-macroprocesos"
                         type="button" role="tab" aria-controls="nav-home" aria-selected="true"> Macroproceso</button>
-                    <button class="nav-link active " id="nav-home-tab" data-bs-toggle="tab"
+                    <button class="nav-link  " id="nav-home-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-procesos" type="button" role="tab" aria-controls="nav-home"
                         aria-selected="true"> Proceso</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade " id="nav-macroprocesos" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade show active" id="nav-macroprocesos" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <br>
@@ -160,20 +160,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade show active" id="nav-procesos" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade " id="nav-procesos" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <br>
                             <h2 class="card-title text-center"><b>Procesos</b></h2>
                             <br>
-                            <button type="button" class="btn btn-primary mb-3" id="btnCrearMacro"><i
+                            <button type="button" class="btn btn-primary mb-3" id="btnCrearProce"><i
                                     class="fas fa-plus text-center"></i> Crear Procesos</button>
-                            <button type="button" id="volverRegistroMacro" class="btn btn-primary mb-3" hidden><i
+                            <button type="button" id="volverRegistroProce" class="btn btn-primary mb-3" hidden><i
                                     class="fas fa-eye"></i>
                                 Ver Procesos Registrados</button>
                             <br>
                             <br>
-                            <form class="row g-3 form-group bordeado" id="proceso" method="POST">
+                            <form class="row g-3 form-group bordeado" id="proceso" method="POST" hidden>
                                 <h4 class="card-title text-center"><b>Crear Proceso</b></h4>
                                 <div class="col-md-5 col-xs-12 col-sm-12">
                                     <h5><b>Nombre macroproceso*</b></h5>
@@ -208,7 +208,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-12 col-xs-12 col-sm-12 bordeado">
+                        <div class="col-md-12 col-xs-12 col-sm-12 bordeado" id="procesoRgis">
                             <h4 class="card-title text-center"><b>Procesos Registrados</b></h4>
                             <div>
                                 <br>
@@ -301,8 +301,8 @@
                                                
                                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5><b>Estado actual del proceso</b></h5>
-                                                    <input class="form-control" type="text" name="txtEstadoActualMac"
-                                                        id="txtEstadoActualMac" readonly>
+                                                    <input class="form-control" type="text" name="txtEstadoActualPro"
+                                                        id="txtEstadoActualPro" readonly>
                                                 </div>
                                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                                     <h5><b>Nuevo Estado del Proceso</b></h5>
