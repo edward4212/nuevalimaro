@@ -27,36 +27,36 @@ document.getElementById('txtCorreoEmpleado').addEventListener('input', function(
 
   function cargar() {
     window.location.href = "../administrador/usuarios.php";
-}
+};
 
 function modificarRol(id_rol, rol) {
     $("#numidRolMod").val(id_rol);
     $("#txtRolMod").val(rol);
-}
+};
 
 function estadoRol(id_rol, rol) {
     $("#numidRolElim").val(id_rol);
     $("#txtRolElim").val(rol);
-}
+};
 
 function modificarCargo(id_cargo, cargo, manual_funciones) {
     $("#numidCargoMod").val(id_cargo);
     $("#txtCargoMod").val(cargo);
     $("#txtCargoModAnt").val(cargo);
     $("#txtManualModAnt").val(manual_funciones);
-}
+};
 
 function estadoCargo(id_cargo, cargo) {
     $("#numidCargoElim").val(id_cargo);
     $("#txtCargoElim").val(cargo);
-}
+};
 
 function actualiarClaveUsuario(id_cargo, nombre_completo, correo_empleado,usuario) {
     $("#numIdUsurioMoClave").val(id_cargo);
     $("#NombreMoClave").val(nombre_completo);
     $("#CorreoUsurioMoClave").val(correo_empleado);
     $("#UsurioMoClave").val(usuario);
-}
+};
 
 function modUsuario(id_usuario, nombre_completo, correo_empleado, id_rol, rol, id_cargo, cargo) {
     $("#numIdUsuMod").val(id_usuario);
@@ -66,12 +66,12 @@ function modUsuario(id_usuario, nombre_completo, correo_empleado, id_rol, rol, i
     $("#rolActuUsuAnt").val(rol);
     $("#idCargoActuUsuAnt").val(id_cargo);
     $("#cargoActuUsuAnt").val(cargo);
-}
+};
 
 function estadoUsuario(id_usuario, estado) {
     $("#numidUsuElim").val(id_usuario);
     $("#estadoUsuActu").val(estado);
-}
+};
 
 $(document).ready(function () {
     buscarRol();
@@ -96,23 +96,22 @@ $(document).ready(function () {
             var datos = '';
             datos += "<table id='tablaRol'  class='table  table-striped table-bordered table-responsive '  >";
             datos += '<thead >';
-            datos += '<tr class="table-light border-primary ">';
-           
-            datos += '<th  class="text-center align-middle border border-primary ">ROL</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR ROL</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">ESTADO ROL</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
-            datos += '</tr>';
+                datos += '<tr class="table-light border-primary ">';
+                    datos += '<th  class="text-center align-middle border border-primary ">ROL</th>';
+                    datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR ROL</th>';
+                    datos += '<th  class="text-center align-middle border border-primary ">ESTADO ROL</th>';
+                    datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
+                datos += '</tr>';
             datos += '</thead>';
             datos += '<tbody>';
-            $.each(json, function (key, value) {
-                datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.rol + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarRol(' + value.id_rol + ',\'' + value.rol + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-edit"></i></button></td>';
-                datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoRol(' + value.id_rol + ',\'' + value.rol + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-times"></i></button></td>';
-                datos += '</tr>';
-            });
+                $.each(json, function (key, value) {
+                    datos += '<tr class="align-middle" >';
+                        datos += '<td class=" border border-primary text-wrap align-middle">' + value.rol + '</td>';
+                        datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarRol(' + value.id_rol + ',\'' + value.rol + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-edit"></i></button></td>';
+                        datos += '<td class=" border border-primary text-center align-middle">' + value.estado + '</td>';
+                        datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoRol(' + value.id_rol + ',\'' + value.rol + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-times"></i></button></td>';
+                    datos += '</tr>';
+                });
             datos += '</tbody>';
             datos += '</table>';
             $('#roles').html(datos);
@@ -143,7 +142,7 @@ $(document).ready(function () {
                         messageTop: 'Roles',
                         text: '<i class="far fa-file-pdf"></i>',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 2]
                         }
                     },
                     {
@@ -153,7 +152,7 @@ $(document).ready(function () {
                         messageTop: 'Roles',
                         text: '<i class="fas fa-print"></i>',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 2]
                         }
                     },
                     {
@@ -162,7 +161,7 @@ $(document).ready(function () {
                         autoFiltre: true,
                         title: 'Roles',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 2]
                         }
                     },
                     {
@@ -171,7 +170,7 @@ $(document).ready(function () {
                         autoFiltre: true,
                         titleAttr: 'COPIAR',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 2]
                         }
                     },
                     {
@@ -183,7 +182,7 @@ $(document).ready(function () {
         }).fail(function (xhr, status, error) {
             $('#roles').html(error);
         });
-    }
+    };
 
     /// REGISTRAR ROL ///
     $(document).on('click', '#btnRegistrarRol', function (event) {
@@ -198,7 +197,7 @@ $(document).ready(function () {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error al rol ya existe',
-                })
+                });
             }else{
                 Swal.fire({
                     icon: 'success',
@@ -213,7 +212,7 @@ $(document).ready(function () {
             Swal.fire({
                 icon: 'error',
                 title: 'Error al crear el rol',
-            })
+            });
         });
     });
 
@@ -230,7 +229,7 @@ $(document).ready(function () {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error al rol ya existe',
-                })
+                });
             }else{
                 Swal.fire({
                     icon: 'success',
@@ -240,12 +239,12 @@ $(document).ready(function () {
                 }).then((result) => {
                     cargar();
                 });
-            }
+            };
         }).fail(function (xhr, status, error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error al modificar el rol',
-            })
+            });
         });
     });
 
@@ -258,18 +257,27 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#inactivarRol').serialize(),
         }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Estado Actualizado Con Éxito',
-                showConfirmButton: false,
-                timer: 2500
-            }).then((result) => {
-                cargar();
-            });
+            if(json !== null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar el rol',
+                });
+            }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Estado actualizado con éxito',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                    cargar();
+                });
+            };
         }).fail(function (xhr, status, error) {
-            alert(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al actualizar el rol',
+            });
         });
-
     });
 
     /// MOSTRAR CARGO ///
@@ -332,7 +340,7 @@ $(document).ready(function () {
                         messageTop: 'Cargos',
                         text: '<i class="far fa-file-pdf"></i>',
                         exportOptions: {
-                            columns: [0, 1, 3]
+                            columns: [0,3]
                         }
                     },
                     {
@@ -342,7 +350,7 @@ $(document).ready(function () {
                         messageTop: 'Cargos',
                         text: '<i class="fas fa-print"></i>',
                         exportOptions: {
-                            columns: [0, 1, 3]
+                            columns: [0, 3]
                         }
                     },
                     {
@@ -351,7 +359,7 @@ $(document).ready(function () {
                         autoFiltre: true,
                         title: 'Cargos',
                         exportOptions: {
-                            columns: [0, 1, 3]
+                            columns: [0, 3]
                         }
                     },
                     {
@@ -360,7 +368,7 @@ $(document).ready(function () {
                         autoFiltre: true,
                         titleAttr: 'COPIAR',
                         exportOptions: {
-                            columns: [0, 1, 3]
+                            columns: [0, 3]
                         }
                     },
                     {
@@ -371,8 +379,8 @@ $(document).ready(function () {
             });
         }).fail(function (xhr, status, error) {
             $('#cargos').html(status);
-        })
-    }
+        });
+    };
 
     /// CAMBIO DE ESTADO ROL///
     $(document).on('click', '#btnEliminarCargo', function (event) {
@@ -383,14 +391,21 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#inactivarCargo').serialize(),
         }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Estado Actualizado Con Éxito',
-                showConfirmButton: false,
-                timer: 2500
-            }).then((result) => {
-                cargar();
-            })
+            if(json !== null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar el cargo',
+                });
+            }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Estado actualizado con éxito',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                    cargar();
+                });
+            }
         }).fail(function (xhr, status, error) {
             alert(error);
         })
@@ -558,7 +573,7 @@ $(document).ready(function () {
                         messageTop: 'Usuarios',
                         text: '<i class="far fa-file-pdf"></i>',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 7]
+                            columns: [0, 1, 2, 3, 4, 7]
                         }
                     },
                     {
@@ -568,7 +583,7 @@ $(document).ready(function () {
                         messageTop: 'Usuarios',
                         text: '<i class="fas fa-print"></i>',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 7]
+                            columns: [0, 1, 2, 3, 4, 7]
                         }
                     },
                     {
@@ -577,7 +592,7 @@ $(document).ready(function () {
                         autoFiltre: true,
                         title: 'Usuarios',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 7]
+                            columns: [0, 1, 2, 3, 4, 7]
                         }
                     },
                     {
@@ -586,7 +601,7 @@ $(document).ready(function () {
                         autoFiltre: true,
                         titleAttr: 'COPIAR',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 7]
+                            columns: [0, 1, 2, 3, 4, 7]
                         }
                     },
                     {
@@ -597,7 +612,7 @@ $(document).ready(function () {
             });
         }).fail(function (xhr, status, error) {
             $('#cargos').html(status);
-        })
+        });
     }
 
     /// RESTABLECER CONTRASEÑA USUARIO///

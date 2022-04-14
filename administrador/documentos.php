@@ -9,14 +9,14 @@
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-documentos-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-documentos" type="button" role="tab" aria-controls="nav-documentos"
                         aria-selected="true">Tipo de Documentos</button>
                     <button class="nav-link " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-crear"
                         type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Creación de
                         Documentos
-                    </button>   
+                    </button>
                     <button class="nav-link " id="nav-inactivar-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-inactivar" type="button" role="tab" aria-controls="nav-inactivar"
                         aria-selected="true">Inactivar Documentos Vigentes</button>
@@ -27,47 +27,53 @@
                     aria-labelledby="nav-documentos-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                        <br>
-                            <h3 class="card-title text-center">Tipo Documento</h3>
-                            <form class="row g-3 form-group" id="crearTipoDocumentos" method="POST">
-                                <h3 class="card-title">Crear Tipo Documento</h3>
-                                <div class="col-md-5 col-xs-12 col-sm-12">
-                                    <h5>Nombre Tipo Documento</h5>
+                            <br>
+                            <h2 class="card-title text-center"><b>Tipo Documento</b></h2>
+                            <br>
+                            <button type="button" class="btn btn-primary mb-3" id="btnCrearProce"><i
+                                    class="fas fa-plus text-center"></i> Crear Tipo de Documento</button>
+                            <button type="button" id="volverRegistroProce" class="btn btn-primary mb-3" hidden><i
+                                    class="fas fa-eye"></i>
+                                Ver Tipos de Documetos Registrados</button>
+                            <br>
+                            <br>
+                            <form class="row g-3 form-group bordeado" id="crearTipoDocumentos" method="POST">
+                                <h4 class="card-title text-center"><b>Crear Tipo Documento</b></h4>
+                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                    <h5><b>Nombre Tipo Documento*</b></h5>
                                     <input class="form-control inicialM" type="text" name="txtTipoDocumento"
-                                        id="txtTipoDocumento" required
-                                       
-                                        >
+                                        id="txtTipoDocumento" required>
                                 </div>
-                                <div class="col-md-2 col-xs-12 col-sm-12">
-                                </div>
-                                <div class="col-md-5 col-xs-12 col-sm-12">
-                                    <h5>Siglas Tipo Documento</h5>
+                                <div class="col-md-3 col-xs-12 col-sm-12">
+                                    <h5><b>Siglas Tipo Documento*</b></h5>
                                     <input class="form-control" type="text" name="txtSiglaTipoDocumento"
-                                        id="txtSiglaTipoDocumento" maxlength="4" required
+                                        id="txtSiglaTipoDocumento" maxlength="2" required
                                         onkeyup="javascript:this.value=this.value.toUpperCase(); ">
                                 </div>
+                                <span class="text-muted">* Campo Obligatorio</span>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary mb-3" id="btnRegistrarTipoDocumento"><i
                                             class="fas fa-plus"></i> Crear Tipo Documento</button>
                                     <button type="reset" class="btn btn-secondary mb-3"><i class="fas fa-broom"></i>
                                         Limpiar</button>
                                 </div>
+                                
                             </form>
                         </div>
-                        <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h3 class="card-title text-center">Tipo Documento Registrados</h3>
+                        <div class="col-md-12 col-xs-12 col-sm-12 bordeado">
+                            <h4 class="card-title text-center"><b>Tipo Documento Registrados</b></h4>
                             <div class="">
-                            <br>
+                                <br>
                                 <h5 id="tipoDocumentos"></h5>
                             </div>
                         </div>
                         <!-- Modal para actualizaciones sobre Tipo Documento-->
                         <div class="modal fade bd-example-modal-lg" id="actualizarTipoDocuento" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog  modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Actualizar Tipo Documento</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Actualizar el tipo de documento</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -77,21 +83,21 @@
                                             <div class="row">
                                                 <input class="form-control" type="number" name="numidTipoDocumentoMod"
                                                     id="numidTipoDocumentoMod" hidden>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nombre Tipo Documento</h5>
-                                                    <input class="form-control inicialM" type="text" name="txtTipoDocumentoMod"
-                                                        id="txtTipoDocumentoMod" required
-                                                       >
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Nombre Tipo Documento*</b></h5>
+                                                    <input class="form-control inicialM" type="text"
+                                                        name="txtTipoDocumentoMod" id="txtTipoDocumentoMod" required>
                                                 </div>
 
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Sigla Tipo Documento</h5>
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Sigla Tipo Documento*</b></h5>
                                                     <input class="form-control" type="text"
                                                         name="txtSiglaTipoDocumentoMod" id="txtSiglaTipoDocumentoMod"
                                                         required
                                                         onkeyup="javascript:this.value=this.value.toUpperCase(); ">
                                                 </div>
                                             </div>
+                                            <span class="text-muted">* Campo Obligatorio</span>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" id="btnModificarTipoDoc" class="btn btn-primary"><i
@@ -106,10 +112,10 @@
                         <!-- Modal para cambio de estado sobre Tipo Documento-->
                         <div class="modal fade bd-example-modal-lg" id="cambiarEstadoTipoDoc" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Estado Tipo Documento
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Cambiar el estado al tipo documento</b>
                                         </h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
@@ -120,22 +126,24 @@
                                                 <input class="form-control" type="number" name="numidTipDocElim"
                                                     id="numidTipDocElim" hidden>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nombre Tipo Documento</h5>
+                                                    <h5><b>Nombre Tipo Documento</b></h5>
                                                     <input class="form-control" type="text" name="txtTipoDocElim"
                                                         id="txtTipoDocElim" readonly>
+                                                        <br>
                                                 </div>
 
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Sigla Tipo Documento</h5>
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Estado actual del tipo documento</b></h5>
                                                     <input class="form-control" type="text" name="txtSiglaTipDocElim"
                                                         id="txtSiglaTipDocElim" readonly>
                                                 </div>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nuevo Estado del Proceso</h5>
-                                                    <select class="form-group" id="estadoModTipdoc"
+                                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                                    <h5><b>Nuevo Estado del Proceso</b></h5>
+                                                    <select class="form-group select1" id="estadoModTipdoc"
                                                         name="estadoModTipdoc">
-                                                        <option value="A">Activo</option>
-                                                        <option value="I">Inactivo</option>
+                                                        <option >- Seleccione el nuevo estado -</option>
+                                                        <option value="ACTIVO">Activo</option>
+                                                        <option value="INACTIVO">Inactivo</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -241,8 +249,9 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" id="btnCambiarNomDoc" name="btnCambiarNomDoc" class="btn btn-primary"><i
-                                                    class="fas fa-edit"></i> Cambiar Nombre Del Documento</button>
+                                            <button type="submit" id="btnCambiarNomDoc" name="btnCambiarNomDoc"
+                                                class="btn btn-primary"><i class="fas fa-edit"></i> Cambiar Nombre Del
+                                                Documento</button>
                                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>
@@ -307,7 +316,6 @@
 
     <?php include_once "footer.php" ?>
     <script src="../js/administrador/documento.js"></script>
-    <script src="../js/administrador/tareas.adm.js"></script>
 </body>
 
 </html>

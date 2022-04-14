@@ -49,7 +49,7 @@ class TipoDocumento{
      {
           try{
                
-               $this->result = $this->conexion->prepare("INSERT INTO tipo_documento VALUES (NULL , :tipo_documento , :sigla_tipo_documento, 'A')");
+               $this->result = $this->conexion->prepare("INSERT INTO tipo_documento VALUES (NULL , :tipo_documento , :sigla_tipo_documento, 'ACTIVO')");
                $this->result->bindParam(':tipo_documento', $this->tipo_documento);
                $this->result->bindParam(':sigla_tipo_documento', $this->sigla_tipo_documento);
                $this->result->execute();    

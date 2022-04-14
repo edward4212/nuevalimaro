@@ -27,6 +27,21 @@ function modDoc(id_documento, nombre_documento) {
     $("#nuevoNombreDoc").val(nombre_documento);
 }
 
+function modificarTipoDoc (id_tipo_documento, tipo_documento, sigla_tipo_documento){
+
+    $("#numidTipoDocumentoMod").val(id_tipo_documento);
+    $("#txtTipoDocumentoMod").val(tipo_documento);
+    $("#txtSiglaTipoDocumentoMod").val(sigla_tipo_documento);
+    
+}
+
+function eliminacionTipoDoc (id_tipo_documento, tipo_documento, sigla_tipo_documento){
+
+    $("#numidTipDocElim").val(id_tipo_documento);
+    $("#txtTipoDocElim").val(tipo_documento);
+    $("#txtSiglaTipDocElim").val(sigla_tipo_documento);
+    
+}
 
 $(document).ready(function () {
     buscar();
@@ -36,6 +51,7 @@ $(document).ready(function () {
     buscarDocuAdm();
     buscarDocuObs();
     buscaDocTra();
+    buscarTipoDocumento1()
     /**
      * Se realiza la consulta de los documentos vigentes para mostrar en la vistaEmpleado/consultas.frm.php
      */
@@ -54,9 +70,8 @@ $(document).ready(function () {
                     datos += "<table id='tablaTipoDoc' class='table  table-striped table-bordered table-responsive '  >"; 
                     datos += '<thead >';
                             datos += '<tr class="table-light border-primary ">';
-                                datos += '<th  class="text-wrap align-middle border border-primary " hidden>CÓDIGO  TIPO DOCUMENTO</th>';
                                 datos += '<th  class="text-center align-middle border border-primary ">NOMBRE TIPO DOCUMENTO</th>';
-                                datos += '<th  class="text-wrap align-middle border border-primary ">SIGLA TIPO DOCUMENTO</th>';
+                                datos += '<th  class="text-center align-middle border border-primary ">SIGLA TIPO DOCUMENTO</th>';
                                 datos += '<th  class="text-center align-middle border border-primary ">ESTADO TIPO DOCUMENTO</th>';
                                 datos += '<th  class="text-center align-middle border border-primary ">ACTUALIZAR TIPO DOCUMENTO</th>';
                                 datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
@@ -64,16 +79,8 @@ $(document).ready(function () {
                         datos +=  '</thead>';
                         datos += '<tbody>';
                             $.each(json, function(key, value){
-                                if(value.estado == "A"){
-                                    value.estado = "ACTIVO";
-                                }else{
-                                    if(value.estado == "I"){
-                                        value.estado = "INACTIVO";
-                                    }
-                                }
                                 datos += '<tr class="align-middle" >';
-                                    datos += '<td class=" border border-primary text-wrap" id="numIdSolicitud" hidden>'+value.id_tipo_documento+' </td>';
-                                    datos += '<td class=" border border-primary text-center align-middle">'+value.tipo_documento    +'</td>';
+                                    datos += '<td class=" border border-primary text-center align-middle">'+value.tipo_documento+'</td>';
                                     datos += '<td class=" border border-primary text-center align-middle">'+value.sigla_tipo_documento+'</td>';
                                     datos += '<td class=" border border-primary text-center align-middle">'+value.estado+'</td>';
                                     datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modificarTipoDoc('+value.id_tipo_documento+',\''+value.tipo_documento+'\',\''+value.sigla_tipo_documento+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actualizarTipoDocuento"><i class="far fa-edit"></i></button></td>';
@@ -164,17 +171,27 @@ $(document).ready(function () {
                     dataType: 'json',
                     data : $('#crearTipoDocumentos').serialize(),
                 }).done(function(json){
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Tipo de Documento Creado con éxito',
-                        showConfirmButton: false,
-                        timer: 2500
-                      }).then((result) => {
-                        cargar();
-                      })
+                    if(json !== null){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error el tipo de documento o la sigla ya existen',
+                        });
+                    }else{
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Tipo de documento creado con éxito',
+                            showConfirmButton: false,
+                            timer: 2500
+                        }).then((result) => {
+                            cargar1();
+                        });
+                    }
                       
                 }).fail(function(xhr, status, error){
-                    alert (error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al crear el tipo de documento',
+                    });
             })
         })
     
@@ -188,16 +205,26 @@ $(document).ready(function () {
                 dataType: 'json',
                 data : $('#ModificarTipoDoc').serialize(),
             }).done(function(json){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Tipo de Documento Actualizado con éxito',
-                    showConfirmButton: false,
-                    timer: 2500
-                    }).then((result) => {
-                        cargar();
-                      })
+                if(json !== null){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error el tipo de documento o la sigla ya existen',
+                    });
+                }else{
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Tipo de documento actualizado con éxito',
+                        showConfirmButton: false,
+                        timer: 2500
+                        }).then((result) => {
+                            cargar1();
+                        });
+                    }
             }).fail(function(xhr, status, error){
-                alert (error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar el tipo de documento',
+                });
             })
         })
     
@@ -210,16 +237,26 @@ $(document).ready(function () {
                     dataType: 'json',
                     data : $('#inactivarTipoDoc').serialize(),
                 }).done(function(json){
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Estado Actualizado con éxito',
-                        showConfirmButton: false,
-                        timer: 2500
-                        }).then((result) => {
-                            cargar();
-                          })
+                    if(json !== null){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error no se puede modificar el estado',
+                        });
+                    }else{
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Estado actualizado con éxito',
+                            showConfirmButton: false,
+                            timer: 2500
+                            }).then((result) => {
+                                cargar1();
+                        });
+                    }
                 }).fail(function(xhr, status, error){
-                    alert (error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al actualizar el estado',
+                    });
             })
     
         })
@@ -368,7 +405,7 @@ $(document).ready(function () {
     }
 
     /// MOSTRAR TIPO DOCUMENTOS ///
-    function buscarTipoDocumento() {
+    function buscarTipoDocumento1() {
         $.ajax({
             url: '../controladorAdministrador/tipoDocumento.read.php',
             type: 'POST',

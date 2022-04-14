@@ -60,21 +60,7 @@ function eliminacionProceso (id_proceso, proceso, estado){
     $("#txtEstadoActualPro").val(estado);
 }
 
-function modificarTipoDoc (id_tipo_documento, tipo_documento, sigla_tipo_documento){
 
-    $("#numidTipoDocumentoMod").val(id_tipo_documento);
-    $("#txtTipoDocumentoMod").val(tipo_documento);
-    $("#txtSiglaTipoDocumentoMod").val(sigla_tipo_documento);
-    
-}
-
-function eliminacionTipoDoc (id_tipo_documento, tipo_documento, sigla_tipo_documento){
-
-    $("#numidTipDocElim").val(id_tipo_documento);
-    $("#txtTipoDocElim").val(tipo_documento);
-    $("#txtSiglaTipDocElim").val(sigla_tipo_documento);
-    
-}
 
 $(document).ready(function(){
 
