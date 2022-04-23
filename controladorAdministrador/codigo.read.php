@@ -3,8 +3,8 @@ include_once "../controladorLogin/logueo.read.php";
 include_once "../entidadAdministrador/documento.entidad.php";
 include_once "../modeloAdministrador/documento.modelo.php";
 
-$proceso = $_POST['siglasProcNuevo'];
-$tipoDoc = $_POST['siglasTipDoc'];
+$proceso = $_POST['idsiglasProc12'];
+$tipoDoc = $_POST['idsiglasTipDoc12'];
 $sl = "-";
 $codigo = $proceso.$sl.$tipoDoc;
 
