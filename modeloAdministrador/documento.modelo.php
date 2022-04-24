@@ -25,6 +25,9 @@ class Documento{
      public $fecha_aprobacion;
      public $documento;
      public $estado;
+     public $id_macroproceso;
+     public $macroproceso;
+     public $objetivo_documento;
 
      // OTROS ATRIBUTOS //
      public $conexion;
@@ -51,6 +54,9 @@ class Documento{
                $this->fecha_aprobacion = $documentoE->getFechaAprobacion();
                $this->documento = $documentoE->getDocumento();
                $this->estado = $documentoE->getEstado();
+               $this->id_macroproceso = $documentoE->getIdMacroproceso();
+               $this->macroproceso = $documentoE->getMacroproceso();
+               $this->objetivo_documento = $documentoE->getObjetivoDocumento();
                $this->conexion = \Conexion::singleton();
      }
 
@@ -218,8 +224,7 @@ class Documento{
           }
                return $this->retorno;
      }
-
-     
+  
      public function tramite()
      { try {
           $this->sql = "SELECT 
@@ -254,9 +259,9 @@ class Documento{
 
      public function creaciondocumento()
      { try {
-          $this->sql = "CALL createVersionamiento(1,'$this->id_tipo_documento','$this->id_proceso', '$this->codigo',
-          '$this->nombre_documento',1,'0','Se asigna Codigo al Documento','$this->usuario_creacion',
-          CURRENT_TIMESTAMP(),NULL,NULL,NULL,NULL,NULL,'C',NULL,NULL)";
+          $this->sql = "CALL createVersionamiento(1,'$this->id_proceso','$this->id_tipo_documento', '$this->codigo',
+          '$this->nombre_documento','$this->objetivo_documento','0',1,'Se asigna Codigo al Documento','$this->usuario_creacion',
+          CURRENT_TIMESTAMP(),NULL,NULL,NULL,NULL,NULL,NULL,'CREADO')";
           $this->result=$this->conexion->query($this->sql);
           $this->retorno =  $this->result->fetchAll(PDO::FETCH_ASSOC);
           } catch (Exception $e) {

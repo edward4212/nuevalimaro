@@ -19,7 +19,11 @@ class Documento {
     public $fecha_aprobacion;
     public $documento;
     public $estado;
-  
+    public $id_macroproceso;
+    public $macroproceso;
+    public $objetivo_documento;
+   
+
 
 
     /**
@@ -338,6 +342,66 @@ class Documento {
     public function setEstado($estado)
     {
         $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_macroproceso
+     */
+    public function getIdMacroproceso()
+    {
+        return $this->id_macroproceso;
+    }
+
+    /**
+     * Set the value of id_macroproceso
+     *
+     * @return  self
+     */
+    public function setIdMacroproceso($id_macroproceso)
+    {
+        $this->id_macroproceso = $id_macroproceso;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of macroproceso
+     */
+    public function getMacroproceso()
+    {
+        return $this->macroproceso;
+    }
+
+    /**
+     * Set the value of macroproceso
+     *
+     * @return  self
+     */
+    public function setMacroproceso($macroproceso)
+    {
+        $this->macroproceso = $macroproceso;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of objetivo_documento
+     */
+    public function getObjetivoDocumento()
+    {
+        return $this->objetivo_documento;
+    }
+
+    /**
+     * Set the value of objetivo_documento
+     *
+     * @return  self
+     */
+    public function setObjetivoDocumento($objetivo_documento)
+    {
+        $this->objetivo_documento = $objetivo_documento;
 
         return $this;
     }

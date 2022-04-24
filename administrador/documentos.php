@@ -42,7 +42,8 @@
                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                     <h5><b>Nombre Tipo Documento*</b></h5>
                                     <input class="form-control inicialM" type="text" name="txtTipoDocumento"
-                                        id="txtTipoDocumento" required>
+                                        id="txtTipoDocumento" required
+                                        onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                                 <div class="col-md-3 col-xs-12 col-sm-12">
                                     <h5><b>Siglas Tipo Documento*</b></h5>
@@ -169,36 +170,59 @@
                             <h3 class="card-title text-center">Crear Documento</h3>
                             <form class="row g-3 form-group" id="crearDoc" name="crearDoc" method="POST">
                                 <div class="col-md-6 col-xs-12 col-sm-12">
+                                    <h5>MacroProceso*</h5>
+                                    <select class="form-control redondeado" id="macroprocesoNuevo"
+                                        onchange='macroDoc(this);' name="macroprocesoNuevo" required></select>
+                                    <input type="text" aria-label="E" id="macroNombre" name="macroNombre"
+                                        class="form-control codigo" hidden>
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-12">
                                     <h5>Proceso*</h5>
                                     <select class="form-control redondeado" id="procesoNuevo" name="procesoNuevo"
                                         onchange='procesoDoc(this);' required></select>
+                                    <input type="text" aria-label="E" id="procesoNom" name="procesoNom"
+                                        class="form-control codigo" hidden>
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                     <h5>Tipo de Documento*</h5>
                                     <select class="form-control redondeado" id="tipoDocumento" name="tipoDocumento"
                                         onchange='tipoDoc(this);' required></select>
+                                    <input type="text" aria-label="E" id="tipoDocNom" name="tipoDocNom"
+                                        class="form-control codigo" hidden>
                                 </div>
-                                <div class="col-md-4 col-xs-12 col-sm-12 d-flex  align-items-end" id="botonesAsig">
+                                <div class="col-md-6 col-xs-12 col-sm-12 d-flex  align-items-end" id="botonesAsig">
                                     <button type="button" id="btnAsignarCod" name="btnAsignarCod"
                                         class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Asignar Número</button>
                                     <div class="" id="codigoAsi" hidden>
                                         <h5>Código del Documento*</h5>
                                         <div class="input-group">
-                                            <input type="text" aria-label="E" id="idsiglasProc12" name="idsiglasProc12"
+                                            <input type="text" aria-label="E" id="siglasProcDoc" name="siglasProcDoc"
                                                 class="form-control codigo" readonly required>
+                                            <input type="text" aria-label="E" id="idProc12" name="idProc12"
+                                                class="form-control codigo" hidden>
                                             <label class="input-group-text" id="inputGroup-sizing-lg">-</label>
                                             <input type="text" aria-label="E" class="form-control codigo"
-                                                id="idsiglasTipDoc12" name="idsiglasTipDoc12" readonly required>
+                                                id="siglasTipDoc12" name="siglasTipDoc12" readonly required>
+
+                                            <input type="text" aria-label="E" id="idTipoDoc12" name="idTipoDoc12"
+                                                class="form-control codigo" hidden>
+
                                             <label class="input-group-text" id="inputGroup-sizing-lg">-</label>
                                             <input type="number" aria-label="E" class="form-control codigo"
                                                 id="txtcodigo" name="txtcodigo" readonly required>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8 col-xs-12 col-sm-12" id="nombreAsig" hidden>
+                                <div class="col-md-12 col-xs-12 col-sm-12" id="nombreAsig" hidden>
                                     <h5>Nombren Del Documento*</h5>
                                     <input type="text" class="form-control redondeado inicialM" id="nombreDoc"
                                         name="nombreDoc" required>
+                                </div>
+                                <div class="col-md-12 col-xs-12 col-sm-12" id="objetivoDoc" hidden>
+                                    <h5><b>Objetivo principal del Documento*</b></h5>
+                                    <label class="text-muted"> Caracteres restantes: <span></span></label>
+                                    <textarea class="form-control inicialM" type="text" name="txtObjetivoproceso"
+                                        id="txtObjetivoproceso" maxlength="600" required></textarea>
                                 </div>
                                 <span class="text-muted">* Campo Obligatorio</span>
                                 <div class="col-md-12  col-xs-12 col-sm-12">
@@ -311,28 +335,44 @@
     <?php include_once "footer.php" ?>
     <script src="../js/administrador/documento.js"></script>
 
-  
-    <script >
-       function procesoDoc(inputSelect) {
-        var indice = inputSelect.selectedIndex;
-        var selectedOption = inputSelect.options[indice]
-        var uno = selectedOption.text[0];
-        var dos = selectedOption.text[1];
-        var s2 = uno + dos;
-        document.getElementById("idsiglasProc12").value = s2;
-    }
-    </script>
-   
 
     <script>
-    
-       function tipoDoc (inputSelect) {
+    function macroDoc(inputSelect) {
+        var indice1 = inputSelect.selectedIndex;
+        var selectedOption1 = inputSelect.options[indice1]
+        document.getElementById("macroNombre").value = selectedOption1.text;
+    };
+
+    function procesoDoc(inputSelect) {
         var indice = inputSelect.selectedIndex;
         var selectedOption = inputSelect.options[indice]
         var uno = selectedOption.text[0];
         var dos = selectedOption.text[1];
         var s2 = uno + dos;
-        document.getElementById("idsiglasTipDoc12").value = s2;
+        document.getElementById("siglasProcDoc").value = s2;
+
+        var indice1 = inputSelect.selectedIndex;
+        var selectedOption1 = inputSelect.options[indice1]
+        document.getElementById("procesoNom").value = selectedOption1.text;
+
+        var x = document.getElementById("procesoNuevo").value;
+        document.getElementById("idProc12").value = x;
+    };
+
+    function tipoDoc(inputSelect) {
+        var indice = inputSelect.selectedIndex;
+        var selectedOption = inputSelect.options[indice]
+        var uno = selectedOption.text[0];
+        var dos = selectedOption.text[1];
+        var s2 = uno + dos;
+        document.getElementById("siglasTipDoc12").value = s2;
+
+        var indice1 = inputSelect.selectedIndex;
+        var selectedOption1 = inputSelect.options[indice1]
+        document.getElementById("tipoDocNom").value = selectedOption1.text;
+
+        var x = document.getElementById("tipoDocumento").value;
+        document.getElementById("idTipoDoc12").value = x;
     }
     </script>
 

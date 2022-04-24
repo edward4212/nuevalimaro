@@ -40,7 +40,8 @@
                                     <h5><b>Nombre Macroproceso*</b></h5>
                                     <label class="text-muted"> <span></span></label>
                                     <input class="form-control inicialM" type="text" name="txtmacroproceso"
-                                        id="txtmacroproceso" required>
+                                        id="txtmacroproceso" onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                        required>
                                 </div>
                                 <div class="col-md-9 col-xs-12 col-sm-12">
                                     <h5><b>Objetivo Principal del macroproceso*</b></h5>
@@ -142,7 +143,7 @@
                                                     <h5><b>Nuevo estado del proceso</b></h5>
                                                     <select class="form-group select1" id="estadoModMacroproceso"
                                                         name="estadoModMacroproceso">
-                                                        <option >- Seleccione el nuevo estado -</option>
+                                                        <option>- Seleccione el nuevo estado -</option>
                                                         <option value="ACTIVO">Activo</option>
                                                         <option value="INACTIVO">Inactivo</option>
                                                     </select>
@@ -185,7 +186,7 @@
                                 <div class="col-md-5 col-xs-12 col-sm-12">
                                     <h5><b>Nombre proceso*</b></h5>
                                     <input class="form-control inicialM" type="text" name="txtProceso" id="txtProceso"
-                                        required>
+                                        onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                                 </div>
                                 <div class="col-md-2 col-xs-12 col-sm-12">
                                     <h5><b>Siglas proceso*</b></h5>
@@ -260,7 +261,7 @@
                                                     <input class="form-control" type="text" name="txtSiglaProcesoMod"
                                                         id="txtSiglaProcesoMod" maxlength="2"
                                                         onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                                        <br>
+                                                    <br>
                                                 </div>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <h5><b>Objetivo del Proceso*</b></h5>
@@ -315,7 +316,7 @@
                                                     <h5><b>Nuevo Estado del Proceso</b></h5>
                                                     <select class="form-group  select1" id="estadoModProceso"
                                                         name="estadoModProceso">
-                                                        <option >- Seleccione el nuevo estado -</option>
+                                                        <option>- Seleccione el nuevo estado -</option>
                                                         <option value="ACTIVO">Activo</option>
                                                         <option value="INACTIVO">Inactivo</option>
                                                     </select>

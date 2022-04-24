@@ -98,7 +98,7 @@
                                     </form>
                                 </div>
                                 <div class="text-muted  text-center">
-                                    En caso de Olvido de la Contraseña Comuníquese con el Administrador del Sitio
+                                    <label>En caso de Olvido de la Contraseña Comuníquese con el Administrador del Sitio</label>
                                 </div>
                             </div>
                         </div>

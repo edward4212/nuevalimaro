@@ -4,18 +4,15 @@ include_once "../entidadAdministrador/proceso.entidad.php";
 include_once "../modeloAdministrador/proceso.modelo.php";
 
 $procesos = $_POST['txtProceso'];
-$proceso =  ucwords($procesos);
-
+$proceso1 =  ucwords($procesos);
 $macroproceso = $_POST['tipoMacroProceso'];
-
 $macroprocesoN = $_POST['idInput'];
-
 $sigla_procesos = $_POST['txtSiglaProceso'];
 $sigla_proceso = strtoupper($sigla_procesos);
-
 $objetivo = $_POST['txtObjetivoproceso'];
-
-
+$s ="-";
+$e =" ";
+$proceso = $sigla_proceso.$e.$s.$e.$proceso1;
 
 $directorio = "../documentos/macroprocesos/$macroprocesoN/$proceso/";
    
