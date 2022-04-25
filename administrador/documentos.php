@@ -10,21 +10,18 @@
         <div class="container">
             <nav>
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
-                    <button class="nav-link " id="nav-documentos-tab" data-bs-toggle="tab"
+                    <button class="nav-link active " id="nav-documentos-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-documentos" type="button" role="tab" aria-controls="nav-documentos"
                         aria-selected="true">Tipo de Documentos</button>
-                    <button class="nav-link active " id="nav-profile-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-crear" type="button" role="tab" aria-controls="nav-profile"
-                        aria-selected="false">Creación de
+                    <button class="nav-link  " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-crear"
+                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Creación de
                         Documentos
                     </button>
-                    <button class="nav-link " id="nav-inactivar-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-inactivar" type="button" role="tab" aria-controls="nav-inactivar"
-                        aria-selected="true">Inactivar Documentos Vigentes</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade " id="nav-documentos" role="tabpanel" aria-labelledby="nav-documentos-tab">
+                <div class="tab-pane fade show active" id="nav-documentos" role="tabpanel"
+                    aria-labelledby="nav-documentos-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <br>
@@ -163,28 +160,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade show active" id="nav-crear" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="tab-pane fade " id="nav-crear" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <br>
-                            <h3 class="card-title text-center">Crear Documento</h3>
-                            <form class="row g-3 form-group" id="crearDoc" name="crearDoc" method="POST">
+                            <h2 class="card-title text-center"><b>Documentos</b></h2>
+                            <br>
+                            <button type="button" class="btn btn-primary mb-3" id="btnCrearDoc"><i
+                                    class="fas fa-plus text-center"></i> Crear Documento</button>
+                            <button type="button" id="volverRegistroDoc" class="btn btn-primary mb-3" hidden><i
+                                    class="fas fa-eye"></i>
+                                Ver Documetos Registrados</button>
+                            <br>
+                            <br>
+                            <form class="row g-3 form-group bordeado" id="crearDoc" name="crearDoc" method="POST"
+                                hidden>
+                                <h4 class="card-title text-center"><b>Crear Documento</b></h4>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <h5>MacroProceso*</h5>
+                                    <h5><b>Macroproceso*</b></h5>
                                     <select class="form-control redondeado" id="macroprocesoNuevo"
                                         onchange='macroDoc(this);' name="macroprocesoNuevo" required></select>
                                     <input type="text" aria-label="E" id="macroNombre" name="macroNombre"
                                         class="form-control codigo" hidden>
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <h5>Proceso*</h5>
+                                    <h5><b>Proceso*</b></h5>
                                     <select class="form-control redondeado" id="procesoNuevo" name="procesoNuevo"
                                         onchange='procesoDoc(this);' required></select>
                                     <input type="text" aria-label="E" id="procesoNom" name="procesoNom"
                                         class="form-control codigo" hidden>
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <h5>Tipo de Documento*</h5>
+                                    <h5><b>Tipo de Documento*</b></h5>
                                     <select class="form-control redondeado" id="tipoDocumento" name="tipoDocumento"
                                         onchange='tipoDoc(this);' required></select>
                                     <input type="text" aria-label="E" id="tipoDocNom" name="tipoDocNom"
@@ -194,7 +201,7 @@
                                     <button type="button" id="btnAsignarCod" name="btnAsignarCod"
                                         class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Asignar Número</button>
                                     <div class="" id="codigoAsi" hidden>
-                                        <h5>Código del Documento*</h5>
+                                        <h5><b>Código del Documento*</b></h5>
                                         <div class="input-group">
                                             <input type="text" aria-label="E" id="siglasProcDoc" name="siglasProcDoc"
                                                 class="form-control codigo" readonly required>
@@ -214,7 +221,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-xs-12 col-sm-12" id="nombreAsig" hidden>
-                                    <h5>Nombren Del Documento*</h5>
+                                    <h5><b>Nombren Del Documento*</b></h5>
                                     <input type="text" class="form-control redondeado inicialM" id="nombreDoc"
                                         name="nombreDoc" required>
                                 </div>
@@ -237,9 +244,9 @@
                             </form>
                         </div>
                         <br>
-                        <div class="col-md-12 col-xs-12 col-sm-12">
+                        <div class="col-md-12 col-xs-12 col-sm-12 bordeado" id="DocResgitrados">
                             <br>
-                            <h3 class="card-title text-center">Documentos Registrados</h3>
+                            <h4 class="card-title text-center"><b>Documentos Registrados</b></h4>
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <h5 id="documentosRg"></h5>
                             </div>
@@ -247,10 +254,11 @@
                         <!-- Modal para actualziacion nombre  documento-->
                         <div class="modal fade bd-example-modal-lg" id="modifiDoc" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Nombre Del Documento</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Información Del Documento
+                                        </h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -259,66 +267,53 @@
                                             <div class="row">
                                                 <input class="form-control" type="number" name="idDocumentoCambiar"
                                                     id="idDocumentoCambiar" hidden>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5> Nombre del Documento</h5>
-                                                    <textarea type="text" class="form-control redondeado" rows="4"
-                                                        name="nuevoNombreDoc" id="nuevoNombreDoc"></textarea>
+                                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                                    <h5><b>Macroproceso*</b></h5>
+                                                    <input type="text" aria-label="E" id="macroNombre"
+                                                        name="macroNombre" class="form-control ">
+                                                    <br>
                                                 </div>
+                                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                                    <h5><b>Proceso*</b></h5>
+                                                    <input type="text" aria-label="E" id="procesoNom" name="procesoNom"
+                                                        class="form-control ">
+                                                    <br>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                                    <h5><b>Tipo de Documento*</b></h5>
+                                                    <input type="text" aria-label="E" id="tipoDocNom" name="tipoDocNom"
+                                                        class="form-control ">
+                                                    <br>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12 col-sm-12" id="botonesAsig">
+                                                    <h5><b>Código del Documento*</b></h5>
+                                                    <input type="text" aria-label="E" class="form-control redondeado"
+                                                        id="txtcodigo" name="txtcodigo" required>
+                                                    <br>
+                                                </div>
+                                                <div class="col-md-8 col-xs-12 col-sm-12" id="nombreAsig">
+                                                    <h5><b>Nombren Del Documento*</b></h5>
+                                                    <input type="text" aria-label="E"
+                                                        class="form-control redondeado inicialM" id="nombreDoc"
+                                                        name="nombreDoc" required>
+                                                    <br>
+                                                </div>
+                                                <div class="col-md-12 col-xs-12 col-sm-12" id="objetivoDoc">
+                                                    <h5><b>Objetivo principal del Documento*</b></h5>
+                                                    <label class="text-muted"> Caracteres restantes:
+                                                        <span></span></label>
+                                                    <textarea class="form-control inicialM" type="text"
+                                                        name="txtObjetivoproceso" id="txtObjetivoproceso"
+                                                        maxlength="600" required></textarea>
+                                                </div>
+                                                <span class="text-muted">* Campo Obligatorio</span>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" id="btnCambiarNomDoc" name="btnCambiarNomDoc"
-                                                class="btn btn-primary"><i class="fas fa-edit"></i> Cambiar Nombre Del
+                                                class="btn btn-primary"><i class="fas fa-edit"></i> Cambiar Información
+                                                Del
                                                 Documento</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
-                                                    class="fas fa-undo"></i> Volver</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-inactivar" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    <div class="row ">
-                        <div class="col-md-12 col-xs-12 col-sm-12">
-                            <br>
-                            <h3 class="card-title text-center">Documentos Vigentes</h3>
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <h5 id="documentosAdm"></h5>
-                            </div>
-                        </div>
-                        <!-- Modal para actualziacion de estado documento-->
-                        <div class="modal fade bd-example-modal-lg" id="inactivarDoc" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Inactivar Documento</h5>
-                                        <button type="button" id="btnCerrarModal" class="btn-close"
-                                            data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <form class="row g-3 form-group" id="inactivarDocVig" method="POST">
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <input class="form-control" type="number" name="numeroVersionamiento"
-                                                    id="numeroVersionamiento" hidden>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Estado Actual</h5>
-                                                    <input class="form-control" type="text" name="estadoDocAct"
-                                                        id="estadoDocAct" readonly>
-                                                </div>
-                                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nuevo Estado del Documento</h5>
-                                                    <input class="form-control" type="text" name="nuevoEstadoDocAct"
-                                                        id="nuevoEstadoDocAct" value="O" hidden>
-                                                    <label class="form-control" type="text" readonly>Obsoleto</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" id="btnInactivarDoc" class="btn btn-primary"><i
-                                                    class="fas fa-times"></i> Inactivar Documento</button>
                                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>

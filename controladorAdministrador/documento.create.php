@@ -16,34 +16,37 @@ $s ="-";
 $e =" ";
 $codigoConca = $sigla_proceso.$s.$sigla_tipo_documento.$s.$codigo;
 $nombre_documentos = $_POST['nombreDoc'];   
-$nombre_documentos =$codigoConca.$e.$nombre_documentos ;
 $nombre_documento = ucwords($nombre_documentos);
 $usuario_crecion = $_SESSION['usuario'];
 $objetivo_documento = $_POST['txtObjetivoproceso'];
 
-$directorio = "../documentos/macroprocesos/$macroproceso/$proceso/$tipo_documento/$codigoConca/0/";
-if(!file_exists($directorio)){
-    mkdir($directorio,0777,true);       
-}else{
-    if(file_exists($directorio)){
-    }    
+if ((!empty($macroproceso)) || (!empty($proceso)) || (!empty($sigla_tipo_documento)) || (!empty($codigo)) || (!empty($nombre_documentos)) || (!empty($objetivo_documento)) )
+{
+    $directorio = "../documentos/macroprocesos/$macroproceso/$proceso/$tipo_documento/$codigoConca/0/";
+    if(!file_exists($directorio)){
+        mkdir($directorio,0777,true);       
+    }else{
+        if(file_exists($directorio)){
+        }    
+    }
+    
+    $documentoE = new \entidad\Documento(); 
+    $documentoE -> setIdProceso($id_proceso);
+    $documentoE -> setIdTipoDocumento($id_tipo_documento);
+    $documentoE -> setCodigo($codigoConca);
+    $documentoE -> setNombreDocumento($nombre_documento);
+    $documentoE -> setUsuarioCreacion($usuario_crecion);
+    $documentoE -> setObjetivoDocumento($objetivo_documento);
+    
+    $documentoM= new \modelo\Documento($documentoE);
+    $resultado = $documentoM->creaciondocumento();
+    
+    unset($documentoE);
+    unset($documentoM);
+    
+    
+    echo json_encode($resultado);
 }
 
-$documentoE = new \entidad\Documento(); 
-$documentoE -> setIdProceso($id_proceso);
-$documentoE -> setIdTipoDocumento($id_tipo_documento);
-$documentoE -> setCodigo($codigoConca);
-$documentoE -> setNombreDocumento($nombre_documento);
-$documentoE -> setUsuarioCreacion($usuario_crecion);
-$documentoE -> setObjetivoDocumento($objetivo_documento);
-
-$documentoM= new \modelo\Documento($documentoE);
-$resultado = $documentoM->creaciondocumento();
-
-unset($documentoE);
-unset($documentoM);
-
-
-echo json_encode($resultado);
 
 ?>  

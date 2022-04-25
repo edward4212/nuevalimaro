@@ -1,7 +1,7 @@
 <!-- Inicio Menu -->
 <header class="navbar navbar-expand-md  ">
     <nav class=" navbar  bg-light container-lg flex-wrap flex-md-nowrap fixed-top head-model border"
-        aria-label="Main navigation">
+        aria-label="Main navigation" style="top: 5px;">
         <div class="container-fluid ">
             <a class="navbar-brand">
                 <img src="../documentos/limaro/horizontal_on_white_by_logaster.png" alt="" width="100" height="40">

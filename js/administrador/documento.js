@@ -53,13 +53,9 @@ function eliminacionTipoDoc (id_tipo_documento, tipo_documento, sigla_tipo_docum
 }
 
 $(document).ready(function () {
-    buscar();    
+    
     buscarTipoDocumento();
     buscarDocuCrea();
-    buscarDocuAdm();
-    buscarDocuObs();
-    buscaDocTra();
-    buscarTipoDocumento1()
     /**
      * Se realiza la consulta de los documentos vigentes para mostrar en la vistaEmpleado/consultas.frm.php
      */
@@ -389,7 +385,7 @@ $(document).ready(function () {
         }).fail(function (xhr, status, error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Error al crear el documento',
+                title: 'Error al asignar el codigo del documento',
             });
         });
     });
@@ -404,7 +400,7 @@ $(document).ready(function () {
         $("#btncrearDoc").prop("hidden", true);
         $("#btncrearResDoc").prop("hidden", true)
         $("#objetivoDoc").prop("hidden", true);
-    })
+    });
 
     /// CREAR DOCUMENTO///
     $(document).on('click', '#btncrearDoc', function (event) {
@@ -418,33 +414,33 @@ $(document).ready(function () {
             if (json[0].proceso == "OK") {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Documento Creado con Exito',
+                    title: 'Documento creado con éxito',
                     showConfirmButton: false,
-                   
+                    timer: 2500
                 }).then((result) => {
-                    
+                    cargar1();
                 });
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'No se pudo crear el Documento!.. Favor Verifique los datos ingresado!',
-                    showConfirmButton: false,
-                   
-                }).then((result) => {
-                   
+                    title: 'No se pudo crear el documento!... Favor verifique los datos ingresado!',
+                    showConfirmButton: true,
+                    timer: 2500
                 });
             }
         }).fail(function (xhr, status, error) {
-
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear el documento',
+            });
         });
 
     });
 
-
    /// MOSTRAR DOCUMENTOS CREADOS
     function buscarDocuCrea() {
         $.ajax({
-        url: '../controladorAdministrador/documento.read2.php',
+        url: '../controladorAdministrador/documento.read.php',
         type: 'POST',
         dataType: 'json',
         data: null,
@@ -456,29 +452,25 @@ $(document).ready(function () {
         datos += "<table id='tableConsultaDocR'  class='table  table-striped table-bordered table-responsive '   >";
             datos += '<thead >';
                 datos += '<tr class="table-light border-primary ">';
-                    datos += '<th  class="text-center align-middle border border-primary " >MACROPROCESO  </th>' ;
+                    datos += '<th  class="text-center align-middle border border-primary ">MACROPROCESO </th>' ;
                     datos += '<th  class="text-center align-middle border border-primary ">PROCESO</th>';
                     datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
-                    datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO </th>';
-                    datos += '<th  class="text-center align-middle border border-primary ">NOMBRE DOCUMENTO</th>';
-                    datos += '<th  class="text-center align-middle border border-primary ">VERSIÓN</th>';
-                    datos += '<th  class="text-center align-middle border border-primary ">MODIFICAR  NOMBRE</th>';
+                    datos += '<th  class="text-center align-middle border border-primary ">CODIGO Y NOMBRE DEL DOCUMENTO</th>';
+                    datos += '<th  class="text-center align-middle border border-primary ">OBJETIVO DEL DOCUMENTO</th>';
                     datos += '<th  class="text-center align-middle border border-primary ">ESTADO</th>';
-                    datos += '<th  class="text-center align-middle border border-primary ">CAMBIAR ESTADO</th>';
+                    datos += '<th  class="text-center align-middle border border-primary ">MODIFICAR INFORMACIÓN DEL DOCUMENTO</th>';
                 datos += '</tr>';
             datos += '</thead>';
         datos += '<tbody>';
         $.each(json, function (key, value) {
             datos += '<tr class="align-middle" >';
-            datos += '<td class=" border border-primary  text-wrap" >' + value.id_versionamiento + '</td>';
-            datos += '<td class=" border border-primary  text-wrap">' + value.proceso + '</td>';
-            datos += '<td class=" border border-primary  text-wrap">' + value.tipo_documento + '</td>';
-            datos += '<td class=" border border-primary text-wrap align-middle">' + value.codigo + '</td>';
-            datos += '<td class=" border border-primary text-wrap">' + value.nombre_documento + '</td>';
-            datos += '<td class= "text-center align-middle border border-primary ">' + value.numero_version + '</td>';
-            datos += '<td class=" border border-primary text-wrap">' + value.estado_version + '</td>';
-            datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modDoc(' + value.id_documento + ',\'' + value.nombre_documento + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifiDoc"><i class="fas fa-edit"></i></button></td>';
-            datos += '<td class=" border border-primary text-wrap">' + value.estado_version + '</td>';
+                datos += '<td class=" border border-primary  text-wrap" >' + value.macroproceso + '</td>';
+                datos += '<td class=" border border-primary  text-wrap">' + value.proceso + '</td>';
+                datos += '<td class=" border border-primary  text-wrap">' + value.tipo_documento + '</td>';
+                datos += '<td class=" border border-primary text-wrap">' + value.nombre_documento + '</td>';
+                datos += '<td class=" border border-primary text-wrap">' + value.objetivo_documento + '</td>';
+                datos += '<td class=" border border-primary text-wrap">' + value.estado_version + '</td>';
+                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modDoc(' + value.id_documento + ',\'' + value.nombre_documento + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifiDoc"><i class="fas fa-edit"></i></button></td>';   
             datos += '</tr>';
         })
         datos += '</tbody>';
@@ -510,7 +502,7 @@ $(document).ready(function () {
                 [2, 'asc']
             ],
             rowGroup: {
-                dataSrc: 1
+                dataSrc: 0
             },
             buttons: [{
                     extend: 'pdfHtml5',
@@ -522,7 +514,7 @@ $(document).ready(function () {
                     messageTop: 'Documentos Registrados',
                     text: '<i class="far fa-file-pdf"></i>',
                     exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5,6]
+                        columns: [ 1, 2, 3, 4, 5]
                     }
                 },
                 {
@@ -532,7 +524,7 @@ $(document).ready(function () {
                     messageTop: 'Documentos Registrados',
                     text: '<i class="fas fa-print"></i>',
                     exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5,6]
+                        columns: [ 1, 2, 3, 4, 5]
                     }
                 },
                 {
@@ -541,7 +533,7 @@ $(document).ready(function () {
                     autoFiltre: true,
                     title: 'Documentos Registrados',
                     exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5,6]
+                        columns: [ 1, 2, 3, 4, 5]
                     }
                 },
                 {
@@ -550,7 +542,7 @@ $(document).ready(function () {
                     autoFiltre: true,
                     titleAttr: 'COPIAR',
                     exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5,6]
+                        columns: [ 1, 2, 3, 4, 5]
                     }
                 },
                 {
@@ -562,394 +554,10 @@ $(document).ready(function () {
         }).fail(function (xhr, status, error) {
         $('#documentosRg').html(error);
         })
-    }
-    
+    };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-    /// MOSTRAR PARA ADMINISTRACIÓN DE DOCMENTOS
-    function buscarDocuAdm() {
-        $.ajax({
-            url: '../controladorAdministrador/documento.read4.php',
-            type: 'POST',
-            dataType: 'json',
-            data: null,
-        }).done(function (json) {
-            /**
-             * Se crea la tabla para mostrar los datos consultados
-             */
-            var datos = '';
-            datos += "<table id='tableConsultaAdm'  class='table  table-striped table-bordered table-responsive    '   >";
-            datos += '<thead >';
-            datos += '<tr class="table-light border-primary ">';
-            datos += '<th  class="text-center align-middle border border-primary " hidden>NÚMERO  </th>' ;
-            datos += '<th  class="text-center align-middle border border-primary ">PROCESO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO </th>';
-            datos += '<th  class="text-center align-middle border border-primary ">NOMBRE DOCUMENTO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">VERSIÓN</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">INACTIVAR</th>';
-            datos += '</tr>';
-            datos += '</thead>';
-            datos += '<tbody>';
-            $.each(json, function (key, value) {
-                if (value.estado_version = 'V') {
-                    estado_version = 'Vigente'
-                }
-                datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary  text-wrap" hidden>' + value.id_versionamiento + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.proceso + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.tipo_documento + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.codigo + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.nombre_documento + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle">' + value.numero_version + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="estadoDocumento(' + value.id_versionamiento + ',\'' + estado_version + '\')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#inactivarDoc"><i class="fas fa-times"></i></button></td>';
-                datos += '</tr>';
-            })
-            datos += '</tbody>';
-            datos += '</table>';
-            $('#documentosAdm').html(datos);
-            $('#tableConsultaAdm').DataTable({
-                "destroy": true,
-                "autoWidth": true,
-                "responsive": true,
-                "searching": true,
-                "info": true,
-                "ordering": true,
-                "colReorder": true,
-                "sZeroRecords": true,
-                "keys": true,
-                "deferRender": true,
-                "lengthMenu": [
-                    [5, 10, 20, 25, 50, -1],
-                    [5, 10, 20, 25, 50, "Todos"]
-                ],
-                "iDisplayLength": 100,
-                "language": {
-                    "url": "../componente/libreria/idioma/es-mx.json"
-                },
-                dom: 'Qfrtip',
-                dom: 'Bfrtip',
-                order: [
-                    [1, 'asc'],
-                    [2, 'asc']
-                ],
-                rowGroup: {
-                    dataSrc: 1
-                },
-                buttons: [{
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A4',
-                        download: 'open',
-                        title: 'Documentos Registrados',
-                        titleAttr: 'Documentos Registrados',
-                        messageTop: 'Documentos Registrados',
-                        text: '<i class="far fa-file-pdf"></i>',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4 ,5]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title: 'Documentos Registrados',
-                        titleAttr: 'Documentos Registrados',
-                        messageTop: 'Documentos Registrados',
-                        text: '<i class="fas fa-print"></i>',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4  ,5]
-                        }
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: '<i class="fas fa-file-excel"></i>',
-                        autoFiltre: true,
-                        title: 'Documentos Registrados',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4 ,5]
-                        }
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: '<i class="fas fa-copy"></i>',
-                        autoFiltre: true,
-                        titleAttr: 'COPIAR',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4 ,5]
-                        }
-                    },
-                    {
-                        extend: 'searchBuilder'
-
-                    }
-                ]
-            });
-        }).fail(function (xhr, status, error) {
-            $('#documentosAdm').html(error);
-        })
-    }
-
-    /// MOSTRAR DOCUMENTOS OBSOLETOS
-    function buscarDocuObs() {
-        $.ajax({
-            url: '../controladorAdministrador/documento.obsoletos.read.php',
-            type: 'POST',
-            dataType: 'json',
-            data: null,
-        }).done(function (json) {
-            /**
-             * Se crea la tabla para mostrar los datos consultados
-             */
-            var datos = '';
-            datos += "<table id='tableConsultaObso'  class='table  table-striped table-bordered table-responsive '    >";
-            datos += '<thead >';
-            datos += '<tr class="table-light border-primary ">';
-            datos += '<th  class="text-center align-middle border border-primary " hidden>NÚMERO  </th>' ;
-            datos += '<th  class="text-center align-middle border border-primary ">PROCESO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO </th>';
-            datos += '<th  class="text-center align-middle border border-primary ">NOMBRE DOCUMENTO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">VERSIÓN</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">VER DOCUMENTO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">FECHA INACTIVACIÓN</th>';
-            datos += '</tr>';
-            datos += '</thead>';
-            datos += '<tbody>';
-            $.each(json, function (key, value) {
-                datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary  text-wrap" hidden>' + value.id_versionamiento + '</td>';
-                datos += '<td class=" border border-primary  text-wrap">' + value.proceso + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
-                datos += '<td class=" border border-primary  text-wrap ">' + value.codigo + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.nombre_documento + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle">' + value.numero_version + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/procesos/' + value.sigla_proceso + '/' + value.sigla_tipo_documento + '/' +value.codigo+ '/' + value.numero_version + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.fecha_obsoleto + '</td>';
-                datos += '</tr>';
-            })
-            datos += '</tbody>';
-            datos += '</table>';
-            $('#documentosObs').html(datos);
-            $('#tableConsultaObso').DataTable({
-                "destroy": true,
-                "autoWidth": true,
-                "responsive": true,
-                "searching": true,
-                "info": true,
-                "ordering": true,
-                "colReorder": true,
-                "sZeroRecords": true,
-                "keys": true,
-                "deferRender": true,
-                "lengthMenu": [
-                    [5, 10, 20, 25, 50, -1],
-                    [5, 10, 20, 25, 50, "Todos"]
-                ],
-                "iDisplayLength": 100,
-                "language": {
-                    "url": "../componente/libreria/idioma/es-mx.json"
-                },
-                dom: 'Qfrtip',
-                dom: 'Bfrtip',
-                order: [
-                    [1, 'asc'],
-                    [2, 'asc']
-                ],
-                rowGroup: {
-                    dataSrc: 1
-                },
-                buttons: [{
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A4',
-                        download: 'open',
-                        title: 'Documentos Obsoletos',
-                        titleAttr: 'Documentos Obsoletos',
-                        messageTop: 'Documentos Obsoletos',
-                        text: '<i class="far fa-file-pdf"></i>',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4,5,7 ]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title: 'Documentos Obsoletos',
-                        titleAttr: 'Documentos Obsoletos',
-                        messageTop: 'Documentos Obsoletos',
-                        text: '<i class="fas fa-print"></i>',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4,5,7]
-                        }
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: '<i class="fas fa-file-excel"></i>',
-                        autoFiltre: true,
-                        title: 'Documentos Obsoletos',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4,5,7]
-                        }
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: '<i class="fas fa-copy"></i>',
-                        autoFiltre: true,
-                        titleAttr: 'COPIAR',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4,5,7]
-                        }
-                    },
-                    {
-                        extend: 'searchBuilder'
-
-                    }
-                ]
-            });
-        }).fail(function (xhr, status, error) {
-            $('#documentosObs').html(error);
-        })
-    }
-
-    /// MOSTRAR DOCUMENTOS TRAMITE
-    function buscaDocTra() {
-        $.ajax({
-            url: '../controladorAdministrador/documento.tramite.read.php',
-            type: 'POST',
-            dataType: 'json',
-            data: null,
-        }).done(function (json) {
-            /**
-             * Se crea la tabla para mostrar los datos consultados
-             */
-            var datos = '';
-            datos += "<table id='tableConsultaTram'  class='table  table-striped table-bordered table-responsive '    >";
-            datos += '<thead >';
-            datos += '<tr class="table-light border-primary ">';
-            datos += '<th  class="text-center align-middle border border-primary " hidden>NÚMERO  </th>' ;
-            datos += '<th  class="text-center align-middle border border-primary ">PROCESO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO </th>';
-            datos += '<th  class="text-center align-middle border border-primary ">NOMBRE DOCUMENTO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">VERSIÓN</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">VER DOCUMENTO</th>';
-            datos += '</tr>';
-            datos += '</thead>';
-            datos += '<tbody>';
-            $.each(json, function (key, value) {
-                datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary  text-wrap" hidden>' + value.id_versionamiento + '</td>';
-                datos += '<td class=" border border-primary  text-wrap">' + value.proceso + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
-                datos += '<td class=" border border-primary  text-wrap ">' + value.codigo + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.nombre_documento + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle">' + value.numero_version + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/procesos/' + value.sigla_proceso + '/' + value.sigla_tipo_documento + '/' +value.codigo+ '/' + value.numero_version + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
-                datos += '</tr>';
-            })
-            datos += '</tbody>';
-            datos += '</table>';
-            $('#Doctramite').html(datos);
-            $('#tableConsultaTram').DataTable({
-                "destroy": true,
-                "autoWidth": true,
-                "responsive": true,
-                "searching": true,
-                "info": true,
-                "ordering": true,
-                "colReorder": true,
-                "sZeroRecords": true,
-                "keys": true,
-                "deferRender": true,
-                "lengthMenu": [
-                    [5, 10, 20, 25, 50, -1],
-                    [5, 10, 20, 25, 50, "Todos"]
-                ],
-                "iDisplayLength": 100,
-                "language": {
-                    "url": "../componente/libreria/idioma/es-mx.json"
-                },
-                dom: 'Qfrtip',
-                dom: 'Bfrtip',
-                order: [
-                    [1, 'asc'],
-                    [2, 'asc']
-                ],
-                rowGroup: {
-                    dataSrc: 1
-                },
-                buttons: [{
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A4',
-                        download: 'open',
-                        title: 'Documentos En Tramite',
-                        titleAttr: 'Documentos En Tramite',
-                        messageTop: 'Documentos En Tramite',
-                        text: '<i class="far fa-file-pdf"></i>',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4,5]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title: 'Documentos En Tramite',
-                        titleAttr: 'Documentos En Tramite',
-                        messageTop: 'Documentos En Tramite',
-                        text: '<i class="fas fa-print"></i>',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4,5]
-                        }
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: '<i class="fas fa-file-excel"></i>',
-                        autoFiltre: true,
-                        title: 'Documentos En Tramite',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4,5]
-                        }
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: '<i class="fas fa-copy"></i>',
-                        autoFiltre: true,
-                        titleAttr: 'COPIAR',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4,5   ]
-                        }
-                    },
-                    {
-                        extend: 'searchBuilder'
-
-                    }
-                ]
-            });
-        }).fail(function (xhr, status, error) {
-            $('#Doctramite').html(error);
-        })
-    }
-
-
-
-     /// CAMBIAR NOMBRE DE DOCUMENTO///
-     $(document).on('click', '#btnCambiarNomDoc', function (event) {
+    /// CAMBIAR INFORMACION DEL DOCUMENTO///
+    $(document).on('click', '#btnCambiarNomDoc', function (event) {
         event.preventDefault();
         $.ajax({
             url: '../controladorAdministrador/documento.update.php',
@@ -969,157 +577,7 @@ $(document).ready(function () {
             alert(error);
         })
 
-    })
-
-   
-
-    /// Inactivar Docum ///
-    $(document).on('click', '#btnInactivarDoc', function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: '../controladorAdministrador/versionamiento.update.php',
-            type: 'POST',
-            dataType: 'json',
-            data: $('#inactivarDocVig').serialize(),
-        }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Documento Inactivado con Exito',
-                showConfirmButton: false,
-                timer: 3000
-            }).then((result) => {
-                cargar1();
-            })
-        }).fail(function (xhr, status, error) {
-            alert(error);
-        })
-    })
-
-
-
-    function buscar() {
-        $.ajax({
-            url: '../controladorAdministrador/documento.read.php',
-            type: 'POST',
-            dataType: 'json',
-            data: null,
-        }).done(function (json) {
-            /**
-             * Se crea la tabla para mostrar los datos consultados
-             */
-            var datos = '';
-            datos += "<table id='tableConsultaDoc'  class='table  table-striped table-bordered table-responsive '   >";
-            datos += '<thead >';
-            datos += '<tr class="table-light border-primary ">';
-            datos += '<th  class="text-center align-middle border border-primary " >MACROPROCESO  </th>' ;
-            datos += '<th  class="text-center align-middle border border-primary " >PROCESO</th>' ;
-            datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO </th>';
-            datos += '<th  class="text-center align-middle border border-primary ">NOMBRE DOCUMENTO</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">VERSIÓN</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">FECHA DE VIGENCIA</th>';
-            datos += '<th  class="text-center align-middle border border-primary ">DESCARGAR DOCUMENTO</th>';
-            datos += '</tr>';
-            datos += '</thead>';
-            datos += '<tbody>';
-            $.each(json, function (key, value) {
-                datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary  text-wrap" >' + value.id_versionamiento + '</td>';
-                datos += '<td class=" border border-primary  text-wrap">' + value.proceso + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle">' + value.tipo_documento + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.codigo + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.nombre_documento + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle">' + value.numero_version + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle">' + value.fecha_aprobacion + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/procesos/' + value.sigla_proceso + '/' + value.sigla_tipo_documento + '/' +value.codigo+ '/'+ value.numero_version + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
-                datos += '</tr>';
-            });
-            datos += '</tbody>';
-            datos += '</table>';
-            $('#consulta').html(datos);
-            $('#tableConsultaDoc').DataTable({
-                "destroy": true,
-                "autoWidth": true,
-                "responsive": true,
-                "searching": true,
-                "info": true,
-                "ordering": true,
-                "colReorder": true,
-                "sZeroRecords": true,
-                "keys": true,
-                "deferRender": true,
-                "lengthMenu": [
-                    [5, 10, 20, 25, 50, -1],
-                    [5, 10, 20, 25, 50, "Todos"]
-                ],
-                "iDisplayLength": 100,
-                "language": {
-                    "url": "../componente/libreria/idioma/es-mx.json"
-                },
-                dom: 'Qfrtip',
-                dom: 'Bfrtip',
-                order: [
-                    [1, 'asc'],
-                    [2, 'asc'],
-                    
-                ],
-                rowGroup: {
-                    dataSrc: 1
-                },
-                buttons: [{
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A4',
-                        download: 'open',
-                        title: 'Documentos Vigentes',
-                        titleAttr: 'Documentos Vigentes',
-                        messageTop: 'Documentos Vigentes',
-                        text: '<i class="far fa-file-pdf"></i>',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4, 5,6]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title: 'Documentos Vigentes',
-                        titleAttr: 'Documentos Vigentes',
-                        messageTop: 'Documentos Vigentes',
-                        text: '<i class="fas fa-print"></i>',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4, 5,6]
-                        }
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: '<i class="fas fa-file-excel"></i>',
-                        autoFiltre: true,
-                        title: 'Documentos Vigentes',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4, 5,6]
-                        }
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: '<i class="fas fa-copy"></i>',
-                        autoFiltre: true,
-                        titleAttr: 'COPIAR',
-                        exportOptions: {
-                            columns: [ 1, 2, 3, 4, 5,6]
-                        }
-                    },
-                    {
-                        extend: 'searchBuilder'
-
-                    }
-                ]
-            });
-        }).fail(function (xhr, status, error) {
-            $('#consulta').html(error);
-        });
-    }
-
-
-
+    });
 
     /// MOSTRAR FORMULARIO PARA CREAR TIPO DE DOCUMENO///
     $(document).on('click','#btnCrearTipoDoc', function(){
@@ -1129,7 +587,7 @@ $(document).ready(function () {
         $("#volverRegistroTipoDoc").prop("hidden", false);
     })
 
-    /// MOSTRAR PROCESOS REGISTRADOS///
+    /// MOSTRAR TIPO DE DOCUMENTO REGISTRADOS///
     $(document).on('click','#volverRegistroTipoDoc', function(){
         $("#btnCrearTipoDoc").prop("hidden", false);
         $("#TipoDocumentos").prop("hidden", true);
@@ -1137,5 +595,19 @@ $(document).ready(function () {
         $("#volverRegistroTipoDoc").prop("hidden", true);
     })
 
+     /// MOSTRAR FORMULARIO PARA CREAR DOCUMENTO///
+     $(document).on('click','#btnCrearDoc', function(){
+        $("#btnCrearDoc").prop("hidden", true);
+        $("#crearDoc").prop("hidden", false);
+        $("#DocResgitrados").prop("hidden", true);
+        $("#volverRegistroDoc").prop("hidden", false);
+    })
 
+    /// MOSTRAR  DOCUMENTO REGISTRADOS///
+    $(document).on('click','#volverRegistroDoc', function(){
+        $("#btnCrearDoc").prop("hidden", false);
+        $("#crearDoc").prop("hidden", true);
+        $("#DocResgitrados").prop("hidden", false);
+        $("#volverRegistroDoc").prop("hidden", true);
+    })
 })

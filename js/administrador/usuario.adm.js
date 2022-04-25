@@ -11,7 +11,6 @@ document.getElementById('txtCorreoMod').addEventListener('input', function(event
     }
 });
 
-
 document.getElementById('txtCorreoEmpleado').addEventListener('input', function(event) {
     campo = event.target;
     valido = document.getElementById('emailOK');
@@ -25,8 +24,8 @@ document.getElementById('txtCorreoEmpleado').addEventListener('input', function(
     }
 });
 
-  function cargar() {
-    window.location.href = "../administrador/usuarios.php";
+function cargar() {
+window.location.href = "../administrador/usuarios.php";
 };
 
 function modificarRol(id_rol, rol) {
@@ -644,19 +643,19 @@ $(document).ready(function () {
         })
     })
 
-      /// ENVIAR EMAIL USUARIO RESTABLECER CONTRASEÑA///
-      $(document).on('click', '#btnModClaveUsu', function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: '../controladorAdministrador/clave.update.email.php',
-            type: 'POST',
-            dataType: 'json',
-            data: $('#modifClaveUsu').serialize(),
-        }).done(function (json) {
+    /// ENVIAR EMAIL USUARIO RESTABLECER CONTRASEÑA///
+    $(document).on('click', '#btnModClaveUsu', function (event) {
+    event.preventDefault();
+    $.ajax({
+        url: '../controladorAdministrador/clave.update.email.php',
+        type: 'POST',
+        dataType: 'json',
+        data: $('#modifClaveUsu').serialize(),
+    }).done(function (json) {
 
-        }).fail(function (xhr, status, error) {
-            $('#respuesta').html(error);
-        })
+    }).fail(function (xhr, status, error) {
+        $('#respuesta').html(error);
+    })
     })
 
     /// MOSTRAR ROL PARA ACTUALIZAR USUARIO ///
@@ -750,7 +749,6 @@ $(document).ready(function () {
            });
         })
     })
-
 
     /// MOSTRAR FORMULARIO PARA CREAR USUARIO///
     $(document).on('click','#btnFomularioCrear', function(){

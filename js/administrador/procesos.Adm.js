@@ -60,8 +60,6 @@ function eliminacionProceso (id_proceso, proceso, estado){
     $("#txtEstadoActualPro").val(estado);
 }
 
-
-
 $(document).ready(function(){
 
     buscarProceso(); 
@@ -69,36 +67,36 @@ $(document).ready(function(){
     buscarMacroprocesoP()
     buscarMacroprocesoActPro();
 
-     /// REGISTRAR MACROPROCESO ///
-     $(document).on('click','#btnRegistrarMacroroceso',function(event){
-        event.preventDefault();
-            $.ajax({
-                url:'../controladorAdministrador/macroproceso.create.php',
-                type: 'POST',
-                dataType: 'json',
-                data : $('#macroproceso').serialize(),
-            }).done(function(json){
-                if(json !== null){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error el macroproceso ya existe',
-                    })
-                }else{
-                    Swal.fire({
-                    icon: 'success',
-                    title: 'Macroproceso creado con éxito',
-                    showConfirmButton: false,
-                    timer: 2500
-                  }).then((result) => {
-                    cargar();
-                  });
-                }
-            }).fail(function(xhr, status, error){
+    /// REGISTRAR MACROPROCESO ///
+    $(document).on('click','#btnRegistrarMacroroceso',function(event){
+    event.preventDefault();
+        $.ajax({
+            url:'../controladorAdministrador/macroproceso.create.php',
+            type: 'POST',
+            dataType: 'json',
+            data : $('#macroproceso').serialize(),
+        }).done(function(json){
+            if(json !== null){
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error al crear el macroproceso',
+                    title: 'Error el macroproceso ya existe',
                 })
-        });
+            }else{
+                Swal.fire({
+                icon: 'success',
+                title: 'Macroproceso creado con éxito',
+                showConfirmButton: false,
+                timer: 2500
+                }).then((result) => {
+                cargar();
+                });
+            }
+        }).fail(function(xhr, status, error){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear el macroproceso',
+            })
+    });
     });
 
     /// MOSTRAR MACROPROCESO ///
@@ -523,7 +521,6 @@ $(document).ready(function(){
         });
 
     });
-
 
     /// MOSTRAR FORMULARIO PARA CREAR MACROPROCESO///
     $(document).on('click','#btnCrearMacro', function(){
