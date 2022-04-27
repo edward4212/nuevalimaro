@@ -138,7 +138,31 @@ class Usuario{
                return $this->retorno;
      }
 
-
+     public function read2()
+     {
+          try {
+               $this->sql = "SELECT
+               usu.`id_usuario`,
+               empl.`id_empleado`,
+               empl.`nombre_completo`,
+               empl.`correo_empleado`,
+               usu.`usuario`,
+               ca.`cargo`,
+               usu.`estado`
+               
+               FROM empleado AS empl
+               
+               INNER JOIN usuario AS usu ON usu.`id_empleado` = empl.`id_empleado`
+               INNER JOIN cargo AS ca ON ca.`id_cargo` = empl.`id_cargo`
+               WHERE  usu.`estado` = 'ACTIVO'";
+               $this->result = $this->conexion->query($this->sql);
+               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+                    
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
 
 }
 

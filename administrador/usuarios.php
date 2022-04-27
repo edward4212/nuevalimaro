@@ -1,6 +1,6 @@
 <!-- Se agrega Head -->
 <?php include_once "head.php" ?>
-<title>Usuarios</title>
+<title>Gestión de Usuarios</title>
 
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->

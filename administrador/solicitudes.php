@@ -9,6 +9,7 @@
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
+                <br>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"

@@ -9,7 +9,6 @@
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
-            <br>
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-empresa-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-empresa" type="button" role="tab" aria-controls="nav-empresa"

@@ -1,6 +1,6 @@
 <!-- Se agrega Head -->
 <?php include_once "head.php" ?>
-<title>Macroprocesos</title>
+<title>Macroprocesos Y Procesos</title>
 </head>
 
 <body class="bg-light d-flex flex-column h-100">

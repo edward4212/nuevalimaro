@@ -118,198 +118,50 @@ class Documento{
           return $this->retorno;
      }
 
+     public function actualizarNombreDoc()
+     {
+          try {
+               $this->sql = "UPDATE documento SET nombre_documento='$this->nombre_documento', objetivo_documento='$this->objetivo_documento' WHERE id_documento=$this->id_documento";
+               $this->result = $this->conexion->query($this->sql);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
 
-
-
-
-     // public function read2()
-     // { try {
-     //      $this->sql = "SELECT 
-     //      doc.`id_documento`,
-     //      doc.`codigo`,
-     //      doc.`nombre_documento`,
-     //      pr.`id_proceso`,
-     //      pr.`proceso`,
-     //      pr.`sigla_proceso`,
-     //      tdoc.`id_tipo_documento`,
-     //      tdoc.`tipo_documento` ,
-     //      tdoc.`sigla_tipo_documento` ,
-     //      vr.`id_versionamiento`,
-     //      vr.`numero_version`,
-     //      vr.`documento`,
-     //      vr.`descripcion_version`,
-     //      vr.`fecha_aprobacion`,
-     //      vr.`estado_version`
-     //      FROM documento AS doc
-     //      INNER JOIN tipo_documento AS tdoc ON doc.`id_tipo_documento` = tdoc.`id_tipo_documento`
-     //      INNER JOIN proceso AS pr ON doc.`id_proceso` = pr.`id_proceso`
-     //      INNER JOIN versionamiento AS vr ON  doc.`id_documento` = vr.`id_documento`
-     //      WHERE vr.`estado_version` != 'O' AND  vr.`estado_version` != 'T' AND vr.`estado_version` != 'D'
-     //      ORDER BY LENGTH( doc.`codigo`), codigo";
-     //      $this->result = $this->conexion->query($this->sql);
-     //      $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-          
-     //      } catch (Exception $e) {
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //      return $this->retorno;
-     // }
-
-     // public function read3()
-     // { try {
-     //      $this->sql = "SELECT 
-     //      doc.`id_documento`,
-     //      doc.`codigo`,
-     //      doc.`nombre_documento`,
-     //      pr.`id_proceso`,
-     //      pr.`proceso`,
-     //      pr.`sigla_proceso`,
-     //      tdoc.`id_tipo_documento`,
-     //      tdoc.`tipo_documento` ,
-     //      tdoc.`sigla_tipo_documento` ,
-     //      vr.`id_versionamiento`,
-     //      vr.`numero_version`,
-     //      vr.`documento`,
-     //      vr.`descripcion_version`,
-     //      vr.`fecha_aprobacion`,
-     //      vr.`estado_version`
-     //      FROM documento AS doc
-     //      INNER JOIN tipo_documento AS tdoc ON doc.`id_tipo_documento` = tdoc.`id_tipo_documento`
-     //      INNER JOIN proceso AS pr ON doc.`id_proceso` = pr.`id_proceso`
-     //      INNER JOIN versionamiento AS vr ON  doc.`id_documento` = vr.`id_documento` 
-     //      WHERE vr.`estado_version` != 'O'";
-     //      $this->result = $this->conexion->query($this->sql);
-     //      $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-               
-     //      } catch (Exception $e) {
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //      return $this->retorno;
-     // }
-
-     // public function read4()
-     // { try {
-     //      $this->sql = "SELECT 
-     //      doc.`id_documento`,
-     //      doc.`codigo`,
-     //      doc.`nombre_documento`,
-     //      pr.`id_proceso`,
-     //      pr.`proceso`,
-     //      pr.`sigla_proceso`,
-     //      tdoc.`id_tipo_documento`,
-     //      tdoc.`tipo_documento` ,
-     //      tdoc.`sigla_tipo_documento` ,
-     //      vr.`id_versionamiento`,
-     //      vr.`numero_version`,
-     //      vr.`documento`,
-     //      vr.`descripcion_version`,
-     //      vr.`fecha_aprobacion`,
-     //      vr.`estado_version`
-     //      FROM documento AS doc
-     //      INNER JOIN tipo_documento AS tdoc ON doc.`id_tipo_documento` = tdoc.`id_tipo_documento`
-     //      INNER JOIN proceso AS pr ON doc.`id_proceso` = pr.`id_proceso`
-     //      INNER JOIN versionamiento AS vr ON  doc.`id_documento` = vr.`id_documento`
-     //      WHERE vr.`estado_version` != 'O' AND  vr.`estado_version` != 'T' AND vr.`estado_version` != 'D' AND vr.`estado_version` != 'C'";
-     //      $this->result = $this->conexion->query($this->sql);
-     //      $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-          
-     //      } catch (Exception $e) {
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //      return $this->retorno;
-     // }
-
-     // public function obsoletos()
-     // { try {
-     //      $this->sql = "SELECT 
-     //      doc.`id_documento`,
-     //      doc.`codigo`,
-     //      doc.`nombre_documento`,
-     //      pr.`id_proceso`,
-     //      pr.`proceso`,
-     //      pr.`sigla_proceso`,
-     //      tdoc.`id_tipo_documento`,
-     //      tdoc.`tipo_documento` ,
-     //      tdoc.`sigla_tipo_documento` ,
-     //      vr.`id_versionamiento`,
-     //      vr.`numero_version`,
-     //      vr.`documento`,
-     //      vr.`descripcion_version`,
-     //      vr.`fecha_obsoleto`,
-     //      vr.`estado_version`
-     //      FROM documento AS doc
-     //      INNER JOIN tipo_documento AS tdoc ON doc.`id_tipo_documento` = tdoc.`id_tipo_documento`
-     //      INNER JOIN proceso AS pr ON doc.`id_proceso` = pr.`id_proceso`
-     //      INNER JOIN versionamiento AS vr ON  doc.`id_documento` = vr.`id_documento` 
-     //      WHERE   vr.`estado_version` = 'O'";
-     //      $this->result = $this->conexion->query($this->sql);
-     //      $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-               
-     //      } catch (Exception $e) {
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //           return $this->retorno;
-     // }
-  
-     // public function tramite()
-     // { try {
-     //      $this->sql = "SELECT 
-     //      doc.`id_documento`,
-     //      doc.`codigo`,
-     //      doc.`nombre_documento`,
-     //      pr.`id_proceso`,
-     //      pr.`proceso`,
-     //      pr.`sigla_proceso`,
-     //      tdoc.`id_tipo_documento`,
-     //      tdoc.`tipo_documento` ,
-     //      tdoc.`sigla_tipo_documento` ,
-     //      vr.`id_versionamiento`,
-     //      vr.`numero_version`,
-     //      vr.`documento`,
-     //      vr.`descripcion_version`,
-     //      vr.`fecha_aprobacion`,
-     //      vr.`estado_version`
-     //      FROM documento AS doc
-     //      INNER JOIN tipo_documento AS tdoc ON doc.`id_tipo_documento` = tdoc.`id_tipo_documento`
-     //      INNER JOIN proceso AS pr ON doc.`id_proceso` = pr.`id_proceso`
-     //      INNER JOIN versionamiento AS vr ON  doc.`id_documento` = vr.`id_documento` 
-     //      WHERE   vr.`estado_version` != 'C' AND vr.`estado_version` != 'O' AND vr.`estado_version` != 'V'";
-     //      $this->result = $this->conexion->query($this->sql);
-     //      $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-               
-     //      } catch (Exception $e) {
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //           return $this->retorno;
-     // }
-
-     
-
-     // public function actualizarVersionamiento()
-     // {
-
-     //      try {
-     //           $this->sql = "UPDATE versionamiento SET estado_version='$this->estado' , fecha_obsoleto= CURRENT_TIMESTAMP() WHERE id_versionamiento=$this->id_versionamiento";
-     //           $this->result = $this->conexion->query($this->sql);
-     //      } catch (Exception $e) {
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //           return $this->retorno;
-     // }
-
-     
-     // public function actualizarNombreDoc()
-     // {
-
-     //      try {
-     //           $this->sql = "UPDATE documento SET nombre_documento='$this->nombre_documento' WHERE id_documento=$this->id_documento";
-     //           $this->result = $this->conexion->query($this->sql);
-     //      } catch (Exception $e) {
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //           return $this->retorno;
-     // }
-
+     public function read2()
+     { try {
+          $this->sql = "SELECT 
+          doc.`id_documento`,
+          mpr.`macroproceso`,
+          doc.`codigo`,
+          doc.`nombre_documento`,
+          pr.`id_proceso`,
+          pr.`proceso`,
+          pr.`sigla_proceso`,
+          tdoc.`id_tipo_documento`,
+          tdoc.`tipo_documento` ,
+          tdoc.`sigla_tipo_documento` ,
+          vr.`id_versionamiento`,
+          vr.`numero_version`,
+          vr.`documento`,
+          vr.`descripcion_version`,
+          vr.`fecha_aprobacion`,
+          vr.`estado_version`
+          FROM documento AS doc
+          INNER JOIN tipo_documento AS tdoc ON doc.`id_tipo_documento` = tdoc.`id_tipo_documento`
+          INNER JOIN proceso AS pr ON doc.`id_proceso` = pr.`id_proceso`
+          INNER JOIN macroproceso AS mpr ON pr.`id_macroproceso` = mpr.`id_macroproceso`
+          INNER JOIN versionamiento AS vr ON  doc.`id_documento` = vr.`id_documento`
+          WHERE vr.`estado_version` != 'OBSOLETO' AND  vr.`estado_version` != 'CREADO'
+          ORDER BY LENGTH( doc.`codigo`), codigo";
+          $this->result = $this->conexion->query($this->sql);
+          $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC); 
+     } catch (Exception $e) {
+          $this->retorno = $e->getMessage();
+     }
+     return $this->retorno;
+     }
 
 }
 

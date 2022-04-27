@@ -113,44 +113,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#documentoAuto1").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: "../controladorAdministrador/documento.autocomplete.php",
-                dataType: "json",
-                data: {
-                    term: request.term
-                },
-                success: function (data) {
-                    response(data);
-                }
-            });
-        },
-        select: function (event, ui) {
-            event.preventDefault();
-            if (ui.item.est == 'T') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'El Documento se encuentra en Tramite, Seleccione otro documento',
-                    showConfirmButton: false,
-                    timer: 3000
-                }).then((result) => {
-                    cargar();
-                });
-            } else {
-                var suma = parseInt(ui.item.numero_version);
-                var uno = 1;
-                var resul = suma + uno;
-                $("#documentoAuto1").val(ui.item.nombre_documento);
-                $("#codigo1").val(ui.item.codigo);
-                $("#versionSig1").val(resul);
-                $("#idDocumento1").val(ui.item.id_documento);
-                $("#proceso1").val(ui.item.sigla_proceso);
-                $("#sigla_tipo_documento1").val(ui.item.sigla_tipo_documento);
-                $("#documentoAuto1").prop("disabled", true);
-            }
-        }
-    });
+    
     
     function buscar() {
         $.ajax({
@@ -631,24 +594,7 @@ $(document).ready(function () {
     }
 
 
-    function buscarFuncionariossINT() {
-
-        $.ajax({
-            url: '../controladorAdministrador/usuario.read.php',
-            type: 'POST',
-            dataType: 'json',
-            data: null,
-        }).done(function (json) {
-            var tipoDocumento = 0;
-            tipoDocumento += '<option disabled selected> - Seleccione un funcionario-</option>';
-            $.each(json, function (key, value) {
-                tipoDocumento += '<option value=' + value.usuario + '>' + value.usuario + '</option>';
-            })
-            $('#empleadoCAN').html(tipoDocumento);
-        }).fail(function (xhr, status, error) {
-            $('#empleadoCAN').html(error);
-        })
-    }
+    
 
     /// mostrar las tareas revision//
     function tareasAct() {

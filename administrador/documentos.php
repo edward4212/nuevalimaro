@@ -1,6 +1,6 @@
 <!-- Se agrega Head -->
 <?php include_once "head.php" ?>
-<title>Documentos</title>
+<title>Tipo y Registro de Documentos</title>
 
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
@@ -9,6 +9,7 @@
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
+            <br>
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-documentos-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-documentos" type="button" role="tab" aria-controls="nav-documentos"
@@ -197,7 +198,7 @@
                                     <input type="text" aria-label="E" id="tipoDocNom" name="tipoDocNom"
                                         class="form-control codigo" hidden>
                                 </div>
-                                <div class="col-md-6 col-xs-12 col-sm-12 d-flex  align-items-end" id="botonesAsig">
+                                <div class="col-md-6 col-xs-12 col-sm-12 d-flex  align-items-end" id="botonesAsig" style="align-self: end;">
                                     <button type="button" id="btnAsignarCod" name="btnAsignarCod"
                                         class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Asignar Número</button>
                                     <div class="" id="codigoAsi" hidden>
@@ -232,7 +233,7 @@
                                         id="txtObjetivoproceso" maxlength="600" required></textarea>
                                 </div>
                                 <span class="text-muted">* Campo Obligatorio</span>
-                                <div class="col-md-12  col-xs-12 col-sm-12">
+                                <div class="col-md-12  col-xs-12 col-sm-12" style="align-self: end;">
                                     <br>
                                     <button type="submit" id="btncrearDoc" name="btncrearDoc"
                                         class="btn btn-primary mb-3" hidden><i class="fas fa-plus"></i> Crear
@@ -251,10 +252,10 @@
                                 <h5 id="documentosRg"></h5>
                             </div>
                         </div>
-                        <!-- Modal para actualziacion nombre  documento-->
+                        <!-- Modal para actualziacion informacion de  documento-->
                         <div class="modal fade bd-example-modal-lg" id="modifiDoc" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Cambiar Información Del Documento
@@ -265,37 +266,13 @@
                                     <form class="row g-3 form-group" id="cambiarNomDoc" method="POST">
                                         <div class="modal-body">
                                             <div class="row">
-                                                <input class="form-control" type="number" name="idDocumentoCambiar"
-                                                    id="idDocumentoCambiar" hidden>
-                                                <div class="col-md-4 col-xs-12 col-sm-12">
-                                                    <h5><b>Macroproceso*</b></h5>
-                                                    <input type="text" aria-label="E" id="macroNombre"
-                                                        name="macroNombre" class="form-control ">
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-4 col-xs-12 col-sm-12">
-                                                    <h5><b>Proceso*</b></h5>
-                                                    <input type="text" aria-label="E" id="procesoNom" name="procesoNom"
-                                                        class="form-control ">
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-4 col-xs-12 col-sm-12">
-                                                    <h5><b>Tipo de Documento*</b></h5>
-                                                    <input type="text" aria-label="E" id="tipoDocNom" name="tipoDocNom"
-                                                        class="form-control ">
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-4 col-xs-12 col-sm-12" id="botonesAsig">
-                                                    <h5><b>Código del Documento*</b></h5>
-                                                    <input type="text" aria-label="E" class="form-control redondeado"
-                                                        id="txtcodigo" name="txtcodigo" required>
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-8 col-xs-12 col-sm-12" id="nombreAsig">
+                                                <input class="form-control" type="number" name="idDocumentoNod"
+                                                    id="idDocumentoNod" hidden >
+                                                <div class="col-md-12 col-xs-12 col-sm-12" id="nombreAsig">
                                                     <h5><b>Nombren Del Documento*</b></h5>
                                                     <input type="text" aria-label="E"
-                                                        class="form-control redondeado inicialM" id="nombreDoc"
-                                                        name="nombreDoc" required>
+                                                        class="form-control redondeado inicialM" id="nombreModif"
+                                                        name="nombreModif" required>
                                                     <br>
                                                 </div>
                                                 <div class="col-md-12 col-xs-12 col-sm-12" id="objetivoDoc">
@@ -303,7 +280,7 @@
                                                     <label class="text-muted"> Caracteres restantes:
                                                         <span></span></label>
                                                     <textarea class="form-control inicialM" type="text"
-                                                        name="txtObjetivoproceso" id="txtObjetivoproceso"
+                                                        name="objetivoModif" id="objetivoModif" rows="4"
                                                         maxlength="600" required></textarea>
                                                 </div>
                                                 <span class="text-muted">* Campo Obligatorio</span>

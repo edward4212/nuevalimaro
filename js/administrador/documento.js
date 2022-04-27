@@ -1,6 +1,7 @@
 function cargar1() {
     window.location.href = "../administrador/documentos.php";
 }
+
 var inputs = "textarea[maxlength]";
 $(document).on('keyup', "[maxlength]", function (e) {
     var este = $(this),
@@ -35,9 +36,10 @@ function estadoDocumento(id_versionamiento, estado_version) {
     $("#estadoDocAct").val(estado_version);
 }
 
-function modDoc(id_documento, nombre_documento) {
-    $("#idDocumentoCambiar").val(id_documento);
-    $("#nuevoNombreDoc").val(nombre_documento);
+function modDoc(id_documento, nombre_documento, objetivo_documento) {
+    $("#idDocumentoNod").val(id_documento);
+    $("#nombreModif").val(nombre_documento);
+    $("#objetivoModif").val(objetivo_documento);
 }
 
 function modificarTipoDoc (id_tipo_documento, tipo_documento, sigla_tipo_documento){    
@@ -55,6 +57,7 @@ function eliminacionTipoDoc (id_tipo_documento, tipo_documento, sigla_tipo_docum
 $(document).ready(function () {
     
     buscarTipoDocumento();
+    buscarTipoDocumento1();
     buscarDocuCrea();
     /**
      * Se realiza la consulta de los documentos vigentes para mostrar en la vistaEmpleado/consultas.frm.php
@@ -464,13 +467,13 @@ $(document).ready(function () {
         datos += '<tbody>';
         $.each(json, function (key, value) {
             datos += '<tr class="align-middle" >';
-                datos += '<td class=" border border-primary  text-wrap" >' + value.macroproceso + '</td>';
+                datos += '<td class=" border border-primary  text-center" >' + value.macroproceso + '</td>';
                 datos += '<td class=" border border-primary  text-wrap">' + value.proceso + '</td>';
                 datos += '<td class=" border border-primary  text-wrap">' + value.tipo_documento + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.nombre_documento + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.objetivo_documento + '</td>';
+                datos += '<td class=" border border-primary text-wrap">'+value.codigo+' ' + value.nombre_documento + '</td>';
+                datos += '<td class=" border border-primary text-wrap ">' + value.objetivo_documento + '</td>';
                 datos += '<td class=" border border-primary text-wrap">' + value.estado_version + '</td>';
-                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modDoc(' + value.id_documento + ',\'' + value.nombre_documento + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifiDoc"><i class="fas fa-edit"></i></button></td>';   
+                datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modDoc(' + value.id_documento + ',\'' + value.nombre_documento + '\',\'' + value.objetivo_documento + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifiDoc"><i class="fas fa-edit"></i></button></td>';   
             datos += '</tr>';
         })
         datos += '</tbody>';
@@ -514,7 +517,7 @@ $(document).ready(function () {
                     messageTop: 'Documentos Registrados',
                     text: '<i class="far fa-file-pdf"></i>',
                     exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5]
+                        columns: [0, 1, 2, 3, 4, 5]
                     }
                 },
                 {
@@ -524,7 +527,7 @@ $(document).ready(function () {
                     messageTop: 'Documentos Registrados',
                     text: '<i class="fas fa-print"></i>',
                     exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5]
+                        columns: [ 0, 1, 2, 3, 4, 5]
                     }
                 },
                 {
@@ -533,7 +536,7 @@ $(document).ready(function () {
                     autoFiltre: true,
                     title: 'Documentos Registrados',
                     exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5]
+                        columns: [ 0, 1, 2, 3, 4, 5]
                     }
                 },
                 {
@@ -542,7 +545,7 @@ $(document).ready(function () {
                     autoFiltre: true,
                     titleAttr: 'COPIAR',
                     exportOptions: {
-                        columns: [ 1, 2, 3, 4, 5]
+                        columns: [ 0, 1, 2, 3, 4, 5]
                     }
                 },
                 {
@@ -565,16 +568,28 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#cambiarNomDoc').serialize(),
         }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Documento Modificado con Exito',
-                showConfirmButton: false,
-                timer: 3000
-            }).then((result) => {
-                cargar1();
-            })
+            if (json !== null) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se pudo actualizar el documento!... Favor verifique los datos ingresado!',
+                    showConfirmButton: true,
+                    timer: 2500
+                });
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Documento Modificado con Exito',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                    cargar1();
+                });  
+            }
         }).fail(function (xhr, status, error) {
-            alert(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al actualizar el documento',
+            });
         })
 
     });
