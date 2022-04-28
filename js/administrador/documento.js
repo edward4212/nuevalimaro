@@ -65,7 +65,7 @@ $(document).ready(function () {
     /// MOSTRAR TIPO DOCUMENTOS ///
     function buscarTipoDocumento(){
     $.ajax({
-        url:'../controladorAdministrador/tipoDocumento.read.php',
+        url:'../controladorAdministrador/tipoDoc/tipoDocumento.read.php',
         type: 'POST',
         dataType: 'json',
         data : null,
@@ -173,7 +173,7 @@ $(document).ready(function () {
     $(document).on('click','#btnRegistrarTipoDocumento',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/tipoDocumento.create.php',
+                url:'../controladorAdministrador/tipoDoc/tipoDocumento.create.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#TipoDocumentos').serialize(),
@@ -206,7 +206,7 @@ $(document).ready(function () {
     $(document).on('click','#btnModificarTipoDoc',function(event){
     event.preventDefault();
         $.ajax({
-            url:'../controladorAdministrador/tipoDocumento.update.php',
+            url:'../controladorAdministrador/tipoDoc/tipoDocumento.update.php',
             type: 'POST',
             dataType: 'json',
             data : $('#ModificarTipoDoc').serialize(),
@@ -238,7 +238,7 @@ $(document).ready(function () {
     $(document).on('click','#btnEliminarTipDoc',function(event){
             event.preventDefault();
                 $.ajax({
-                    url:'../controladorAdministrador/tipoDocumento.delete.php',
+                    url:'../controladorAdministrador/tipoDoc/tipoDocumento.delete.php',
                     type: 'POST',
                     dataType: 'json',
                     data : $('#inactivarTipoDoc').serialize(),
@@ -271,7 +271,7 @@ $(document).ready(function () {
     /// MOSTRAR PROCESO ///
     function buscarMacroproceso() {
         $.ajax({
-            url: '../controladorAdministrador/macroproceso.read.php',
+            url: '../controladorAdministrador/macroproceso/macroproceso.read.php',
             type: 'GET',
             dataType: 'json',
             data: null,
@@ -297,7 +297,7 @@ $(document).ready(function () {
     /// MOSTRAR PROCESO ///
     function buscarProceso(id_macroproceso) {
         $.ajax({
-            url: '../controladorAdministrador/proceso.read.php',
+            url: '../controladorAdministrador/proceso/proceso.read.php',
             type: 'GET',
             dataType: 'json',
             data: null,
@@ -321,7 +321,7 @@ $(document).ready(function () {
     /// MOSTRAR TIPO DOCUMENTOS ///
    function buscarTipoDocumento1() {
         $.ajax({
-            url: '../controladorAdministrador/tipoDocumento.read.php',
+            url: '../controladorAdministrador/tipoDoc/tipoDocumento.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -343,7 +343,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnAsignarCod', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/codigo.read.php',
+            url: '../controladorAdministrador/documento/codigo.read.php',
             type: 'POST',
             dataType: 'json',
             data: $('#crearDoc').serialize(),
@@ -409,7 +409,7 @@ $(document).ready(function () {
     $(document).on('click', '#btncrearDoc', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/documento.create.php',
+            url: '../controladorAdministrador/documento/documento.create.php',
             type: 'POST',
             dataType: 'json',
             data: $('#crearDoc').serialize(),
@@ -443,7 +443,7 @@ $(document).ready(function () {
    /// MOSTRAR DOCUMENTOS CREADOS
     function buscarDocuCrea() {
         $.ajax({
-        url: '../controladorAdministrador/documento.read.php',
+        url: '../controladorAdministrador/documento/documento.read.php',
         type: 'POST',
         dataType: 'json',
         data: null,
@@ -563,7 +563,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnCambiarNomDoc', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/documento.update.php',
+            url: '../controladorAdministrador/documento/documento.update.php',
             type: 'POST',
             dataType: 'json',
             data: $('#cambiarNomDoc').serialize(),

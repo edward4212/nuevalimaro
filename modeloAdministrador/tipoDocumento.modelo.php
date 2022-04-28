@@ -4,8 +4,8 @@ namespace modelo;
 use PDO;
 use Exception;
 
-include_once '../entidadAdministrador/tipoDocumento.entidad.php';
-include_once '../entorno/conexionSingleton.php';
+include_once '../../entidadAdministrador/tipoDocumento.entidad.php';
+include_once '../../entorno/conexionSingleton.php';
 
 class TipoDocumento{
 

@@ -74,7 +74,7 @@ $(document).ready(function(){
      /// MUESTRA LOS DATOS EN LA PANTALLA INICIO///
     function buscar(){
         $.ajax({
-            url:'../controladorAdministrador/inicio.read.php',
+            url:'../controladorAdministrador/inicio/inicio.read.php',
             type: 'POST',
             dataType: 'json',
             data : null,
@@ -179,7 +179,7 @@ $(document).ready(function(){
     $(document).on('click','#btnModificarNomEmp',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/empresa.update.php',
+                url:'../controladorAdministrador/inicio/empresa.update.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#ModificarEmpre').serialize(),
@@ -204,7 +204,7 @@ $(document).ready(function(){
     $(document).on('click','#btnModificarMisionEmp',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/mision.update.php',
+                url:'../controladorAdministrador/inicio/mision.update.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#ModificarMision').serialize(),
@@ -229,7 +229,7 @@ $(document).ready(function(){
     $(document).on('click','#btnModificarvisionEmp',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/vision.update.php',
+                url:'../controladorAdministrador/inicio/vision.update.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#ModificarVision').serialize(),
@@ -254,7 +254,7 @@ $(document).ready(function(){
     $(document).on('click','#btnModificarPoliEmp',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/politica.update.php',
+                url:'../controladorAdministrador/inicio/politica.update.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#ModificarPolitica').serialize(),
@@ -279,7 +279,7 @@ $(document).ready(function(){
     $(document).on('click','#btnModificarObjetivoEmp',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/objetivos.update.php',
+                url:'../controladorAdministrador/inicio/objetivos.update.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#ModificarObjetivo').serialize(),

@@ -71,7 +71,7 @@ $(document).ready(function(){
     $(document).on('click','#btnRegistrarMacroroceso',function(event){
     event.preventDefault();
         $.ajax({
-            url:'../controladorAdministrador/macroproceso.create.php',
+            url:'../controladorAdministrador/macroproceso/macroproceso.create.php',
             type: 'POST',
             dataType: 'json',
             data : $('#macroproceso').serialize(),
@@ -102,7 +102,7 @@ $(document).ready(function(){
     /// MOSTRAR MACROPROCESO ///
     function buscarMacroproceso(){
         $.ajax({
-            url:'../controladorAdministrador/macroproceso.read.php',
+            url:'../controladorAdministrador/macroproceso/macroproceso.read.php',
             type: 'POST',
             dataType: 'json',
             data : null,
@@ -209,7 +209,7 @@ $(document).ready(function(){
     $(document).on('click','#btnModificarMacropro',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/macroproceso.update.php',
+                url:'../controladorAdministrador/macroproceso/macroproceso.update.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#ModificarMacropro').serialize(),
@@ -241,7 +241,7 @@ $(document).ready(function(){
     $(document).on('click','#btnEliminarPro',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/macroproceso.delete.php',
+                url:'../controladorAdministrador/macroproceso/macroproceso.delete.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#inactivarProce').serialize(),
@@ -266,7 +266,7 @@ $(document).ready(function(){
     /// MOSTRAR MACROPROCESO PARA CREAR PROCESO ///
     function buscarMacroprocesoP() {
         $.ajax({
-            url: '../controladorAdministrador/macroproceso.read.php',
+            url: '../controladorAdministrador/macroproceso/macroproceso.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -287,7 +287,7 @@ $(document).ready(function(){
     /// MOSTRAR MACROPROCESO PARA ACTUALIZAR PROCESO ///
     function buscarMacroprocesoActPro() {
         $.ajax({
-            url: '../controladorAdministrador/macroproceso.read.php',
+            url: '../controladorAdministrador/macroproceso/macroproceso.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -309,7 +309,7 @@ $(document).ready(function(){
     $(document).on('click','#btnRegistrarProceso',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/proceso.create.php',
+                url:'../controladorAdministrador/proceso/proceso.create.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#proceso').serialize(),
@@ -340,7 +340,7 @@ $(document).ready(function(){
      /// MOSTRAR PROCESO ///
      function buscarProceso(){
         $.ajax({
-            url:'../controladorAdministrador/proceso.read.php',
+            url:'../controladorAdministrador/proceso/proceso.read.php',
             type: 'POST',
             dataType: 'json',
             data : null,
@@ -461,7 +461,7 @@ $(document).ready(function(){
      $(document).on('click','#btnModificarPro',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/proceso.update.php',
+                url:'../controladorAdministrador/proceso/proceso.update.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#ModificarPro').serialize(),
@@ -493,7 +493,7 @@ $(document).ready(function(){
     $(document).on('click','#btnEliminarPro',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/proceso.delete.php',
+                url:'../controladorAdministrador/proceso/proceso.delete.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#inactivarProce').serialize(),

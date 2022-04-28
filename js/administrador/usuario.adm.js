@@ -84,7 +84,7 @@ $(document).ready(function () {
     /// MOSTRAR ROL ///
     function buscarRol() {
         $.ajax({
-            url: '../controladorAdministrador/rol.read.php',
+            url: '../controladorAdministrador/rol/rol.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -187,7 +187,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnRegistrarRol', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/rol.create.php',
+            url: '../controladorAdministrador/rol/rol.create.php',
             type: 'POST',
             dataType: 'json',
             data: $('#rol').serialize(),
@@ -219,7 +219,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnModificarRol', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/rol.update.php',
+            url: '../controladorAdministrador/rol/rol.update.php',
             type: 'POST',
             dataType: 'json',
             data: $('#ModificarRol').serialize(),
@@ -251,7 +251,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnEliminarRol', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/rol.delete.php',
+            url: '../controladorAdministrador/rol/rol.delete.php',
             type: 'POST',
             dataType: 'json',
             data: $('#inactivarRol').serialize(),
@@ -282,7 +282,7 @@ $(document).ready(function () {
     /// MOSTRAR CARGO ///
     function buscarCargo() {
         $.ajax({
-            url: '../controladorAdministrador/cargo.read.php',
+            url: '../controladorAdministrador/cargo/cargo.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -385,7 +385,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnEliminarCargo', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/cargo.delete.php',
+            url: '../controladorAdministrador/cargo/cargo.delete.php',
             type: 'POST',
             dataType: 'json',
             data: $('#inactivarCargo').serialize(),
@@ -413,7 +413,7 @@ $(document).ready(function () {
     /// MOSTRAR ROL PARA CREAR USUARIO ///
     function buscarRolUsuario() {
         $.ajax({
-            url: '../controladorAdministrador/rol.read.php',
+            url: '../controladorAdministrador/rol/rol.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -434,7 +434,7 @@ $(document).ready(function () {
     /// MOSTRAR CARGO PARA CREAR USUARIO///
     function buscarCargoUsuario() {
         $.ajax({
-            url: '../controladorAdministrador/cargo.read.php',
+            url: '../controladorAdministrador/cargo/cargo.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -456,7 +456,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnRegistrarUsuario', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/usuario.create.php',
+            url: '../controladorAdministrador/usuario/usuario.create.php',
             type: 'POST',
             dataType: 'json',
             data: $('#usuario').serialize(),
@@ -490,7 +490,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnRegistrarUsuario', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/usuario.create.email.php',
+            url: '../controladorAdministrador/usuario/usuario.create.email.php',
             type: 'POST',
             dataType: 'json',
             data: $('#usuario').serialize(),
@@ -504,7 +504,7 @@ $(document).ready(function () {
     /// MOSTRAR LOS USUARIOS REGISTRADOS///
     function buscarUsuarios() {
         $.ajax({
-            url: '../controladorAdministrador/usuario.read.php',
+            url: '../controladorAdministrador/usuario/usuario.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -618,7 +618,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnModClaveUsu', function (event) {   
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/clave.update.php',
+            url: '../controladorAdministrador/clave/clave.update.php',
             type: 'POST',
             dataType: 'json',
             data: $('#modifClaveUsu').serialize(),
@@ -647,7 +647,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnModClaveUsu', function (event) {
     event.preventDefault();
     $.ajax({
-        url: '../controladorAdministrador/clave.update.email.php',
+        url: '../controladorAdministrador/clave/clave.update.email.php',
         type: 'POST',
         dataType: 'json',
         data: $('#modifClaveUsu').serialize(),
@@ -661,7 +661,7 @@ $(document).ready(function () {
     /// MOSTRAR ROL PARA ACTUALIZAR USUARIO ///
     function buscarRolUsuarioAct() {
         $.ajax({
-            url: '../controladorAdministrador/rol.read.php',
+            url: '../controladorAdministrador/rol/rol.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -682,7 +682,7 @@ $(document).ready(function () {
     /// MOSTRAR CARGO PARA ACTUALIZAR USUARIO///
     function buscarCargoUsuarioAct() {
         $.ajax({
-            url: '../controladorAdministrador/cargo.read.php',
+            url: '../controladorAdministrador/cargo/cargo.read.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -704,7 +704,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnActualizarEmpl', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/usuario.update.php',
+            url: '../controladorAdministrador/usuario/usuario.update.php',
             type: 'POST',
             dataType: 'json',
             data: $('#actulizarUsuario').serialize(),
@@ -729,7 +729,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnEliminarUsuario', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/usuario.delete.php',
+            url: '../controladorAdministrador/usuario/usuario.delete.php',
             type: 'POST',
             dataType: 'json',
             data: $('#inactivarUsuario').serialize(),

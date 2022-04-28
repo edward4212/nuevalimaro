@@ -98,7 +98,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form class="row g-3 form-group" action="../controladorAdministrador/logo.update.php"
+                                <form class="row g-3 form-group" action="../controladorAdministrador/inicio/logo.update.php"
                                     method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaMod1" name="numEmpresaMod1"
@@ -335,7 +335,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <form class="row g-3 form-group"
-                                    action="../controladorAdministrador/organigrama.update.php" method="POST"
+                                    action="../controladorAdministrador/inicio/organigrama.update.php" method="POST"
                                     enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaOrganigrama"
@@ -384,7 +384,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form class="row g-3 form-group" action="../controladorAdministrador/mapa.update.php"
+                                <form class="row g-3 form-group" action="../controladorAdministrador/inicio/mapa.update.php"
                                     method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <input type="number" class="card-text" id="numEmpresaMapa"

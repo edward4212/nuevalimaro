@@ -5,7 +5,7 @@ $(document).ready(function(){
      $(document).on('click','#btnModClavEmpl',function(event){
         event.preventDefault();
             $.ajax({
-                url:'../controladorAdministrador/claveUsu.update.php',
+                url:'../controladorAdministrador/usuario/claveUsu.update.php',
                 type: 'POST',
                 dataType: 'json',
                 data : $('#modifClaveUsu').serialize(),

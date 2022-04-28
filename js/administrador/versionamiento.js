@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     function buscar(){
         $.ajax({
-            url:'../controladorAdministrador/documento.read2.php',
+            url:'../controladorAdministrador/documento/documento.read2.php',
             type: 'POST',
             dataType: 'json',
             data : null,
@@ -126,7 +126,7 @@ $(document).ready(function () {
     $("#documentoAuto1").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "../controladorAdministrador/documento.autocomplete.php",
+                url: "../controladorAdministrador/documento/documento.autocomplete.php",
                 dataType: "json",
                 data: {
                     term: request.term
@@ -164,7 +164,7 @@ $(document).ready(function () {
 
     function elaborado() {
         $.ajax({
-            url: '../controladorAdministrador/usuario.read2.php',
+            url: '../controladorAdministrador/usuario/usuario.read2.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -182,7 +182,7 @@ $(document).ready(function () {
 
     function revisado() {
         $.ajax({
-            url: '../controladorAdministrador/usuario.read2.php',
+            url: '../controladorAdministrador/usuario/usuario.read2.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -200,7 +200,7 @@ $(document).ready(function () {
 
     function aprobado() {
         $.ajax({
-            url: '../controladorAdministrador/usuario.read2.php',
+            url: '../controladorAdministrador/usuario/usuario.read2.php',
             type: 'POST',
             dataType: 'json',
             data: null,
