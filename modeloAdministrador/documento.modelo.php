@@ -4,6 +4,7 @@ namespace modelo;
 use PDO;
 use Exception;
 
+
 include_once '../../entidadAdministrador/documento.entidad.php';
 include_once '../../entorno/conexionSingleton.php';
 
@@ -162,6 +163,53 @@ class Documento{
      }
      return $this->retorno;
      }
+
+     public function autocomplete()
+     {
+          try {
+               $this->sql = "SELECT 
+                    doc.`id_documento` ,
+                    doc.`codigo`,
+                    doc.`nombre_documento`,
+                    mpr.`macroproceso`,
+                    pr.`id_proceso`,
+                    pr.`proceso`,
+                    pr.`sigla_proceso` ,
+                    tdoc.`id_tipo_documento`,
+                    tdoc.`tipo_documento` ,
+                    tdoc.`sigla_tipo_documento`,
+                    vr.`id_versionamiento`,
+                    vr.`numero_version`,
+                    vr.`documento`,
+                    vr.`descripcion_version`,
+                    vr.`fecha_aprobacion`,
+                    vr.`estado_version` AS est
+               FROM documento AS doc
+                INNER JOIN tipo_documento AS tdoc ON doc.`id_tipo_documento` = tdoc.`id_tipo_documento`
+               INNER JOIN proceso AS pr ON doc.`id_proceso` = pr.`id_proceso`
+               INNER JOIN macroproceso AS mpr ON pr.`id_macroproceso` = mpr.`id_macroproceso`
+               INNER JOIN versionamiento AS vr ON  doc.`id_documento` = vr.`id_documento` 
+               WHERE nombre_documento LIKE  CONCAT('%','$this->nombre_documento','%') AND vr.`estado_version` != 'O' AND vr.`estado_version` != 'D'  AND vr.`estado_version` != 'T'   ";
+               $this->result = $this->conexion->query($this->sql);
+               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+
+               foreach ($this->retorno as $key => $value) {
+                    $this->informacion[] = array(
+                         "nombre_documento" => $value['nombre_documento'],
+                         "numero_version" =>  $value['version1'],
+                         "sigla_proceso" =>  $value['sigla_proceso'],
+                         "id_documento" =>  $value['id_documento'],
+                         "codigo" =>  $value['codigo'],
+                         "est" =>  $value['est'],
+                         "sigla_tipo_documento" =>  $value['sigla_tipo_documento'],
+                         "label" => $value['nombre_documento']);
+               }
+          } catch (Exception $e) {
+               $this->informacion = $e->getMessage();
+          }
+               return $this->informacion;
+     }
+
 
 }
 

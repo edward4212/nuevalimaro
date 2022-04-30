@@ -138,19 +138,10 @@ $(document).ready(function () {
         },
         select: function (event, ui) {
             event.preventDefault();
-            if (ui.item.est == 'T') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'El Documento se encuentra en Tramite, Seleccione otro documento',
-                    showConfirmButton: false,
-                    timer: 3000
-                }).then((result) => {
-                    cargar();
-                });
-            } else {
                 var suma = parseInt(ui.item.numero_version);
                 var uno = 1;
                 var resul = suma + uno;
+                
                 $("#documentoAuto1").val(ui.item.nombre_documento);
                 $("#codigo1").val(ui.item.codigo);
                 $("#versionSig1").val(resul);
@@ -158,7 +149,6 @@ $(document).ready(function () {
                 $("#proceso1").val(ui.item.sigla_proceso);
                 $("#sigla_tipo_documento1").val(ui.item.sigla_tipo_documento);
                 $("#documentoAuto1").prop("disabled", true);
-            }
         }
     });
 

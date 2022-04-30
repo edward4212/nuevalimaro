@@ -41,13 +41,14 @@
                         <form class="row g-3 form-group" action="../controladorAdministrador/versionamiento.create1.php"
                             method="POST" enctype="multipart/form-data">
                             <div class="col-md-10 col-xs-12 col-sm-12">
-                                <input class="form-control" type="text" name="idDocumento1" id="idDocumento1" hidden>
-                                <h5 for="data">Seleccionar Documento</h5>
+                                <input class="form-control" type="text" name="idDocumento1" id="idDocumento1" >
+                                <h5 for="data">Seleccionar Documento a Actualizar</h5>
                                 <input class="form-control" type="text" name="documentoAuto1" id="documentoAuto1">
-                                <input class="form-control" type="text" name="proceso1" id="proceso1" hidden>
-                                <input class="form-control" type="text" name="sigla_tipo_documento1"
-                                    id="sigla_tipo_documento1" hidden>
-                                <input class="form-control" type="text" name="codigo1" id="codigo1" hidden>
+                                <input class="form-control" type="text" name="codigo1" id="codigo1" >
+                                <input class="form-control" type="text" name="macroproceso" id="macroproceso" >
+                                <input class="form-control" type="text" name="proceso" id="proceso" >
+                                <input class="form-control" type="text" name="proceso" id="proceso" >
+                                
                             </div>
                             <div class="col-md-2 col-xs-12 col-sm-12">
                                 <h5>Versión Siguiente</h5>
