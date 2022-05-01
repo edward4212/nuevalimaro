@@ -9,8 +9,6 @@ $(document).ready(function () {
     revisado();
     aprobado();
 
-
-
     function buscar(){
         $.ajax({
             url:'../controladorAdministrador/documento/documento.read2.php',
@@ -141,13 +139,22 @@ $(document).ready(function () {
                 var suma = parseInt(ui.item.numero_version);
                 var uno = 1;
                 var resul = suma + uno;
+                var sigla = ui.item.sigla_tipo_documento;
+                var tipo = ui.item.tipo_documento;
+                var c = sigla +' - ' +tipo;
+
                 
+
                 $("#documentoAuto1").val(ui.item.nombre_documento);
                 $("#codigo1").val(ui.item.codigo);
                 $("#versionSig1").val(resul);
+                $("#versionAnt").val(suma);
                 $("#idDocumento1").val(ui.item.id_documento);
                 $("#proceso1").val(ui.item.sigla_proceso);
-                $("#sigla_tipo_documento1").val(ui.item.sigla_tipo_documento);
+                $("#sigla_tipo_documento1").val(ui.item.sigla_tipo_documento) ;
+                $("#macroproceso").val(ui.item.macroproceso);
+                $("#proceso").val(ui.item.proceso);
+                $("#tipo").val(c);
                 $("#documentoAuto1").prop("disabled", true);
         }
     });
@@ -159,14 +166,14 @@ $(document).ready(function () {
             dataType: 'json',
             data: null,
         }).done(function (json) {
-            var tipoDocumento = 0;
-            tipoDocumento += '<option disabled selected> - Seleccione un funcionario-</option>';
+            var usuarioCreacion = '';
+            usuarioCreacion += '<option> - Seleccione un funcionario-</option>';
             $.each(json, function (key, value) {
-                tipoDocumento += '<option value=' + value.usuario + '>' + value.nombre_completo + ' - ' +value.cargo+'</option>';
+                usuarioCreacion += '<option value=' + value.usuario + '>' + value.nombre_completo + ' - ' +value.cargo+'</option>';
             })
-            $('#elaborado').html(tipoDocumento);
+            $('#usuarioCreacion').html(usuarioCreacion);
         }).fail(function (xhr, status, error) {
-            $('#elaborado').html(error);
+            $('#usuarioCreacion').html(error);
         })
     };
 
@@ -177,14 +184,14 @@ $(document).ready(function () {
             dataType: 'json',
             data: null,
         }).done(function (json) {
-            var tipoDocumento = 0;
-            tipoDocumento += '<option disabled selected> - Seleccione un funcionario-</option>';
+            var usuarioRevision = '';
+            usuarioRevision += '<option> - Seleccione un funcionario-</option>';
             $.each(json, function (key, value) {
-                tipoDocumento += '<option value=' + value.usuario + '>' + value.nombre_completo + ' - ' +value.cargo+'</option>';
+                usuarioRevision += '<option value=' + value.usuario + '>' + value.nombre_completo + ' - ' +value.cargo+'</option>';
             })
-            $('#revisado').html(tipoDocumento);
+            $('#usuarioRevision').html(usuarioRevision);
         }).fail(function (xhr, status, error) {
-            $('#revisado').html(error);
+            $('#usuarioRevision').html(error);
         })
     };
 
@@ -195,15 +202,19 @@ $(document).ready(function () {
             dataType: 'json',
             data: null,
         }).done(function (json) {
-            var tipoDocumento = 0;
-            tipoDocumento += '<option disabled selected> - Seleccione un funcionario-</option>';
+            var usuarioAprobacion = '';
+            usuarioAprobacion += '<option> - Seleccione un funcionario-</option>';
             $.each(json, function (key, value) {
-                tipoDocumento += '<option value=' + value.usuario + '>' + value.nombre_completo + ' - ' +value.cargo+'</option>';
+                usuarioAprobacion += '<option value=' + value.usuario + '>' + value.nombre_completo + ' - ' +value.cargo+'</option>';
             })
-            $('#aprobado').html(tipoDocumento);
+            $('#usuarioAprobacion').html(usuarioAprobacion);
         }).fail(function (xhr, status, error) {
-            $('#aprobado').html(error);
+            $('#usuarioAprobacion').html(error);
         })
     };
+
+    $(document).on('click', '#limpiar', function () {
+        $("#documentoAuto1").prop("disabled", false);
+    });
     
 });

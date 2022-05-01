@@ -460,7 +460,6 @@ $(document).ready(function () {
                     datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
                     datos += '<th  class="text-center align-middle border border-primary ">CODIGO Y NOMBRE DEL DOCUMENTO</th>';
                     datos += '<th  class="text-center align-middle border border-primary ">OBJETIVO DEL DOCUMENTO</th>';
-                    datos += '<th  class="text-center align-middle border border-primary ">ESTADO</th>';
                     datos += '<th  class="text-center align-middle border border-primary ">MODIFICAR INFORMACIÓN DEL DOCUMENTO</th>';
                 datos += '</tr>';
             datos += '</thead>';
@@ -472,7 +471,6 @@ $(document).ready(function () {
                 datos += '<td class=" border border-primary  text-wrap">' + value.tipo_documento + '</td>';
                 datos += '<td class=" border border-primary text-wrap">'+value.codigo+' ' + value.nombre_documento + '</td>';
                 datos += '<td class=" border border-primary text-wrap ">' + value.objetivo_documento + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.estado_version + '</td>';
                 datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="modDoc(' + value.id_documento + ',\'' + value.nombre_documento + '\',\'' + value.objetivo_documento + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifiDoc"><i class="fas fa-edit"></i></button></td>';   
             datos += '</tr>';
         })

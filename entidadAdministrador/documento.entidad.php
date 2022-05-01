@@ -22,7 +22,7 @@ class Documento {
     public $id_macroproceso;
     public $macroproceso;
     public $objetivo_documento;
-   
+    public $version_ante;
 
 
 
@@ -36,10 +36,8 @@ class Documento {
 
     /**
      * Set the value of id_documento
-     *
-     * @return  self
      */
-    public function setIdDocumento($id_documento)
+    public function setIdDocumento($id_documento): self
     {
         $this->id_documento = $id_documento;
 
@@ -56,10 +54,8 @@ class Documento {
 
     /**
      * Set the value of id_tipo_documento
-     *
-     * @return  self
      */
-    public function setIdTipoDocumento($id_tipo_documento)
+    public function setIdTipoDocumento($id_tipo_documento): self
     {
         $this->id_tipo_documento = $id_tipo_documento;
 
@@ -76,10 +72,8 @@ class Documento {
 
     /**
      * Set the value of id_proceso
-     *
-     * @return  self
      */
-    public function setIdProceso($id_proceso)
+    public function setIdProceso($id_proceso): self
     {
         $this->id_proceso = $id_proceso;
 
@@ -96,10 +90,8 @@ class Documento {
 
     /**
      * Set the value of codigo
-     *
-     * @return  self
      */
-    public function setCodigo($codigo)
+    public function setCodigo($codigo): self
     {
         $this->codigo = $codigo;
 
@@ -116,10 +108,8 @@ class Documento {
 
     /**
      * Set the value of nombre_documento
-     *
-     * @return  self
      */
-    public function setNombreDocumento($nombre_documento)
+    public function setNombreDocumento($nombre_documento): self
     {
         $this->nombre_documento = $nombre_documento;
 
@@ -136,10 +126,8 @@ class Documento {
 
     /**
      * Set the value of id_versionamiento
-     *
-     * @return  self
      */
-    public function setIdVersionamiento($id_versionamiento)
+    public function setIdVersionamiento($id_versionamiento): self
     {
         $this->id_versionamiento = $id_versionamiento;
 
@@ -156,10 +144,8 @@ class Documento {
 
     /**
      * Set the value of numero_version
-     *
-     * @return  self
      */
-    public function setNumeroVersion($numero_version)
+    public function setNumeroVersion($numero_version): self
     {
         $this->numero_version = $numero_version;
 
@@ -176,10 +162,8 @@ class Documento {
 
     /**
      * Set the value of descripcion_version
-     *
-     * @return  self
      */
-    public function setDescripcionVersion($descripcion_version)
+    public function setDescripcionVersion($descripcion_version): self
     {
         $this->descripcion_version = $descripcion_version;
 
@@ -196,10 +180,8 @@ class Documento {
 
     /**
      * Set the value of usuario_creacion
-     *
-     * @return  self
      */
-    public function setUsuarioCreacion($usuario_creacion)
+    public function setUsuarioCreacion($usuario_creacion): self
     {
         $this->usuario_creacion = $usuario_creacion;
 
@@ -216,10 +198,8 @@ class Documento {
 
     /**
      * Set the value of fecha_creacion
-     *
-     * @return  self
      */
-    public function setFechaCreacion($fecha_creacion)
+    public function setFechaCreacion($fecha_creacion): self
     {
         $this->fecha_creacion = $fecha_creacion;
 
@@ -236,10 +216,8 @@ class Documento {
 
     /**
      * Set the value of usuario_revision
-     *
-     * @return  self
      */
-    public function setUsuarioRevision($usuario_revision)
+    public function setUsuarioRevision($usuario_revision): self
     {
         $this->usuario_revision = $usuario_revision;
 
@@ -256,10 +234,8 @@ class Documento {
 
     /**
      * Set the value of fecha_revision
-     *
-     * @return  self
      */
-    public function setFechaRevision($fecha_revision)
+    public function setFechaRevision($fecha_revision): self
     {
         $this->fecha_revision = $fecha_revision;
 
@@ -276,10 +252,8 @@ class Documento {
 
     /**
      * Set the value of usuario_aprobacion
-     *
-     * @return  self
      */
-    public function setUsuarioAprobacion($usuario_aprobacion)
+    public function setUsuarioAprobacion($usuario_aprobacion): self
     {
         $this->usuario_aprobacion = $usuario_aprobacion;
 
@@ -296,10 +270,8 @@ class Documento {
 
     /**
      * Set the value of fecha_aprobacion
-     *
-     * @return  self
      */
-    public function setFechaAprobacion($fecha_aprobacion)
+    public function setFechaAprobacion($fecha_aprobacion): self
     {
         $this->fecha_aprobacion = $fecha_aprobacion;
 
@@ -316,10 +288,8 @@ class Documento {
 
     /**
      * Set the value of documento
-     *
-     * @return  self
      */
-    public function setDocumento($documento)
+    public function setDocumento($documento): self
     {
         $this->documento = $documento;
 
@@ -336,10 +306,8 @@ class Documento {
 
     /**
      * Set the value of estado
-     *
-     * @return  self
      */
-    public function setEstado($estado)
+    public function setEstado($estado): self
     {
         $this->estado = $estado;
 
@@ -356,10 +324,8 @@ class Documento {
 
     /**
      * Set the value of id_macroproceso
-     *
-     * @return  self
      */
-    public function setIdMacroproceso($id_macroproceso)
+    public function setIdMacroproceso($id_macroproceso): self
     {
         $this->id_macroproceso = $id_macroproceso;
 
@@ -376,10 +342,8 @@ class Documento {
 
     /**
      * Set the value of macroproceso
-     *
-     * @return  self
      */
-    public function setMacroproceso($macroproceso)
+    public function setMacroproceso($macroproceso): self
     {
         $this->macroproceso = $macroproceso;
 
@@ -396,12 +360,28 @@ class Documento {
 
     /**
      * Set the value of objetivo_documento
-     *
-     * @return  self
      */
-    public function setObjetivoDocumento($objetivo_documento)
+    public function setObjetivoDocumento($objetivo_documento): self
     {
         $this->objetivo_documento = $objetivo_documento;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of version_ante
+     */
+    public function getVersionAnte()
+    {
+        return $this->version_ante;
+    }
+
+    /**
+     * Set the value of version_ante
+     */
+    public function setVersionAnte($version_ante): self
+    {
+        $this->version_ante = $version_ante;
 
         return $this;
     }
