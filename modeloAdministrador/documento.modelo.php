@@ -295,6 +295,17 @@ class Documento{
                return $this->retorno;
      }
 
+     public function activarVersion()
+     {
+
+          try {
+               $this->sql = "UPDATE versionamiento SET estado_version='$this->estado' , fecha_obsoleto= null  WHERE id_documento=$this->id_documento AND numero_version ='$this->version_ante' ";
+               $this->result = $this->conexion->query($this->sql);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
 
 }
 

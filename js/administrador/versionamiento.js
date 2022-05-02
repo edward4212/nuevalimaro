@@ -5,6 +5,7 @@ function cargar1() {
 function activarVersion(id_documento, nombre_documento, numero_version) {
     $("#idDocumentoAct").val(id_documento);
     $("#txtNombreDocum").val(nombre_documento+' V'+numero_version);
+    $("#versionObs").val(numero_version);
 }
 
 $(document).ready(function () {
@@ -401,9 +402,42 @@ $(document).ready(function () {
                 icon: 'error',
                 title: 'Error al actualizar el documento',
             });
-    })
+        })
 
-})
+    });
+
+     /// CAMBIO DE ESTADO TIPO DOCUMENTOS///
+     $(document).on('click','#bntActivarVersion',function(event){
+        event.preventDefault();
+            $.ajax({
+                url:'../controladorAdministrador/documento/versionamiento.update1.php',
+                type: 'POST',
+                dataType: 'json',
+                data : $('#activarVersion1').serialize(),
+            }).done(function(json){
+                if(json !== null){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error no se puede inactivar el documento',
+                    });
+                }else{
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Documento inactivo con éxito',
+                        showConfirmButton: false,
+                        timer: 2500
+                        }).then((result) => {
+                            cargar1();
+                    });
+                }
+            }).fail(function(xhr, status, error){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al actualizar el documento',
+                });
+            })
+    
+        });
 
 
 });

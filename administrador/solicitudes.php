@@ -1,25 +1,19 @@
 <!-- Se agrega Head -->
-<?php include_once "head.Adm.frm.php" ?>
+<?php include_once "head.php" ?>
 <title>Solicitudes</title>
 
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
-    <?php include_once "menu.Adm.frm.php" ?>
+    <?php include_once "menu.php" ?>
     <!-- se Inicia Pagina Inicio  -->
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
                 <br>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"
                         aria-selected="false">Solicitudes Registradas</button>
-                    <button class="nav-link " id="nav-estadoSol-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-estadoSol" type="button" role="tab" aria-controls="nav-estadoSol"
-                        aria-selected="true">Estado Solicitudes</button>
-                    <button class="nav-link " id="nav-estadoTarea-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-estadoTarea" type="button" role="tab" aria-controls="nav-estadoTarea"
-                        aria-selected="true">Estado Tareas</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -114,34 +108,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="nav-estadoSol" role="tabpanel" aria-labelledby="nav-estadoSol-tab">
-                    <div class="row ">
-                        <div class="col-md-12 col-xs-12 col-sm-12">
-                            <br>
-                            <h3 class="card-title text-center">Estado Solicitudes</h3>
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <h5 id="soliciTotal"></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-estadoTarea" role="tabpanel" aria-labelledby="nav-estadoTarea-tab">
-                    <div class="row ">
-                        <div class="col-md-12 col-xs-12 col-sm-12">
-                            <br>
-                            <h3 class="card-title text-center">Estado Tareas</h3>
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <h5 id="tareasTotal"></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
-    <?php include_once "footer.frm.php" ?>
+    <?php include_once "footer.php" ?>
     <script src="../js/administrador/solicitudes.adm.js"></script>
-    <script src="../js/administrador/tareas.adm.js"></script>
 </body>
 
 </html>

@@ -10,7 +10,7 @@
         <div class="container">
             <nav>
                 <br>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-documentos-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-documentos" type="button" role="tab" aria-controls="nav-documentos"
                         aria-selected="true">Listado Maestro de Documentos Vigentes</button>
@@ -163,7 +163,7 @@
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form class="row g-3 form-group" id="ModificarTipoDoc" method="POST"
+                                    <form class="row g-3 form-group" id="activarVersion1" method="POST"
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="row">
@@ -173,12 +173,14 @@
                                                     <h5><b>Se activara el documento y la version:</b></h5>
                                                     <input class="form-control inicialM" type="text"
                                                         name="txtNombreDocum" id="txtNombreDocum" readonly required>
-                                                        <input class="form-control" type="text" name="estadoObs" id="estadoObs"
+                                                        <input class="form-control" type="text" name="estadoObs1" id="estadoObs1"
+                                        value="VIGENTE" hidden>
+                                        <input class="form-control" type="text" name="versionObs" id="versionObs"
                                         value="VIGENTE" hidden>
                                                 </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" id="btnModificarTipoDoc" class="btn btn-primary"><i
+                                            <button type="submit" id="bntActivarVersion" class="btn btn-primary"><i
                                                     class="far fa-edit"></i> Activar</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                     class="fas fa-undo"></i> Volver</button>

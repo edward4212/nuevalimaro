@@ -102,7 +102,7 @@
                                         <div class="modal-footer">
                                             <button type="submit" id="btnModificarTipoDoc" class="btn btn-primary"><i
                                                     class="far fa-edit"></i> Modificar</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>
                                     </form>
@@ -152,9 +152,9 @@
                                         <div class="modal-footer">
                                             <button type="submit" id="btnEliminarTipDoc" class="btn btn-primary"><i
                                                     class="fas fa-times"></i> Cambiar Estado</button>
-                                            <button type="button" class="btn btn-prima ry" data-bs-dismiss="modal"><i
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                     class="fas fa-undo"></i> Volver</button>< 
-                                                        xss
+                                                        
                                         </div>
                                     </form>
                                 </div>
@@ -292,7 +292,7 @@
                                                 class="btn btn-primary"><i class="fas fa-edit"></i> Cambiar Información
                                                 Del
                                                 Documento</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>
                                     </form>

@@ -466,7 +466,7 @@
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form class="row g-3 form-group" id="inactivarRol" method="POST">
+                                    <form class="row g-3 form-group" id="activarVersion" method="POST">
                                         <div class="modal-body">
                                             <div class="row">
                                                 <input class="form-control" type="number" name="numidRolElim"

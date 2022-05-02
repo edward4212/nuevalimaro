@@ -30,42 +30,42 @@ $(document).ready(function () {
             var datos = '';
             datos += "<table id='tableSolicitudesRea'   class='table  table-striped table-bordered table-responsive'>";
             datos += '<thead >';
-            datos += '<tr class="table-light border-primary text-center align-middle ">';
-            datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO  SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-wrap align-middle ">PRIORIDAD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">TIPO DE SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">TIPO DE DOCUMENTO </th>';
-            datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO  DOCUMENTO </th>';
-            datos += '<th  class="border border-primary text-center align-middle ">CREADO POR </th>';
-            datos += '<th  class="border border-primary text-center align-middle ">DESCRIPCIÓN DE LA SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE </th>';
-            datos += '<th  class="border border-primary text-center align-middle ">ESTADO DE LA SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">ASIGNAR FUNCIONARIO</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">ASIGNADO A</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
-            datos += '</tr>';
+                datos += '<tr class="table-light border-primary text-center align-middle ">';
+                    datos += '<th  class="border border-primary text-center align-middle ">NÚMERO DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-wrap align-middle ">PRIORIDAD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">TIPO DE SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">TIPO DE DOCUMENTO </th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO  DOCUMENTO </th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">CREADO POR: </th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">DESCRIPCIÓN DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE </th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">ESTADO DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">ASIGNAR FUNCIONARIO</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">ASIGNADO A</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
+                datos += '</tr>';
             datos += '</thead>';
             datos += '<tbody>';
             $.each(json, function (key, value) {
                 datos += '<tr class="align-middle" >';
                 datos += '<td class=" border border-primary text-wrap align-middle" id="numIdSolicitud">' + value.id_solicitud + ' </td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.fecha_solicitud + '</td>';
-                datos += '<td class=" border border-primary text-wrap">' + value.prioridad + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_solicitud + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.codigo_documento + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.nombre_completo + '</td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.solicitud + '</td>';
-                if (value.documento !== null) {
-                    datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
-                } else {
-                    datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.carpeta + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
-                }
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.estatus_solicitud + '</td>';
-                datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="bntAsignarFuncionario" onclick="asignarFuncionario(' + value.id_solicitud + ',\'' + value.funcionario_asignado + '\',\'' + value.fecha_asignacion + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarFuncionarioSol"><i class="fas fa-user-check"></i></button></td>';
-                datos += '<td class=" border border-primary text-wrap align-middle">' + value.funcionario_asignado + '</td>';
-                datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentario(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.fecha_solicitud + '</td>';
+                    datos += '<td class=" border border-primary text-wrap">' + value.prioridad + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_solicitud + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.codigo_documento + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.nombre_completo + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.solicitud + '</td>';
+                    if (value.documento !== null) {
+                        datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
+                    } else {
+                        datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.carpeta + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
+                    }
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.estatus_solicitud + '</td>';
+                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="bntAsignarFuncionario" onclick="asignarFuncionario(' + value.id_solicitud + ',\'' + value.funcionario_asignado + '\',\'' + value.fecha_asignacion + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarFuncionarioSol"><i class="fas fa-user-check"></i></button></td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.funcionario_asignado + '</td>';
+                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentario(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
                 datos += '</tr>';
             });
             datos += '</tbody>';
@@ -323,111 +323,4 @@ $(document).ready(function () {
         })
     })
 
-    function buscarTotal() {
-        $.ajax({
-            url: '../controladorAdministrador/solicitudes.read.php',
-            type: 'POST',
-            dataType: 'json',
-            data: null,
-        }).done(function (json) {
-            var datos = '';
-            datos += "<table id='tableSolicitudesTotla'   class='table  table-striped table-bordered table-responsive'>";
-            datos += '<thead >';
-            datos += '<tr class="table-light border-primary text-center align-middle ">';
-            datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO  SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-wrap align-middle ">PRIORIDAD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">CREADO POR </th>';
-            datos += '<th  class="border border-primary text-center align-middle ">ESTADO DE LA SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">ASIGNADO A</th>';
-            datos += '</tr>';
-            datos += '</thead>';
-            datos += '<tbody>';
-            $.each(json, function (key, value) {
-            datos += '<tr class="align-middle" >';
-            datos += '<td class=" border border-primary text-wrap align-middle" id="numIdSolicitud">' + value.id_solicitud + ' </td>';
-            datos += '<td class=" border border-primary text-wrap align-middle">' + value.fecha_solicitud + '</td>';
-            datos += '<td class=" border border-primary text-wrap">' + value.prioridad + '</td>';
-            datos += '<td class=" border border-primary text-wrap align-middle">' + value.nombre_completo + '</td>';
-            datos += '<td class=" border border-primary text-wrap align-middle">' + value.estatus_solicitud + '</td>';
-            datos += '<td class=" border border-primary text-wrap align-middle">' + value.funcionario_asignado + '</td>'
-            datos += '</tr>';
-            })
-            datos += '</tbody>';
-            datos += '</table>';
-            $('#soliciTotal').html(datos);
-            $('#tableSolicitudesTotla').DataTable({
-                "destroy": true,
-                "autoWidth": true,
-                "responsive": true,
-                "searching": true,
-                "info": true,
-                "ordering": true,
-                "colReorder": true,
-                "sZeroRecords": true,
-                "keys": true,
-                "deferRender": true,
-                "lengthMenu": [[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength": 20,
-                "language": { "url": "../componente/libreria/idioma/es-mx.json" },
-                order: [[2, 'asc'], [0, 'asc']],
-                rowGroup: {
-                    dataSrc: 2
-                },
-                dom: 'Qfrtip',
-                dom: 'Bfrtip',
-                buttons:
-                    [
-                        {
-                            extend: 'pdfHtml5',
-                            orientation: 'landscape',
-                            pageSize: 'A4',
-                            download: 'open',
-                            pageSize: 'LEGAL',
-                            title: 'Total Solicitudes',
-                            titleAttr: 'Total Solicitudes',
-                            messageTop: 'Total Solicitudes',
-                            text: '<i class="far fa-file-pdf"></i>',
-                            exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5]
-                            }
-                        },
-                        {
-                            extend: 'print',
-                            title: 'Total Solicitudes',
-                            titleAttr: 'Total Solicitudes',
-                            messageTop: 'Total Solicitudes',
-                            text: '<i class="fas fa-print"></i>',
-                            exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5]
-                            }
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            text: '<i class="fas fa-file-excel"></i>',
-                            autoFiltre: true,
-                            title: 'Total Solicitudes',
-                            exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5]
-                            }
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: '<i class="fas fa-copy"></i>',
-                            autoFiltre: true,
-                            titleAttr: 'COPIAR',
-                            exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5]
-                            }
-                        },
-                        {
-                            extend: 'searchBuilder'
-
-                        }
-                    ]
-            });
-        }).fail(function (xhr, status, error) {
-            $('#solicitudesAdmn').html(error);
-        })
-    }
 })
