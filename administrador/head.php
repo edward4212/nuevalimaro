@@ -61,5 +61,5 @@ include_once("../controladorLogin/logueo.read.php");
     <script src="../componente/libreria/globales/vfs_fonts.js"></script>
     <script src="../js/proyecto/global.js"></script>
     <script src="../js/Login/logueo.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+
  <!-- Fin Anexo de archivos -->

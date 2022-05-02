@@ -152,8 +152,9 @@
                                         <div class="modal-footer">
                                             <button type="submit" id="btnEliminarTipDoc" class="btn btn-primary"><i
                                                     class="fas fa-times"></i> Cambiar Estado</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
-                                                    class="fas fa-undo"></i> Volver</button>
+                                            <button type="button" class="btn btn-prima ry" data-bs-dismiss="modal"><i
+                                                    class="fas fa-undo"></i> Volver</button>< 
+                                                        xss
                                         </div>
                                     </form>
                                 </div>

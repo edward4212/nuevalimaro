@@ -248,6 +248,53 @@ class Documento{
                return $this->retorno;
      }
 
+      public function obsoletos()
+     { try {
+          $this->sql = "SELECT 
+          doc.`id_documento`,
+          doc.`codigo`,
+          doc.`nombre_documento`,
+          mpr.`macroproceso`,
+          pr.`id_proceso`,
+          pr.`proceso`,
+          pr.`sigla_proceso`,
+          tdoc.`id_tipo_documento`,
+          tdoc.`tipo_documento` ,
+          tdoc.`sigla_tipo_documento` ,
+          vr.`id_versionamiento`,
+          vr.`numero_version`,
+          vr.`documento`,
+          vr.`descripcion_version`,
+          vr.`fecha_obsoleto`,
+          vr.`estado_version`
+          FROM documento AS doc
+          INNER JOIN tipo_documento AS tdoc ON doc.`id_tipo_documento` = tdoc.`id_tipo_documento`
+          INNER JOIN proceso AS pr ON doc.`id_proceso` = pr.`id_proceso`
+          INNER JOIN macroproceso AS mpr ON pr.`id_macroproceso` = mpr.`id_macroproceso`
+          INNER JOIN versionamiento AS vr ON  doc.`id_documento` = vr.`id_documento` 
+          WHERE   vr.`estado_version` = 'OBSOLETO'";
+          $this->result = $this->conexion->query($this->sql);
+          $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+               
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
+
+      public function obsoleto()
+     {
+
+          try {
+               $this->sql = "UPDATE versionamiento SET estado_version='$this->estado' , fecha_obsoleto= CURRENT_TIMESTAMP() WHERE id_documento=$this->id_documento AND estado_version != 'OBSOLETO' ";
+               $this->result = $this->conexion->query($this->sql);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
 
 }
 
