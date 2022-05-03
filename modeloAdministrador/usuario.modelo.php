@@ -83,7 +83,7 @@ class Usuario{
      {
           try {
                $this->sql = "CALL create_usuario(1,'$this->usuario',$this->clave,
-               '$this->id_rol','C',1,'$this->nombre_completo','usuario.png',
+               '$this->id_rol','CREADO',1,'$this->nombre_completo','usuario.png',
                '$this->correo_empleado','$this->id_cargo','1','ACTIVO')";
                $this->result=$this->conexion->query($this->sql);
                $this->retorno =  $this->result->fetchAll(PDO::FETCH_ASSOC);
@@ -163,6 +163,31 @@ class Usuario{
           }
                return $this->retorno;
      }
+
+     public function usuariosCorreos()
+     { try {
+          $this->sql = "SELECT 
+          us.`id_usuario`,
+          us.`usuario`,
+          us.`estado` AS estadoUsuario,
+          rol.`rol`,
+          emp.`nombre_completo`,
+          emp.`correo_empleado`
+          FROM usuario AS us
+          INNER JOIN rol AS rol ON us.`id_rol` = rol.`id_rol`
+          INNER JOIN empleado AS emp ON us.`id_empleado` = emp.`id_empleado`
+          WHERE us.`estado`='ACTIVO' AND rol.`rol` ='EMPLEADO'";
+          $this->result = $this->conexion->query($this->sql);
+          $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+               
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
+
+
 
 }
 

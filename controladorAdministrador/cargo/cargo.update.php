@@ -74,7 +74,12 @@ else{
     $foto=$_FILES["fileCargoMod"]["tmp_name"];
     $tipo =$_FILES['fileCargoMod']['type'];
     $tamaño =$_FILES['fileCargoMod']['size'];
-     
+    
+    $directorio = "../../documentos/cargos/$cargoAnt/";
+    $directorioNew = "../../documentos/cargos/$cargo/";
+
+    rename ($directorio, $directorioNew);
+
     if(!file_exists($directorioNew)){
         mkdir($directorioNew,0777,true);
         $nombre = $_FILES['fileCargoMod']['name'];   

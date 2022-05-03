@@ -273,7 +273,7 @@
                             <br>
                             <br>
                             <form class="row g-3 form-group bordeado"
-                                action="../controladorAdministrador/cargo.create.php" method="POST"
+                                action="../controladorAdministrador/cargo/cargo.create.php" method="POST"
                                 enctype="multipart/form-data" hidden id="formCArgo">
                                 <h4 class="card-title text-center"><b>Crear Cargo</b></h4>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
@@ -312,7 +312,7 @@
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form class="row g-3 form-group"
-                                        action="../controladorAdministrador/cargo.update.php" method="POST"
+                                        action="../controladorAdministrador/cargo/cargo.update.php" method="POST"
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="row">
