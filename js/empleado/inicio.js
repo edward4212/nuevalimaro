@@ -20,6 +20,7 @@ $(document).ready(function(){
                 politica_calidad = '<h5>'+value.politica_calidad+'</h5>';
                 objetivos_calidad = '<h5>'+value.objetivos_calidad+'</h5>';
                 $("#organigrama").attr('src','../documentos/empresa/organigrama/'+value.organigrama); 
+                $("#mapaProcesos").attr('src','../documentos/empresa/mapaProcesos/'+value.mapa_procesos); 
             });
         
         $('#mision').html(mision);

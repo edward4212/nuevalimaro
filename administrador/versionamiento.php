@@ -42,7 +42,7 @@
                             <br>
                             <h2 class="card-title text-center"><b>Versionamiento de Documentos </b></h2>
                             <br>
-                            <form class="row g-3 form-group"
+                            <form class="row g-3 form-group" id="frmVersionamiento"
                                 action="../controladorAdministrador/documento/versionamiento.create.php" method="POST"
                                 enctype="multipart/form-data">
                                 <div class="col-md-10 col-xs-12 col-sm-12">
@@ -50,7 +50,9 @@
                                         hidden>
                                     <h5 for="data"><b>Seleccionar Documento a Actualizar*</b></h5>
                                     <input class="form-control" type="text" name="documentoAuto1" id="documentoAuto1">
-                                    <input class="form-control" type="text" name="macroproceso" id="macroproceso"
+                                    <input class="form-control" type="text" name="documentoNam" id="documentoNam"
+                                        hidden>
+                                        <input class="form-control" type="text" name="macroproceso" id="macroproceso"
                                         hidden>
                                     <input class="form-control" type="text" name="proceso" id="proceso" hidden>
                                     <input class="form-control" type="text" name="tipo" id="tipo" hidden>
@@ -108,7 +110,7 @@
                                 </div>
                                 <span class="text-muted">* Campo Obligatorio</span>
                                 <div class="col-md-4 col-xs-12 col-sm-12">
-                                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>Actualizar
+                                    <button class="btn btn-primary" id="btnVersionamiento" type="submit"><i class="fas fa-check"></i>Actualizar
                                         Versión</button>
                                     <button type="reset" id="limpiar" name="limpiar" class="btn btn-secondary"><i
                                             class="fas fa-broom"></i>

@@ -148,10 +148,8 @@ $(document).ready(function () {
                 var sigla = ui.item.sigla_tipo_documento;
                 var tipo = ui.item.tipo_documento;
                 var c = sigla +' - ' +tipo;
-
-                
-
                 $("#documentoAuto1").val(ui.item.nombre_documento);
+                $("#documentoNam").val(ui.item.nombre_documento);
                 $("#codigo1").val(ui.item.codigo);
                 $("#versionSig1").val(resul);
                 $("#versionAnt").val(suma);
@@ -252,6 +250,7 @@ $(document).ready(function () {
         $("#obsoletos").prop("hidden", false);
     });
 
+    
      /// MOSTRAR DOCUMENTOS OBSOLETOS
      function buscarDocuObs() {
         $.ajax({
@@ -418,12 +417,12 @@ $(document).ready(function () {
                 if(json !== null){
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error no se puede inactivar el documento',
+                        title: 'Error no se puede activar el documento',
                     });
                 }else{
                     Swal.fire({
                         icon: 'success',
-                        title: 'Documento inactivo con éxito',
+                        title: 'Documento activado con éxito',
                         showConfirmButton: false,
                         timer: 2500
                         }).then((result) => {
