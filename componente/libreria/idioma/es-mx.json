@@ -63,43 +63,45 @@
         "value": "Valor Buscado",
         "conditions": {
             "date": {
-                "after": "Después",
-                "before": "Antes",
-                "between": "Entre",
-                "empty": "Vacío",
+                "after": "",
+                "before": "",
+                "between": "",
+                "empty": "",
                 "equals": "Igual a",
-                "not": "Diferente de",
-                "notBetween": "No entre",
-                "notEmpty": "No vacío"
+                "not": "",
+                "notBetween": "",
+                "notEmpty": " "
             },
             "number": {
-                "between": "Entre",
-                "empty": "Vacío",
+                "between": "",
+                "empty": "",
                 "equals": "Igual a",
-                "gt": "Mayor a",
-                "gte": "Mayor o igual a",
-                "lt": "Menor que",
-                "lte": "Menor o igual a",
-                "not": "Diferente de",
-                "notBetween": "No entre",
-                "notEmpty": "No vacío"
+                "gt": "",
+                "gte": "",
+                "lt": "",
+                "lte": "",
+                "not": "",
+                "notBetween": "",
+                "notEmpty": ""
+                
             },
+
             "string": {
-                "contains": "Contiene",
-                "empty": "Vacío",
-                "endsWith": "Termina con",
+                "contains": "",
+                "empty": "",
+                "endsWith": " ",
                 "equals": "Igual a",
-                "not": "Diferente de",
-                "startsWith": "Inicia con",
-                "notEmpty": "No vacío"
+                "not": "",
+                "startsWith": "",
+                "notEmpty": ""
             },
             "array": {
                 "equals": "Igual a",
-                "empty": "Vacío",
-                "contains": "Contiene",
-                "not": "Diferente",
-                "notEmpty": "No vacío",
-                "without": "Sin"
+                "empty": "",
+                "contains": "",
+                "not": "",
+                "notEmpty": " ",
+                "without": ""
             }
         }
        

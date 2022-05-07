@@ -24,7 +24,6 @@
                     <button class="nav-link " id="nav-mapaProcesos-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-mapaProcesos" type="button" role="tab" aria-controls="nav-mapaProcesos"
                         aria-selected="false">Mapa de Procesos</button>
-
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">

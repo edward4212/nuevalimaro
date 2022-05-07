@@ -1,19 +1,21 @@
 <!-- Se agrega Head -->
-<?php include_once "head.frm.php" ?>
+<?php include_once "head.php" ?>
 <title>Inicio</title>
 
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
-    <?php include_once "menu.frm.php" ?>
+    <?php include_once "menu.php" ?>
     <!-- se Inicia Pagina Inicio  -->
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <br>
+                <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-perfil"
-                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">Perfil</button>
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">Mi Perfil</button>
                     <button class="nav-link " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-contraseña"
-                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Contraseña</button>
+                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Gestión de
+                        Contraseña</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -24,9 +26,9 @@
                             <br>
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Foto de Perfil</h5>
+                                    <h5 class="card-title text-center"><b>Foto de Perfil</b></h5>
                                     <img src="../documentos/usuarios/<?php $usuario= $_SESSION['usuario']; echo $usuario;?>/imagen/<?php $img_empleado= $_SESSION['img_empleado']; echo $img_empleado; ?>"
-                                        class="card-img-top imgPerfil" alt="...">
+                                        class="card-img-top imgPerfil zoom2" alt="...">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" id="" class="btn btn-primary text-center"
@@ -39,12 +41,12 @@
                             <br>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Nombre Funcionario</h5>
+                                    <h5 class="card-title"><b>Nombre Funcionario</b></h5>
                                     <p class="card-text"><?php $nombre= $_SESSION['nombre_completo']; echo $nombre; ?>
                                     </p>
-                                    <h5 class="card-title">Cargo</h5>
+                                    <h5 class="card-title"><b>Cargo</b></h5>
                                     <p class="card-text"><?php $cargo= $_SESSION['cargo']; echo $cargo; ?> </p>
-                                    <h5 class="card-title">Correo Electronico</h5>
+                                    <h5 class="card-title"><b>Correo Electrónico</b></h5>
                                     <p class="card-text"><?php $correo= $_SESSION['correo_empleado']; echo $correo; ?>
                                     </p>
                                 </div>
@@ -54,12 +56,14 @@
                             <br>
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <h5 class="card-title">Manual de Funciones</h5>
+                                    <h5 class="card-title"><b>Manual de Funciones</b></h5>
                                     <?php if ($_SESSION['manual_funciones'] != null): ?>
-                                            <a class="btn btn-primary" href="../documentos/cargos/<?php $cargo= $_SESSION['cargo']; echo $cargo;?>/<?php $manual_funciones= $_SESSION['manual_funciones']; echo $manual_funciones;?>">Descargar Manual de Funciones <i class="fas fa-download"></i></a>
-                                        <?php else: ?>   
-                                            <h5>No se ha cargado el manual de Funciones</h5>
-                                        <?php endif ?>
+                                    <a class="btn btn-primary"
+                                        href="../documentos/cargos/<?php $cargo= $_SESSION['cargo']; echo $cargo;?>/<?php $manual_funciones= $_SESSION['manual_funciones']; echo $manual_funciones;?>">Descargar
+                                        Manual de Funciones <i class="fas fa-download"></i></a>
+                                    <?php else: ?>
+                                    <h5>No se ha cargado el manual de funciones</h5>
+                                    <?php endif ?>
                                 </div>
                                 <br>
                             </div>
@@ -70,7 +74,8 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Imagen de Perfil</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Cambiar Imagen de Perfil</b>
+                                        </h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -81,9 +86,10 @@
                                                 <input class="form-control" type="number" name="numidTipDocElim"
                                                     id="numidTipDocElim" hidden>
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <h5>Nueva Imagen</h5>
-                                                    <input class="form-control file  redondeado" type="file" name="fileImagenPerfilUs"
-                                                        id="fileImagenPerfilUs" accept="image/*">
+                                                    <h5><b>Nueva Imagen</b></h5>
+                                                    <input class="form-control file  redondeado" type="file"
+                                                        name="fileImagenPerfilUs" id="fileImagenPerfilUs"
+                                                        accept="image/*">
                                                 </div>
                                                 <br>
                                             </div>
@@ -107,14 +113,14 @@
                             <br>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Actualizar Contraseña</h5>
+                                    <h5 class="card-title text-center"><b>Actualizar Contraseña</b></h5>
                                     <form class="row g-3 form-group" id="modifClaveUsu" method="POST">
                                         <div class="modal-body">
                                             <div class="">
                                                 <input class="form-control" type="number" name="numIdUsurioMoClave"
                                                     id="numIdUsurioMoClave" hidden>
                                                 <div class="">
-                                                    <h5>Nueva Contraseña</h5>
+                                                    <h5><b>Nueva Contraseña</b></h5>
                                                     <input class="bg-light login" type="password"
                                                         name="txtNuevaClaveEmplA" id="txtNuevaClaveEmplA"
                                                         autocomplete="current-password" aria-label="E"
@@ -128,8 +134,9 @@
                                         <div class="modal-footer">
                                             <button type="submit" id="btnModClavEmpl" class="btn btn-primary"><i
                                                     class="far fa-edit"></i> Modificar</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
-                                                    class="fas fa-undo"></i> Volver</button>
+                                            <button type="reset" class="btn btn-secondary"><i
+                                                    class="fas fa-broom"></i>
+                                                Limpiar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -142,8 +149,9 @@
         </div>
     </main>
 
-    <?php include_once "footer.frm.php" ?>
+    <?php include_once "footer.php" ?>
 
-<script src="../js/empleado/perfil.js"></script>
+    <script src="../js/empleado/perfil.js"></script>
 </body>
+
 </html>

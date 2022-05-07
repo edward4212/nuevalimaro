@@ -19,7 +19,7 @@ $(document).ready(function(){
             datos += "<table id='tableDocumentoVigentesEmp'  class='table  table-striped table-bordered table-responsive '   >";
                datos += '<thead >';
                     datos += '<tr class="table-light border-primary ">';
-                    datos += '<th  class="text-center align-middle border border-primary " hidden>ID VERSIONAMIENTO</th>' ;
+                        datos += '<th  class="text-center align-middle border border-primary">MACROPROCESO</th>' ;
                         datos += '<th  class="text-center align-middle border border-primary ">PROCESO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO </th>';
@@ -32,20 +32,22 @@ $(document).ready(function(){
                 datos += '<tbody>';
                     $.each(json, function(key, value){
                         datos += '<tr class="align-middle" >';
-                        datos += '<td class=" border border-primary  text-wrap" hidden>' + value.id_versionamiento + '</td>';
+                        datos += '<td class=" border border-primary  text-wrap" >' + value.macroproceso + '</td>';
                             datos += '<td class=" border border-primary  text-wrap">'+value.proceso+'</td>'; 
                             datos += '<td class=" border border-primary text-center align-middle">'+value.tipo_documento+'</td>';
                             datos += '<td class=" border border-primary text-wrap align-middle">'+value.codigo+'</td>';
                             datos += '<td class=" border border-primary text-wrap">'+value.nombre_documento+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.numero_version+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.fecha_aprobacion+'</td>';
-                            datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/procesos/'+value.sigla_proceso+'/'+value.sigla_tipo_documento+ '/'+value.codigo+ '/'+value.numero_version+ '/' +value.documento+'"><i class="fas fa-download"></i></a></td>';
+                            datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/macroprocesos/'+value.macroproceso+'/'+value.proceso+'/'+value.sigla_tipo_documento+' - '+value.tipo_documento+ '/'+value.codigo+ '/'+value.numero_version+ '/' +value.documento+'"><i class="fas fa-download"></i></a></td>';
                         datos += '</tr>';
                     });
                 datos += '</tbody>';
             datos += '</table>';
             $('#consulta').html(datos);
+            
             $('#tableDocumentoVigentesEmp').DataTable({
+                
                 "destroy" : true,
                 "autoWidth": true,
                 "responsive": true,
@@ -55,11 +57,12 @@ $(document).ready(function(){
                 "colReorder": true,
                 "sZeroRecords": true,
                 "keys": true,
+                "lengthChange": true,
                 "deferRender": true,
-                "lengthMenu":	[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":	100,
+                "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50,100, "Todos"]],
+                "iDisplayLength":	50,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
-                dom:  'Bfrtip',
+                dom:  'Bflrtip',
                 order: [
                     [1, 'asc'],
                     [2, 'asc']
@@ -68,36 +71,41 @@ $(document).ready(function(){
                     dataSrc: 1
                 },
                 buttons: [
+                   
                     {
                         extend: 'pdfHtml5',
-                        orientation: 'landscape',
+                        // orientation: 'landscape',
                         pageSize: 'LEGAL',
                         download: 'open',
-                        title: 'Documentos Vigentes',
-                        titleAttr: 'Documentos Vigentes',
-                        messageTop: 'Documentos Vigentes',
+                        title: 'Listado Maestro De Documentos Vigentess',
+                        titleAttr: 'Listado Maestro De Documentos Vigentes',
+                        messageTop: ' Listado Maestro De Documentos Vigentes',
                         text : '<i class="far fa-file-pdf"></i>',
                         exportOptions : {
-                            columns: [1,2,3,4,5,6]
-                        }
+                            columns: [0,1,2,3,4,5,6]
+                        },
+                        footer: true
                     },
                     {
                         extend: 'print',
-                        title: 'Documentos Vigentes',
-                        titleAttr: 'Documentos Vigentes',
-                        messageTop: 'Documentos Vigentes',
+                        title: 'Listado Maestro De Documentos Vigentes',
+                        titleAttr: 'Listado Maestro De Documentos Vigentes',
+                        messageTop: 'Listado Maestro De Documentos Vigentes',
                         text : '<i class="fas fa-print"></i>',
                         exportOptions : {
-                            columns: [1,2,3,4,5,6]
-                        }
+                            columns: [0,1,2,3,4,5,6]
+                        },
+                        footer: true
                     },
                     {
                         extend: 'excelHtml5',
+                        footer: true,
                         text : '<i class="fas fa-file-excel"></i>',
                         autoFiltre : true ,
-                        title: 'Documentos Vigentes',
+                        sheetName: 'Listado Maestro De Documentos',
+                        title: 'Listado Maestro De Documentos Vigente',
                         exportOptions : {
-                            columns: [1,2,3,4,5,6]
+                            columns: [0,1,2,3,4,5,6]
                         }
                     },
                     {
@@ -106,15 +114,20 @@ $(document).ready(function(){
                         autoFiltre : true ,
                         titleAttr: 'COPIAR',
                         exportOptions : {
-                            columns: [1,2,3,4,5,6]
+                            columns: [0,1,2,3,4,5,6]
                         }
                     },
                     {
-                        extend: 'searchBuilder'
-                        
+                        extend: 'searchBuilder',
+                        config: {
+                            depthLimit: 2,
+                            columns: [0,1,2],
+                        } 
                     }                      
                 ]
             });
+
+            
         }).fail(function(xhr, status, error){
             $('#consulta').html(error);
         });

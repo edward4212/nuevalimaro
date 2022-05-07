@@ -6,23 +6,21 @@ class Solicitudes {
     public $id_solicitud;
     public $solicitud;
     public $id_empleado;
-    public $id_prioridad;
     public $prioridad;
     public $id_tipo_documento;
     public $tipo_documento;
-    public $id_estatus_solicitud;
-    public $estatus_solicitud;
-    public $id_tipo_solicitud;
+    public $estado_solicitud;
     public $tipo_solicitud;
     public $documento;
     public $codigo;
-    public $carpeta;
+    public $ruta;
     public $funcionario_asignado;
-
     public $id_comentarios_solicitud;
     public $comentario;
     public $usuario_comentario;
     public $fecha_comentario;
+
+  
 
     /**
      * Get the value of id_solicitud
@@ -34,10 +32,8 @@ class Solicitudes {
 
     /**
      * Set the value of id_solicitud
-     *
-     * @return  self
      */
-    public function setIdSolicitud($id_solicitud)
+    public function setIdSolicitud($id_solicitud): self
     {
         $this->id_solicitud = $id_solicitud;
 
@@ -54,10 +50,8 @@ class Solicitudes {
 
     /**
      * Set the value of solicitud
-     *
-     * @return  self
      */
-    public function setSolicitud($solicitud)
+    public function setSolicitud($solicitud): self
     {
         $this->solicitud = $solicitud;
 
@@ -74,32 +68,10 @@ class Solicitudes {
 
     /**
      * Set the value of id_empleado
-     *
-     * @return  self
      */
-    public function setIdEmpleado($id_empleado)
+    public function setIdEmpleado($id_empleado): self
     {
         $this->id_empleado = $id_empleado;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of id_prioridad
-     */
-    public function getIdPrioridad()
-    {
-        return $this->id_prioridad;
-    }
-
-    /**
-     * Set the value of id_prioridad
-     *
-     * @return  self
-     */
-    public function setIdPrioridad($id_prioridad)
-    {
-        $this->id_prioridad = $id_prioridad;
 
         return $this;
     }
@@ -114,10 +86,8 @@ class Solicitudes {
 
     /**
      * Set the value of prioridad
-     *
-     * @return  self
      */
-    public function setPrioridad($prioridad)
+    public function setPrioridad($prioridad): self
     {
         $this->prioridad = $prioridad;
 
@@ -134,10 +104,8 @@ class Solicitudes {
 
     /**
      * Set the value of id_tipo_documento
-     *
-     * @return  self
      */
-    public function setIdTipoDocumento($id_tipo_documento)
+    public function setIdTipoDocumento($id_tipo_documento): self
     {
         $this->id_tipo_documento = $id_tipo_documento;
 
@@ -154,10 +122,8 @@ class Solicitudes {
 
     /**
      * Set the value of tipo_documento
-     *
-     * @return  self
      */
-    public function setTipoDocumento($tipo_documento)
+    public function setTipoDocumento($tipo_documento): self
     {
         $this->tipo_documento = $tipo_documento;
 
@@ -165,61 +131,19 @@ class Solicitudes {
     }
 
     /**
-     * Get the value of id_estatus_solicitud
+     * Get the value of estado_solicitud
      */
-    public function getIdEstatusSolicitud()
+    public function getEstadoSolicitud()
     {
-        return $this->id_estatus_solicitud;
+        return $this->estado_solicitud;
     }
 
     /**
-     * Set the value of id_estatus_solicitud
-     *
-     * @return  self
+     * Set the value of estado_solicitud
      */
-    public function setIdEstatusSolicitud($id_estatus_solicitud)
+    public function setEstadoSolicitud($estado_solicitud): self
     {
-        $this->id_estatus_solicitud = $id_estatus_solicitud;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of estatus_solicitud
-     */
-    public function getEstatusSolicitud()
-    {
-        return $this->estatus_solicitud;
-    }
-
-    /**
-     * Set the value of estatus_solicitud
-     *
-     * @return  self
-     */
-    public function setEstatusSolicitud($estatus_solicitud)
-    {
-        $this->estatus_solicitud = $estatus_solicitud;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of id_tipo_solicitud
-     */
-    public function getIdTipoSolicitud()
-    {
-        return $this->id_tipo_solicitud;
-    }
-
-    /**
-     * Set the value of id_tipo_solicitud
-     *
-     * @return  self
-     */
-    public function setIdTipoSolicitud($id_tipo_solicitud)
-    {
-        $this->id_tipo_solicitud = $id_tipo_solicitud;
+        $this->estado_solicitud = $estado_solicitud;
 
         return $this;
     }
@@ -234,10 +158,8 @@ class Solicitudes {
 
     /**
      * Set the value of tipo_solicitud
-     *
-     * @return  self
      */
-    public function setTipoSolicitud($tipo_solicitud)
+    public function setTipoSolicitud($tipo_solicitud): self
     {
         $this->tipo_solicitud = $tipo_solicitud;
 
@@ -254,10 +176,8 @@ class Solicitudes {
 
     /**
      * Set the value of documento
-     *
-     * @return  self
      */
-    public function setDocumento($documento)
+    public function setDocumento($documento): self
     {
         $this->documento = $documento;
 
@@ -274,10 +194,8 @@ class Solicitudes {
 
     /**
      * Set the value of codigo
-     *
-     * @return  self
      */
-    public function setCodigo($codigo)
+    public function setCodigo($codigo): self
     {
         $this->codigo = $codigo;
 
@@ -285,21 +203,37 @@ class Solicitudes {
     }
 
     /**
-     * Get the value of carpeta
+     * Get the value of ruta
      */
-    public function getCarpeta()
+    public function getRuta()
     {
-        return $this->carpeta;
+        return $this->ruta;
     }
 
     /**
-     * Set the value of carpeta
-     *
-     * @return  self
+     * Set the value of ruta
      */
-    public function setCarpeta($carpeta)
+    public function setRuta($ruta): self
     {
-        $this->carpeta = $carpeta;
+        $this->ruta = $ruta;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of funcionario_asignado
+     */
+    public function getFuncionarioAsignado()
+    {
+        return $this->funcionario_asignado;
+    }
+
+    /**
+     * Set the value of funcionario_asignado
+     */
+    public function setFuncionarioAsignado($funcionario_asignado): self
+    {
+        $this->funcionario_asignado = $funcionario_asignado;
 
         return $this;
     }
@@ -314,10 +248,8 @@ class Solicitudes {
 
     /**
      * Set the value of id_comentarios_solicitud
-     *
-     * @return  self
      */
-    public function setIdComentariosSolicitud($id_comentarios_solicitud)
+    public function setIdComentariosSolicitud($id_comentarios_solicitud): self
     {
         $this->id_comentarios_solicitud = $id_comentarios_solicitud;
 
@@ -334,10 +266,8 @@ class Solicitudes {
 
     /**
      * Set the value of comentario
-     *
-     * @return  self
      */
-    public function setComentario($comentario)
+    public function setComentario($comentario): self
     {
         $this->comentario = $comentario;
 
@@ -354,10 +284,8 @@ class Solicitudes {
 
     /**
      * Set the value of usuario_comentario
-     *
-     * @return  self
      */
-    public function setUsuarioComentario($usuario_comentario)
+    public function setUsuarioComentario($usuario_comentario): self
     {
         $this->usuario_comentario = $usuario_comentario;
 
@@ -374,32 +302,10 @@ class Solicitudes {
 
     /**
      * Set the value of fecha_comentario
-     *
-     * @return  self
      */
-    public function setFechaComentario($fecha_comentario)
+    public function setFechaComentario($fecha_comentario): self
     {
         $this->fecha_comentario = $fecha_comentario;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of funcionario_asignado
-     */
-    public function getFuncionarioAsignado()
-    {
-        return $this->funcionario_asignado;
-    }
-
-    /**
-     * Set the value of funcionario_asignado
-     *
-     * @return  self
-     */
-    public function setFuncionarioAsignado($funcionario_asignado)
-    {
-        $this->funcionario_asignado = $funcionario_asignado;
 
         return $this;
     }

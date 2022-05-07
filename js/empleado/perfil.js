@@ -16,17 +16,14 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 3000
                     }).then((result) => {
-                        window.location.href = "../vistaLogin/login.frm.php";
+                        window.location.href = "../Login/login.php";
                     });
             }).fail(function(xhr, status, error){
                 Swal.fire({                  
                     icon: 'error',
-                    title: 'Contraseña No Actualizada',
-                    showConfirmButton: false,
-                    timer: 3000
-                    }).then((result) => {
-                        window.location.href = "../vistaEmpleado/perfil.frm.php";
-                    });
+                    title: 'Contraseña no actualizada',
+                    showConfirmButton: true,
+                    })
         });
     });
 

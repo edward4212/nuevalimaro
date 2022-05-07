@@ -2,6 +2,33 @@
 * Se estilo al body
 */
 
+#tableDocumentoVigentesEmp_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tableDocumentoVigentesEmp_filter{
+  margin-bottom: 19px;
+}
+
+#tableConsultaDocR_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tableConsultaDocR_filter{
+  margin-bottom: 19px;
+}
+
+#tablaTipoDoc_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tablaTipoDoc_filter{
+  margin-bottom: 19px;
+}
+
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -133,7 +160,14 @@ nav-tabs {
 .zoom1 {
   transition: 0.5s;
   width: 200px;
-  height: 100px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.zoom2{
+  transition: 0.5s;
+  width: 50px;
+  height: 50px;
   margin: 0 auto;
 }
 
@@ -151,6 +185,12 @@ nav-tabs {
   ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
+.zoom2:hover {
+  transform: scale(
+    2,
+    2
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
 /**
 * Estilo @media only screen and (max-width : 600PX)
 */

@@ -112,8 +112,7 @@ $(document).ready(function () {
             "lengthMenu":	[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
             "iDisplayLength":	20,
             "language": {"url": "../componente/libreria/idioma/es-mx.json"},
-            dom:  'Qfrtip',
-            dom:  'Bfrtip',
+            dom:  'Bflrtip',
             searchBuilder: true,
             buttons: [
                 {
@@ -126,7 +125,7 @@ $(document).ready(function () {
                     messageTop: 'Tipo Documentos',
                     text : '<i class="far fa-file-pdf"></i>',
                     exportOptions : {
-                        columns: [0,1,2,3]
+                        columns: [0,1,2]
                     }
                 },
                 {
@@ -136,7 +135,7 @@ $(document).ready(function () {
                     messageTop: 'Tipo Documentos',
                     text : '<i class="fas fa-print"></i>',
                     exportOptions : {
-                        columns: [0,1,2,3]
+                        columns: [0,1,2]
                     }
                 },
                 {
@@ -145,7 +144,7 @@ $(document).ready(function () {
                     autoFiltre : true ,
                     title: 'Tipo Documentos',
                     exportOptions : {
-                        columns: [0,1,2,3]
+                        columns: [0,1,2]
                     }
                 },
                 {
@@ -154,13 +153,16 @@ $(document).ready(function () {
                     autoFiltre : true ,
                     titleAttr: 'COPIAR',
                     exportOptions : {
-                        columns: [0,1,2,3]
+                        columns: [0,1,2]
                     }
                 },
                 {
-                    extend: 'searchBuilder'
-                    
-                }                      
+                    extend: 'searchBuilder',
+                    config: {
+                        depthLimit: 2,
+                        columns: [0,1,2],
+                    } 
+                }                        
             ],
             
         });
@@ -496,8 +498,7 @@ $(document).ready(function () {
             "language": {
                 "url": "../componente/libreria/idioma/es-mx.json"
             },
-            dom: 'Qfrtip',
-            dom: 'Bfrtip',
+            dom:  'Bflrtip',
             order: [
                 [1, 'asc'],
                 [2, 'asc']
@@ -515,7 +516,7 @@ $(document).ready(function () {
                     messageTop: 'Documentos Registrados',
                     text: '<i class="far fa-file-pdf"></i>',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
+                        columns: [0, 1, 2, 3, 4]
                     }
                 },
                 {
@@ -525,7 +526,7 @@ $(document).ready(function () {
                     messageTop: 'Documentos Registrados',
                     text: '<i class="fas fa-print"></i>',
                     exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5]
+                        columns: [ 0, 1, 2, 3, 4]
                     }
                 },
                 {
@@ -534,7 +535,7 @@ $(document).ready(function () {
                     autoFiltre: true,
                     title: 'Documentos Registrados',
                     exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5]
+                        columns: [ 0, 1, 2, 3, 4]
                     }
                 },
                 {
@@ -543,13 +544,16 @@ $(document).ready(function () {
                     autoFiltre: true,
                     titleAttr: 'COPIAR',
                     exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5]
+                        columns: [ 0, 1, 2, 3, 4]
                     }
                 },
                 {
-                    extend: 'searchBuilder'
-
-                }
+                    extend: 'searchBuilder',
+                    config: {
+                        depthLimit: 2,
+                        columns: [0,1,2],
+                    } 
+                }  
             ]
         });
         }).fail(function (xhr, status, error) {

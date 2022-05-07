@@ -1,20 +1,21 @@
 <!-- Se agrega Head -->
-<?php include_once "head.frm.php" ?>
+<?php include_once "head.php" ?>
 <title>Solicitudes</title>
-
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
-    <?php include_once "menu.frm.php" ?>
+    <?php include_once "menu.php" ?>
     <!-- se Inicia Pagina Inicio  -->
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active " id="nav-solicitudes-tab" data-bs-toggle="tab"
+                <br>
+                <div class="nav nav-pills" id="nav-tab" role="tablist">
+                    <button class="nav-link  " id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"
                         aria-selected="false">Mis Solicitudes</button>
-                    <button class="nav-link " id="nav-crear-tab" data-bs-toggle="tab" data-bs-target="#nav-crear"
-                        type="button" role="tab" aria-controls="nav-crear" aria-selected="true">Solicitar Crear Documento</button>
+                    <button class="nav-link active" id="nav-crear-tab" data-bs-toggle="tab" data-bs-target="#nav-crear"
+                        type="button" role="tab" aria-controls="nav-crear" aria-selected="true">Solicitar Crear
+                        Documento</button>
                     <button class="nav-link " id="nav-actualizar-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-actualizar" type="button" role="tab" aria-controls="nav-actualizar"
                         aria-selected="false">Solicitar Actualizar Documento</button>
@@ -23,10 +24,10 @@
                         Documento</button>
                 </div>
             </nav>
-            
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade  show active" id="nav-solicitudes" role="tabpanel"
+                <div class="tab-pane fade   " id="nav-solicitudes" role="tabpanel"
                     aria-labelledby="nav-solicitudes-tab">
+                    <br>
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <h3 class="card-title text-center">Mis Solicitudes</h3>
@@ -36,7 +37,7 @@
                                     <h5 id="solicitudes"></h5>
                                 </form>
                             </div>
-                            
+
                         </div>
                         <!-- Modal para ver comentarios-->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -52,25 +53,32 @@
                                         <h5 id="comentarios"></h5>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary"
-                                            data-bs-dismiss="modal"><i class="fas fa-undo"></i>Volver</button>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                                class="fas fa-undo"></i>Volver</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="nav-crear" role="tabpanel" aria-labelledby="nav-crear-tab">
+                <div class="tab-pane fade show active" id="nav-crear" role="tabpanel" aria-labelledby="nav-crear-tab">
+                    <br>
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h3 class="card-title text-center">Solicitar Crear Documentos</h3>
                             <form class="row g-3 form-group"
-                                action="../controladorEmpleado/solicitudes.crearDoc.create.php" method="POST"
+                            action="../controladorEmpleado/solicitudes.crearDoc.create.php" method="POST"
                                 enctype="multipart/form-data">
                                 <div class="col-md-5 col-xs-12 col-sm-12">
                                     <h5>Prioridad</h5>
                                     <select class="form-control redondeado" id="prioridad" name="prioridad"
-                                        required></select>
+                                        required>
+                                        <option disabled selected> - Seleccione Un Tipo De Documento -</option>
+                                        <option value="IMPORTANTE - URGENTE"> IMPORTANTE - URGENTE</option>
+                                        <option value="IMPORTANTE - NO URGENTE"> IMPORTANTE - NO URGENTE</option>
+                                        <option value="NO IMPORTANTE - URGENTE"> NO IMPORTANTE - URGENTE</option>
+                                        <option value="NO IMPORTANTE - NO URGENTE"> NO IMPORTANTE - NO URGENTE</option>
+                                    </select>
+                                        
                                 </div>
                                 <div class="col-md-2 col-xs-12 col-sm-12">
                                 </div>
@@ -81,23 +89,27 @@
                                 </div>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <h5>Descripción</h5>
-                                    <textarea type="text" class="form-control redondeado" rows="5" id="solicitud" name="solicitud" required></textarea>
+                                    <textarea type="text" class="form-control redondeado" rows="5" id="solicitud"
+                                        name="solicitud" required></textarea>
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
                                     <h5>Subir Documento</h5>
-                                    <input type="file" class="form-control redondeado" id="fileSolicitud" name="fileSolicitud" multiple>
-                                    <p class="text-muted">Si se agrega más de un archivo, anexarlos en carpeta comprimida .zip</p>
+                                    <input type="file" class="form-control redondeado" id="fileSolicitud"
+                                        name="fileSolicitud" multiple>
+                                    <p class="text-muted">Si se agrega más de un archivo, anexarlos en carpeta
+                                        comprimida .zip</p>
                                 </div>
-                                <div class="col-md-6 col-xs-12 col-sm-12 align-items-center">
-                                    <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Crear
+                                <span class="text-muted">* Campo Obligatorio</span>
+                                <div class="col-md-12 col-xs-12 col-sm-12 align-items-center">
+                                    <button type="submit" class="btn btn-primary "><i class="fas fa-plus"></i> Crear
                                         Solicitud</button>
-                                    <button type="reset" class="btn btn-secondary mb-3"><i class="fas fa-broom"></i>
+                                    <button type="reset" class="btn btn-secondary"><i class="fas fa-broom"></i>
                                         Limpiar</button>
                                 </div>
                             </form>
                         </div>
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -125,20 +137,25 @@
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <h5>Código Documento</h5>
-                                            <input type="text" class="form-control redondeado" name="codigo" id="codigo" readonly>
+                                            <input type="text" class="form-control redondeado" name="codigo" id="codigo"
+                                                readonly>
                                             <h5>Tipo Documento</h5>
-                                            <input type="text" class="form-control redondeado" name="idTipoDoc1" id="idTipoDoc1" hidden>
-                                            <input type="text" class="form-control redondeado" name="tipoDoc1" id="tipoDoc1" readonly>
+                                            <input type="text" class="form-control redondeado" name="idTipoDoc1"
+                                                id="idTipoDoc1" hidden>
+                                            <input type="text" class="form-control redondeado" name="tipoDoc1"
+                                                id="tipoDoc1" readonly>
                                             <h5>Prioridad</h5>
                                             <select class="form-control redondeado" id="prioridad1" name="prioridad1"
                                                 required></select>
                                             <h5>Descripción</h5>
-                                            <textarea type="text" class="form-control redondeado" rows="8" cols="55" id="solicitud1" name="solicitud1"
-                                                required></textarea>
+                                            <textarea type="text" class="form-control redondeado" rows="8" cols="55"
+                                                id="solicitud1" name="solicitud1" required></textarea>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5>Subir Documento</h5>
-                                                <input type="file" class="form-control redondeado" id="fileActualizacion" name="fileActualizacion" multiple>
-                                                <p class="text-muted">Si se agrega más de un archivo, anexarlos en carpeta comprimida .zip</p>
+                                                <input type="file" class="form-control redondeado"
+                                                    id="fileActualizacion" name="fileActualizacion" multiple>
+                                                <p class="text-muted">Si se agrega más de un archivo, anexarlos en
+                                                    carpeta comprimida .zip</p>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -179,18 +196,22 @@
                                             <h5>Código Documento</h5>
                                             <input type="text" name="codigo2" id="codigo2" readonly>
                                             <h5>Tipo Documento</h5>
-                                            <input type="text" class="form-control redondeado" name="idTipoDoc2" id="idTipoDoc2" hidden>
-                                            <input type="text" class="form-control redondeado" name="tipoDoc2" id="tipoDoc2" readonly>
+                                            <input type="text" class="form-control redondeado" name="idTipoDoc2"
+                                                id="idTipoDoc2" hidden>
+                                            <input type="text" class="form-control redondeado" name="tipoDoc2"
+                                                id="tipoDoc2" readonly>
                                             <h5>Prioridad</h5>
                                             <select class="form-control redondeado" id="prioridad2" name="prioridad2"
                                                 required></select>
                                             <h5>Descripción</h5>
-                                            <textarea type="text" class="form-control redondeado" rows="8" cols="55" id="solicitud2" name="solicitud2"
-                                                required></textarea>
+                                            <textarea type="text" class="form-control redondeado" rows="8" cols="55"
+                                                id="solicitud2" name="solicitud2" required></textarea>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5>Subir Documento</h5>
-                                                <input type="file" class="form-control redondeado" id="fileEliminacion" name="fileEliminacion" multiple>
-                                                <p class="text-muted">Si se agrega más de un archivo, anexarlos en carpeta comprimida .zip</p>
+                                                <input type="file" class="form-control redondeado" id="fileEliminacion"
+                                                    name="fileEliminacion" multiple>
+                                                <p class="text-muted">Si se agrega más de un archivo, anexarlos en
+                                                    carpeta comprimida .zip</p>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -208,8 +229,8 @@
             </div>
         </div>
     </main>
-    <?php include_once "footer.frm.php" ?>
-<script src="../js/empleado/solicitudes.js"></script>
+    <?php include_once "footer.php" ?>
+    <script src="../js/empleado/solicitudes.js"></script>
 </body>
 
 

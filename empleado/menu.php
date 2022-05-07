@@ -1,9 +1,9 @@
 <!-- Inicio Menu -->
 <header class="navbar navbar-expand-md">
-<nav class=" navbar  bg-light container-lg flex-wrap flex-md-nowrap fixed-top head-model border"
+    <nav class=" navbar  bg-light container-lg flex-wrap flex-md-nowrap fixed-top head-model border"
         aria-label="Main navigation" style="top: 5px;">
         <div class="container-fluid ">
-        <a class="navbar-brand">
+            <a class="navbar-brand">
                 <img src="../documentos/limaro/horizontal_on_white_by_logaster.png" alt="" width="100" height="40">
                 <img src="../documentos/empresa/logo/<?php $logo= $_SESSION['logo']; echo $logo;?>" alt="" width="100"
                     height="40">
@@ -29,12 +29,19 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item col-6 col-md-auto">
-                        <a class="nav-link p-2" href="solicitudes.php"><i class="far fa-address-book"></i>
-                            Solicitudes</a>
-                    </li>
-                    <li class="nav-item col-6 col-md-auto">
-                        <a class="nav-link p-2" href="tareas.php"><i class="far fa-address-book"></i> Tareas</a>
+                    <li class="nav-item dropdown">
+                        <a href="perfil.php" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-file"></i>
+                            Solicitudes y Tareas</a>
+                        <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2" href="solicitudes.php"><i class="fas fa-check-double"></i>
+                                    Solicitudes</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2" href="tareas.php"><i class="fas fa-list"></i> Tareas</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="perfil.php" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink"
@@ -46,20 +53,11 @@
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="perfil.php" style="color: #0A58CD;"><i
                                         class="fas fa-user-alt"></i> Mi Perfil</a></li>
-
                         </ul>
                     </li>
-                    <!-- <li class="nav-item col-6 col-md-auto">
-                        <a class="btn" id="btnCerrar" style="color: #0A58CD;"><i class="fas fa-sign-out-alt"
-                                style="color: #0A58CD;"></i> Cerrar Sesión</a>
-                        <script src="../js/Login/logueo.js"></script>
-                    </li> -->
                 </ul>
             </div>
             <form class="d-flex">
-                <!-- <label  href="perfil.php" class="nav-link p-2" ><?php $usuario= $_SESSION['usuario']; echo $usuario;?></label>
-                <img href="perfil.php"  src="../documentos/usuarios/<?php $usuario= $_SESSION['usuario']; echo $usuario;?>/imagen/<?php $img_empleado= $_SESSION['img_empleado']; echo $img_empleado; ?>"
-                alt="mdo" width="32" height="32" class="rounded-circle"> -->
                 <a class="btn" id="btnCerrar" style="color: #0A58CD;"><i class="fas fa-sign-out-alt"
                         style="color: #0A58CD;"></i> Cerrar Sesión</a>
                 <script src="../js/Login/logueo.js"></script>
