@@ -12,17 +12,19 @@ class Solicitudes{
      public $id_solicitud;
      public $solicitud;
      public $id_empleado;
-     public $id_prioridad;
      public $prioridad;
      public $id_tipo_documento;
      public $tipo_documento;
-     public $id_estatus_solicitud;
-     public $estatus_solicitud;
-     public $id_tipo_solicitud;
+     public $estado_solicitud;
      public $tipo_solicitud;
      public $documento;
      public $codigo;
-     public $carpeta;
+     public $ruta;
+     public $funcionario_asignado;
+     public $id_comentarios_solicitud;
+     public $comentario;
+     public $usuario_comentario;
+     public $fecha_comentario;
 
      // OTROS ATRIBUTOS //
      public $conexion;
@@ -35,17 +37,21 @@ class Solicitudes{
           $this->id_solicitud = $solicitudesE->getIdSolicitud();
           $this->solicitud = $solicitudesE->getSolicitud();
           $this->id_empleado = $solicitudesE->getIdEmpleado();
-          $this->id_prioridad = $solicitudesE->getIdPrioridad();
           $this->prioridad = $solicitudesE->getPrioridad();
           $this->id_tipo_documento = $solicitudesE->getIdTipoDocumento();
           $this->tipo_documento = $solicitudesE->getTipoDocumento();
-          $this->id_estatus_solicitud = $solicitudesE->getIdEstatusSolicitud();
-          $this->estatus_solicitud = $solicitudesE->getEstatusSolicitud();
-          $this->id_tipo_solicitud = $solicitudesE->getIdTipoSolicitud();
+          $this->estado_solicitud = $solicitudesE->getEstadoSolicitud();
           $this->tipo_solicitud = $solicitudesE->getTipoSolicitud();
           $this->documento = $solicitudesE->getDocumento();
           $this->codigo = $solicitudesE->getCodigo();
-          $this->carpeta = $solicitudesE->getCarpeta();
+          $this->ruta = $solicitudesE->getRuta();
+
+          $this->funcionario_asignado = $solicitudesE->getFuncionarioAsignado();
+          $this->id_comentarios_solicitud = $solicitudesE->getIdComentariosSolicitud();
+          $this->comentario = $solicitudesE->getComentario();
+          $this->usuario_comentario = $solicitudesE->getUsuarioComentario();
+          $this->fecha_comentario = $solicitudesE->getFechaComentario();
+
           $this->conexion = \Conexion::singleton();
      }
 
@@ -95,12 +101,12 @@ class Solicitudes{
      {
           try{
                
-               $this->result = $this->conexion->prepare("INSERT INTO solicitud VALUES (NULL , :empleado , :prioridad, :tipo_documento , 'CREACIÓN', 'CREADA' , '0000', :solicitud ,:RUTA, :documento, CURRENT_TIMESTAMP(),'Sin Asignar',NULL,NULL,NULL)");
+               $this->result = $this->conexion->prepare("INSERT INTO solicitud VALUES (NULL , :empleado , :prioridad, :tipo_documento , 'CREACIÓN', 'CREADA' , '0000', :solicitud ,:ruta, :documento, CURRENT_TIMESTAMP(),'Sin Asignar',NULL,NULL,NULL)");
                $this->result->bindParam(':empleado', $this->id_empleado);
-               $this->result->bindParam(':prioridad', $this->id_prioridad);
+               $this->result->bindParam(':prioridad', $this->prioridad);
                $this->result->bindParam(':tipo_documento', $this->id_tipo_documento);
                $this->result->bindParam(':solicitud', $this->solicitud);
-               $this->result->bindParam(':carpeta', $this->carpeta);
+               $this->result->bindParam(':ruta', $this->ruta);
                $this->result->bindParam(':documento', $this->documento);
                $this->result->execute();    
           } catch (Exception $e) {

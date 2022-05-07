@@ -1,5 +1,6 @@
 <?php
 
+
 include_once "../entidadEmpleado/solicitudes.entidad.php";
 include_once "../modeloEmpleado/solicitudes.modelo.php";
 include_once "../controladorLogin/logueo.read.php";
@@ -14,9 +15,6 @@ $fechaActual = date("Y-m-d H-i-s");
 
 if (isset($_FILES["fileSolicitud"]))
 {
-  
- 
-    
     $directorio = "../documentos/usuarios/$usuario/solicitudes/$fechaActual/";
    
     if(!file_exists($directorio)){
@@ -43,11 +41,11 @@ else{
 
 $solicitudesE = new \entidad\Solicitudes(); 
 $solicitudesE -> setIdEmpleado($id_empleado);
-$solicitudesE -> setIdPrioridad($id_prioridad);
+$solicitudesE -> setPrioridad($id_prioridad);
 $solicitudesE -> setIdTipoDocumento($id_tipoDocumento);
 $solicitudesE -> setSolicitud($solicitud);
 $solicitudesE -> setDocumento($nombre); 
-$solicitudesE -> setCarpeta($fechaActual); 
+$solicitudesE -> setRuta($fechaActual); 
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 $resultado = $solicitudesM->solicitudCreacion();

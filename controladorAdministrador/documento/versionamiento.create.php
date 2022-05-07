@@ -12,6 +12,7 @@ include_once "../../componente/Mailer/src/PHPMailer.php";
 include_once "../../componente/Mailer/src/SMTP.php";
 include_once "../../componente/Mailer/src/Exception.php";
 
+
 $id_documento=  $_POST['idDocumento1'];
 $macroproceso = $_POST['macroproceso'];
 $proceso = $_POST['proceso'];
@@ -57,32 +58,34 @@ $documentoE -> setFechaRevision($fecha_revision);
 $documentoE -> setUsuarioAprobacion($usuario_aprobacion);
 $documentoE -> setFechaAprobacion($fecha_aprobacion);
 $documentoE -> setDocumento($nombre);
-
 $documentoE -> setVersionAnte($numero_version_ante);
 
 $documentoM= new \modelo\documento($documentoE);
 $resultado = $documentoM->creacionVersionamiento();
 $resultado = $documentoM->actualizarVersionamiento();
 
-$usuarioE = new \entidad\Usuario();
-$usuarioM= new \modelo\Usuario($usuarioE);
-$resultado = $usuarioM->usuariosCorreos();
-$fechaActual = date("Y-m-d H-i-s");
+unset($documentoE);
+unset($documentoM);
 
-if(array_key_exists('usuario',$resultado[0])){
+if(empty($retorno)){
+    $usuarioE = new \entidad\Usuario();
+    $usuarioM= new \modelo\Usuario($usuarioE);
+    $resultado = $usuarioM->usuariosCorreos();
+    $fechaActual = date("Y-m-d H-i-s");
+
+    if(array_key_exists('usuario',$resultado[0])){
 
     for($i = 0; $i <=count($resultado[0]); $i++) {
-     
+        
         $usuario['nombre_completo']=$resultado[$i]['nombre_completo'];
         $correo_empleado['correo_empleado']=$resultado[$i]['correo_empleado'];
         $usuarios=implode( ',', $usuario );
-
-try {
-
-    $emailTo =   implode( ',', $correo_empleado );
-    $subject = "LIMARO - Actualziacion de Documento";
-    $bodyEmail = "
-
+    
+    try {
+    
+        $emailTo =   implode( ',', $correo_empleado );
+        $subject = "LIMARO - Actualización de Documento";
+        $bodyEmail = "
 FECHA: $fechaActual
 PARA: $usuarios - FUNCIONARIO COOPEAIPE
 DE: AREA DE CALIDAD 
@@ -127,14 +130,15 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     $host = "smtp.mi.com.co";
     $port ="465";
     $SMTPAuth = true;
+    $SMTPDebug=true;
     $SMTPSecure = "ssl";
-    $password ="Kddbjw8b3d";
+    $password ="Kddbjw8b3d%";
     $IsHTML=true;
 
     $mail = new PHPMailer\PHPMailer\PHPMailer();
 
     $mail ->IsSMTP();
-    $mail ->SMTPDebug = 5;
+    $mail ->SMTPDebug = 2;
     $mail ->SMTPAuth  =  $SMTPAuth;
     $mail ->SMTPSecure = $SMTPSecure;
     $mail ->Host =  $host;
@@ -148,40 +152,38 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     $mail ->setFrom($fromemail, $fromname);
     $mail ->addAddress($emailTo);
 
-    // $mail ->isSMTP(true);
     $mail ->Subject = $subject;
     $mail ->Body =$bodyEmail;
 
     if(!$mail->send()){
+        echo ("no enviado"); 
+    }else{
+        echo '
+        <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
+        <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+        <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
+        <script>    
+            jQuery(function(){
+                Swal.fire({
+                    icon: "success",
+                    title: "Versionamiento Creado con Éxito",
+                    showConfirmButton: false,
+                    timer: 3000
+                    }).then(function() {
+                    window.location.href = "../../administrador/versionamiento.php";
+                });
+            });
+        </script>';
+    }
+    } catch (Exception $e) {
         
     }
-
-    } catch (Exception $e) {
+                
+        }
     
 }
-            
-    }
 
 
-unset($documentoE);
-unset($documentoM);
-
-echo '
-    <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
-    <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-    <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
-    <script>    
-        jQuery(function(){
-            Swal.fire({
-                icon: "success",
-                title: "Versionamiento Creado con Éxito",
-                showConfirmButton: false,
-                timer: 3000
-                }).then(function() {
-                window.location.href = "../../administrador/versionamiento.php";
-            });
-        });
-    </script>';
 
 }
 

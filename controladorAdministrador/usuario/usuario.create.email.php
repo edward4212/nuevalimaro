@@ -42,7 +42,7 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     $port ="465";
     $SMTPAuth = true;
     $SMTPSecure = "ssl";
-    $password ="Kddbjw8b3d";
+    $password ="Kddbjw8b3d%";
     $IsHTML=true;
 
     $mail = new PHPMailer\PHPMailer\PHPMailer();
