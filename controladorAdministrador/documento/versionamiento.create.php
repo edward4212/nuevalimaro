@@ -78,7 +78,7 @@ if(empty($retorno)){
 
         $usuario['nombre_completo']=$resultado[$i]['nombre_completo'];
         $correo_empleado['correo_empleado']=$resultado[$i]['correo_empleado'];
-
+        $usuarios= implode( ',', $usuario );
 
     try {
     
@@ -86,9 +86,9 @@ if(empty($retorno)){
         $subject = "LIMARO - Actualización de Documento";
         $bodyEmail = "
 FECHA: $fechaActual
-PARA: $usuarios - FUNCIONARIO COOPEAIPE
-DE: AREA DE CALIDAD 
-ASUNTO: ENVIÓ INFORMACIÓN DE DOCUMENTO ACTUALIZADO
+PARA: $usuarios - Funcionario COOPEAIPE
+DE: Area De Calidad
+ASUNTO: Envió de Información De Documento Actualizado
 
 Estimado(a)  $usuarios,
 
@@ -96,11 +96,11 @@ Cordial Saludo,
 
 Me permito informar que el siguiente documento se encuentran actualizado para que sea consultado y aplicado:
 
-    TIPO: $tipDocCon
-    CÓDIGO: $codigo
-    NOMBRE: $nombre_documento
-    VERSIÓN: $numero_version 
-    FECHA DE ACTUALIZACIÓN: $fecha_aprobacion
+  TIPO: $tipDocCon
+  CÓDIGO: $codigo
+  NOMBRE: $nombre_documento
+  VERSIÓN: $numero_version 
+  FECHA DE ACTUALIZACIÓN: $fecha_aprobacion
         
 Los cambios básicos están con letras en color verde, pero se recomienda leer en su totalidad el documento si lo desconoce o ha olvidado su contenido. Si todo el documento esta con letras de color negra, es porque el documento fue actualizado en su totalidad o es un documento nuevo.
 
@@ -137,7 +137,7 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     $mail = new PHPMailer\PHPMailer\PHPMailer();
 
     $mail ->IsSMTP();
-    $mail ->SMTPDebug = 2;
+    $mail ->SMTPDebug = 0;
     $mail ->SMTPAuth  =  $SMTPAuth;
     $mail ->SMTPSecure = $SMTPSecure;
     $mail ->Host =  $host;
@@ -155,24 +155,24 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     $mail ->Body =$bodyEmail;
 
     if(!$mail->send()){
-        // echo ("no enviado"); 
+        echo ("no enviado"); 
     }else{
-        // echo '
-        // <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
-        // <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-        // <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
-        // <script>    
-        //     jQuery(function(){
-        //         Swal.fire({
-        //             icon: "success",
-        //             title: "Versionamiento Creado con Éxito",
-        //             showConfirmButton: false,
-        //             timer: 3000
-        //             }).then(function() {
-        //             window.location.href = "../../administrador/versionamiento.php";
-        //         });
-        //     });
-        // </script>';
+        echo '
+        <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
+        <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+        <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
+        <script>    
+            jQuery(function(){
+                Swal.fire({
+                    icon: "success",
+                    title: "Versionamiento Creado con Éxito",
+                    showConfirmButton: false,
+                    timer: 3000
+                    }).then(function() {
+                    window.location.href = "../../administrador/versionamiento.php";
+                });
+            });
+        </script>';
     }
     } catch (Exception $e) {
         

@@ -10,22 +10,26 @@ include_once "../../componente/Mailer/src/Exception.php";
  $correo_empleado  = $_POST['CorreoUsurioMoClave'];
  $usuario  = $_POST['UsurioMoClave'];
  $clave  = '12345';
- 
+ $fechaActual = date("Y-m-d H-i-s");
 
 try {
 
-    $nombre_completo  = $_POST['NombreMoClave'];
     $usuario  = $_POST['UsurioMoClave'];
     $emailTo =  $_POST['CorreoUsurioMoClave'];
     $clave  = '12345';
     $subject = "LIMARO - Restablecimiento Contraseña de usuario";
-    $bodyEmail = "Estimado(a) $nombre_completo,
+    $bodyEmail = "
+
+FECHA: $fechaActual
+PARA: $nombre_completo - Funcionario COOPEAIPE
+DE: Area De Calidad
+ASUNTO: Restablecimiento Contraseña de Usuario
 
 Su solicitud de restablecimiento de Contraseña dentro del sistema LIMARO SOFTWARE fue realizado exitosamente con la siguiente información:
 
     Url de conexión: https://cop.limaro.co/login/login.php
     Usuario: $usuario
-    Contraseña Inicial:  $clave
+    Contraseña Inicial: $clave
     
 Para ingresar nuevamente, el sistema solicitará activar el usuario, para lo cual debe dar clic en el botón 'Activar Usuario' y realizar cambio de clave; No olvide guardar la clave en un sitio seguro.
 
@@ -41,13 +45,13 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     $port ="465";
     $SMTPAuth = true;
     $SMTPSecure = "ssl";
-    $password ="Kddbjw8b3d";
+    $password ="Kddbjw8b3d%";
     $IsHTML=true;
 
     $mail = new PHPMailer\PHPMailer\PHPMailer();
 
     $mail ->IsSMTP();
-    $mail ->SMTPDebug = 2;
+    $mail ->SMTPDebug = 0;
     $mail ->SMTPAuth  =  $SMTPAuth;
     $mail ->SMTPSecure = $SMTPSecure;
     $mail ->Host =  $host;

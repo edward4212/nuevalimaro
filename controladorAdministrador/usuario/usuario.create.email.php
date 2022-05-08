@@ -19,8 +19,13 @@ try {
     $usuario  = $_POST['txtUsuario'];
     $emailTo =  $_POST['txtCorreoEmpleado'];
     $clave  = $_POST['txtClaveInicial'];
-    $subject = "LIMARO - Creacion usuario";
-    $bodyEmail = "Estimado(a) $nombre_completo,
+    $subject = "LIMARO - Creación De Usuario";
+    $bodyEmail = "
+
+FECHA: $fechaActual
+PARA: $nombre_completo - Funcionario COOPEAIPE
+DE: Area De Calidad
+ASUNTO: Creación De Usuario
 
 Su usuario dentro del sistema LIMARO SOFTWARE fue creado exitosamente con la siguiente información:
 
@@ -48,7 +53,7 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     $mail = new PHPMailer\PHPMailer\PHPMailer();
 
     $mail ->IsSMTP();
-    $mail ->SMTPDebug = 2;
+    $mail ->SMTPDebug = 0;
     $mail ->SMTPAuth  =  $SMTPAuth;
     $mail ->SMTPSecure = $SMTPSecure;
     $mail ->Host =  $host;
