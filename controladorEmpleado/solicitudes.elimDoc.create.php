@@ -130,6 +130,77 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
         }
 
 
+if(empty($retorno)){
+$usuario = $_SESSION['nombre_completo'];
+$correo = $_SESSION['correo_empleado'];
+$fechaActual = date("Y-m-d H-i-s");
+$solicitud = $_POST['solicitud'];
+$usuario = $_SESSION['nombre_completo'];
+$id_prioridad = $_POST['prioridad'];
+try {
+
+    $emailTo =  "notificaciones@limaro.co";
+    $subject = "LIMARO - Notificación De Solicitud Creada";
+    $bodyEmail = "
+
+FECHA: $fechaActual
+PARA: Area De Calidad
+DE: $usuario - Funcionario COOPEAIPE
+ASUNTO: Notificación De Solicitud Creada con Éxito
+
+Se recibio la siguiente solicitud:
+
+Funcionario : $usuario
+Prioridad: $id_prioridad
+Tipo de Solicitud: Eliminación de Documento
+Solicitud: $solicitud
+
+Atentamente,
+
+LIMARO SOFTWARE - Software de gestión ISO 9001:2015 con funcionalidad de control de documentos
+
+Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje ya que es generado de manera automática y no es un canal oficial de comunicación de LIMARO SOFTWARE.";
+
+$fromemail = "notificaciones@limaro.co";
+$fromname = "LIMARO";
+$host = "smtp.mi.com.co";
+$port ="465";
+$SMTPAuth = true;
+$SMTPDebug=true;
+$SMTPSecure = "ssl";
+$password ="Kddbjw8b3d%";
+$IsHTML=true;
+
+$mail = new PHPMailer\PHPMailer\PHPMailer();
+
+$mail ->IsSMTP();
+$mail ->SMTPDebug = 0;
+$mail ->SMTPAuth  =  $SMTPAuth;
+$mail ->SMTPSecure = $SMTPSecure;
+$mail ->Host =  $host;
+$mail ->Port = $port; 
+$mail ->IsHTML = $IsHTML; 
+$mail->CharSet  ="utf-8";
+$mail->SMTPKeepAlive = true;
+$mail ->Username =  $fromemail;
+$mail ->Password =  $password;
+
+$mail ->setFrom($fromemail, $fromname);
+$mail ->addAddress($emailTo);
+
+$mail ->Subject = $subject;
+$mail ->Body =$bodyEmail;
+
+if(!$mail->send()){
+    echo ("no enviado"); 
+}else{
+    echo ("enviado"); 
+}
+} catch (Exception $e) {
+    
+}
+            
+    }
 
 
 

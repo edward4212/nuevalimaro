@@ -23,8 +23,8 @@
                         <div class="col-md-12 col-xs-12 col-sm-12">
                         <br>
                             <h2 class="card-title text-center"><b>Listado Maestro de Documentos Vigentes</b></h2>
+                            <div class="bordeado">
                             <br>
-                            <div class="text-center">
                                 <h5 id="consulta"></h5>
                             </div>
 

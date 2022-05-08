@@ -289,10 +289,10 @@ $(document).ready(function(){
             datos += "<table id='tablaActualizar'  class='table  table-striped table-bordered table-responsive' >";
                datos += '<thead >';
                     datos += '<tr class="table-light border-primary ">';
+                        datos += '<th  class="text-center align-middle border border-primary ">MACROPROCESO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">PROCESO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
-                        datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO </th>';
-                        datos += '<th  class="text-center align-middle border border-primary ">NOMBRE DOCUMENTO</th>';
+                        datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO Y NOMBRE DEL DOCUMENTO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">VERSIÓN</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">FECHA DE VIGENCIA</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">SOLICITAR ACTUALIZACIÓN</th>';
@@ -301,10 +301,10 @@ $(document).ready(function(){
                 datos += '<tbody>';
                     $.each(json, function(key, value){
                         datos += '<tr class="align-middle" >';
-                            datos += '<td class=" border border-primary  text-wrap">'+value.proceso+'</td>'; 
+                            datos += '<td class=" border border-primary  text-wrap">'+value.macroproceso+'</td>'; 
+                            datos += '<td class=" border border-primary  text-wrap">'+value.proceso+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.tipo_documento+'</td>';
-                            datos += '<td class=" border border-primary text-center align-middle">'+value.codigo+'</td>';
-                            datos += '<td class=" border border-primary text-wrap">'+value.nombre_documento+'</td>';
+                            datos += '<td class=" border border-primary text-wrap">'+value.codigo+' - '+value.nombre_documento+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.numero_version+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.fecha_aprobacion+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="actualizacion(\''+value.codigo+'\',\''+value.tipo_documento+'\','+value.id_tipo_documento+'\)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-file-signature"></i></button></td>';
@@ -326,15 +326,38 @@ $(document).ready(function(){
                 "fixedHeader": true,
                 "keys": true,
                 "deferRender": true,
-                "lengthMenu":	[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":	100,
+                "lengthChange": true,
+                "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
+                "iDisplayLength":	50,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
-                dom:  'Qfrtip',
-                dom:  'Bfrtip',
+                dom:  'Bflrtip',
+                order: [
+                    [1, 'asc'],
+                    [2, 'asc']
+                ],
+                rowGroup: {
+                    dataSrc: 1
+                },
                 buttons: [
                     {
-                        extend: 'searchBuilder'
-                        
+                        extend: 'searchBuilder',
+                        config: {
+                            depthLimit: 2,
+                            columns: [0,1,2],
+                            conditions: {
+                                string: {
+                                    '!=': null,
+                                    '!null': null,
+                                    'null': null,
+                                    'contains': null,
+                                    '!contains': null,
+                                    'ends': null,
+                                    '!ends': null,
+                                    'starts': null,
+                                    '!starts ': null
+                                }
+                            }
+                        } 
                     }                      
                 ]
             });
@@ -357,10 +380,10 @@ $(document).ready(function(){
             datos += "<table id='tablaEliminar'class='table  table-striped table-bordered table-responsive '   >";
                datos += '<thead >';
                     datos += '<tr class="table-light border-primary ">';
+                        datos += '<th  class="text-center align-middle border border-primary ">MACROPROCESO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">PROCESO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
-                        datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO </th>';
-                        datos += '<th  class="text-center align-middle border border-primary ">NOMBRE DOCUMENTO</th>';
+                        datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO Y NOMBRE DOCUMENTO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">VERSIÓN</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">FECHA DE VIGENCIA</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">SOLICITAR ELIMINACIÓN</th>';
@@ -369,10 +392,10 @@ $(document).ready(function(){
                 datos += '<tbody>';
                     $.each(json, function(key, value){
                         datos += '<tr class="align-middle" >';
+                            datos += '<td class=" border border-primary  text-wrap">'+value.macroproceso+'</td>'; 
                             datos += '<td class=" border border-primary  text-wrap">'+value.proceso+'</td>'; 
                             datos += '<td class=" border border-primary text-center align-middle">'+value.tipo_documento+'</td>';
-                            datos += '<td class=" border border-primary text-center align-middle">'+value.codigo+'</td>';
-                            datos += '<td class=" border border-primary text-wrap">'+value.nombre_documento+'</td>';
+                            datos += '<td class=" border border-primary text-wrap">'+value.codigo+' - '+value.nombre_documento+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.numero_version+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.fecha_aprobacion+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle"><button type="button"  onclick="eliminacion(\''+value.codigo+'\',\''+value.tipo_documento+'\','+value.id_tipo_documento+'\)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-trash-alt"></i></button></td>';
@@ -394,15 +417,39 @@ $(document).ready(function(){
                 "fixedHeader": true,
                 "keys": true,
                 "deferRender": true,
-                "lengthMenu":	[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":	100,
+                "lengthChange": true,
+                "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
+                "iDisplayLength":	50,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
-                dom:  'Qfrtip',
-                dom:  'Bfrtip',
+                dom:  'Bflrtip',
+                order: [
+                    [1, 'asc'],
+                    [2, 'asc']
+                ],
+                rowGroup: {
+                    dataSrc: 1
+                },
                 buttons: [
                     {
-                        extend: 'searchBuilder'
-                    }                      
+                        extend: 'searchBuilder',
+                        config: {
+                            depthLimit: 2,
+                            columns: [0,1,2],
+                            conditions: {
+                                string: {
+                                    '!=': null,
+                                    '!null': null,
+                                    'null': null,
+                                    'contains': null,
+                                    '!contains': null,
+                                    'ends': null,
+                                    '!ends': null,
+                                    'starts': null,
+                                    '!starts ': null
+                                }
+                            }
+                        } 
+                    }                     
                 ]
             });
         }).fail(function(xhr, status, error){

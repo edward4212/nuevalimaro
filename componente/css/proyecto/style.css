@@ -29,6 +29,40 @@
   margin-bottom: 19px;
 }
 
+#tablaActualizar_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tablaActualizar_filter{
+  margin-bottom: 19px;
+}
+
+#tablaEliminar_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tablaEliminar_filter{
+  margin-bottom: 19px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * {
   font-family: Arial, Helvetica, sans-serif;
 }

@@ -1,6 +1,7 @@
 <!-- Se agrega Head -->
 <?php include_once "head.php" ?>
 <title>Solicitudes</title>
+
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
     <?php include_once "menu.php" ?>
@@ -10,34 +11,32 @@
             <nav>
                 <br>
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
-                    <button class="nav-link  " id="nav-solicitudes-tab" data-bs-toggle="tab"
+                    <button class="nav-link " id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"
                         aria-selected="false">Mis Solicitudes</button>
-                    <button class="nav-link active" id="nav-crear-tab" data-bs-toggle="tab" data-bs-target="#nav-crear"
-                        type="button" role="tab" aria-controls="nav-crear" aria-selected="true">Solicitar Crear
+                    <button class="nav-link " id="nav-crear-tab" data-bs-toggle="tab" data-bs-target="#nav-crear"
+                        type="button" role="tab" aria-controls="nav-crear" aria-selected="true">Creación De
                         Documento</button>
-                    <button class="nav-link " id="nav-actualizar-tab" data-bs-toggle="tab"
+                    <button class="nav-link active" id="nav-actualizar-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-actualizar" type="button" role="tab" aria-controls="nav-actualizar"
-                        aria-selected="false">Solicitar Actualizar Documento</button>
+                        aria-selected="false">Actualización De Documento</button>
                     <button class="nav-link " id="nav-eliminar-tab" data-bs-toggle="tab" data-bs-target="#nav-eliminar"
-                        type="button" role="tab" aria-controls="nav-eliminar" aria-selected="false"> Solicitar Eliminar
+                        type="button" role="tab" aria-controls="nav-eliminar" aria-selected="false"> Eliminación de
                         Documento</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade   " id="nav-solicitudes" role="tabpanel"
-                    aria-labelledby="nav-solicitudes-tab">
+                <div class="tab-pane fade" id="nav-solicitudes" role="tabpanel" aria-labelledby="nav-solicitudes-tab">
                     <br>
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h3 class="card-title text-center">Mis Solicitudes</h3>
+                            <h2 class="card-title text-center"><b>Mis Solicitudes</b></h2>
                             <div>
                                 <form action="" class="form-group" id="buscar">
                                     <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
                                     <h5 id="solicitudes"></h5>
                                 </form>
                             </div>
-
                         </div>
                         <!-- Modal para ver comentarios-->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -61,46 +60,45 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade show active" id="nav-crear" role="tabpanel" aria-labelledby="nav-crear-tab">
-                    <br>
+                <div class="tab-pane fade" id="nav-crear" role="tabpanel" aria-labelledby="nav-crear-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <form class="row g-3 form-group"
-                            action="../controladorEmpleado/solicitudes.crearDoc.create.php" method="POST"
+                            <h4 class="card-title text-center"><b>Creación De Documento</b></h4>
+                            <br>
+                            <form class="row g-3 form-group bordeado"
+                                action="../controladorEmpleado/solicitudes.crearDoc.create.php" method="POST"
                                 enctype="multipart/form-data">
-                                <div class="col-md-5 col-xs-12 col-sm-12">
+                                <div class="col-md-6 col-xs-12 col-sm-12">
                                     <h5>Prioridad</h5>
-                                    <select class="form-control redondeado" id="prioridad" name="prioridad"
-                                        required>
+                                    <select class="form-control redondeado" id="prioridad" name="prioridad" required>
                                         <option disabled selected> - Seleccione Un Tipo De Documento -</option>
                                         <option value="IMPORTANTE - URGENTE"> IMPORTANTE - URGENTE</option>
                                         <option value="IMPORTANTE - NO URGENTE"> IMPORTANTE - NO URGENTE</option>
                                         <option value="NO IMPORTANTE - URGENTE"> NO IMPORTANTE - URGENTE</option>
                                         <option value="NO IMPORTANTE - NO URGENTE"> NO IMPORTANTE - NO URGENTE</option>
                                     </select>
-                                        
                                 </div>
-                                <div class="col-md-2 col-xs-12 col-sm-12">
-                                </div>
-                                <div class="col-md-5 col-xs-12 col-sm-12">
+                                <div class="col-md-6 col-xs-12 col-sm-12">
                                     <h5>Tipo de Documento</h5>
                                     <select class="form-control redondeado" id="tipoDocumento" name="tipoDocumento"
                                         required></select>
                                 </div>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <h5>Descripción</h5>
-                                    <textarea type="text" class="form-control redondeado" rows="5" id="solicitud"
+                                    <textarea type="text" class="form-control redondeado" rows="4" id="solicitud"
                                         name="solicitud" required></textarea>
                                 </div>
-                                <div class="col-md-6 col-xs-12 col-sm-12">
+                                <div class="col-md-12 col-xs-12 col-sm-12">
                                     <h5>Subir Documento</h5>
                                     <input type="file" class="form-control redondeado" id="fileSolicitud"
                                         name="fileSolicitud" multiple>
-                                    <p class="text-muted">Si se agrega más de un archivo, anexarlos en carpeta
-                                        comprimida .zip</p>
+                                    <span class="text-muted">Si se agrega más de un archivo, anexarlos en carpeta
+                                        comprimida .zip</span>
                                 </div>
-                                <span class="text-muted">* Campo Obligatorio</span>
-                                <div class="col-md-12 col-xs-12 col-sm-12 align-items-center">
+                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                    <span class="text-muted">* Campo Obligatorio</span>
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-12 align-items-center">
                                     <button type="submit" class="btn btn-primary "><i class="fas fa-plus"></i> Crear
                                         Solicitud</button>
                                     <button type="reset" class="btn btn-secondary"><i class="fas fa-broom"></i>
@@ -108,16 +106,18 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-12 col-xs-12 col-sm-12">
-
-                        </div>
                     </div>
+                    <br>
                 </div>
-                <div class="tab-pane fade" id="nav-actualizar" role="tabpanel" aria-labelledby="nav-actualizar-tab">
+                <div class="tab-pane fade show active" id="nav-actualizar" role="tabpanel"
+                    aria-labelledby="nav-actualizar-tab">
+                    <br>
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h3 class="card-title text-center"> Solicitar Actualizar Documentos Vigentes</h3>
-                            <div class="text-center">
+                            <h4 class="card-title text-center"><b>Actualización De Documento</b></h4>
+                            <br>
+                            <div class="bordeado">
+                                <br>
                                 <h5 id="actualizacion"></h5>
                             </div>
                         </div>
@@ -146,7 +146,16 @@
                                                 id="tipoDoc1" readonly>
                                             <h5>Prioridad</h5>
                                             <select class="form-control redondeado" id="prioridad1" name="prioridad1"
-                                                required></select>
+                                                required>
+                                                <option disabled selected> - Seleccione Un Tipo De Documento -</option>
+                                                <option value="IMPORTANTE - URGENTE"> IMPORTANTE - URGENTE</option>
+                                                <option value="IMPORTANTE - NO URGENTE"> IMPORTANTE - NO URGENTE
+                                                </option>
+                                                <option value="NO IMPORTANTE - URGENTE"> NO IMPORTANTE - URGENTE
+                                                </option>
+                                                <option value="NO IMPORTANTE - NO URGENTE"> NO IMPORTANTE - NO URGENTE
+                                                </option>
+                                            </select>
                                             <h5>Descripción</h5>
                                             <textarea type="text" class="form-control redondeado" rows="8" cols="55"
                                                 id="solicitud1" name="solicitud1" required></textarea>
@@ -171,10 +180,13 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-eliminar" role="tabpanel" aria-labelledby="nav-eliminar-tab">
-                    <div class="row ">
+                <br> 
+                <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h3 class="card-title text-center">Solicitar Eliminar Documentos Vigentes</h3>
-                            <div class="text-center">
+                            <h4 class="card-title text-center"><b>Eliminación De Documentos</b></h4>
+                            <br>
+                            <div class="bordeado">
+                                <br>
                                 <h5 id="eliminacion"></h5>
                             </div>
                         </div>
@@ -202,7 +214,17 @@
                                                 id="tipoDoc2" readonly>
                                             <h5>Prioridad</h5>
                                             <select class="form-control redondeado" id="prioridad2" name="prioridad2"
-                                                required></select>
+                                                required>
+                                                <option disabled selected> - Seleccione Un Tipo De Documento -</option>
+                                                <option value="IMPORTANTE - URGENTE"> IMPORTANTE - URGENTE</option>
+                                                <option value="IMPORTANTE - NO URGENTE"> IMPORTANTE - NO URGENTE
+                                                </option>
+                                                <option value="NO IMPORTANTE - URGENTE"> NO IMPORTANTE - URGENTE
+                                                </option>
+                                                <option value="NO IMPORTANTE - NO URGENTE"> NO IMPORTANTE - NO URGENTE
+                                                </option>
+
+                                            </select>
                                             <h5>Descripción</h5>
                                             <textarea type="text" class="form-control redondeado" rows="8" cols="55"
                                                 id="solicitud2" name="solicitud2" required></textarea>

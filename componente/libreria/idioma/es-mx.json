@@ -63,45 +63,46 @@
         "value": "Valor Buscado",
         "conditions": {
             "date": {
-                "after": "",
-                "before": "",
-                "between": "",
-                "empty": "",
+                "after": "Despues",
+                "before": "Antes",
+                "between": "Entre",
+                "empty": "Vacío",
                 "equals": "Igual a",
-                "not": "",
-                "notBetween": "",
-                "notEmpty": " "
+                "notBetween": "No entre",
+                "notEmpty": "No Vacio",
+                "not": "Diferente de"
             },
             "number": {
-                "between": "",
-                "empty": "",
+                "between": "Entre",
+                "empty": "Vacio",
                 "equals": "Igual a",
-                "gt": "",
-                "gte": "",
-                "lt": "",
-                "lte": "",
-                "not": "",
-                "notBetween": "",
-                "notEmpty": ""
-                
+                "gt": "Mayor a",
+                "gte": "Mayor o igual a",
+                "lt": "Menor que",
+                "lte": "Menor o igual que",
+                "notBetween": "No entre",
+                "notEmpty": "No vacío",
+                "not": "Diferente de"
             },
-
             "string": {
-                "contains": "",
-                "empty": "",
-                "endsWith": " ",
+                "contains": "Contiene",
+                "empty": "Vacío",
+                "endsWith": "Termina en",
                 "equals": "Igual a",
-                "not": "",
-                "startsWith": "",
-                "notEmpty": ""
+                "notEmpty": "No Vacio",
+                "startsWith": "Empieza con",
+                "not": "Diferente de",
+                "notContains": "No Contiene",
+                "notStarts": "No empieza con",
+                "notEnds": "No termina con"
             },
             "array": {
-                "equals": "Igual a",
-                "empty": "",
-                "contains": "",
-                "not": "",
-                "notEmpty": " ",
-                "without": ""
+                "not": "Diferente de",
+                "equals": "Igual",
+                "empty": "Vacío",
+                "contains": "Contiene",
+                "notEmpty": "No Vacío",
+                "without": "Sin"
             }
         }
        

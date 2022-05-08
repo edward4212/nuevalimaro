@@ -194,7 +194,24 @@ $(document).ready(function(){
                         }
                     },
                     {
-                        extend: 'searchBuilder'
+                        extend: 'searchBuilder',
+                        config: {
+                            depthLimit: 2,
+                            columns: [0],
+                            conditions: {
+                                string: {
+                                    '!=': null,
+                                    '!null': null,
+                                    'null': null,
+                                    'contains': null,
+                                    '!contains': null,
+                                    'ends': null,
+                                    '!ends': null,
+                                    'starts': null,
+                                    '!starts ': null
+                                }
+                            }
+                        } 
                         
                     }                      
                 ],

@@ -142,7 +142,9 @@ if(empty($retorno)){
 $usuario = $_SESSION['nombre_completo'];
 $correo = $_SESSION['correo_empleado'];
 $fechaActual = date("Y-m-d H-i-s");
-
+$solicitud = $_POST['solicitud'];
+$usuario = $_SESSION['nombre_completo'];
+$id_prioridad = $_POST['prioridad'];
 try {
 
     $emailTo =  "notificaciones@limaro.co";
@@ -154,7 +156,12 @@ PARA: Area De Calidad
 DE: $usuario - Funcionario COOPEAIPE
 ASUNTO: Notificación De Solicitud Creada con Éxito
 
-Se radico una solicitud 
+Se recibio la siguiente solicitud:
+
+Funcionario : $usuario
+Prioridad: $id_prioridad
+Tipo de Solicitud: Creación de Documento
+Solicitud: $solicitud
 
 Atentamente,
 
@@ -195,22 +202,7 @@ $mail ->Body =$bodyEmail;
 if(!$mail->send()){
     echo ("no enviado"); 
 }else{
-    echo '
-    <link rel="stylesheet" href="../componente/css/globales/sweetalert2.min.css"> 
-    <script src="../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-    <script type="text/javascript" src="../componente/libreria/globales/jquery-3.6.0.js"></script>
-    <script>    
-    jQuery(function(){
-        Swal.fire({
-            icon: "success",
-            title: "Solicitud  de Creación de Documento Creada con Éxito",
-            showConfirmButton: false,
-            timer: 2000
-            }).then(function() {
-            window.location.href = "../empleado/solicitudes.php";
-        });
-    });
-    </script>';
+    echo ("enviado"); 
 }
 } catch (Exception $e) {
     

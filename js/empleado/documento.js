@@ -22,8 +22,7 @@ $(document).ready(function(){
                         datos += '<th  class="text-center align-middle border border-primary">MACROPROCESO</th>' ;
                         datos += '<th  class="text-center align-middle border border-primary ">PROCESO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
-                        datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO </th>';
-                        datos += '<th  class="text-center align-middle border border-primary ">NOMBRE DOCUMENTO</th>';
+                        datos += '<th  class="text-center align-middle border border-primary ">CÓDIGO Y NOMBRE DOCUMENTO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">VERSIÓN</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">FECHA DE VIGENCIA</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">DESCARGAR DOCUMENTO</th>';
@@ -32,11 +31,10 @@ $(document).ready(function(){
                 datos += '<tbody>';
                     $.each(json, function(key, value){
                         datos += '<tr class="align-middle" >';
-                        datos += '<td class=" border border-primary  text-wrap" >' + value.macroproceso + '</td>';
-                            datos += '<td class=" border border-primary  text-wrap">'+value.proceso+'</td>'; 
-                            datos += '<td class=" border border-primary text-center align-middle">'+value.tipo_documento+'</td>';
-                            datos += '<td class=" border border-primary text-wrap align-middle">'+value.codigo+'</td>';
-                            datos += '<td class=" border border-primary text-wrap">'+value.nombre_documento+'</td>';
+                            datos += '<td class=" border border-primary  text-wrap" >' + value.macroproceso + '</td>';
+                            datos += '<td class=" border border-primary text-center align-middle">'+value.proceso+'</td>'; 
+                            datos += '<td class=" border border-primary text-center">'+value.tipo_documento+'</td>';
+                            datos += '<td class=" border border-primary text-wrap">'+value.codigo+' - '+value.nombre_documento+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.numero_version+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.fecha_aprobacion+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/macroprocesos/'+value.macroproceso+'/'+value.proceso+'/'+value.sigla_tipo_documento+' - '+value.tipo_documento+ '/'+value.codigo+ '/'+value.numero_version+ '/' +value.documento+'"><i class="fas fa-download"></i></a></td>';
@@ -45,9 +43,7 @@ $(document).ready(function(){
                 datos += '</tbody>';
             datos += '</table>';
             $('#consulta').html(datos);
-            
             $('#tableDocumentoVigentesEmp').DataTable({
-                
                 "destroy" : true,
                 "autoWidth": true,
                 "responsive": true,
@@ -57,9 +53,8 @@ $(document).ready(function(){
                 "colReorder": true,
                 "sZeroRecords": true,
                 "keys": true,
-                "lengthChange": true,
                 "deferRender": true,
-                "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50,100, "Todos"]],
+                "lengthMenu":	[[5, 10, 20, 25, 50,100, -1], [5, 10, 20, 25, 50, "Todos"]],
                 "iDisplayLength":	50,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
                 dom:  'Bflrtip',
@@ -74,7 +69,6 @@ $(document).ready(function(){
                    
                     {
                         extend: 'pdfHtml5',
-                        // orientation: 'landscape',
                         pageSize: 'LEGAL',
                         download: 'open',
                         title: 'Listado Maestro De Documentos Vigentess',
@@ -122,6 +116,19 @@ $(document).ready(function(){
                         config: {
                             depthLimit: 2,
                             columns: [0,1,2],
+                            conditions: {
+                                string: {
+                                    '!=': null,
+                                    '!null': null,
+                                    'null': null,
+                                    'contains': null,
+                                    '!contains': null,
+                                    'ends': null,
+                                    '!ends': null,
+                                    'starts': null,
+                                    '!starts ': null
+                                }
+                            }
                         } 
                     }                      
                 ]

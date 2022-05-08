@@ -161,6 +161,19 @@ $(document).ready(function () {
                     config: {
                         depthLimit: 2,
                         columns: [0,1,2],
+                        conditions: {
+                            string: {
+                                '!=': null,
+                                '!null': null,
+                                'null': null,
+                                'contains': null,
+                                '!contains': null,
+                                'ends': null,
+                                '!ends': null,
+                                'starts': null,
+                                '!starts ': null
+                            }
+                        }
                     } 
                 }                        
             ],
@@ -552,6 +565,19 @@ $(document).ready(function () {
                     config: {
                         depthLimit: 2,
                         columns: [0,1,2],
+                        conditions: {
+                            string: {
+                                '!=': null,
+                                '!null': null,
+                                'null': null,
+                                'contains': null,
+                                '!contains': null,
+                                'ends': null,
+                                '!ends': null,
+                                'starts': null,
+                                '!starts ': null
+                            }
+                        }
                     } 
                 }  
             ]

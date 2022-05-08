@@ -63,8 +63,8 @@ $(document).ready(function () {
                 "sZeroRecords": true,
                 "keys": true,
                 "deferRender": true,
-                "lengthMenu":	[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":	100,
+                "lengthMenu":	[[5, 10, 20, 25, 50,100, -1], [5, 10, 20, 25, 50, "Todos"]],
+                "iDisplayLength":	50,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
                 dom:  'Bfrtip',
                 order: [
@@ -117,7 +117,24 @@ $(document).ready(function () {
                         }
                     },
                     {
-                        extend: 'searchBuilder'
+                        extend: 'searchBuilder',
+                        config: {
+                            depthLimit: 2,
+                            columns: [0,1,2],
+                            conditions: {
+                                string: {
+                                    '!=': null,
+                                    '!null': null,
+                                    'null': null,
+                                    'contains': null,
+                                    '!contains': null,
+                                    'ends': null,
+                                    '!ends': null,
+                                    'starts': null,
+                                    '!starts ': null
+                                }
+                            }
+                        } 
                         
                     }                      
                 ]
@@ -362,7 +379,24 @@ $(document).ready(function () {
                         }
                     },
                     {
-                        extend: 'searchBuilder'
+                        extend: 'searchBuilder',
+                        config: {
+                            depthLimit: 2,
+                            columns: [0,1,2],
+                            conditions: {
+                                string: {
+                                    '!=': null,
+                                    '!null': null,
+                                    'null': null,
+                                    'contains': null,
+                                    '!contains': null,
+                                    'ends': null,
+                                    '!ends': null,
+                                    'starts': null,
+                                    '!starts ': null
+                                }
+                            }
+                        } 
 
                     }
                 ]
