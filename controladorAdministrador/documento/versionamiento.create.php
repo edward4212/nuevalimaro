@@ -12,7 +12,6 @@ include_once "../../componente/Mailer/src/PHPMailer.php";
 include_once "../../componente/Mailer/src/SMTP.php";
 include_once "../../componente/Mailer/src/Exception.php";
 
-
 $id_documento=  $_POST['idDocumento1'];
 $macroproceso = $_POST['macroproceso'];
 $proceso = $_POST['proceso'];
@@ -73,14 +72,14 @@ if(empty($retorno)){
     $resultado = $usuarioM->usuariosCorreos();
     $fechaActual = date("Y-m-d H-i-s");
 
-    if(array_key_exists('usuario',$resultado[0])){
+    if($resultado !== null){
 
-    for($i = 0; $i <=count($resultado[0]); $i++) {
-        
+    for($i = 0; $i < count($resultado); $i++) {
+
         $usuario['nombre_completo']=$resultado[$i]['nombre_completo'];
         $correo_empleado['correo_empleado']=$resultado[$i]['correo_empleado'];
-        $usuarios=implode( ',', $usuario );
-    
+
+
     try {
     
         $emailTo =   implode( ',', $correo_empleado );
@@ -156,24 +155,24 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     $mail ->Body =$bodyEmail;
 
     if(!$mail->send()){
-        echo ("no enviado"); 
+        // echo ("no enviado"); 
     }else{
-        echo '
-        <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
-        <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-        <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
-        <script>    
-            jQuery(function(){
-                Swal.fire({
-                    icon: "success",
-                    title: "Versionamiento Creado con Éxito",
-                    showConfirmButton: false,
-                    timer: 3000
-                    }).then(function() {
-                    window.location.href = "../../administrador/versionamiento.php";
-                });
-            });
-        </script>';
+        // echo '
+        // <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
+        // <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+        // <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
+        // <script>    
+        //     jQuery(function(){
+        //         Swal.fire({
+        //             icon: "success",
+        //             title: "Versionamiento Creado con Éxito",
+        //             showConfirmButton: false,
+        //             timer: 3000
+        //             }).then(function() {
+        //             window.location.href = "../../administrador/versionamiento.php";
+        //         });
+        //     });
+        // </script>';
     }
     } catch (Exception $e) {
         

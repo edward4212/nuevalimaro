@@ -1,10 +1,7 @@
 <?php
-
-
 include_once "../entidadEmpleado/solicitudes.entidad.php";
 include_once "../modeloEmpleado/solicitudes.modelo.php";
 include_once "../controladorLogin/logueo.read.php";
-
 
 $id_empleado = $_SESSION['id_empleado'];
 $usuario = $_SESSION['usuario'];

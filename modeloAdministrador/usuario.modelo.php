@@ -166,11 +166,7 @@ class Usuario{
 
      public function usuariosCorreos()
      { try {
-          $this->sql = "SELECT 
-          us.`id_usuario`,
-          us.`usuario`,
-          us.`estado` AS estadoUsuario,
-          rol.`rol`,
+          $this->sql = "SELECT     
           emp.`nombre_completo`,
           emp.`correo_empleado`
           FROM usuario AS us
