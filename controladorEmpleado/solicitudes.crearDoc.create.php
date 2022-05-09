@@ -7,6 +7,9 @@ include_once "../componente/Mailer/src/PHPMailer.php";
 include_once "../componente/Mailer/src/SMTP.php";
 include_once "../componente/Mailer/src/Exception.php";
 
+if (isset($_FILES["fileSolicitud"]))
+{
+
 $id_empleado = $_SESSION['id_empleado'];
 $usuario = $_SESSION['usuario'];
 $id_prioridad = $_POST['prioridad'];
@@ -14,8 +17,6 @@ $id_tipoDocumento = $_POST['tipoDocumento'];
 $solicitud = $_POST['solicitud'];
 $fechaActual = date("Y-m-d H-i-s");
 
-if (isset($_FILES["fileSolicitud"]))
-{
     $directorio = "../documentos/usuarios/$usuario/solicitudes/$fechaActual/";
    
     if(!file_exists($directorio)){
@@ -28,17 +29,6 @@ if (isset($_FILES["fileSolicitud"]))
             move_uploaded_file($_FILES['fileSolicitud']['tmp_name'],$directorio.$nombre);
         }    
     }
-}
-else{
-    $nombre = NULL ;
-    $directorio = "../documentos/usuarios/$usuario/solicitudes/$fechaActual/";
-    if(!file_exists($directorio)){
-        mkdir($directorio,0777,true);
-    }else{
-        if(file_exists($directorio)){
-        }    
-    }
-}
 
 $solicitudesE = new \entidad\Solicitudes(); 
 $solicitudesE -> setIdEmpleado($id_empleado);
@@ -47,9 +37,40 @@ $solicitudesE -> setIdTipoDocumento($id_tipoDocumento);
 $solicitudesE -> setSolicitud($solicitud);
 $solicitudesE -> setDocumento($nombre); 
 $solicitudesE -> setRuta($fechaActual); 
+$solicitudesE -> setUsuarioComentario($usuario);
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 $resultado = $solicitudesM->solicitudCreacion();
+
+}
+else{
+$id_empleado = $_SESSION['id_empleado'];
+$usuario = $_SESSION['usuario'];
+$id_prioridad = $_POST['prioridad'];
+$id_tipoDocumento = $_POST['tipoDocumento'];
+$solicitud = $_POST['solicitud'];
+$fechaActual = date("Y-m-d H-i-s");
+$nombre = null ;
+
+    $directorio = "../documentos/usuarios/$usuario/solicitudes/$fechaActual/";
+    if(!file_exists($directorio)){
+        mkdir($directorio,0777,true);
+    }else{
+        if(file_exists($directorio)){
+        }    
+    }
+$solicitudesE = new \entidad\Solicitudes(); 
+$solicitudesE -> setIdEmpleado($id_empleado);
+$solicitudesE -> setPrioridad($id_prioridad);
+$solicitudesE -> setIdTipoDocumento($id_tipoDocumento);
+$solicitudesE -> setSolicitud($solicitud);
+$solicitudesE -> setDocumento($nombre); 
+$solicitudesE -> setRuta($fechaActual); 
+$solicitudesE -> setUsuarioComentario($usuario);
+
+$solicitudesM= new \modelo\Solicitudes($solicitudesE);
+$resultado = $solicitudesM->solicitudCreacion();
+}
 
 unset($solicitudesE);
 unset($solicitudesM);
@@ -135,8 +156,7 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
         
     }
                 
-        }
-
+}
 
 if(empty($retorno)){
 $usuario = $_SESSION['nombre_completo'];
@@ -202,7 +222,7 @@ $mail ->Body =$bodyEmail;
 if(!$mail->send()){
     echo ("no enviado"); 
 }else{
-    echo ("enviado"); 
+    echo (""); 
 }
 } catch (Exception $e) {
     

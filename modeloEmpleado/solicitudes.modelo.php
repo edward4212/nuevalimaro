@@ -99,75 +99,45 @@ class Solicitudes{
 
      public function solicitudCreacion()
      {
-          try{
-               
-               $this->result = $this->conexion->prepare("INSERT INTO solicitud VALUES (NULL , :empleado , :prioridad, :tipo_documento , 'CREACIÓN', 'CREADA' , '0000', :solicitud ,:ruta, :documento, CURRENT_TIMESTAMP(),'Sin Asignar',NULL,NULL,NULL)");
-               $this->result->bindParam(':empleado', $this->id_empleado);
-               $this->result->bindParam(':prioridad', $this->prioridad);
-               $this->result->bindParam(':tipo_documento', $this->id_tipo_documento);
-               $this->result->bindParam(':solicitud', $this->solicitud);
-               $this->result->bindParam(':ruta', $this->ruta);
-               $this->result->bindParam(':documento', $this->documento);
-               $this->result->execute();    
+          try {
+               $this->sql = "CALL create_comentario_sol(1,$this->id_empleado,'$this->prioridad',$this->id_tipo_documento,'CREACIÓN','CREADA','0000',
+               '$this->solicitud','$this->ruta','$this->documento',CURRENT_TIMESTAMP(),
+               'Sin Asignar',NULL,NULL,NULL,'1', 'Se crea la solicitud','$this->usuario_comentario',CURRENT_TIMESTAMP(), 'ACTIVO')";
+               $this->result=$this->conexion->query($this->sql);
+               $this->retorno =  $this->result->fetchAll(PDO::FETCH_ASSOC);
+
           } catch (Exception $e) {
-          
-               $this->retorno = $e->getMessage();
+               $this->retorno = $e->getMessage(); 
           }
                return $this->retorno;
      }
 
      public function solicitudActualizacion()
      {
-          try{
+          try {
+               $this->sql = "CALL create_comentario_sol(1,$this->id_empleado,'$this->prioridad',$this->id_tipo_documento,'ACTUALIZACIÓN','CREADA','$this->codigo',
+               '$this->solicitud','$this->ruta','$this->documento',CURRENT_TIMESTAMP(),
+               'Sin Asignar',NULL,NULL,NULL,'1', 'Se crea la solicitud','$this->usuario_comentario',CURRENT_TIMESTAMP(), 'ACTIVO')";
+               $this->result=$this->conexion->query($this->sql);
 
-               $this->result = $this->conexion->prepare("INSERT INTO solicitud VALUES (NULL , :empleado , :prioridad, :tipo_documento , '2', '1' , :codigo, :solicitud, :carpeta, :documento, CURRENT_TIMESTAMP(),'Sin Asignar',NULL,NULL,NULL)");
-               $this->result->bindParam(':empleado', $this->id_empleado);
-               $this->result->bindParam(':prioridad', $this->id_prioridad);
-               $this->result->bindParam(':tipo_documento', $this->id_tipo_documento);
-               $this->result->bindParam(':codigo', $this->codigo);
-               $this->result->bindParam(':solicitud', $this->solicitud);
-               $this->result->bindParam(':carpeta', $this->carpeta);
-               $this->result->bindParam(':documento', $this->documento);
-               $this->result->execute();    
           } catch (Exception $e) {
-          
-               $this->retorno = $e->getMessage();
+               $this->retorno = $e->getMessage(); 
           }
                return $this->retorno;
      }
 
      public function solicitudEliminacion()
      {
-          try{
+          try {
+               $this->sql = "CALL create_comentario_sol(1,$this->id_empleado,'$this->prioridad',$this->id_tipo_documento,'ELIMINACIÓN','CREADA','$this->codigo',
+               '$this->solicitud','$this->ruta','$this->documento',CURRENT_TIMESTAMP(),
+               'Sin Asignar',NULL,NULL,NULL,'1', 'Se crea la solicitud','$this->usuario_comentario',CURRENT_TIMESTAMP(), 'ACTIVO')";
+               $this->result=$this->conexion->query($this->sql);
+               $this->retorno =  $this->result->fetchAll(PDO::FETCH_ASSOC);
+               // $this->retorno = "Exito: Usuario Creado";
 
-               $this->result = $this->conexion->prepare("INSERT INTO solicitud VALUES (NULL , :empleado , :prioridad, :tipo_documento , '3', '1' , :codigo, :solicitud, :carpeta, :documento, CURRENT_TIMESTAMP(),'Sin Asignar',NULL,NULL)");
-               $this->result->bindParam(':empleado', $this->id_empleado);
-               $this->result->bindParam(':prioridad', $this->id_prioridad);
-               $this->result->bindParam(':tipo_documento', $this->id_tipo_documento);
-               $this->result->bindParam(':codigo', $this->codigo);
-               $this->result->bindParam(':solicitud', $this->solicitud);
-               $this->result->bindParam(':carpeta', $this->carpeta);
-               $this->result->bindParam(':documento', $this->documento);
-               $this->result->execute();    
           } catch (Exception $e) {
-          
-               $this->retorno = $e->getMessage();
-          }
-               return $this->retorno;
-     }
-     
-     public function comentariosCrear()
-     {
-          try{
-               
-               $this->result = $this->conexion->prepare("INSERT INTO comentarios_solicitud VALUES (NULL , :comentario , :id_solicitud, :usuario_comentario , 'A', CURRENT_TIMESTAMP())");
-               $this->result->bindParam(':comentario', $this->comentario);
-               $this->result->bindParam(':id_solicitud', $this->id_solicitud);
-               $this->result->bindParam(':usuario_comentario', $this->usuario_comentario);
-               $this->result->execute();    
-          } catch (Exception $e) {
-          
-               $this->retorno = $e->getMessage();
+               $this->retorno = $e->getMessage(); 
           }
                return $this->retorno;
      }
@@ -176,7 +146,7 @@ class Solicitudes{
      {
 
           try {
-               $this->sql = "	SELECT * FROM comentarios_solicitud 
+               $this->sql = "	SELECT * FROM solicitud_comentario 
                WHERE id_solicitud =  '$this->id_solicitud'";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
@@ -185,6 +155,7 @@ class Solicitudes{
           }
                return $this->retorno;
      }
+
 
      
 

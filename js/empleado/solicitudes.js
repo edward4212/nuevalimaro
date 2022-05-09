@@ -14,6 +14,36 @@ function eliminacion (codigo, tipo_documento,id_tipo_documento){
     $("#idTipoDoc2").val(id_tipo_documento);
 }
 
+var inputs = "textarea[maxlength]";
+$(document).on('keyup', "[maxlength]", function (e) {
+    var este = $(this),
+    maxlength = este.attr('maxlength'),
+    maxlengthint = parseInt(maxlength),
+    textoActual = este.val(),
+    currentCharacters = este.val().length;
+    remainingCharacters = maxlengthint - currentCharacters,
+    espan = este.prev('label').find('span');	
+
+    // Detectamos si es IE9 y si hemos llegado al final, convertir el -1 en 0 - bug ie9 porq. no coge directamente el atributo 'maxlength' de HTML5
+    if (document.addEventListener && !window.requestAnimationFrame) {
+        if (remainingCharacters <= -1) {
+            remainingCharacters = 0;            
+        }
+    }
+    espan.html(remainingCharacters);
+    if (!!maxlength) {
+        var texto = este.val();	
+        if (texto.length >= maxlength) {
+            este.removeClass().addClass("borderojo");
+            e.preventDefault();
+        }
+        else if (texto.length < maxlength) {
+            este.removeClass().addClass("bordegris");
+        }	
+    }	
+});
+
+
 $(document).ready(function(){
 
     buscar();
@@ -62,7 +92,7 @@ $(document).ready(function(){
                                 datos += '<td class=" border border-primary text-wrap align-middle">'+value.estado_solicitud+'</td>'; 
                                 datos += '<td class=" border border-primary text-wrap align-middle">'+value.tipo_solicitud+'</td>';
                                 datos += '<td class=" border border-primary text-wrap align-middle">'+value.tipo_documento+'</td>';
-                                if(value.codigo_documento !== "00000"){
+                                if(value.codigo_documento !== "0000"){
                                 datos += '<td class=" border border-primary text-wrap align-middle">'+value.codigo_documento+'</td>';
                                 }else{
                                     datos += '<td class=" border border-primary text-wrap align-middle">No aplica</td>';
@@ -89,17 +119,19 @@ $(document).ready(function(){
                 "ordering": true,
                 "colReorder": true,
                 "sZeroRecords": true,
+                "fixedColumns": true,
+                "fixedHeader": true,
                 "keys": true,
                 "deferRender": true,
-                "lengthMenu":	[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":	100,
+                "lengthChange": true,
+                "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
+                "iDisplayLength":	25,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
+                dom:  'Bflrtip',
                 order: [[2, 'asc'], [1, 'asc']],
                     rowGroup: {
                         dataSrc: 2
                     },
-                
-                dom:  'Bfrtip',
                 buttons: 
                 [
                     {
@@ -144,7 +176,24 @@ $(document).ready(function(){
                         }
                     },
                     {
-                        extend: 'searchBuilder'
+                        extend: 'searchBuilder',
+                        config: {
+                            depthLimit: 2,
+                            columns: [0,1,2],
+                            conditions: {
+                                string: {
+                                    '!=': null,
+                                    '!null': null,
+                                    'null': null,
+                                    'contains': null,
+                                    '!contains': null,
+                                    'ends': null,
+                                    '!ends': null,
+                                    'starts': null,
+                                    '!starts ': null
+                                }
+                            }
+                        } 
                     
                     }                      
                 ]
@@ -202,7 +251,6 @@ $(document).ready(function(){
                         "lengthMenu":	[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
                         "iDisplayLength":5,
                         "language": {"url": "../componente/libreria/idioma/es-mx.json"},
-                      
                         dom:  'Bfrtip',
                         buttons: 
                         [
@@ -304,7 +352,7 @@ $(document).ready(function(){
                             datos += '<td class=" border border-primary  text-wrap">'+value.macroproceso+'</td>'; 
                             datos += '<td class=" border border-primary  text-wrap">'+value.proceso+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.tipo_documento+'</td>';
-                            datos += '<td class=" border border-primary text-wrap">'+value.codigo+' - '+value.nombre_documento+'</td>';
+                            datos += '<td class=" border border-primary text-wrap">'+value.codigo+' '+value.nombre_documento+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.numero_version+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.fecha_aprobacion+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="actualizacion(\''+value.codigo+'\',\''+value.tipo_documento+'\','+value.id_tipo_documento+'\)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-file-signature"></i></button></td>';
@@ -395,7 +443,7 @@ $(document).ready(function(){
                             datos += '<td class=" border border-primary  text-wrap">'+value.macroproceso+'</td>'; 
                             datos += '<td class=" border border-primary  text-wrap">'+value.proceso+'</td>'; 
                             datos += '<td class=" border border-primary text-center align-middle">'+value.tipo_documento+'</td>';
-                            datos += '<td class=" border border-primary text-wrap">'+value.codigo+' - '+value.nombre_documento+'</td>';
+                            datos += '<td class=" border border-primary text-wrap">'+value.codigo+' '+value.nombre_documento+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.numero_version+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.fecha_aprobacion+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle"><button type="button"  onclick="eliminacion(\''+value.codigo+'\',\''+value.tipo_documento+'\','+value.id_tipo_documento+'\)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-trash-alt"></i></button></td>';

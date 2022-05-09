@@ -11,13 +11,13 @@
             <nav>
                 <br>
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
-                    <button class="nav-link " id="nav-solicitudes-tab" data-bs-toggle="tab"
+                    <button class="nav-link active" id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"
                         aria-selected="false">Mis Solicitudes</button>
                     <button class="nav-link " id="nav-crear-tab" data-bs-toggle="tab" data-bs-target="#nav-crear"
                         type="button" role="tab" aria-controls="nav-crear" aria-selected="true">Creación De
                         Documento</button>
-                    <button class="nav-link active" id="nav-actualizar-tab" data-bs-toggle="tab"
+                    <button class="nav-link " id="nav-actualizar-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-actualizar" type="button" role="tab" aria-controls="nav-actualizar"
                         aria-selected="false">Actualización De Documento</button>
                     <button class="nav-link " id="nav-eliminar-tab" data-bs-toggle="tab" data-bs-target="#nav-eliminar"
@@ -26,15 +26,17 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade" id="nav-solicitudes" role="tabpanel" aria-labelledby="nav-solicitudes-tab">
-                    <br>
+                <div class="tab-pane fade show active" id="nav-solicitudes" role="tabpanel" aria-labelledby="nav-solicitudes-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h2 class="card-title text-center"><b>Mis Solicitudes</b></h2>
+                            <h4 class="card-title text-center"><b>Mis Solicitudes</b></h4>
+                            <br>
                             <div>
-                                <form action="" class="form-group" id="buscar">
+                                <form action="" class="form-group bordeado" id="buscar">
+                                <br>
                                     <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
                                     <h5 id="solicitudes"></h5>
+                                  
                                 </form>
                             </div>
                         </div>
@@ -69,7 +71,7 @@
                                 action="../controladorEmpleado/solicitudes.crearDoc.create.php" method="POST"
                                 enctype="multipart/form-data">
                                 <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <h5>Prioridad</h5>
+                                    <h5><b>Prioridad*</b></h5>
                                     <select class="form-control redondeado" id="prioridad" name="prioridad" required>
                                         <option disabled selected> - Seleccione Un Tipo De Documento -</option>
                                         <option value="IMPORTANTE - URGENTE"> IMPORTANTE - URGENTE</option>
@@ -79,17 +81,19 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-12">
-                                    <h5>Tipo de Documento</h5>
+                                    <h5><b>Tipo de Documento*</b></h5>
                                     <select class="form-control redondeado" id="tipoDocumento" name="tipoDocumento"
                                         required></select>
                                 </div>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                    <h5>Descripción</h5>
+                                    <h5><b>Descripción*</b></h5>
+                                    <label class="text-muted"> Caracteres restantes:
+                                                        <span></span></label>
                                     <textarea type="text" class="form-control redondeado" rows="4" id="solicitud"
-                                        name="solicitud" required></textarea>
+                                        name="solicitud" maxlength="600" required></textarea>
                                 </div>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                    <h5>Subir Documento</h5>
+                                    <h5><b>Subir Documento*</b></h5>
                                     <input type="file" class="form-control redondeado" id="fileSolicitud"
                                         name="fileSolicitud" multiple>
                                     <span class="text-muted">Si se agrega más de un archivo, anexarlos en carpeta
@@ -109,9 +113,8 @@
                     </div>
                     <br>
                 </div>
-                <div class="tab-pane fade show active" id="nav-actualizar" role="tabpanel"
+                <div class="tab-pane fade " id="nav-actualizar" role="tabpanel"
                     aria-labelledby="nav-actualizar-tab">
-                    <br>
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <h4 class="card-title text-center"><b>Actualización De Documento</b></h4>
@@ -127,8 +130,8 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Solicitar Actualización de
-                                            Documento</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Solicitar Actualización de
+                                                Documento</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -136,15 +139,15 @@
                                         action="../controladorEmpleado/solicitudes.actualiDoc.create.php" method="POST"
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
-                                            <h5>Código Documento</h5>
+                                            <h5><b>Código Documento*</b></h5>
                                             <input type="text" class="form-control redondeado" name="codigo" id="codigo"
                                                 readonly>
-                                            <h5>Tipo Documento</h5>
+                                            <h5><b>Tipo Documento*</b></h5>
                                             <input type="text" class="form-control redondeado" name="idTipoDoc1"
                                                 id="idTipoDoc1" hidden>
                                             <input type="text" class="form-control redondeado" name="tipoDoc1"
                                                 id="tipoDoc1" readonly>
-                                            <h5>Prioridad</h5>
+                                            <h5><b>Prioridad*</b></h5>
                                             <select class="form-control redondeado" id="prioridad1" name="prioridad1"
                                                 required>
                                                 <option disabled selected> - Seleccione Un Tipo De Documento -</option>
@@ -156,15 +159,20 @@
                                                 <option value="NO IMPORTANTE - NO URGENTE"> NO IMPORTANTE - NO URGENTE
                                                 </option>
                                             </select>
-                                            <h5>Descripción</h5>
-                                            <textarea type="text" class="form-control redondeado" rows="8" cols="55"
-                                                id="solicitud1" name="solicitud1" required></textarea>
+                                            <h5><b>Descripción*</b></h5>
+                                            <label class="text-muted"> Caracteres restantes:
+                                                        <span></span></label>
+                                            <textarea type="text" class="form-control redondeado" rows="5" 
+                                                id="solicitud1" name="solicitud1" maxlength="600" required></textarea>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
-                                                <h5>Subir Documento</h5>
+                                                <h5><b>Subir Documento</b></h5>
                                                 <input type="file" class="form-control redondeado"
                                                     id="fileActualizacion" name="fileActualizacion" multiple>
                                                 <p class="text-muted">Si se agrega más de un archivo, anexarlos en
                                                     carpeta comprimida .zip</p>
+                                            </div>
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <span class="text-muted">* Campo Obligatorio</span>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -180,8 +188,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-eliminar" role="tabpanel" aria-labelledby="nav-eliminar-tab">
-                <br> 
-                <div class="row ">
+                    <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <h4 class="card-title text-center"><b>Eliminación De Documentos</b></h4>
                             <br>
@@ -206,7 +213,7 @@
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <h5>Código Documento</h5>
-                                            <input type="text" name="codigo2" id="codigo2" readonly>
+                                            <input type="text" class="form-control redondeado" name="codigo2" id="codigo2" readonly>
                                             <h5>Tipo Documento</h5>
                                             <input type="text" class="form-control redondeado" name="idTipoDoc2"
                                                 id="idTipoDoc2" hidden>
@@ -226,8 +233,10 @@
 
                                             </select>
                                             <h5>Descripción</h5>
+                                            <label class="text-muted"> Caracteres restantes:
+                                                        <span></span></label>
                                             <textarea type="text" class="form-control redondeado" rows="8" cols="55"
-                                                id="solicitud2" name="solicitud2" required></textarea>
+                                                id="solicitud2" name="solicitud2" maxlength="600" required></textarea>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5>Subir Documento</h5>
                                                 <input type="file" class="form-control redondeado" id="fileEliminacion"

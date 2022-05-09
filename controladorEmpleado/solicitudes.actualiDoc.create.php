@@ -1,5 +1,4 @@
 <?php
-
 include_once "../entidadEmpleado/solicitudes.entidad.php";
 include_once "../modeloEmpleado/solicitudes.modelo.php";
 include_once "../controladorLogin/logueo.read.php";
@@ -8,7 +7,8 @@ include_once "../componente/Mailer/src/PHPMailer.php";
 include_once "../componente/Mailer/src/SMTP.php";
 include_once "../componente/Mailer/src/Exception.php";
 
-
+if (isset($_FILES["fileActualizacion"]))
+{  
 $id_empleado = $_SESSION['id_empleado'];
 $usuario = $_SESSION['usuario'];
 $codigo = $_POST['codigo'];
@@ -17,8 +17,6 @@ $id_prioridad = $_POST['prioridad1'];
 $solicitud = $_POST['solicitud1'];
 $fechaActual = date("Y-m-d H-i-s");
 
-if (isset($_FILES["fileActualizacion"]))
-{  
     $directorio = "../documentos/usuarios/$usuario/solicitudes/$fechaActual/";
    
     if(!file_exists($directorio)){
@@ -31,10 +29,31 @@ if (isset($_FILES["fileActualizacion"]))
             move_uploaded_file($_FILES['fileActualizacion']['tmp_name'],$directorio.$nombre);
         }    
     }
-}
-else{
-    $nombre = NULL ;
-    
+
+$solicitudesE = new \entidad\Solicitudes(); 
+$solicitudesE -> setIdEmpleado($id_empleado);
+$solicitudesE -> setCodigo($codigo);
+$solicitudesE -> setPrioridad($id_prioridad);
+$solicitudesE -> setIdTipoDocumento($id_tipoDocumento);
+$solicitudesE -> setSolicitud($solicitud);
+$solicitudesE -> setDocumento($nombre); 
+$solicitudesE -> setRuta($fechaActual); 
+$solicitudesE -> setUsuarioComentario($usuario);
+
+
+$solicitudesM= new \modelo\Solicitudes($solicitudesE);
+$resultado = $solicitudesM->solicitudActualizacion();
+
+}else{
+$id_empleado = $_SESSION['id_empleado'];
+$usuario = $_SESSION['usuario'];
+$codigo = $_POST['codigo'];
+$id_tipoDocumento = $_POST['idTipoDoc1'];
+$id_prioridad = $_POST['prioridad1'];
+$solicitud = $_POST['solicitud1'];
+$fechaActual = date("Y-m-d H-i-s");
+$nombre = null ;
+
     $directorio = "../documentos/usuarios/$usuario/solicitudes/$fechaActual/";
     if(!file_exists($directorio)){
         mkdir($directorio,0777,true);
@@ -42,34 +61,32 @@ else{
         if(file_exists($directorio)){
         }    
     }
-}
 
 $solicitudesE = new \entidad\Solicitudes(); 
 $solicitudesE -> setIdEmpleado($id_empleado);
 $solicitudesE -> setCodigo($codigo);
+$solicitudesE -> setPrioridad($id_prioridad);
 $solicitudesE -> setIdTipoDocumento($id_tipoDocumento);
-$solicitudesE -> setIdPrioridad($id_prioridad);
 $solicitudesE -> setSolicitud($solicitud);
-$solicitudesE -> setDocumento($nombre);  
-$solicitudesE -> setCarpeta($fechaActual); 
+$solicitudesE -> setDocumento($nombre); 
+$solicitudesE -> setRuta($fechaActual); 
+$solicitudesE -> setUsuarioComentario($usuario);
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 $resultado = $solicitudesM->solicitudActualizacion();
+}
 
 unset($solicitudesE);
 unset($solicitudesM);
-
 
 if(empty($retorno)){
     $usuario = $_SESSION['nombre_completo'];
     $correo = $_SESSION['correo_empleado'];
     $fechaActual = date("Y-m-d H-i-s");
-
-    try {
-    
-        $emailTo =  $correo;
-        $subject = "LIMARO - Notificación De Solicitud Creada con Éxito";
-        $bodyEmail = "
+try {
+    $emailTo =  $correo;
+    $subject = "LIMARO - Notificación De Solicitud Creada con Éxito";
+    $bodyEmail = "
 FECHA: $fechaActual
 PARA: $usuario - Funcionario COOPEAIPE
 DE: Area De Calidad
@@ -140,23 +157,19 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     } catch (Exception $e) {
         
     }
-                
-        }
+}
 
-        
 if(empty($retorno)){
-$usuario = $_SESSION['nombre_completo'];
+
 $correo = $_SESSION['correo_empleado'];
 $fechaActual = date("Y-m-d H-i-s");
-$solicitud = $_POST['solicitud'];
 $usuario = $_SESSION['nombre_completo'];
-$id_prioridad = $_POST['prioridad'];
+$id_prioridad = $_POST['prioridad1'];
+$solicitud = $_POST['solicitud1'];
 try {
-
     $emailTo =  "notificaciones@limaro.co";
     $subject = "LIMARO - Notificación De Solicitud Creada";
     $bodyEmail = "
-
 FECHA: $fechaActual
 PARA: Area De Calidad
 DE: $usuario - Funcionario COOPEAIPE
@@ -208,14 +221,12 @@ $mail ->Body =$bodyEmail;
 if(!$mail->send()){
     echo ("no enviado"); 
 }else{
-    echo ("enviado"); 
+    echo (""); 
 }
 } catch (Exception $e) {
     
 }
-            
-    }
 
-
+}
 
 ?>  

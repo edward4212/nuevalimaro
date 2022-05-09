@@ -4,6 +4,12 @@ include_once "../entidadEmpleado/solicitudes.entidad.php";
 include_once "../modeloEmpleado/solicitudes.modelo.php";
 include_once "../controladorLogin/logueo.read.php";
 
+include_once "../componente/Mailer/src/PHPMailer.php";
+include_once "../componente/Mailer/src/SMTP.php";
+include_once "../componente/Mailer/src/Exception.php";
+
+if (isset($_FILES["fileEliminacion"]))
+{
 $id_empleado = $_SESSION['id_empleado'];
 $usuario = $_SESSION['usuario'];
 $codigo = $_POST['codigo2'];
@@ -12,8 +18,6 @@ $id_prioridad = $_POST['prioridad2'];
 $solicitud = $_POST['solicitud2'];
 $fechaActual = date("Y-m-d H-i-s");
 
-if (isset($_FILES["fileEliminacion"]))
-{
     $directorio = "../documentos/usuarios/$usuario/solicitudes/$fechaActual/";
    
     if(!file_exists($directorio)){
@@ -26,22 +30,50 @@ if (isset($_FILES["fileEliminacion"]))
             move_uploaded_file($_FILES['fileEliminacion']['tmp_name'],$directorio.$nombre);
         }    
     }
+    $solicitudesE = new \entidad\Solicitudes(); 
+    $solicitudesE -> setIdEmpleado($id_empleado);
+    $solicitudesE -> setCodigo($codigo);
+    $solicitudesE -> setIdTipoDocumento($id_tipoDocumento);
+    $solicitudesE -> setPrioridad($id_prioridad);
+    $solicitudesE -> setSolicitud($solicitud);
+    $solicitudesE -> setDocumento($nombre);  
+    $solicitudesE -> setRuta($fechaActual); 
+    $solicitudesE -> setUsuarioComentario($usuario);
+    
+    $solicitudesM= new \modelo\Solicitudes($solicitudesE);
+    $resultado = $solicitudesM->solicitudEliminacion();
 }
 else{
-    $nombre = NULL ;
-}
 
+$id_empleado = $_SESSION['id_empleado'];
+$usuario = $_SESSION['usuario'];
+$codigo = $_POST['codigo2'];
+$id_tipoDocumento = $_POST['idTipoDoc2'];
+$id_prioridad = $_POST['prioridad2'];
+$solicitud = $_POST['solicitud2'];
+$fechaActual = date("Y-m-d H-i-s");
+$nombre = NULL ;
+
+    $directorio = "../documentos/usuarios/$usuario/solicitudes/$fechaActual/";
+    if(!file_exists($directorio)){
+        mkdir($directorio,0777,true);
+    }else{
+        if(file_exists($directorio)){
+        }    
+    }
 $solicitudesE = new \entidad\Solicitudes(); 
 $solicitudesE -> setIdEmpleado($id_empleado);
 $solicitudesE -> setCodigo($codigo);
 $solicitudesE -> setIdTipoDocumento($id_tipoDocumento);
-$solicitudesE -> setIdPrioridad($id_prioridad);
+$solicitudesE -> setPrioridad($id_prioridad);
 $solicitudesE -> setSolicitud($solicitud);
 $solicitudesE -> setDocumento($nombre);  
-$solicitudesE -> setCarpeta($fechaActual); 
+$solicitudesE -> setRuta($fechaActual); 
+$solicitudesE -> setUsuarioComentario($usuario);
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 $resultado = $solicitudesM->solicitudEliminacion();
+}
 
 unset($solicitudesE);
 unset($solicitudesM);
@@ -131,12 +163,12 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
 
 
 if(empty($retorno)){
-$usuario = $_SESSION['nombre_completo'];
+
 $correo = $_SESSION['correo_empleado'];
 $fechaActual = date("Y-m-d H-i-s");
-$solicitud = $_POST['solicitud'];
+$solicitud = $_POST['solicitud2'];
 $usuario = $_SESSION['nombre_completo'];
-$id_prioridad = $_POST['prioridad'];
+$id_prioridad = $_POST['prioridad2'];
 try {
 
     $emailTo =  "notificaciones@limaro.co";
@@ -194,7 +226,7 @@ $mail ->Body =$bodyEmail;
 if(!$mail->send()){
     echo ("no enviado"); 
 }else{
-    echo ("enviado"); 
+    echo (""); 
 }
 } catch (Exception $e) {
     
