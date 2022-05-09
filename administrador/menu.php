@@ -19,41 +19,78 @@
                             Inicio</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="perfil.php" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-indent"></i>
+                        <a href="" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-indent"></i>
                             Indice de Documentos</a>
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="macroprocesos.php"><i class="fas fa-cogs"></i>
-                                    Macroprocesos Y Procesos</a>
+                                <a class="nav-link p-2 dropdown-item" href="macroprocesos.php"><i
+                                        class="fas fa-cogs"></i>
+                                    Gestión de Macroprocesos</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="documentos.php"><i class="far fa-address-book"></i>
-                                    Tipo y Registro de Documentos</a>
+                                <a class="nav-link p-2 dropdown-item" href="procesos.php"><i class="fas fa-cog"></i>
+                                    Gestión de Procesos</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="versionamiento.php"><i class="fas fa-book"></i>
-                                    Listado Maestro de Documentos</a>
+                                <a class="nav-link p-2 dropdown-item" href="documentos.php"><i class="fas fa-book"></i>
+                                    Gestión de Tipo de Documentos</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="registro.php"><i
+                                        class="far fa-address-book"></i>
+                                    Gestión de Registro de Documentos</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="vigentes.php"><i class="fas fa-list"></i>
+                                    Listado Maestro de Documentos Vigentes</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="obsoletos.php"><i class="far fa-times-circle"></i>
+                                    Listado Maestro de Documentos Obsoletos</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="versionamiento.php"><i class="far fa-plus-square"></i>
+                                    Versionamiento</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="perfil.php" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-file"></i>
+                        <a href="" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-paperclip"></i>
                             Solicitudes y Tareas</a>
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2" href="solicitudes.php"><i class="fas fa-check-double"></i>
-                                    Solicitudes</a>
+                                <a class="nav-link p-2 dropdown-item" href="solicitudes.php"><i
+                                        class="fas fa-check-double"></i>
+                                    Gestión de Solicitudes</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2" href="tareas.php"><i class="fas fa-list"></i> Tareas</a>
+                                <a class="nav-link p-2 dropdown-item" href="tareas.php"><i class="fas fa-list-ol"></i>
+                                    Gestión de Tareas</a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item col-6 col-md-auto">
-                        <a class="nav-link p-2" href="usuarios.php"><i class="fas fa-users"></i> Gestión de Usuarios</a>
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-users"></i>
+                            Usuarios </a>
+                        <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="usuarios.php"><i class="fas fa-users"></i>
+                                    Gestión de Usuarios</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="cargo.php"><i class="fas fa-user-plus"></i>
+                                    Gestión de Cargos</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="rol.php"><i class="fas fa-user-tag"></i>
+                                    Gestión de Roles</a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a href="perfil.php" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false"><img href="perfil.php"
@@ -71,7 +108,7 @@
             </div>
             <form class="d-flex">
                 <a class="btn" id="btnCerrar" style="color: #0A58CD;"><i class="fas fa-sign-out-alt"
-                                style="color: #0A58CD;"></i> Cerrar Sesión</a>
+                        style="color: #0A58CD;"></i> Cerrar Sesión</a>
                 <script src="../js/Login/logueo.js"></script>
             </form>
         </div>

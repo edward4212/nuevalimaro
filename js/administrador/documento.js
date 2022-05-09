@@ -2,6 +2,10 @@ function cargar1() {
     window.location.href = "../administrador/documentos.php";
 }
 
+function cargar2() {
+    window.location.href = "../administrador/registro.php";
+}
+
 var inputs = "textarea[maxlength]";
 $(document).on('keyup', "[maxlength]", function (e) {
     var este = $(this),
@@ -436,7 +440,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    cargar1();
+                    cargar2();
                 });
             } else {
                 Swal.fire({
@@ -610,7 +614,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    cargar1();
+                    cargar2();
                 });  
             }
         }).fail(function (xhr, status, error) {

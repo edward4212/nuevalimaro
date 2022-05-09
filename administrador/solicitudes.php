@@ -9,7 +9,6 @@
     <main class="flex-shrink-0">
         <div class="container">
             <nav>
-                <br>
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"
@@ -21,7 +20,6 @@
                     aria-labelledby="nav-solicitudes-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <br>
                             <h3 class="card-title text-center">Solicitudes Registradas</h3>
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <form action="" class="form-group" id="buscar">

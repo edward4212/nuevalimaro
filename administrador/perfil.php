@@ -18,10 +18,8 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-perfil" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <br>
                     <div class="row ">
                         <div class="col-md-3 col-xs-12 col-sm-12">
-                            <br>
                             <div class="card text-center">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">Foto de Perfil</h5>

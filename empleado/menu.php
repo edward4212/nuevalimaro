@@ -36,10 +36,10 @@
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2" href="solicitudes.php"><i class="fas fa-check-double"></i>
-                                    Solicitudes</a>
+                                    Gestión Solicitudes</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2" href="tareas.php"><i class="fas fa-list"></i> Tareas</a>
+                                <a class="nav-link p-2" href="tareas.php"><i class="fas fa-list"></i> Gestión Tareas</a>
                             </li>
                         </ul>
                     </li>

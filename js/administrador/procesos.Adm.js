@@ -2,6 +2,11 @@ function cargar(){
     window.location.href = "../administrador/macroprocesos.php";
 }
 
+function cargar5(){
+    window.location.href = "../administrador/procesos.php";
+}
+
+
 var inputs = "textarea[maxlength]";
 $(document).on('keyup', "[maxlength]", function (e) {
     var este = $(this),
@@ -343,7 +348,7 @@ $(document).ready(function(){
                         showConfirmButton: false,
                         timer: 2500
                     }).then((result) => {
-                        cargar();
+                        cargar5();
                     });
                 }
             }).fail(function(xhr, status, error){
@@ -495,7 +500,7 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 2500
                   }).then((result) => {
-                    cargar();
+                    cargar5();
                   });
                 }
             }).fail(function(xhr, status, error){
@@ -527,7 +532,7 @@ $(document).ready(function(){
                         showConfirmButton: false,
                         timer: 2500
                     }).then((result) => {
-                        cargar();
+                        cargar5();
                     });
                 }
             }).fail(function(xhr, status, error){

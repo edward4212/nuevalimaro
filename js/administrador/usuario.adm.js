@@ -1,29 +1,3 @@
-document.getElementById('txtCorreoMod').addEventListener('input', function(event) {
-    campo = event.target;
-    valido = document.getElementById('emailOKM');
-        
-    emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-    if (emailRegex.test(campo.value)) {
-        valido.innerText = "";
-    } else {
-      valido.innerText = "Formato invalido para correo electrónico";
-    }
-});
-
-document.getElementById('txtCorreoEmpleado').addEventListener('input', function(event) {
-    campo = event.target;
-    valido = document.getElementById('emailOK');
-        
-    emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-    if (emailRegex.test(campo.value)) {
-        valido.innerText = "";
-    } else {
-      valido.innerText = "Formato invalido para correo electrónico";
-    }
-});
-
 function cargar() {
 window.location.href = "../administrador/usuarios.php";
 };
