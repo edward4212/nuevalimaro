@@ -1,7 +1,7 @@
 <?php
-
-include_once "../entidadAdministrador/solicitudes.entidad.php";
-include_once "../modeloAdministrador/solicitudes.modelo.php";
+include_once "../../controladorLogin/logueo.read.php";
+include_once "../../entidadAdministrador/solicitudes.entidad.php";
+include_once "../../modeloAdministrador/solicitudes.modelo.php";
 
 $idsolicitud = $_POST['numIdSolicitud2'];  
 $id_estatus_solicitud= $_POST['estadoSolicitud1'];

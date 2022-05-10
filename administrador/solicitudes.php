@@ -27,7 +27,6 @@
                                     <h5 id="solicitudesAdmn"></h5>
                                 </form>
                             </div>
-
                         </div>
                         <!-- Modal Asignar Funcionario-->
                         <div class="modal fade" id="asignarFuncionarioSol" tabindex="-1"

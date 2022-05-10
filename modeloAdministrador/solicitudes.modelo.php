@@ -138,32 +138,8 @@ class Solicitudes{
      public function comentarios()
      {
           try {
-               $this->sql = "	SELECT * FROM comentarios_solicitud 
+               $this->sql = "	SELECT * FROM solicitud_comentario 
                WHERE id_solicitud =  '$this->id_solicitud'";
-               $this->result = $this->conexion->query($this->sql);
-               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-          } catch (Exception $e) {
-               $this->retorno = $e->getMessage();
-          }
-               return $this->retorno;
-     }
-
-     public function prioridad()
-     {
-          try {
-               $this->sql = "SELECT * FROM prioridad ";
-               $this->result = $this->conexion->query($this->sql);
-               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-          } catch (Exception $e) {
-               $this->retorno = $e->getMessage();
-          }
-               return $this->retorno;
-     }
-          
-     public function tipoDocumento()
-     {
-          try {
-               $this->sql = "SELECT * FROM tipo_documento ";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
           } catch (Exception $e) {
@@ -176,7 +152,7 @@ class Solicitudes{
      {
           try{
                
-               $this->result = $this->conexion->prepare("INSERT INTO comentarios_solicitud VALUES (NULL , :comentario , :id_solicitud, :usuario_comentario , 'A', CURRENT_TIMESTAMP())");
+               $this->result = $this->conexion->prepare("INSERT INTO solicitud_comentario VALUES (NULL ,:id_solicitud, :comentario ,  :usuario_comentario , CURRENT_TIMESTAMP(), 'ACTIVO')");
                $this->result->bindParam(':comentario', $this->comentario);
                $this->result->bindParam(':id_solicitud', $this->id_solicitud);
                $this->result->bindParam(':usuario_comentario', $this->usuario_comentario);
@@ -191,7 +167,7 @@ class Solicitudes{
      public function comentariosCrear1()
      {
           try{
-               $this->result = $this->conexion->prepare("INSERT INTO comentarios_solicitud VALUES (NULL , 'Se asigno o modifico funcionario Encargado', :id_solicitud, :usuario_comentario , 'A', CURRENT_TIMESTAMP())");
+               $this->result = $this->conexion->prepare("INSERT INTO solicitud_comentario VALUES (NULL , :id_solicitud,'Se asignó o modificó al funcionario encargado',  :usuario_comentario , CURRENT_TIMESTAMP(), 'ACTIVO')");
                $this->result->bindParam(':id_solicitud', $this->id_solicitud);
                $this->result->bindParam(':usuario_comentario', $this->usuario_comentario);
                $this->result->execute();    
@@ -202,24 +178,11 @@ class Solicitudes{
                return $this->retorno;
      }
 
-     public function comentariosCrear2()
-     {
-          try{
-               $this->result = $this->conexion->prepare("INSERT INTO comentarios_solicitud VALUES (NULL , 'Se inicio la tarea', :id_solicitud, :usuario_comentario , 'A', CURRENT_TIMESTAMP())");
-               $this->result->bindParam(':id_solicitud', $this->id_solicitud);
-               $this->result->bindParam(':usuario_comentario', $this->usuario_comentario);
-               $this->result->execute();    
-          } catch (Exception $e) {
-          
-               $this->retorno = $e->getMessage();
-          }
-               return $this->retorno;
-     }
-
+ 
      public function funcionarioCrear()
      {
           try {
-               $this->sql = "UPDATE solicitud SET funcionario_asignado='$this->funcionario_asignado', id_estatus_solicitud='2', fecha_asignacion =  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
+               $this->sql = "UPDATE solicitud SET funcionario_asignado='$this->funcionario_asignado', estado_solicitud='ASIGNADA', fecha_asignacion =  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
                $this->result = $this->conexion->query($this->sql);
           } catch (Exception $e) {
                $this->retorno = $e->getMessage();
@@ -227,57 +190,58 @@ class Solicitudes{
                return $this->retorno;
      }
 
-
-     public function estadoSolicitudRead()
-     {
-          try {
-               $this->sql = "SELECT * FROM estatus_solicitud WHERE id_estatus_solicitud != '1' AND id_estatus_solicitud  !='2' AND id_estatus_solicitud  != '3'";
-               $this->result = $this->conexion->query($this->sql);
-               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-                    
-          } catch (Exception $e) {
-               $this->retorno = $e->getMessage();
-          }
-               return $this->retorno;
-     }
-
+         // public function comentariosCrear2()
+     // {
+     //      try{
+     //           $this->result = $this->conexion->prepare("INSERT INTO solicitud_comentario VALUES (NULL , :id_solicitud,'Se inicio la tarea',  :usuario_comentario ,CURRENT_TIMESTAMP(), 'ACTIVO')");
+     //           $this->result->bindParam(':id_solicitud', $this->id_solicitud);
+     //           $this->result->bindParam(':usuario_comentario', $this->usuario_comentario);
+     //           $this->result->execute();    
+     //      } catch (Exception $e) {
           
-     public function tareaCrear()
-     {
-          try{
+     //           $this->retorno = $e->getMessage();
+     //      }
+     //           return $this->retorno;
+     // }
+
+
+ 
+     // public function tareaCrear()
+     // {
+     //      try{
                
-               $this->result = $this->conexion->prepare("INSERT INTO tarea VALUES (NULL , :id_solicitud , CURRENT_TIMESTAMP(), :usuario_creacion, null,null, null,null,null, 'C' )");
-               $this->result->bindParam(':id_solicitud', $this->id_solicitud);
-               $this->result->bindParam(':usuario_creacion', $this->usuario);
-               $this->result->execute();    
-          } catch (Exception $e) {
+     //           $this->result = $this->conexion->prepare("INSERT INTO tarea VALUES (NULL , :id_solicitud , CURRENT_TIMESTAMP(), :usuario_creacion, null,null, null,null,null, 'C' )");
+     //           $this->result->bindParam(':id_solicitud', $this->id_solicitud);
+     //           $this->result->bindParam(':usuario_creacion', $this->usuario);
+     //           $this->result->execute();    
+     //      } catch (Exception $e) {
           
-               $this->retorno = $e->getMessage();
-          }
-               return $this->retorno;
-     }
+     //           $this->retorno = $e->getMessage();
+     //      }
+     //           return $this->retorno;
+     // }
 
-     public function estadoTarea()
-     {
-          try {
-               $this->sql = "UPDATE solicitud SET id_estatus_solicitud='3', fecha_inicio_tarea =  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
-               $this->result = $this->conexion->query($this->sql);
-          } catch (Exception $e) {
-               $this->retorno = $e->getMessage();
-          }
-               return $this->retorno;
-     }
+     // public function estadoTarea()
+     // {
+     //      try {
+     //           $this->sql = "UPDATE solicitud SET id_estatus_solicitud='3', fecha_inicio_tarea =  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
+     //           $this->result = $this->conexion->query($this->sql);
+     //      } catch (Exception $e) {
+     //           $this->retorno = $e->getMessage();
+     //      }
+     //           return $this->retorno;
+     // }
 
-     public function estatusSolicitud()
-     {
-          try {
-               $this->sql = "UPDATE solicitud SET id_estatus_solicitud='$this->id_estatus_solicitud',  fecha_solucion =  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
-               $this->result = $this->conexion->query($this->sql);
-          } catch (Exception $e) {
-               $this->retorno = $e->getMessage();
-          }
-               return $this->retorno;
-     }
+     // public function estatusSolicitud()
+     // {
+     //      try {
+     //           $this->sql = "UPDATE solicitud SET id_estatus_solicitud='$this->id_estatus_solicitud',  fecha_solucion =  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
+     //           $this->result = $this->conexion->query($this->sql);
+     //      } catch (Exception $e) {
+     //           $this->retorno = $e->getMessage();
+     //      }
+     //           return $this->retorno;
+     // }
 
 
 

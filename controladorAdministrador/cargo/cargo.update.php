@@ -35,7 +35,7 @@ if(!file_exists($_FILES['fileCargoMod']['tmp_name']) || !is_uploaded_file($_FILE
                 showConfirmButton: false,
                 timer: 3000
                 }).then(function() {
-                window.location.href = "../../administrador/usuarios.php";
+                window.location.href = "../../administrador/cargo.php";
             });
         });
         </script>';
@@ -58,7 +58,7 @@ if(!file_exists($_FILES['fileCargoMod']['tmp_name']) || !is_uploaded_file($_FILE
                     showConfirmButton: false,
                     timer: 3000
                     }).then(function() {
-                        window.location.href = "../../administrador/usuarios.php";
+                        window.location.href = "../../administrador/cargo.php";
                 });
             });
             </script>';
@@ -115,7 +115,7 @@ if(($resultado !== null)){
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/usuarios.php";
+            window.location.href = "../../administrador/cargo.php";
         });
     });
     </script>';
@@ -137,7 +137,7 @@ if(($resultado !== null)){
                 showConfirmButton: false,
                 timer: 3000
                 }).then(function() {
-                    window.location.href = "../../administrador/usuarios.php";
+                    window.location.href = "../../administrador/cargo.php";
             });
         });
         </script>';

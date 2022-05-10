@@ -40,7 +40,7 @@ $(document).ready(function () {
                     datos += '<th  class="border border-primary text-center align-middle ">CREADO POR: </th>';
                     datos += '<th  class="border border-primary text-center align-middle ">DESCRIPCIÓN DE LA SOLICITUD</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE </th>';
-                    datos += '<th  class="border border-primary text-center align-middle ">ASIGNAR FUNCIONARIO</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">FUNCIONARIO ENCARGADO</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">ASIGNADO A</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
                 datos += '</tr>';
@@ -66,8 +66,11 @@ $(document).ready(function () {
                     } else {
                         datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.carpeta + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
                     }
-                    
-                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="bntAsignarFuncionario" onclick="asignarFuncionario(' + value.id_solicitud + ',\'' + value.funcionario_asignado + '\',\'' + value.fecha_asignacion + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarFuncionarioSol"><i class="fas fa-user-check"></i></button></td>';
+                    if(value.funcionario_asignado == 'Sin Asignar'){
+                        datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="bntAsignarFuncionario" onclick="asignarFuncionario(' + value.id_solicitud + ',\'' + value.funcionario_asignado + '\',\'' + value.fecha_asignacion + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarFuncionarioSol"><i class="fas fa-user-check"></i> ASIGNAR</button></td>';
+                    }else{
+                        datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="bntAsignarFuncionario" onclick="asignarFuncionario(' + value.id_solicitud + ',\'' + value.funcionario_asignado + '\',\'' + value.fecha_asignacion + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarFuncionarioSol"><i class="fas fa-user-check"></i> MODIFICAR</button></td>';
+                    }
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.funcionario_asignado + '</td>';
                     datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentario(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
                 datos += '</tr>';
@@ -168,7 +171,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnVerComentarios', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/solicitudes.comentarios.read.php',
+            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.read.php',
             type: 'POST',
             dataType: 'json',
             data: $('#buscar').serialize(),
@@ -289,7 +292,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnCrearcomentario', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/solicitudes.comentarios.create.php',
+            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.create.php',
             type: 'POST',
             dataType: 'json',
             data: $('#buscar1').serialize(),
@@ -311,7 +314,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnAgregarFunc', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/solicitudes.funcionario.create.php',
+            url: '../controladorAdministrador/solicitud/solicitudes.funcionario.create.php',
             type: 'POST',
             dataType: 'json',
             data: $('#buscar2').serialize(),
@@ -333,7 +336,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnAgregarFunc', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/solicitudes.comentarios.funcionario.create.php',
+            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.funcionario.create.php',
             type: 'POST',
             dataType: 'json',
             data: $('#buscar2').serialize(),
