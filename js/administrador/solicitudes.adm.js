@@ -64,7 +64,7 @@ $(document).ready(function () {
                     if (value.documento == null) {
                         datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
                     } else {
-                        datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.carpeta + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
+                        datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.ruta  + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
                     }
                     if(value.funcionario_asignado == 'Sin Asignar'){
                         datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="bntAsignarFuncionario" onclick="asignarFuncionario(' + value.id_solicitud + ',\'' + value.funcionario_asignado + '\',\'' + value.fecha_asignacion + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarFuncionarioSol"><i class="fas fa-user-check"></i> ASIGNAR</button></td>';

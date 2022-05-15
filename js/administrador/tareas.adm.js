@@ -2,19 +2,44 @@ function cargar() {
     window.location.href = "../administrador/tareas.php";
 }
 
-// function comentario(id_solicitud) {
-//     $("#numIdSolicitud").val(id_solicitud);
-//     $("#numIdSolicitud1").val(id_solicitud);
-// }
+function comentario(id_solicitud) {
+    $("#numIdSolicitud").val(id_solicitud);
+    $("#numIdSolicitud1").val(id_solicitud);
+}
 
-// function estadiSolicitud(id_solicitud, estatus_solicitud) {
-//     $("#numIdSolicitud2").val(id_solicitud);
-//     $("#estadoSolicitud").val(estatus_solicitud);
-// }
 
-// function iniciarTarea(id_solicitud) {
-//     $("#numIdSolicitud3").val(id_solicitud);
-// }
+var inputs = "textarea[maxlength]";
+$(document).on('keyup', "[maxlength]", function (e) {
+    var este = $(this),
+    maxlength = este.attr('maxlength'),
+    maxlengthint = parseInt(maxlength),
+    textoActual = este.val(),
+    currentCharacters = este.val().length;
+    remainingCharacters = maxlengthint - currentCharacters,
+    espan = este.prev('label').find('span');	
+
+    // Detectamos si es IE9 y si hemos llegado al final, convertir el -1 en 0 - bug ie9 porq. no coge directamente el atributo 'maxlength' de HTML5
+    if (document.addEventListener && !window.requestAnimationFrame) {
+        if (remainingCharacters <= -1) {
+            remainingCharacters = 0;            
+        }
+    }
+    espan.html(remainingCharacters);
+    if (!!maxlength) {
+        var texto = este.val();	
+        if (texto.length >= maxlength) {
+            este.removeClass().addClass("borderojo");
+            e.preventDefault();
+        }
+        else if (texto.length < maxlength) {
+            este.removeClass().addClass("bordegris");
+        }	
+    }	
+});
+
+function iniciarTarea(id_solicitud) {
+    $("#numIdSolicitud3").val(id_solicitud);
+}
 
 // function idtarea(id_tarea, id_solicitud) {
 //     $("#numIdTarea").val(id_tarea);
@@ -124,23 +149,23 @@ $(document).ready(function () {
              */
             var datos = '';
             datos += "<table id='tableSolicitudes'   class='table  table-striped table-bordered table-responsive '  >";
-            datos += '<thead >';
-            datos += '<tr class="table-light border-primary text-center align-middle ">';
-            datos += '<th class="border border-primary text-center align-middle ">CÓDIGO  SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">FECHA DE ASIGNACIÓN</th>';
-            datos += '<th  class="border border-primary text-wrap align-middle ">PRIORIDAD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">TIPO DE SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">TIPO DE DOCUMENTO </th>';
-            datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO  DOCUMENTO </th>';
-            datos += '<th  class="border border-primary text-center align-middle ">CREADO POR </th>';
-            datos += '<th  class="border border-primary text-center align-middle ">DESCRIPCIÓN DE LA SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE </th>';
-            datos += '<th  class="border border-primary text-center align-middle ">ESTADO DE LA SOLICITUD</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
-            datos += '<th  class="border border-primary text-center align-middle ">INICIAR TAREA</th>';
-            datos += '</tr>';
-            datos += '</thead>';
+                datos += '<thead >';
+                    datos += '<tr class="table-light border-primary text-center align-middle ">';
+                        datos += '<th class="border border-primary text-center align-middle ">CÓDIGO  SOLICITUD</th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">FECHA DE ASIGNACIÓN</th>';
+                        datos += '<th  class="border border-primary text-wrap align-middle ">PRIORIDAD</th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">TIPO DE SOLICITUD</th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">TIPO DE DOCUMENTO </th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO  DOCUMENTO </th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">CREADO POR </th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">DESCRIPCIÓN DE LA SOLICITUD</th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE </th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">ESTADO</th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
+                        datos += '<th  class="border border-primary text-center align-middle ">INICIAR TAREA</th>';
+                    datos += '</tr>';
+                datos += '</thead>';
             datos += '<tbody>';
             $.each(json, function (key, value) {
                 datos += '<tr class="align-middle" >';
@@ -153,12 +178,12 @@ $(document).ready(function () {
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.codigo_documento + '</td>';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.usuario + '</td>';
                 datos += '<td class=" border border-primary text-wrap align-middle">' + value.solicitud + '</td>';
-                if (value.documento != "") {
-                    datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.carpeta + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
+                if (value.documento != null) {
+                    datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.ruta + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
                 } else {
                     datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
                 }
-                datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnEstadiSolicitud" onclick="estadiSolicitud(' + value.id_solicitud + ',\'' + value.estado_solicitud + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#estadoSol"><i class="far fa-list-alt"></i></button></td>';
+                datos += '<td class=" border border-primary  text-center align-middle">' + value.estado_solicitud + '</td>';
                 datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentario(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
                 if (value.fecha_inicio_tarea != null) {
                     datos += '<td class=" border border-primary text-wrap align-middle">Tarea ya Iniciada</td>';
@@ -250,194 +275,172 @@ $(document).ready(function () {
         })
     }
 
-//     $(document).on('click', '#btnVerComentarios', function (event) {
-//         event.preventDefault();
-//         $.ajax({
-//             url: '../controladorAdministrador/solicitudes.comentarios.read.php',
-//             type: 'POST',
-//             dataType: 'json',
-//             data: $('#buscar').serialize(),
-//         }).done(function (json) {
-//             var comentarios = '';
-//             if (json == 0) {
-//                 comentarios += "<h5>Aun no hay comentarios</h5>";
-//             } else {
-//                 comentarios += "<table id='tableComentarios'  class='table  table-striped table-bordered table-responsive ' >";
-//                 comentarios += '<thead >';
-//                 comentarios += '<tr class="table-light border-primary ">';
-//                 comentarios += '<th  class="text-center align-middle border border-primary ">FECHA COMENTARIO</th>';
-//                 comentarios += '<th  class="text-center align-middle border border-primary ">USUARIO</th>';
-//                 comentarios += '<th  class="text-center align-middle border border-primary ">COMENTARIO</th>';;
-//                 comentarios += '</tr>';
-//                 comentarios += '</thead>';
-//                 comentarios += '<tbody>';
-//                 $.each(json, function (key, value) {
-//                     comentarios += '<tr class="align-middle" >';
-//                     comentarios += '<td class=" border border-primary text-wrap" id="numIdSolicitud">' + value.fecha_comentario + ' </td>';
-//                     comentarios += '<td class=" border border-primary  text-wrap align-middle">' + value.usuario_comentario + '</td>';
-//                     comentarios += '<td class=" border border-primary  text-wrap align-middle">' + value.comentario + '</td>';
-//                     comentarios += '</tr>';
-//                 })
-//                 comentarios += '</tbody>';
-//                 comentarios += '</table>';
-//             }
-//             $('#comentarios').html(comentarios);
-//             $('#tableComentarios').DataTable({
-//                 "destroy": true,
-//                 "autoWidth": true,
-//                 "responsive": true,
-//                 "searching": false,
-//                 "info": true,
-//                 "ordering": true,
-//                 "colReorder": true,
-//                 "sZeroRecords": true,
-//                 "fixedColumns": true,
-//                 "fixedHeader": true,
-//                 "keys": true,
-//                 "deferRender": true,
-//                 "lengthMenu": [
-//                     [5, 10, 20, 25, 50, -1],
-//                     [5, 10, 20, 25, 50, "Todos"]
-//                 ],
-//                 "iDisplayLength": 20,
-//                 "language": {
-//                     "url": "../componente/libreria/idioma/es-mx.json"
-//                 },
-//                 dom: 'Qfrtip',
-//                 dom: 'Bfrtip',
-//                 buttons: [{
-//                     extend: 'pdfHtml5',
-//                     orientation: 'landscape',
-//                     pageSize: 'A4',
-//                     download: 'open',
-//                     pageSize: 'LEGAL',
-//                     title: 'Comentarios sobre la Solicitud',
-//                     titleAttr: 'Comentarios sobre la Solicitud',
-//                     messageTop: 'Comentarios sobre la Solicitud',
-//                     text: '<i class="far fa-file-pdf"></i>',
-//                     exportOptions: {
-//                         columns: [0, 1, 2,]
-//                     }
-//                 },
-//                 {
-//                     extend: 'print',
-//                     title: 'Comentarios sobre la Solicitud',
-//                     titleAttr: 'Comentarios sobre la Solicitud',
-//                     messageTop: 'Comentarios sobre la Solicitud',
-//                     text: '<i class="fas fa-print"></i>',
-//                     exportOptions: {
-//                         columns: [0, 1, 2]
-//                     }
-//                 },
-//                 {
-//                     extend: 'excelHtml5',
-//                     text: '<i class="fas fa-file-excel"></i>',
-//                     autoFiltre: true,
-//                     title: 'Comentarios sobre la Solicitud',
-//                     exportOptions: {
-//                         columns: [0, 1, 2]
-//                     }
-//                 },
-//                 {
-//                     extend: 'copyHtml5',
-//                     text: '<i class="fas fa-copy"></i>',
-//                     autoFiltre: true,
-//                     titleAttr: 'COPIAR',
-//                     exportOptions: {
-//                         columns: [0, 1, 2]
-//                     }
-//                 }
-//                 ]
-//             });
-//         }).fail(function (xhr, status, error) {
-//             $('#comentarios').html(error);
-//         })
-//     })
+    $(document).on('click', '#btnVerComentarios', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.read.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#buscar').serialize(),
+        }).done(function (json) {
+            var comentarios = '';
+            if (json == 0) {
+                comentarios += "<h5>Aun no hay comentarios</h5>";
+            } else {
+                comentarios += "<table id='tableComentarios'  class='table  table-striped table-bordered table-responsive ' >";
+                comentarios += '<thead >';
+                comentarios += '<tr class="table-light border-primary ">';
+                comentarios += '<th  class="text-center align-middle border border-primary ">FECHA COMENTARIO</th>';
+                comentarios += '<th  class="text-center align-middle border border-primary ">USUARIO</th>';
+                comentarios += '<th  class="text-center align-middle border border-primary ">COMENTARIO</th>';;
+                comentarios += '</tr>';
+                comentarios += '</thead>';
+                comentarios += '<tbody>';
+                $.each(json, function (key, value) {
+                    comentarios += '<tr class="align-middle" >';
+                    comentarios += '<td class=" border border-primary text-wrap" id="numIdSolicitud">' + value.fecha_comentario + ' </td>';
+                    comentarios += '<td class=" border border-primary  text-wrap align-middle">' + value.usuario_comentario + '</td>';
+                    comentarios += '<td class=" border border-primary  text-wrap align-middle">' + value.comentario + '</td>';
+                    comentarios += '</tr>';
+                })
+                comentarios += '</tbody>';
+                comentarios += '</table>';
+            }
+            $('#comentarios').html(comentarios);
+            $('#tableComentarios').DataTable({
+                "destroy": true,
+                "autoWidth": true,
+                "responsive": true,
+                "searching": false,
+                "info": true,
+                "ordering": true,
+                "colReorder": true,
+                "sZeroRecords": true,
+                "fixedColumns": true,
+                "fixedHeader": true,
+                "keys": true,
+                "deferRender": true,
+                "lengthMenu": [
+                    [5, 10, 20, 25, 50, -1],
+                    [5, 10, 20, 25, 50, "Todos"]
+                ],
+                "iDisplayLength": 20,
+                "language": {
+                    "url": "../componente/libreria/idioma/es-mx.json"
+                },
+                dom: 'Qfrtip',
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    download: 'open',
+                    pageSize: 'LEGAL',
+                    title: 'Comentarios sobre la Solicitud',
+                    titleAttr: 'Comentarios sobre la Solicitud',
+                    messageTop: 'Comentarios sobre la Solicitud',
+                    text: '<i class="far fa-file-pdf"></i>',
+                    exportOptions: {
+                        columns: [0, 1, 2,]
+                    }
+                },
+                {
+                    extend: 'print',
+                    title: 'Comentarios sobre la Solicitud',
+                    titleAttr: 'Comentarios sobre la Solicitud',
+                    messageTop: 'Comentarios sobre la Solicitud',
+                    text: '<i class="fas fa-print"></i>',
+                    exportOptions: {
+                        columns: [0, 1, 2]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    autoFiltre: true,
+                    title: 'Comentarios sobre la Solicitud',
+                    exportOptions: {
+                        columns: [0, 1, 2]
+                    }
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: '<i class="fas fa-copy"></i>',
+                    autoFiltre: true,
+                    titleAttr: 'COPIAR',
+                    exportOptions: {
+                        columns: [0, 1, 2]
+                    }
+                }
+                ]
+            });
+        }).fail(function (xhr, status, error) {
+            $('#comentarios').html(error);
+        })
+    })
 
-//     /// ASIGNAR COMENTARIO A LA SOLICITUD///
-//     $(document).on('click', '#btnCrearcomentario', function (event) {
-//         event.preventDefault();
-//         $.ajax({
-//             url: '../controladorAdministrador/solicitudes.comentarios.create.php',
-//             type: 'POST',
-//             dataType: 'json',
-//             data: $('#buscar1').serialize(),
-//         }).done(function (json) {
-//             Swal.fire({
-//                 icon: 'success',
-//                 title: 'Comentario Asignado con Exito',
-//                 showConfirmButton: false,
-//                 timer: 3000
-//             }).then((result) => {
-//                 cargar();
-//             })
-//         }).fail(function (xhr, status, error) {
-//             console.log(error);
-//         })
-//     })
+    /// ASIGNAR COMENTARIO A LA SOLICITUD///
+    $(document).on('click', '#btnCrearcomentario', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.create.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#buscar1').serialize(),
+        }).done(function (json) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Comentario Asignado con Exito',
+                showConfirmButton: false,
+                timer: 3000
+            }).then((result) => {
+                cargar();
+            })
+        }).fail(function (xhr, status, error) {
+            console.log(error);
+        })
+    })
 
-//     /// cambio de estado a la solicitud///
-//     $(document).on('click', '#btnEstadiSolicitud', function (event) {
-//         event.preventDefault();
-//         $.ajax({
-//             url: '../controladorAdministrador/solicitudes.estado.update.php',
-//             type: 'POST',
-//             dataType: 'json',
-//             data: $('#EstadiSolicitud').serialize(),
-//         }).done(function (json) {
-//             Swal.fire({
-//                 icon: 'success',
-//                 title: 'Soliictud Actualizada con Exito',
-//                 showConfirmButton: false,
-//                 timer: 3000
-//             }).then((result) => {
-//                 cargar();
-//             })
-//         }).fail(function (xhr, status, error) {
-
-//         })
-//     })
-
-//     /// INICIAR UNA TAREA///
-//     $(document).on('click', '#btnIniciarTarea', function (event) {
-//         event.preventDefault();
-//         $.ajax({
-//             url: '../controladorAdministrador/tarea.create.php',
-//             type: 'POST',
-//             dataType: 'json',
-//             data: $('#buscar').serialize(),
-//         }).done(function (json) {
-//             Swal.fire({
-//                 icon: 'success',
-//                 title: 'Tarea Iniciada con Exito',
-//                 showConfirmButton: false,
-//                 timer: 3000
-//             }).then((result) => {
-//                 cargar();
-//             })
-//         }).fail(function (xhr, status, error) {
-//             console.log(error);
-//         })
-//     })
+    /// INICIAR UNA TAREA///
+    $(document).on('click', '#btnIniciarTarea', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/tarea/tarea.create.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#iniciarTarea').serialize(),
+        }).done(function (json) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Tarea Iniciada con Exito',
+                showConfirmButton: false,
+                timer: 3000
+            }).then((result) => {
+                cargar();
+            })
+        }).fail(function (xhr, status, error) {
+            console.log(error);
+        })
+    })
 
 //  $(document).on('click', '#restaurar', function () {
 //        $("#documentoAuto1").prop("disabled", false)
 //     });
     
-//     /// agregar comentario de INICIAR UNA TAREA///
-//     $(document).on('click', '#btnIniciarTarea', function (event) {
-//         event.preventDefault();
-//         $.ajax({
-//             url: '../controladorAdministrador/solicitudes.comentarios.tarea.create.php',
-//             type: 'POST',
-//             dataType: 'json',
-//             data: $('#buscar').serialize(),
-//         }).done(function (json) {
+    /// agregar comentario de INICIAR UNA TAREA///
+    $(document).on('click', '#btnIniciarTarea', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.create.tarea.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#iniciarTarea').serialize(),
+        }).done(function (json) {
 
-//         }).fail(function (xhr, status, error) {
-//             console.log(error);
-//         })
-//     })
+        }).fail(function (xhr, status, error) {
+            console.log(error);
+        })
+    })
 
 //     function tareas() {
 //         $.ajax({

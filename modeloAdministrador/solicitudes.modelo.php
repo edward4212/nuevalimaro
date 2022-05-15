@@ -187,59 +187,19 @@ class Solicitudes{
                return $this->retorno;
      }
 
-         // public function comentariosCrear2()
-     // {
-     //      try{
-     //           $this->result = $this->conexion->prepare("INSERT INTO solicitud_comentario VALUES (NULL , :id_solicitud,'Se inicio la tarea',  :usuario_comentario ,CURRENT_TIMESTAMP(), 'ACTIVO')");
-     //           $this->result->bindParam(':id_solicitud', $this->id_solicitud);
-     //           $this->result->bindParam(':usuario_comentario', $this->usuario_comentario);
-     //           $this->result->execute();    
-     //      } catch (Exception $e) {
-          
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //           return $this->retorno;
-     // }
+     public function tareaCrear()
+     {
+          try {
+               $this->sql = "CALL create_tarea_estado(1,$this->id_solicitud,'1','$this->usuario', CURRENT_TIMESTAMP(),'CREADO', '$this->ruta', NULL)";
+               $this->result=$this->conexion->query($this->sql);
+               $this->retorno =  $this->result->fetchAll(PDO::FETCH_ASSOC);
 
-
- 
-     // public function tareaCrear()
-     // {
-     //      try{
-               
-     //           $this->result = $this->conexion->prepare("INSERT INTO tarea VALUES (NULL , :id_solicitud , CURRENT_TIMESTAMP(), :usuario_creacion, null,null, null,null,null, 'C' )");
-     //           $this->result->bindParam(':id_solicitud', $this->id_solicitud);
-     //           $this->result->bindParam(':usuario_creacion', $this->usuario);
-     //           $this->result->execute();    
-     //      } catch (Exception $e) {
-          
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //           return $this->retorno;
-     // }
-
-     // public function estadoTarea()
-     // {
-     //      try {
-     //           $this->sql = "UPDATE solicitud SET id_estatus_solicitud='3', fecha_inicio_tarea =  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
-     //           $this->result = $this->conexion->query($this->sql);
-     //      } catch (Exception $e) {
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //           return $this->retorno;
-     // }
-
-     // public function estatusSolicitud()
-     // {
-     //      try {
-     //           $this->sql = "UPDATE solicitud SET id_estatus_solicitud='$this->id_estatus_solicitud',  fecha_solucion =  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
-     //           $this->result = $this->conexion->query($this->sql);
-     //      } catch (Exception $e) {
-     //           $this->retorno = $e->getMessage();
-     //      }
-     //           return $this->retorno;
-     // }
-
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage(); 
+          }
+               return $this->retorno;
+     }
+	 
 
 
 }
