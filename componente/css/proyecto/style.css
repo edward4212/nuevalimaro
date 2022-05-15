@@ -2,6 +2,11 @@
 * Se estilo al body
 */
 
+div.dataTables_wrapper div.dataTables_filter {
+  text-align: -webkit-center !important;
+}
+
+
 #tableDocumentoVigentesEmp_length{
   margin-block: 10px;
   margin-right: 100%;

@@ -125,7 +125,7 @@ $(document).ready(function(){
                 "deferRender": true,
                 "lengthChange": true,
                 "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":	25,
+                "iDisplayLength":5,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
                 dom:  'Bflrtip',
                 order: [[2, 'asc'], [1, 'asc']],
@@ -376,7 +376,7 @@ $(document).ready(function(){
                 "deferRender": true,
                 "lengthChange": true,
                 "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":	50,
+                "iDisplayLength": 20,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
                 dom:  'Bflrtip',
                 order: [
@@ -467,7 +467,7 @@ $(document).ready(function(){
                 "deferRender": true,
                 "lengthChange": true,
                 "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":	50,
+                "iDisplayLength":	20,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
                 dom:  'Bflrtip',
                 order: [

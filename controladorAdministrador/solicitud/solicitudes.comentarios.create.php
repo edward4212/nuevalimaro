@@ -8,6 +8,8 @@ $usuario = $_SESSION['usuario'];
 $idsolicitud = $_POST['numIdSolicitud1'];  
 $comentario = $_POST['comentrioEmpleado'];
 
+if (!empty($comentario)) 
+	{
 $solicitudesE = new \entidad\Solicitudes();
 $solicitudesE -> setUsuarioComentario($usuario);
 $solicitudesE -> setIdSolicitud($idsolicitud);
@@ -21,6 +23,6 @@ unset($solicitudesE);
 unset($solicitudesM);
 
 echo json_encode($resultado);
-
+    }
 
 ?>  

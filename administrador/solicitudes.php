@@ -20,22 +20,23 @@
                     aria-labelledby="nav-solicitudes-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <h3 class="card-title text-center">Solicitudes Registradas</h3>
+                            <h2 class="card-title text-center"><b>Solicitudes Registradas</b></h2>
                             <div class="col-md-12 col-xs-12 col-sm-12">
-                                <form action="" class="form-group" id="buscar">
+                                <form action="" class="form-group bordeado" id="buscar">
+                                    <br>
                                     <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
                                     <h5 id="solicitudesAdmn"></h5>
                                 </form>
                             </div>
                         </div>
                         <!-- Modal Asignar Funcionario-->
-                        <div class="modal fade" id="asignarFuncionarioSol" tabindex="-1"
+                        <div class="modal fade bd-example-modal-lg" id="asignarFuncionarioSol" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Asignar Funcionario Encargado de
-                                            la Solicitud</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Asignar Funcionario Encargado de
+                                            la Solicitud</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -43,25 +44,27 @@
                                         <div class="modal-body">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <input type="number" name="numIdSolicitud2" id="numIdSolicitud2" hidden>
-                                                <h5>Funcionario Asignado</h5>
+                                                <h5><b>Funcionario Asignado</b></h5>
                                                 <input class="form-control " id="funcionarioAsignado"
                                                     name="funcionarioAsignado" aria-label="E"
                                                     aria-describedby="basic-addon1" readonly>
-                                                <h5>Fecha de Asignación</h5>
+                                                    <br>
+                                                <h5><b>Fecha de Asignación</b></h5>
                                                 <input class="form-control " id="fecha" name="fecha" aria-label="E"
                                                     aria-describedby="basic-addon1" readonly>
+                                                    <br>
                                             </div>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
-                                                <h5>Seleccione para Asignar o Modificar el Funcionario</h5>
+                                                <h5><b>Seleccione para asignar o modificar el funcionario</b></h5>
                                                 <select class="form-control " id="empleado" name="empleado"
                                                     aria-label="E" aria-describedby="basic-addon1"></select>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" id="btnAgregarFunc" name="btnAgregarFunc"
-                                                class="btn btn-primary"><i class="fas fa-plus"></i> Asignar
+                                                class="btn btn-primary"><i class="fas fa-plus"></i>Asignar
                                                 Funcionario</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                     class="fas fa-undo"></i>Volver</button>
                                         </div>
                                     </form>
@@ -74,7 +77,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Comentarios de la Solicitud</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Comentarios de la Solicitud</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -82,8 +85,8 @@
                                         <div class="modal-body">
                                             <input type="number" name="numIdSolicitud1" id="numIdSolicitud1" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
-                                                <h5>Agregar Comentario</h5>
-                                                <textarea type="text" class="form-control redondeado" rows="2"
+                                                <h5><b>Agregar Comentario</b></h5>
+                                                <textarea type="text" class="form-control redondeado" rows="3"
                                                     id="comentrioEmpleado" name="comentrioEmpleado" required></textarea>
                                             </div>
                                         </div>
@@ -96,7 +99,7 @@
                                             <h5 id="comentarios"></h5>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> <i
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>
                                     </form>

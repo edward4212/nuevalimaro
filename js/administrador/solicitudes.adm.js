@@ -59,7 +59,7 @@ $(document).ready(function () {
                     }else{
                         datos += '<td class=" border border-primary text-wrap align-middle">' + value.codigo_documento + '</td>';
                     }
-                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.nombre_completo + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.usuario + '</td>';
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.solicitud + '</td>';
                     if (value.documento == null) {
                         datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
@@ -109,7 +109,7 @@ $(document).ready(function () {
                             messageTop: 'Solicitudes Registradas',
                             text: '<i class="far fa-file-pdf"></i>',
                             exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                                columns: [0, 1, 2, 3, 4,  6, 7, 8]
                             }
                         },
                         {
@@ -119,7 +119,7 @@ $(document).ready(function () {
                             messageTop: 'Solicitudes Registradas',
                             text: '<i class="fas fa-print"></i>',
                             exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                                columns: [0, 1, 2, 3, 4,  6, 7, 8]
                             }
                         },
                         {
@@ -128,7 +128,7 @@ $(document).ready(function () {
                             autoFiltre: true,
                             title: 'Solicitudes Registradas',
                             exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                                columns: [0, 1, 2, 3, 4,  6, 7, 8]
                             }
                         },
                         {
@@ -137,7 +137,7 @@ $(document).ready(function () {
                             autoFiltre: true,
                             titleAttr: 'COPIAR',
                             exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                                columns: [0, 1, 2, 3, 4,  6, 7, 8]
                             }
                         },
                         {
@@ -297,16 +297,26 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#buscar1').serialize(),
         }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Comentario Creado con Exito',
-                showConfirmButton: false,
-                timer: 3000
-            }).then((result) => {
-                cargarSol();
-            });
+            if(json !== null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al crear el comentario',
+                });
+            }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Comentario Creado con Exito',
+                    showConfirmButton: false,
+                    timer: 3000
+                }).then((result) => {
+                    cargarSol();
+                });
+            }
         }).fail(function (xhr, status, error) {
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear el comentario',
+            });
         });
     });
 
@@ -319,16 +329,26 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#buscar2').serialize(),
         }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Funcionario Asignado con Exito',
-                showConfirmButton: false,
-                timer: 3000
-            }).then((result) => {
-                cargarSol();
-            });
+            if(json !== null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al asignar al funcionario',
+                });
+            }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Funcionario asignado con éxito',
+                    showConfirmButton: false,
+                    timer: 3000
+                }).then((result) => {
+                    cargarSol();
+                });
+            }
         }).fail(function (xhr, status, error) {
-           
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al asignar al funcionario',
+            });
         })
     })
 
@@ -342,7 +362,10 @@ $(document).ready(function () {
             data: $('#buscar2').serialize(),
         }).done(function (json) {
         }).fail(function (xhr, status, error) {
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear el comentario',
+            });
         })
     })
 

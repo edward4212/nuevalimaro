@@ -24,7 +24,7 @@
                             Indice de Documentos</a>
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="documento.php"><i class="fas fa-book"></i>
+                                <a class="nav-link p-2 dropdown-item" href="documento.php"><i class="fas fa-list"></i>
                                     Listado Maestro de Documentos</a>
                             </li>
                         </ul>

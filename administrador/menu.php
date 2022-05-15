@@ -57,7 +57,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a href="" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-paperclip"></i>
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-file"></i>
                             Solicitudes y Tareas</a>
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li class="nav-item col-6 col-md-auto">

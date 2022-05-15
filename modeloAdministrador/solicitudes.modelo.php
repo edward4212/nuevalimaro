@@ -101,8 +101,8 @@ class Solicitudes{
           try {
                $this->sql = "	SELECT
                sl.`id_solicitud` ,
-               pr.`prioridad`,
-               ts.`tipo_solicitud`,
+               sl.`prioridad`,
+               sl.`tipo_solicitud`,
                td.`tipo_documento`,
                sl.`codigo_documento`,
                emp.`id_empleado`,
@@ -112,21 +112,18 @@ class Solicitudes{
                sl.`fecha_asignacion`,
                sl.`fecha_inicio_tarea`,
                sl.`fecha_solucion`,
-               sl.`id_estatus_solicitud`,
-               sl.`carpeta`,
+               sl.`ruta`,
                sl.`documento`,
                sl.`funcionario_asignado`,
-               est.`estatus_solicitud`,
+               sl.`estado_solicitud`,
                us.`usuario`
           
                FROM solicitud AS sl
-               INNER JOIN prioridad AS pr ON sl.`id_prioridad` = pr.`id_prioridad`
-               INNER JOIN tipo_solicitud AS ts ON sl.`id_tipo_solicitud` = ts.`id_tipo_solicitud`
-               INNER JOIN estatus_solicitud AS est ON sl.`id_estatus_solicitud` = est.`id_estatus_solicitud`
+              
                INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
                INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
                INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
-               WHERE sl.`funcionario_asignado` = '$this->usuario' AND sl.`id_estatus_solicitud` != '4' AND  sl.`id_estatus_solicitud` != '5' ";
+               WHERE sl.`funcionario_asignado` = '$this->usuario' AND sl.`estado_solicitud` != 'FINALIZADA' ";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
           } catch (Exception $e) {
