@@ -100,14 +100,6 @@ function iniciarTarea(id_solicitud) {
 $(document).ready(function () {
     buscar();
 
-    // tareas();
-    // buscarFuncionarios();
-    // tareasAct();
-    // tareasApr();
-    // tareasDevol();
-    // buscarFuncionarios1();
-    // buscarFuncionarios2();
-    // tareastotal();
 
     $("#documentoAuto").autocomplete({
         source: function (request, response) {
@@ -185,11 +177,7 @@ $(document).ready(function () {
                 }
                 datos += '<td class=" border border-primary  text-center align-middle">' + value.estado_solicitud + '</td>';
                 datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentario(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
-                if (value.fecha_inicio_tarea != null) {
-                    datos += '<td class=" border border-primary text-wrap align-middle">Tarea ya Iniciada</td>';
-                } else {
-                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnIniciarTarea" onclick="iniciarTarea(' + value.id_solicitud + ')" class="btn btn-primary" ><i class="far fa-clock"></i></button></td>';
-                }
+                datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnIniciarTarea" onclick="iniciarTarea(' + value.id_solicitud + ')" class="btn btn-primary" ><i class="far fa-clock"></i></button></td>';
                 datos += '</tr>';
             })
             datos += '</tbody>';
@@ -388,16 +376,26 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#buscar1').serialize(),
         }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Comentario Asignado con Exito',
-                showConfirmButton: false,
-                timer: 3000
-            }).then((result) => {
-                cargar();
-            })
+            if(json !== null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se puede agregar el comentario',
+                });
+            }else{
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Comentario agregado con éxito',
+                    showConfirmButton: false,
+                    timer: 3000
+                }).then((result) => {
+                    cargar();
+                })
+            }
         }).fail(function (xhr, status, error) {
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al agregar el comentario',
+            });
         })
     })
 
@@ -410,23 +408,30 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#iniciarTarea').serialize(),
         }).done(function (json) {
-            // Swal.fire({
-            //     icon: 'success',
-            //     title: 'Tarea Iniciada con Exito',
-            //     showConfirmButton: false,
-            //     timer: 3000
-            // }).then((result) => {
-            //     cargar();
-            // })
+            if(json == null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se puede iniciar la tarea',
+                });
+            }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tarea Iniciada con Exito',
+                    showConfirmButton: false,
+                    timer: 3000
+                }).then((result) => {
+                    cargar();
+                })
+            }
         }).fail(function (xhr, status, error) {
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al iniciar la tarea',
+            });
         })
-    })
+    });
 
-//  $(document).on('click', '#restaurar', function () {
-//        $("#documentoAuto1").prop("disabled", false)
-//     });
-    
+   
     /// agregar comentario de INICIAR UNA TAREA///
     $(document).on('click', '#btnIniciarTarea', function (event) {
         event.preventDefault();
