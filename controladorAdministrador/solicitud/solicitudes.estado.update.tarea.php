@@ -1,28 +1,23 @@
 <?php
-
+include_once "../../controladorLogin/logueo.read.php";
 include_once "../../entidadAdministrador/solicitudes.entidad.php";
 include_once "../../modeloAdministrador/solicitudes.modelo.php";
-include_once "../../controladorLogin/logueo.read.php";
 
-$usuario = $_SESSION['usuario'];
 $idsolicitud = $_POST['numIdSolicitud3'];  
-$comentario = "Se Inicia la Tarea";
+$estatus_solicitud= 'EN DESARROLLO';
 
-if (!empty($comentario)) 
-	{
-$solicitudesE = new \entidad\Solicitudes();
-$solicitudesE -> setUsuarioComentario($usuario);
+$solicitudesE = new \entidad\Solicitudes();;
 $solicitudesE -> setIdSolicitud($idsolicitud);
-$solicitudesE -> setComentario($comentario);
+$solicitudesE -> setEstatusSolicitud($estatus_solicitud);
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 
-$resultado = $solicitudesM->comentariosCrear();
+$resultado = $solicitudesM->estatusSolicitud();
 
 unset($solicitudesE);
 unset($solicitudesM);
 
 echo json_encode($resultado);
-    }
+
 
 ?>  

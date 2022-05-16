@@ -123,7 +123,7 @@ class Solicitudes{
                INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
                INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
                INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
-               WHERE sl.`funcionario_asignado` = '$this->usuario' AND sl.`estado_solicitud` != 'FINALIZADA' ";
+               WHERE sl.`funcionario_asignado` = '$this->usuario' AND sl.`estado_solicitud` = 'ASIGNADA'";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
           } catch (Exception $e) {
@@ -190,7 +190,7 @@ class Solicitudes{
      public function tareaCrear()
      {
           try {
-               $this->sql = "CALL create_tarea_estado(1,$this->id_solicitud,'1','$this->usuario', CURRENT_TIMESTAMP(),'CREADO', '$this->ruta', NULL)";
+               $this->sql = "CALL create_tarea_estado(1,$this->id_solicitud,'1','$this->usuario', CURRENT_TIMESTAMP(),'CREADO', '$this->carpeta', NULL)";
                $this->result=$this->conexion->query($this->sql);
                $this->retorno =  $this->result->fetchAll(PDO::FETCH_ASSOC);
 
@@ -200,6 +200,16 @@ class Solicitudes{
                return $this->retorno;
      }
 	 
+     public function estatusSolicitud()
+     {
+          try {
+               $this->sql = "UPDATE solicitud SET estado_solicitud='$this->estatus_solicitud',  fecha_inicio_tarea =  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
+               $this->result = $this->conexion->query($this->sql);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
 
 
 }

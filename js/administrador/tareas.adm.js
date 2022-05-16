@@ -278,10 +278,10 @@ $(document).ready(function () {
     $(document).on('click', '#btnVerComentarios', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.read.php',
+            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.read.tarea.php',
             type: 'POST',
             dataType: 'json',
-            data: $('#buscar').serialize(),
+            data: $('#iniciarTarea').serialize(),
         }).done(function (json) {
             var comentarios = '';
             if (json == 0) {
@@ -410,14 +410,14 @@ $(document).ready(function () {
             dataType: 'json',
             data: $('#iniciarTarea').serialize(),
         }).done(function (json) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Tarea Iniciada con Exito',
-                showConfirmButton: false,
-                timer: 3000
-            }).then((result) => {
-                cargar();
-            })
+            // Swal.fire({
+            //     icon: 'success',
+            //     title: 'Tarea Iniciada con Exito',
+            //     showConfirmButton: false,
+            //     timer: 3000
+            // }).then((result) => {
+            //     cargar();
+            // })
         }).fail(function (xhr, status, error) {
             console.log(error);
         })
@@ -432,6 +432,21 @@ $(document).ready(function () {
         event.preventDefault();
         $.ajax({
             url: '../controladorAdministrador/solicitud/solicitudes.comentarios.create.tarea.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#iniciarTarea').serialize(),
+        }).done(function (json) {
+
+        }).fail(function (xhr, status, error) {
+            console.log(error);
+        })
+    })
+
+    /// agregar comentario de INICIAR UNA TAREA///
+    $(document).on('click', '#btnIniciarTarea', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/solicitud/solicitudes.estado.update.tarea.php',
             type: 'POST',
             dataType: 'json',
             data: $('#iniciarTarea').serialize(),

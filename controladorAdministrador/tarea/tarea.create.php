@@ -11,7 +11,19 @@ $fechaActual = date("Y-m-d H-i-s");
 $solicitudesE = new \entidad\Solicitudes();
 $solicitudesE -> setUsuario($usuario);
 $solicitudesE -> setIdSolicitud($idsolicitud);
-$solicitudesE -> setIdSolicitud($idsolicitud);
+$solicitudesE -> setCarpeta($fechaActual);
+
+$directorio = "../../documentos/tareas/$idsolicitud/$fechaActual/";
+   
+if(!file_exists($directorio)){
+    mkdir($directorio,0777,true);
+    
+}else{
+    if(file_exists($directorio)){
+
+    }    
+}
+
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 
