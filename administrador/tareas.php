@@ -1,7 +1,6 @@
 <!-- Se agrega Head -->
 <?php include_once "head.php" ?>
 <title>Solicitudes</title>
-
 <body class="bg-light d-flex flex-column h-100">
     <!-- se agrega Menu -->
     <?php include_once "menu.php" ?>
