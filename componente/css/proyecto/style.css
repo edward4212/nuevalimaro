@@ -1,6 +1,15 @@
 /**
 * Se estilo al body
 */
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: mediumblue!important;
+}
+
+.card-title{
+  margin-top: 10px !important;
+}
+
 
 div.dataTables_wrapper div.dataTables_filter {
   text-align: -webkit-center !important;
@@ -246,6 +255,32 @@ nav-tabs {
     2
   ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+
+
+@media only screen and (max-width: 1200px) {
+  /**
+  * Estilo etiquetas en vista para equipos  moviles
+  */
+
+  .container{
+    margin-top: 30px !important;
+  }
+
+}
+
+
+@media only screen and (max-width: 768px) {
+  /**
+  * Estilo etiquetas en vista para equipos  moviles
+  */
+
+  .container{
+    margin-top: 30px !important;
+  }
+
+}
+
+
 /**
 * Estilo @media only screen and (max-width : 600PX)
 */
@@ -255,6 +290,11 @@ nav-tabs {
   * Estilo etiquetas en vista para equipos  moviles
   */
 
+  .container{
+    margin-top: 30px !important;
+  }
+
+  
   * {
     font-family: Arial, Helvetica, sans-serif;
     font-size: small;

@@ -13,6 +13,15 @@
                     <button class="nav-link active " id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"
                         aria-selected="false">Solicitudes Registradas</button>
+                    <button class="nav-link  " id="nav-asignadas-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-asignadas" type="button" role="tab" aria-controls="nav-asignadas"
+                        aria-selected="false">Solicitudes Asignadas</button>
+                    <button class="nav-link  " id="nav-solicitudes-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-desarrollo" type="button" role="tab" aria-controls="nav-desarrollo"
+                        aria-selected="false">Solicitudes En Desarrollo</button>
+                    <button class="nav-link  " id="nav-solicitudes-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-finalizada" type="button" role="tab" aria-controls="nav-finalizada"
+                        aria-selected="false">Solicitudes Finalizadas</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -35,8 +44,9 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Asignar Funcionario Encargado de
-                                            la Solicitud</b></h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Asignar Funcionario Encargado
+                                                de
+                                                la Solicitud</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -48,11 +58,11 @@
                                                 <input class="form-control " id="funcionarioAsignado"
                                                     name="funcionarioAsignado" aria-label="E"
                                                     aria-describedby="basic-addon1" readonly>
-                                                    <br>
+                                                <br>
                                                 <h5><b>Fecha de Asignación</b></h5>
                                                 <input class="form-control " id="fecha" name="fecha" aria-label="E"
                                                     aria-describedby="basic-addon1" readonly>
-                                                    <br>
+                                                <br>
                                             </div>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Seleccione para asignar o modificar el funcionario</b></h5>
@@ -77,7 +87,160 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Comentarios de la Solicitud</b></h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Comentarios de la
+                                                Solicitud</b></h5>
+                                        <button type="button" id="btnCerrarModal" class="btn-close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="" class="form-group" id="buscar1">
+                                        <div class="modal-body">
+                                            <input type="number" name="numIdSolicitud1" id="numIdSolicitud1" hidden>
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <h5><b>Agregar Comentario</b></h5>
+                                                <textarea type="text" class="form-control redondeado" rows="3"
+                                                    id="comentrioEmpleado" name="comentrioEmpleado" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" id="btnCrearcomentario"
+                                                name="btnCrearcomentario" data-bs-toggle="modal"> <i
+                                                    class="fas fa-plus"></i>Agregar Comentario</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h5 id="comentarios"></h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
+                                                    class="fas fa-undo"></i> Volver</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-asignadas" role="tabpanel" aria-labelledby="nav-solicitudes-tab">
+                    <div class="row ">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h2 class="card-title text-center"><b>Solicitudes Asignadas</b></h2>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <form action="" class="form-group bordeado" id="buscar">
+                                    <br>
+                                    <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
+                                    <h5 id="solicitudesAsignadas"></h5>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Modal para ver comentarios-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Comentarios de la
+                                                Solicitud</b></h5>
+                                        <button type="button" id="btnCerrarModal" class="btn-close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="" class="form-group" id="buscar1">
+                                        <div class="modal-body">
+                                            <input type="number" name="numIdSolicitud1" id="numIdSolicitud1" hidden>
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <h5><b>Agregar Comentario</b></h5>
+                                                <textarea type="text" class="form-control redondeado" rows="3"
+                                                    id="comentrioEmpleado" name="comentrioEmpleado" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" id="btnCrearcomentario"
+                                                name="btnCrearcomentario" data-bs-toggle="modal"> <i
+                                                    class="fas fa-plus"></i>Agregar Comentario</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h5 id="comentarios"></h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
+                                                    class="fas fa-undo"></i> Volver</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-desarrollo" role="tabpanel" aria-labelledby="nav-solicitudes-tab">
+                    <div class="row ">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h2 class="card-title text-center"><b>Solicitudes En Desarrollo</b></h2>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <form action="" class="form-group bordeado" id="buscar">
+                                    <br>
+                                    <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
+                                    <h5 id="solicitudesDesarrollo"></h5>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Modal para ver comentarios-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Comentarios de la
+                                                Solicitud</b></h5>
+                                        <button type="button" id="btnCerrarModal" class="btn-close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="" class="form-group" id="buscar1">
+                                        <div class="modal-body">
+                                            <input type="number" name="numIdSolicitud1" id="numIdSolicitud1" hidden>
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <h5><b>Agregar Comentario</b></h5>
+                                                <textarea type="text" class="form-control redondeado" rows="3"
+                                                    id="comentrioEmpleado" name="comentrioEmpleado" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" id="btnCrearcomentario"
+                                                name="btnCrearcomentario" data-bs-toggle="modal"> <i
+                                                    class="fas fa-plus"></i>Agregar Comentario</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h5 id="comentarios"></h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
+                                                    class="fas fa-undo"></i> Volver</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-finalizada" role="tabpanel" aria-labelledby="nav-solicitudes-tab">
+                    <div class="row ">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <h2 class="card-title text-center"><b>Solicitudes Finalizadas</b></h2>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <form action="" class="form-group bordeado" id="buscar">
+                                    <br>
+                                    <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
+                                    <h5 id="solicitudesFinalizadas"></h5>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Modal para ver comentarios-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Comentarios de la
+                                                Solicitud</b></h5>
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>

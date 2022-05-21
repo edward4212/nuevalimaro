@@ -58,16 +58,43 @@
                     <li class="nav-item dropdown">
                         <a href="" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-file"></i>
-                            Solicitudes y Tareas</a>
+                            Solicitudes</a>
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="solicitudes.php"><i
                                         class="fas fa-check-double"></i>
-                                    Gestión de Solicitudes</a>
+                                    Gestión de Solicitudes Radicadas</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="solicitudes.php"><i
+                                        class="fas fa-check-double"></i>
+                                    Gestión de Solicitudes Asignadas</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="solicitudes.php"><i
+                                        class="fas fa-check-double"></i>
+                                    Gestión de Solicitudes En Desarrollo</a>
+                            </li>
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="solicitudes.php"><i
+                                        class="fas fa-check-double"></i>
+                                    Gestión de Solicitudes Finalizadas</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-file"></i>
+                            Tareas</a>
+                        <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="nav-item col-6 col-md-auto">
+                                <a class="nav-link p-2 dropdown-item" href="tareas.php"><i class="fas fa-list-ol"></i>
+                                    Gestión de Tareas Asignadas</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="tareas.php"><i class="fas fa-list-ol"></i>
-                                    Gestión de Tareas</a>
+                                    Gestión de Tareas Finalizadas</a>
                             </li>
                         </ul>
                     </li>
