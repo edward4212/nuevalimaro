@@ -1,3 +1,108 @@
+<style type="text/css">
+/* ============ desktop view ============ */
+@media all and (min-width: 992px) {
+
+    .dropdown-menu li {
+        position: relative;
+    }
+
+    .dropdown-menu .submenu {
+        display: none;
+        position: absolute;
+        left: 100%;
+        top: -7px;
+        background-color: #f8f9fa !important;
+    }
+
+    .dropdown-menu .submenu-left {
+        right: 100%;
+        left: auto;
+    }
+
+    .dropdown-menu>li:hover {
+        background-color: #f1f1f1
+    }
+
+    .dropdown-menu>li:hover>.submenu {
+        display: block;
+    }
+}
+
+/* ============ desktop view .end// ============ */
+
+/* ============ small devices ============ */
+@media (max-width: 991px) {
+
+    .dropdown-menu .dropdown-menu {
+        margin-left: 0.7rem;
+        margin-right: 0.7rem;
+        margin-bottom: .5rem;
+    }
+
+}
+
+/* ============ small devices .end// ============ */
+</style>
+
+
+<script type="text/javascript">
+//	window.addEventListener("resize", function() {
+//		"use strict"; window.location.reload(); 
+//	});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+
+    /////// Prevent closing from click inside dropdown
+    document.querySelectorAll('.dropdown-menu').forEach(function(element) {
+        element.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    })
+
+
+
+    // make it as accordion for smaller screens
+    if (window.innerWidth < 992) {
+
+        // close all inner dropdowns when parent is closed
+        document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown) {
+            everydropdown.addEventListener('hidden.bs.dropdown', function() {
+                // after dropdown is hidden, then find all submenus
+                this.querySelectorAll('.submenu').forEach(function(everysubmenu) {
+                    // hide every submenu as well
+                    everysubmenu.style.display = 'none';
+                });
+            })
+        });
+
+        document.querySelectorAll('.dropdown-menu a').forEach(function(element) {
+            element.addEventListener('click', function(e) {
+
+                let nextEl = this.nextElementSibling;
+                if (nextEl && nextEl.classList.contains('submenu')) {
+                    // prevent opening link if link needs to open dropdown
+                    e.preventDefault();
+                    console.log(nextEl);
+                    if (nextEl.style.display == 'block') {
+                        nextEl.style.display = 'none';
+                    } else {
+                        nextEl.style.display = 'block';
+                    }
+
+                }
+            });
+        })
+    }
+    // end if innerWidth
+
+});
+// DOMContentLoaded  end
+</script>
+
+
+
 <!-- Inicio Menu -->
 <header class="navbar navbar-expand-md  ">
     <nav class=" navbar  bg-light container-lg flex-wrap flex-md-nowrap fixed-top head-model border"
@@ -46,41 +151,33 @@
                                     Listado Maestro de Documentos Vigentes</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="obsoletos.php"><i class="far fa-times-circle"></i>
+                                <a class="nav-link p-2 dropdown-item" href="obsoletos.php"><i
+                                        class="far fa-times-circle"></i>
                                     Listado Maestro de Documentos Obsoletos</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="versionamiento.php"><i class="far fa-plus-square"></i>
+                                <a class="nav-link p-2 dropdown-item" href="versionamiento.php"><i
+                                        class="far fa-plus-square"></i>
                                     Versionamiento</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-file"></i>
-                            Solicitudes</a>
-                        <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
-                            <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="solicitudes.php"><i
-                                        class="fas fa-check-double"></i>
-                                    Gestión de Solicitudes Radicadas</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i
+                                class="fas fa-file"></i> Solicitudes </a>
+                        <ul class="dropdown-menu" style="background-color: #f8f9fa!important;">
+                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"> Solicitudes <i class="fas fa-caret-right"></i> </a>
+                                <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.php">Solicitudes
+                                            Radicadas</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#">Solicitudes
+                                            Asignadas</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#">Solicitudes En
+                                            Proceso</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#">Solicitudes
+                                            Finalizadas</a></li>
+                                </ul>
                             </li>
-                            <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="solicitudes.php"><i
-                                        class="fas fa-check-double"></i>
-                                    Gestión de Solicitudes Asignadas</a>
-                            </li>
-                            <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="solicitudes.php"><i
-                                        class="fas fa-check-double"></i>
-                                    Gestión de Solicitudes En Desarrollo</a>
-                            </li>
-                            <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="solicitudes.php"><i
-                                        class="fas fa-check-double"></i>
-                                    Gestión de Solicitudes Finalizadas</a>
-                            </li>
-
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -117,6 +214,11 @@
                             </li>
                         </ul>
                     </li>
+
+
+
+
+
 
                     <li class="nav-item dropdown">
                         <a href="perfil.php" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink"
