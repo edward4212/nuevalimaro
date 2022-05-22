@@ -246,6 +246,51 @@ class Solicitudes{
           return $this->retorno;
      }
 
+     public function solicitudCreacion()
+     {
+          try {
+               $this->sql = "CALL create_comentario_sol(1,$this->id_empleado,'$this->prioridad',$this->id_tipo_documento,'CREACIÓN','CREADA','0000',
+               '$this->solicitud','$this->carpeta','$this->documento',CURRENT_TIMESTAMP(),
+               'Sin Asignar',NULL,NULL,NULL,'1', 'Se crea la solicitud','$this->usuario_comentario',CURRENT_TIMESTAMP(), 'ACTIVO')";
+               $this->result=$this->conexion->query($this->sql);
+               $this->retorno =  $this->result->fetchAll(PDO::FETCH_ASSOC);
+
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage(); 
+          }
+               return $this->retorno;
+     }
+
+     public function solicitudActualizacion()
+     {
+          try {
+               $this->sql = "CALL create_comentario_sol(1,$this->id_empleado,'$this->prioridad',$this->id_tipo_documento,'ACTUALIZACIÓN','CREADA','$this->codigo',
+               '$this->solicitud','$this->carpeta','$this->documento',CURRENT_TIMESTAMP(),
+               'Sin Asignar',NULL,NULL,NULL,'1', 'Se crea la solicitud','$this->usuario_comentario',CURRENT_TIMESTAMP(), 'ACTIVO')";
+               $this->result=$this->conexion->query($this->sql);
+
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage(); 
+          }
+               return $this->retorno;
+     }
+
+     public function solicitudEliminacion()
+     {
+          try {
+               $this->sql = "CALL create_comentario_sol(1,$this->id_empleado,'$this->prioridad',$this->id_tipo_documento,'ELIMINACIÓN','CREADA','$this->codigo',
+               '$this->solicitud','$this->carpeta','$this->documento',CURRENT_TIMESTAMP(),
+               'Sin Asignar',NULL,NULL,NULL,'1', 'Se crea la solicitud','$this->usuario_comentario',CURRENT_TIMESTAMP(), 'ACTIVO')";
+               $this->result=$this->conexion->query($this->sql);
+               $this->retorno =  $this->result->fetchAll(PDO::FETCH_ASSOC);
+               // $this->retorno = "Exito: Usuario Creado";
+
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage(); 
+          }
+               return $this->retorno;
+     }
+
 
 }
 
