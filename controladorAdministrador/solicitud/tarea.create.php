@@ -1,18 +1,20 @@
 <?php
 
-
 include_once "../../entidadAdministrador/solicitudes.entidad.php";
 include_once "../../modeloAdministrador/solicitudes.modelo.php";
 include_once "../../controladorLogin/logueo.read.php";
 
-$id_empleado = $_SESSION['id_empleado'];
+$usuario = $_SESSION['usuario'];
+$idsolicitud = $_POST['numIdSolicitud3'];  
+
 
 $solicitudesE = new \entidad\Solicitudes();
-$solicitudesE -> setIdEmpleado($id_empleado);
+$solicitudesE -> setUsuario($usuario);
+$solicitudesE -> setIdSolicitud($idsolicitud);
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 
-$resultado = $solicitudesM->read4();
+$resultado = $solicitudesM->tareaCrear();
 
 unset($solicitudesE);
 unset($solicitudesM);
@@ -20,4 +22,4 @@ unset($solicitudesM);
 echo json_encode($resultado);
 
 
-?>
+?>  

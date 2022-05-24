@@ -34,12 +34,12 @@
                                 <form action="" class="form-group bordeado" id="buscar">
                                     <br>
                                     <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
-                                    <h5 id="solicitudesAdmn"></h5>
+                                    <h5 id="solicitudesFinal"></h5>
                                 </form>
                             </div>
                         </div>
                         <!-- Modal Asignar Funcionario-->
-                        <div class="modal fade bd-example-modal-lg" id="asignarFuncionarioSol" tabindex="-1"
+                        <!-- <div class="modal fade bd-example-modal-lg" id="asignarFuncionarioSol" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -80,9 +80,9 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Modal para ver comentarios-->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -116,7 +116,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-asignadas" role="tabpanel" aria-labelledby="nav-solicitudes-tab">

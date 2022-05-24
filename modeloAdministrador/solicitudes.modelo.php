@@ -97,42 +97,6 @@ class Solicitudes{
           return $this->retorno;
      }
 
-     public function read2()
-     {
-          try {
-               $this->sql = "	SELECT
-               sl.`id_solicitud` ,
-               sl.`prioridad`,
-               sl.`tipo_solicitud`,
-               td.`tipo_documento`,
-               sl.`codigo_documento`,
-               emp.`id_empleado`,
-               emp.`nombre_completo`,
-               sl.`solicitud`,
-               sl.`fecha_solicitud`,
-               sl.`fecha_asignacion`,
-               sl.`fecha_inicio_tarea`,
-               sl.`fecha_solucion`,
-               sl.`ruta`,
-               sl.`documento`,
-               sl.`funcionario_asignado`,
-               sl.`estado_solicitud`,
-               us.`usuario`
-          
-               FROM solicitud AS sl
-              
-               INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
-               INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
-               INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
-               WHERE sl.`funcionario_asignado` = '$this->usuario' AND sl.`estado_solicitud` = 'ASIGNADA'";
-               $this->result = $this->conexion->query($this->sql);
-               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-          } catch (Exception $e) {
-               $this->retorno = $e->getMessage();
-          }
-          return $this->retorno;
-     }
-
      public function comentarios()
      {
           try {
@@ -212,6 +176,34 @@ class Solicitudes{
                return $this->retorno;
      }
 
+     public function read4()
+     {
+          try {
+               $this->sql = "	SELECT
+               sl.`id_solicitud` ,
+               sl.`prioridad`,
+               sl.`tipo_solicitud`,
+               td.`tipo_documento`,
+               sl.`codigo_documento`,
+               sl.`solicitud`,
+               sl.`fecha_solicitud`,
+               sl.`fecha_asignacion`,
+               sl.`documento`,
+               sl.`funcionario_asignado`,
+               sl.`estado_solicitud`,
+               sl.`ruta`
+               FROM solicitud AS sl
+               INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
+               WHERE sl.`id_empleado` = '$this->id_empleado' ";
+               $this->result = $this->conexion->query($this->sql);
+               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+          return $this->retorno;
+     }
+         
+
      public function asignada()
      {
           try {
@@ -237,7 +229,7 @@ class Solicitudes{
                INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
                INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
                INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
-               WHERE sl.`estado_solicitud` = 'ASIGNADA' ";
+               WHERE sl.`funcionario_asignado` = '$this->usuario'  AND sl.`estado_solicitud` = 'ASIGNADA' ";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
           } catch (Exception $e) {
@@ -290,6 +282,46 @@ class Solicitudes{
           }
                return $this->retorno;
      }
+
+
+
+
+     // public function read2()
+     // {
+     //      try {
+     //           $this->sql = "	SELECT
+     //           sl.`id_solicitud` ,
+     //           sl.`prioridad`,
+     //           sl.`tipo_solicitud`,
+     //           td.`tipo_documento`,
+     //           sl.`codigo_documento`,
+     //           emp.`id_empleado`,
+     //           emp.`nombre_completo`,
+     //           sl.`solicitud`,
+     //           sl.`fecha_solicitud`,
+     //           sl.`fecha_asignacion`,
+     //           sl.`fecha_inicio_tarea`,
+     //           sl.`fecha_solucion`,
+     //           sl.`ruta`,
+     //           sl.`documento`,
+     //           sl.`funcionario_asignado`,
+     //           sl.`estado_solicitud`,
+     //           us.`usuario`
+          
+     //           FROM solicitud AS sl
+              
+     //           INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
+     //           INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
+     //           INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
+     //           WHERE sl.`funcionario_asignado` = '$this->usuario' AND sl.`estado_solicitud` = 'ASIGNADA'";
+     //           $this->result = $this->conexion->query($this->sql);
+     //           $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+     //      } catch (Exception $e) {
+     //           $this->retorno = $e->getMessage();
+     //      }
+     //      return $this->retorno;
+     // }
+
 
 
 }

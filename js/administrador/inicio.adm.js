@@ -135,25 +135,31 @@ $(document).ready(function(){
 
                  if(value.logo !== null){
                     logos +=' <img id="logo" class="rounded d-block zoom1"  alt="..." src="../documentos/empresa/logo/'+value.logo+'">';
+                    logos +='<br>';
                     logos +='<button type="button" style="width:270px" class="btn btn-primary" onclick="logo('+value.id_empresa+')" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="far fa-edit"></i> Modificar </button>';
                  }else{
                     logos='<h5>Debe ingresar el logo</h5>';
+                    logos +='<br>';
                     logos +='<button type="button" style="width:270px" class="btn btn-primary" onclick="logo('+value.id_empresa+')" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="far fa-edit"></i> Modificar </button>';
                  }
 
                  if(value.organigrama !== null){
                     organigrama +='<img id="organigrama" class="rounded mx-auto d-block zoom" alt="..." src="../documentos/empresa/organigrama/'+value.organigrama+'"></img>';
+                    organigrama +='<br>';
                     organigrama +='<button type="button" style="width:50%" class="btn btn-primary" onclick="organigramas('+value.id_empresa+')" data-bs-toggle="modal" data-bs-target="#exampleModalorganigrama"><i class="far fa-edit"></i> Modificar </button>';
                 }else{
                     organigrama='<h5>Debe ingresar el organigrama</h5>';
+                    organigrama +='<br>';
                     organigrama +='<button type="button" style="width:50%" class="btn btn-primary" onclick="organigramas('+value.id_empresa+')" data-bs-toggle="modal" data-bs-target="#exampleModalorganigrama"><i class="far fa-edit"></i> Modificar </button>';
                 }
 
                 if(value.mapa_procesos !== null){
                     mapa_procesos +='<img id="mapaprocesos" class="rounded mx-auto d-block zoom" alt="..." src="../documentos/empresa/mapaProcesos/'+value.mapa_procesos+'"></img>';
+                    mapa_procesos +='<br>';
                     mapa_procesos +='<button type="button" style="width:50%" class="btn btn-primary" onclick="mapaprocesos('+value.id_empresa+')" data-bs-toggle="modal" data-bs-target="#exampleModalmapaprocesos"><i class="far fa-edit"></i> Modificar </button>';
                 }else{
                     mapa_procesos='<h5>Debe ingresar el mapa procesos</h5>';
+                    mapa_procesos +='<br>';
                     mapa_procesos +='<button type="button" style="width:50%" class="btn btn-primary" onclick="mapaprocesos('+value.id_empresa+')" data-bs-toggle="modal" data-bs-target="#exampleModalmapaprocesos"><i class="far fa-edit"></i> Modificar </button>';
                 }
             });

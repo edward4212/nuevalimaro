@@ -189,11 +189,11 @@ document.addEventListener("DOMContentLoaded", function() {
                                     <li><a class="dropdown-item" style="color: #0d6efd;"
                                             href="solicitudes.php"><i class="far fa-calendar-check"></i> Solicitudes
                                             Radicadas</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-calendar-alt"></i> Solicitudes
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesAs.php"><i class="fas fa-calendar-alt"></i> Solicitudes
                                             Asignadas</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-hourglass-end"></i> Solicitudes En
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesDe.php"><i class="fas fa-hourglass-end"></i> Solicitudes En
                                             Proceso</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="far fa-calendar-times"></i> Solicitudes
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesFI.php"><i class="far fa-calendar-times"></i> Solicitudes
                                             Finalizadas</a></li>
                                 </ul>
                             </li>

@@ -81,6 +81,14 @@ div.dataTables_wrapper div.dataTables_filter {
   margin-bottom: 19px;
 }
 
+#tableSolicitudesAsignadas_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tableSolicitudesAsignadas_filter{
+  margin-bottom: 19px;
+}
 
 
 
@@ -216,23 +224,23 @@ nav-tabs {
 
 .zoom {
   transition: 0.5s;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
+  width: auto;
+  height: 250px;
+  margin: auto;
 }
 
 .zoom1 {
   transition: 0.5s;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
+  width: 300px;
+  height: auto; 
+  margin: auto;
 }
 
 .zoom2{
   transition: 0.5s;
-  width: 50px;
-  height: 50px;
-  margin: 0 auto;
+  width: auto;
+  height: 250px;
+  margin: auto;
 }
 
 .zoom:hover {
@@ -251,8 +259,8 @@ nav-tabs {
 
 .zoom2:hover {
   transform: scale(
-    2,
-    2
+    3.7,
+    2.5
   ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 

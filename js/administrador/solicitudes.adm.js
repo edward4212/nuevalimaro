@@ -3,7 +3,11 @@ function cargarSol() {
     window.location.href = "../administrador/solicitudes.php";
 }
 
-function comentario(id_solicitud) {
+function cargarSol1() {
+    window.location.href = "../administrador/solicitudesAs.php";
+}
+
+function comentarios(id_solicitud) {
     $("#numIdSolicitud").val(id_solicitud);
     $("#numIdSolicitud1").val(id_solicitud);
 }
@@ -17,6 +21,16 @@ function asignarFuncionario(id_solicitud, funcionario_asignado, fecha_asignacion
 function comentario (codigo){
     $("#numIdSolicitud").val(codigo);
 }
+
+function comentarioAsi (id_solicitud){
+    $("#numIdSolicitud").val(id_solicitud);
+    $("#numIdSolicitud1").val(id_solicitud);
+}
+
+function iniciarTarea(id_solicitud) {
+    $("#numIdSolicitud3").val(id_solicitud);
+}
+
 
 function actualizacion (codigo, tipo_documento,id_tipo_documento){
     $("#codigo").val(codigo);
@@ -69,8 +83,9 @@ $(document).ready(function () {
     buscarTipoDocumento();   
     actualizarDocumentos();
     eliminarDocumentos();
+    
 
-
+ /// todas las solicitudes radicadas///
     function buscar1() {
         $.ajax({
             url: '../controladorAdministrador/solicitud/solicitudes.read.php',
@@ -116,7 +131,7 @@ $(document).ready(function () {
                         datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.ruta  + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
                     }
                     datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="bntAsignarFuncionario" onclick="asignarFuncionario(' + value.id_solicitud + ',\'' + value.funcionario_asignado + '\',\'' + value.fecha_asignacion + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarFuncionarioSol"><i class="fas fa-user-check"></i> ASIGNAR</button></td>';
-                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentario(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
+                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarios(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
                 datos += '</tr>';
             });
             datos += '</tbody>';
@@ -364,6 +379,38 @@ $(document).ready(function () {
         });
     });
 
+       /// ASIGNAR COMENTARIO A LA SOLICITUD///
+       $(document).on('click', '#btnCrearcomentarioAsig', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.create.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#buscar1').serialize(),
+        }).done(function (json) {
+            if(json !== null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al crear el comentario',
+                });
+            }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Comentario Creado con éxito',
+                    showConfirmButton: false,
+                    timer: 3000
+                }).then((result) => {
+                    cargarSol1();
+                });
+            }
+        }).fail(function (xhr, status, error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear el comentario',
+            });
+        });
+    });
+
     /// ASIGNAR FUNCIONARIO A LA SOLICITUD///
     $(document).on('click', '#btnAgregarFunc', function (event) {
         event.preventDefault();
@@ -433,8 +480,7 @@ $(document).ready(function () {
                     datos += '<th  class="border border-primary text-center align-middle ">CREADO POR: </th>';
                     datos += '<th  class="border border-primary text-center align-middle ">DESCRIPCIÓN DE LA SOLICITUD</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE </th>';
-                    datos += '<th  class="border border-primary text-center align-middle ">ASIGNADO A</th>';
-                    datos += '<th  class="border border-primary text-center align-middle ">ASIGNADO A</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">INICIAR TAREA </th>';
                     datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
                 datos += '</tr>';
             datos += '</thead>';
@@ -458,9 +504,8 @@ $(document).ready(function () {
                     } else {
                         datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.ruta  + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
                     }
-                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="bntAsignarFuncionario" onclick="asignarFuncionario(' + value.id_solicitud + ',\'' + value.funcionario_asignado + '\',\'' + value.fecha_asignacion + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarFuncionarioSol"><i class="fas fa-user-check"></i> MODIFICAR</button></td>';
-                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.funcionario_asignado + '</td>';
-                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentario(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
+                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnIniciarTarea" onclick="iniciarTarea(' + value.id_solicitud + ')" class="btn btn-primary" ><i class="far fa-clock"></i></button></td>';
+                    datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
                 datos += '</tr>';
             });
             datos += '</tbody>';
@@ -555,9 +600,6 @@ $(document).ready(function () {
             $('#solicitudesAsignadas').html(error);
         });
     }
-
-
-
 
     function buscar(){
         $.ajax({
@@ -1008,6 +1050,64 @@ $(document).ready(function () {
         })
     }
 
+    /// INICIAR UNA TAREA///
+    $(document).on('click', '#btnIniciarTarea', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/solicitud/tarea.create.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#buscar').serialize(),
+        }).done(function (json) {
+            if(json[0].proceso == "OK"){
+          
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tarea Iniciada con éxito',
+                    showConfirmButton: false,
+                    timer: 3000
+                }).then((result) => {
+                    cargarSol1();
+                })
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al crear la tarea',
+                });
+            }
+        }).fail(function (xhr, status, error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear la tarea',
+            });
+        })
+    })
+
+    /// INICIAR UNA TAREA///
+    $(document).on('click', '#btnIniciarTarea', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/solicitud/tarea.create.2.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#buscar').serialize(),
+        }).done(function (json) {
+        }).fail(function (xhr, status, error) {
+        })
+    })
+
+    /// INICIAR UNA TAREA///
+    $(document).on('click', '#btnIniciarTarea', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/solicitud/solicitudes.comentarios.create.tarea.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#buscar').serialize(),
+        }).done(function (json) {
+        }).fail(function (xhr, status, error) {
+        })
+    })
 
 
 })
