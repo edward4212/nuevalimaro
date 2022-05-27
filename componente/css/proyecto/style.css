@@ -90,8 +90,23 @@ div.dataTables_wrapper div.dataTables_filter {
   margin-bottom: 19px;
 }
 
+#tablesolicitudesAsignadas_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
 
+#tablesolicitudesAsignadas_filter{
+  margin-bottom: 19px;
+}
 
+#tablesolicitudesDesa_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tablesolicitudesDesa_filter{
+  margin-bottom: 19px;
+}
 
 
 

@@ -163,13 +163,17 @@ document.addEventListener("DOMContentLoaded", function() {
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-th-list"></i> Solicitudes </a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i
+                                class="fas fa-th-list"></i> Solicitudes </a>
 
                         <ul class="dropdown-menu" style="background-color: #f8f9fa!important;">
                             <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
                                         class="fas fa-file-signature"></i> Radicar Solicitudes <i
                                         class="fas fa-caret-right"></i> </a>
                                 <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.Reg.php"><i
+                                                class="fas fa-clipboard-list"></i> Mis Solicitudes
+                                            Radicadas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesCr.php"><i
                                                 class="far fa-edit"></i> Crear Documento</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesAct.php"><i
@@ -179,40 +183,77 @@ document.addEventListener("DOMContentLoaded", function() {
 
                                 </ul>
                             </li>
-                            <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.Reg.php"><i
-                                        class="fas fa-clipboard-list"></i> Mis Solicitudes
-                                    Radicadas</a></li>
-
-                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="far fa-calendar-alt"></i> Gestión De Solicitudes <i
+                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                        class="far fa-calendar-alt"></i> Gestión De Solicitudes <i
                                         class="fas fa-caret-right"></i> </a>
                                 <ul class="submenu dropdown-menu">
-                                    <li><a class="dropdown-item" style="color: #0d6efd;"
-                                            href="solicitudes.php"><i class="far fa-calendar-check"></i> Solicitudes
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.php"><i
+                                                class="far fa-calendar-check"></i> Solicitudes
                                             Radicadas</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesAs.php"><i class="fas fa-calendar-alt"></i> Solicitudes
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesAs.php"><i
+                                                class="fas fa-calendar-alt"></i> Solicitudes
                                             Asignadas</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesDe.php"><i class="fas fa-hourglass-end"></i> Solicitudes En
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesDe.php"><i
+                                                class="fas fa-hourglass-end"></i> Solicitudes En
                                             Proceso</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesFI.php"><i class="far fa-calendar-times"></i> Solicitudes
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesFI.php"><i
+                                                class="far fa-calendar-times"></i> Solicitudes
                                             Finalizadas</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-tasks"></i>
-                            Tareas</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i
+                                class="fas fa-tasks"></i> Tareas</a>
+
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
-                            <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="tareas.php"><i class="fas fa-list-ol"></i>
-                                    Gestión de Tareas Asignadas</a>
-                            </li>
-                            <li class="nav-item col-6 col-md-auto">
-                                <a class="nav-link p-2 dropdown-item" href="tareas.php"><i class="fas fa-list-ol"></i>
-                                    Gestión de Tareas Finalizadas</a>
-                            </li>
+
+                            <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.Reg.php"><i
+                                        class="fas fa-clipboard-list"></i> Tareas Asignadas</a></li>
+                            <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesCr.php"><i
+                                        class="far fa-edit"></i> Tareas En Desarrollo</a></li>
+                            <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesAct.php"><i
+                                        class="fas fa-sync-alt"></i> Tareas Devueltas</a></li>
+                            <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesEli.php"><i
+                                        class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
                         </ul>
+
+                        <!-- <ul class="dropdown-menu" style="background-color: #f8f9fa!important;">
+                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                        class="fas fa-file-signature"></i> Mis Tareas <i class="fas fa-caret-right"></i>
+                                </a>
+                                <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.Reg.php"><i
+                                                class="fas fa-clipboard-list"></i> Tareas Asignadas</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesCr.php"><i
+                                                class="far fa-edit"></i> Tareas En Desarrollo</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesAct.php"><i
+                                                class="fas fa-sync-alt"></i> Tareas Devueltas</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesEli.php"><i
+                                                class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                        class="far fa-calendar-alt"></i> Gestión De Solicitudes <i
+                                        class="fas fa-caret-right"></i> </a>
+                                <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.php"><i
+                                                class="far fa-calendar-check"></i> Solicitudes
+                                            Radicadas</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesAs.php"><i
+                                                class="fas fa-calendar-alt"></i> Solicitudes
+                                            Asignadas</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesDe.php"><i
+                                                class="fas fa-hourglass-end"></i> Solicitudes En
+                                            Proceso</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesFI.php"><i
+                                                class="far fa-calendar-times"></i> Solicitudes
+                                            Finalizadas</a></li>
+                                </ul>
+                            </li>
+                        </ul> -->
                     </li>
                     <li class="nav-item dropdown">
                         <a href="" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink" role="button"

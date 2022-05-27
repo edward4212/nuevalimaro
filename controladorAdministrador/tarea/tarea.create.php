@@ -13,7 +13,7 @@ $solicitudesE -> setUsuario($usuario);
 $solicitudesE -> setIdSolicitud($idsolicitud);
 $solicitudesE -> setCarpeta($fechaActual);
 
-$directorio = "../../documentos/tareas/$idsolicitud/$fechaActual/";
+$directorio = "../../documentos/usuarios/$usuario/tareas/$idsolicitud/$fechaActual/";
    
 if(!file_exists($directorio)){
     mkdir($directorio,0777,true);

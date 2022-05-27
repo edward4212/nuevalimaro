@@ -86,7 +86,7 @@
                                     </div>
                                     <form action="" class="form-group" id="buscar1">
                                         <div class="modal-body">
-                                            <input type="number" name="numIdSolicitud1" id="numIdSolicitud1" >
+                                            <input type="number" name="numIdSolicitud1" id="numIdSolicitud1" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>
                                                 <textarea type="text" class="form-control redondeado" rows="3"
@@ -116,6 +116,7 @@
     </main>
     <?php include_once "footer.php" ?>
     <script src="../js/administrador/solicitudes.adm.js"></script>
+    
 </body>
 
 </html>

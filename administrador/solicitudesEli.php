@@ -91,7 +91,7 @@
         </div>
     </main>
     <?php include_once "footer.php" ?>
-    <script src="../js/empleado/solicitudes.js"></script>
+    <script src="../js/administrador/solicitudes.adm.js"></script>
 </body>
 
 
