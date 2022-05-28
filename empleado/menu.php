@@ -139,6 +139,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         class="fas fa-file-signature"></i> Radicar Solicitudes <i
                                         class="fas fa-caret-right"></i> </a>
                                 <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.php"><i
+                                                class="fas fa-clipboard-list"></i> Mis Solicitudes Radicadas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesCr.php"><i
                                                 class="far fa-edit"></i> Crear Documento</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesAct.php"><i
@@ -147,8 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                                 class="fas fa-times-circle"></i> Eliminar Documento</a></li>
                                 </ul>
                             </li>
-                            <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.php"><i
-                                        class="fas fa-clipboard-list"></i> Mis Solicitudes Radicadas</a></li>
+
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

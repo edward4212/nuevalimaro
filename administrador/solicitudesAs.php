@@ -89,8 +89,9 @@
                                             <input type="number" name="numIdSolicitud1" id="numIdSolicitud1" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>
-                                                <textarea type="text" class="form-control redondeado" rows="3"
-                                                    id="comentrioEmpleado" name="comentrioEmpleado" required></textarea>
+                                                <label class="text-muted"> Caracteres restantes: <span></span></label>
+                                                <textarea type="text" class="form-control redondeado inicialM" rows="2"
+                                                    id="comentrioEmpleado" name="comentrioEmpleado" maxlength="600" required></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">

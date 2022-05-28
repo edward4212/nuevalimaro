@@ -26,7 +26,7 @@
                                     <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
                                     <input type="number" name="numIdSolicitud3" id="numIdSolicitud3" hidden>
                                     <br>
-                                    <h5 id="tareasAsignadas"></h5>
+                                    <h5 id="tareasAsignadas1"></h5>
                                 </form>
                             </div>
 

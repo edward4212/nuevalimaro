@@ -91,7 +91,8 @@ $(document).ready(function () {
     eliminarDocumentos();
     solicitudesAsignadas();
     solicitudesDesarrollo();
-
+    solicitudesFinalizadas();
+    
  /// todas las solicitudes radicadas///
     function buscar1() {
         $.ajax({
@@ -132,7 +133,7 @@ $(document).ready(function () {
                     }
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.usuario + '</td>';
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.solicitud + '</td>';
-                    if (value.documento == null) {
+                    if (value.documento == "") {
                         datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
                     } else {
                         datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.ruta  + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
@@ -935,6 +936,150 @@ $(document).ready(function () {
             });
         }).fail(function(xhr, status, error){
             $('#solicitudesDesa').html(error);
+        });
+    }
+
+    function solicitudesFinalizadas(){
+        $.ajax({
+            url:'../controladorAdministrador/solicitud/solicitudes.read6.php',
+            type: 'POST',
+            dataType: 'json',
+            data : null,
+        }).done(function(json){
+             /**
+             * Se crea la tabla para mostrar los datos consultados
+             */
+            var datos = '';
+                datos += "<table id='tablesolicitudesFinal' class='table  table-striped table-bordered table-responsive '  >"; 
+                datos += '<thead >';
+                        datos += '<tr class="table-light border-primary text-center align-middle ">';
+                            datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO SOLICITUD edward</th>';
+                            datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
+                            datos += '<th  class="border border-primary text-center align-middle ">PRIORIDAD</th>';
+                            datos += '<th  class="border border-primary text-center align-middle ">ESTADO DE LA SOLICITUD</th>';
+                            datos += '<th  class="border border-primary text-center align-middle ">ASIGNADO A</th>'; 
+                            datos += '<th  class="border border-primary text-center align-middle ">TIPO DE SOLICITUD</th>';
+                            datos += '<th  class="border border-primary text-center align-middle ">TIPO DE DOCUMENTO </th>';
+                            datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO DE DOCUMENTO </th>';
+                            datos += '<th  class="border border-primary text-center align-middle ">DESCRIPCIÓN DE LA SOLICITUD</th>'
+                            datos += '<th  class="border border-primary text-center align-middle ">FECHA TERMINACIÓN</th>';
+                            datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
+                        datos += '</tr>';
+                    datos +=  '</thead>';
+                    datos += '<tbody>';
+                        $.each(json, function(key, value){
+                            datos += '<tr class="align-middle" >';
+                                datos += '<td class=" border border-primary text-wrap align-middle" id="numIdSolicitud">'+value.id_solicitud+' </td>';
+                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.fecha_solicitud+'</td>'; 
+                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.prioridad+'</td>';
+                                datos += '<td class=" border border-primary text-center align-middle">'+value.estado_solicitud+'</td>'; 
+                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.funcionario_asignado+'</td>';
+                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.tipo_solicitud+'</td>';
+                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.tipo_documento+'</td>';
+                                if(value.codigo_documento !== "0000"){
+                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.codigo_documento+'</td>';
+                                }else{
+                                    datos += '<td class=" border border-primary text-wrap align-middle">No aplica</td>';
+                                }
+                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.solicitud+'</td>';
+                                
+                                datos += '<td class=" border border-primary text-wrap align-middle">'+value.fecha_solucion+'</td>';
+                                datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioDesa('+value.id_solicitud+')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
+                            datos += '</tr>';
+                        });
+                    datos += '</tbody>';
+                datos += '</table>';
+            $('#solicitudesFinal').html(datos);
+            $('#tablesolicitudesFinal').DataTable({
+                "destroy" : true,
+                "autoWidth": true,
+                "responsive": true,
+                "searching": true,
+                "info":     true,
+                "ordering": true,
+                "colReorder": true,
+                "sZeroRecords": true,
+                "fixedColumns": true,
+                "fixedHeader": true,
+                "keys": true,
+                "deferRender": true,
+                "lengthChange": true,
+                "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
+                "iDisplayLength":5,
+                "language": {"url": "../componente/libreria/idioma/es-mx.json"},
+                dom:  'Bflrtip',
+                order: [[2, 'asc'], [1, 'asc']],
+                    rowGroup: {
+                        dataSrc: 2
+                    },
+                buttons: 
+                [
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        download: 'open',
+                        title: 'Mis Solicitudes',
+                        titleAttr: 'Mis Solicitudes',
+                        messageTop: 'Mis Solicitudes',
+                        text : '<i class="far fa-file-pdf"></i>',
+                        exportOptions : {
+                            columns: [0,1,2,3,4,5,6,7]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Mis Solicitudes',
+                        titleAttr: 'Mis Solicitudes',
+                        messageTop: 'Mis Solicitudes',
+                        text : '<i class="fas fa-print"></i>',
+                        exportOptions : {
+                            columns: [0,1,2,3,4,5,6,7]
+                        }
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text : '<i class="fas fa-file-excel"></i>',
+                        autoFiltre : true ,
+                        title: 'Mis Solicitudes',
+                        exportOptions : {
+                            columns: [0,1,2,3,4,5,6,7]
+                        }
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text : '<i class="fas fa-copy"></i>',
+                        autoFiltre : true ,
+                        titleAttr: 'COPIAR',
+                        exportOptions : {
+                            columns: [0,1,2,3,4,5,6,7]
+                        }
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        config: {
+                            depthLimit: 2,
+                            columns: [0,1,2],
+                            conditions: {
+                                string: {
+                                    '!=': null,
+                                    '!null': null,
+                                    'null': null,
+                                    'contains': null,
+                                    '!contains': null,
+                                    'ends': null,
+                                    '!ends': null,
+                                    'starts': null,
+                                    '!starts ': null
+                                }
+                            }
+                        } 
+                    
+                    }                      
+                ]
+            });
+        }).fail(function(xhr, status, error){
+            $('#solicitudesFinal').html(error);
         });
     }
 

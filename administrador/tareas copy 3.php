@@ -11,7 +11,13 @@
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"
-                        aria-selected="false">Tareas  Asignadas</button>
+                        aria-selected="false">Tareas hola Asignadas</button>
+                    <button class="nav-link " id="nav-proceso-tab" data-bs-toggle="tab" data-bs-target="#nav-proceso"
+                        type="button" role="tab" aria-controls="nav-proceso" aria-selected="true">Tareas En
+                        Proceso</button>
+                    <button class="nav-link " id="nav-finalizadas-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-finalizadas" type="button" role="tab" aria-controls="nav-finalizadas"
+                        aria-selected="true">Tareas Finalizadas</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -26,7 +32,7 @@
                                     <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
                                     <input type="number" name="numIdSolicitud3" id="numIdSolicitud3" hidden>
                                     <br>
-                                    <h5 id="tareasAsignadas"></h5>
+                                    <h5 id="solicitudesAsig"></h5>
                                 </form>
                             </div>
 
@@ -44,7 +50,7 @@
                                     </div>
                                     <form action="" class="form-group" id="buscar1">
                                         <div class="modal-body">
-                                            <input type="number" name="numIdSolicitud2" id="numIdSolicitud2" hidden >
+                                            <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
                                             <input type="number" name="numIdSolicitud1" id="numIdSolicitud1" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>
@@ -69,6 +75,38 @@
                                         </div>
                                     </form>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-proceso" role="tabpanel" aria-labelledby="nav-proceso-tab">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <br>
+                            <h3 class="card-title text-center">Tareas En Proceso</h3>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <form action="" class="form-group" id="buscarTareaComentario1">
+                                    <input type="number" name="numIdTarea" id="numIdTarea" hidden>
+                                    <input type="number" name="numIdTidTareaCom1" id="numIdTidTareaCom1" hidden>
+                                    <br>
+                                    <h5 id="tareas"></h5>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-finalizadas" role="tabpanel" aria-labelledby="nav-finalizadas-tab">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <br>
+                            <h3 class="card-title text-center">Tareas Finalizadas</h3>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <form action="" class="form-group" id="buscarTareaComentario1">
+                                    <input type="number" name="numIdTarea" id="numIdTarea" hidden>
+                                    <input type="number" name="numIdTidTareaCom1" id="numIdTidTareaCom1" hidden>
+                                    <br>
+                                    <h5 id="tareas"></h5>
+                                </form>
                             </div>
                         </div>
                     </div>
