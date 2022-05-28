@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <ul class="submenu dropdown-menu">
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasAsig.php"><i
                                                 class="fas fa-clipboard-list"></i> Tareas Asignadas</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasDes.php"><i
                                                 class="far fa-edit"></i> Tareas En Desarrollo</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
                                                 class="fas fa-sync-alt"></i> Tareas Devueltas</a></li>
@@ -227,7 +227,9 @@ document.addEventListener("DOMContentLoaded", function() {
                                 </a>
                                 <ul class="submenu dropdown-menu">
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareas.php"><i
-                                                class="fas fa-clipboard-list"></i> Tareas Asignadas</a></li>
+                                                class="fas fa-clipboard-list"></i> Solicitudes Asignadas</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                                class="far fa-edit"></i> Tareas En Desarrollo</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
                                                 class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
                                 </ul>
