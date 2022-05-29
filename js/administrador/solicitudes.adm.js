@@ -136,7 +136,7 @@ $(document).ready(function () {
                     if (value.documento == "") {
                         datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
                     } else {
-                        datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.ruta  + '/' + value.documento + '"><i class="fas fa-download"></i></a></td>';
+                        datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/' + value.usuario + '/solicitudes/' + value.ruta  + '/' + value.documento + '">'+value.documento+'   <i class="fas fa-download"></i></a></td>';
                     }
                     datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="bntAsignarFuncionario" onclick="asignarFuncionario(' + value.id_solicitud + ',\'' + value.funcionario_asignado + '\',\'' + value.fecha_asignacion + '\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarFuncionarioSol"><i class="fas fa-user-check"></i> ASIGNAR</button></td>';
                     datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarios(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
@@ -159,40 +159,40 @@ $(document).ready(function () {
                 "lengthMenu": [[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
                 "iDisplayLength": 20,
                 "language": { "url": "../componente/libreria/idioma/es-mx.json" },
-                order: [[2, 'asc'], [1, 'asc']],
+                order: [[2, 'asc'],[4, 'asc'],[3, 'asc']],
                 rowGroup: {
                     dataSrc: [[2]]
                 },
                 dom: 'Bflrtip',
                 buttons:
                     [
-                        {
-                            extend: 'pdfHtml5',
-                            orientation: 'landscape',
-                            pageSize: 'A4',
-                            download: 'open',
-                            title: 'Solicitudes Registradas',
-                            titleAttr: 'Solicitudes Registradas',
-                            messageTop: 'Solicitudes Registradas',
-                            text: '<i class="far fa-file-pdf"></i>',
-                            exportOptions: {
-                                columns: [0, 1, 2, 3, 4,  6, 7, 8]
-                            }
-                        },
-                        {
-                            extend: 'print',
-                            title: 'Solicitudes Registradas',
-                            titleAttr: 'Solicitudes Registradas',
-                            messageTop: 'Solicitudes Registradas',
-                            text: '<i class="fas fa-print"></i>',
-                            exportOptions: {
-                                columns: [0, 1, 2, 3, 4,  6, 7, 8]
-                            }
-                        },
+                        // {
+                        //     extend: 'pdfHtml5',
+                        //     orientation: 'landscape',
+                        //     pageSize: 'A4',
+                        //     download: 'open',
+                        //     title: 'Solicitudes Registradas',
+                        //     titleAttr: 'Solicitudes Registradas',
+                        //     messageTop: 'Solicitudes Registradas',
+                        //     text: '<i class="far fa-file-pdf"></i>',
+                        //     exportOptions: {
+                        //         columns: [0, 1, 2, 3, 4,  6, 7, 8]
+                        //     }
+                        // },
+                        // {
+                        //     extend: 'print',
+                        //     title: 'Solicitudes Registradas',
+                        //     titleAttr: 'Solicitudes Registradas',
+                        //     messageTop: 'Solicitudes Registradas',
+                        //     text: '<i class="fas fa-print"></i>',
+                        //     exportOptions: {
+                        //         columns: [0, 1, 2, 3, 4,  6, 7, 8]
+                        //     }
+                        // },
                         {
                             extend: 'excelHtml5',
                             text: '<i class="fas fa-file-excel"></i>',
-                            autoFiltre: true,
+                            sheetName: 'Solicitudes Registradas',
                             title: 'Solicitudes Registradas',
                             exportOptions: {
                                 columns: [0, 1, 2, 3, 4,  6, 7, 8]
@@ -201,7 +201,6 @@ $(document).ready(function () {
                         {
                             extend: 'copyHtml5',
                             text: '<i class="fas fa-copy"></i>',
-                            autoFiltre: true,
                             titleAttr: 'COPIAR',
                             exportOptions: {
                                 columns: [0, 1, 2, 3, 4,  6, 7, 8]
@@ -210,8 +209,7 @@ $(document).ready(function () {
                         {
                             extend: 'searchBuilder',
                             config: {
-                                depthLimit: 2,
-                                columns: [0,1,2],
+                                columns: [0,1,2,3,4,5,6],
                                 conditions: {
                                     string: {
                                         '!=': null,
@@ -223,10 +221,31 @@ $(document).ready(function () {
                                         '!ends': null,
                                         'starts': null,
                                         '!starts ': null
+                                    },
+                                    num: {
+                                        '!=': null,
+                                        '!null': null,
+                                        '<': null,
+                                        '<=': null,
+                                        '>': null,
+                                        '>=': null,
+                                        'null': null,
+                                        'between': null,
+                                        '!between': null
+                                    },
+                                    date: {
+                                        '!=': null,
+                                        '!null': null,
+                                        '<': null,
+                                        '<=': null,
+                                        '>': null,
+                                        '>=': null,
+                                        'null': null,
+                                        'between': null,
+                                        '!between': null
                                     }
-                                }
-                            } 
-
+                                } 
+                            }
                         }
                     ]
             });
@@ -285,51 +304,51 @@ $(document).ready(function () {
                 "iDisplayLength": 20,
                 "language": { "url": "../componente/libreria/idioma/es-mx.json" },
                 
-                dom: 'Bfrtip',
-                buttons:
-                    [
-                        {
-                            extend: 'pdfHtml5',
-                            orientation: 'landscape',
-                            pageSize: 'A4',
-                            download: 'open',
-                            title: 'Comentarios sobre la Solicitud',
-                            titleAttr: 'Comentarios sobre la Solicitud',
-                            messageTop: 'Comentarios sobre la Solicitud',
-                            text: '<i class="far fa-file-pdf"></i>',
-                            exportOptions: {
-                                columns: [0, 1, 2,]
-                            }
-                        },
-                        {
-                            extend: 'print',
-                            title: 'Comentarios sobre la Solicitud',
-                            titleAttr: 'Comentarios sobre la Solicitud',
-                            messageTop: 'Comentarios sobre la Solicitud',
-                            text: '<i class="fas fa-print"></i>',
-                            exportOptions: {
-                                columns: [0, 1, 2]
-                            }
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            text: '<i class="fas fa-file-excel"></i>',
-                            autoFiltre: true,
-                            title: 'Comentarios sobre la Solicitud',
-                            exportOptions: {
-                                columns: [0, 1, 2]
-                            }
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: '<i class="fas fa-copy"></i>',
-                            autoFiltre: true,
-                            titleAttr: 'COPIAR',
-                            exportOptions: {
-                                columns: [0, 1, 2]
-                            }
-                        }
-                    ]
+                // dom: 'Bfrtip',
+                // buttons:
+                //     [
+                //         {
+                //             extend: 'pdfHtml5',
+                //             orientation: 'landscape',
+                //             pageSize: 'A4',
+                //             download: 'open',
+                //             title: 'Comentarios sobre la Solicitud',
+                //             titleAttr: 'Comentarios sobre la Solicitud',
+                //             messageTop: 'Comentarios sobre la Solicitud',
+                //             text: '<i class="far fa-file-pdf"></i>',
+                //             exportOptions: {
+                //                 columns: [0, 1, 2,]
+                //             }
+                //         },
+                //         {
+                //             extend: 'print',
+                //             title: 'Comentarios sobre la Solicitud',
+                //             titleAttr: 'Comentarios sobre la Solicitud',
+                //             messageTop: 'Comentarios sobre la Solicitud',
+                //             text: '<i class="fas fa-print"></i>',
+                //             exportOptions: {
+                //                 columns: [0, 1, 2]
+                //             }
+                //         },
+                //         {
+                //             extend: 'excelHtml5',
+                //             text: '<i class="fas fa-file-excel"></i>',
+                //             autoFiltre: true,
+                //             title: 'Comentarios sobre la Solicitud',
+                //             exportOptions: {
+                //                 columns: [0, 1, 2]
+                //             }
+                //         },
+                //         {
+                //             extend: 'copyHtml5',
+                //             text: '<i class="fas fa-copy"></i>',
+                //             autoFiltre: true,
+                //             titleAttr: 'COPIAR',
+                //             exportOptions: {
+                //                 columns: [0, 1, 2]
+                //             }
+                //         }
+                //     ]
             });
         }).fail(function (xhr, status, error) {
             $('#comentarios').html(error);
@@ -569,61 +588,62 @@ $(document).ready(function () {
                 "deferRender": true,
                 "lengthChange": true,
                 "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":5,
+                "iDisplayLength":20,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
                 dom:  'Bflrtip',
-                order: [[2, 'asc'], [1, 'asc']],
+                order: [[2,'asc'],[5,'asc'],[4,'asc']],
                     rowGroup: {
                         dataSrc: 2
                     },
                 buttons: 
                 [
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A4',
-                        download: 'open',
-                        title: 'Mis Solicitudes',
-                        titleAttr: 'Mis Solicitudes',
-                        messageTop: 'Mis Solicitudes',
-                        text : '<i class="far fa-file-pdf"></i>',
-                        exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title: 'Mis Solicitudes',
-                        titleAttr: 'Mis Solicitudes',
-                        messageTop: 'Mis Solicitudes',
-                        text : '<i class="fas fa-print"></i>',
-                        exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
-                        }
-                    },
+                    // {
+                    //     extend: 'pdfHtml5',
+                    //     orientation: 'landscape',
+                    //     pageSize: 'A4',
+                    //     page: 'current',
+                    //     download: 'open',
+                    //     title: 'Mis Solicitudes',
+                    //     titleAttr: 'Mis Solicitudes',
+                    //     messageTop: 'Mis Solicitudes',
+                    //     text : '<i class="far fa-file-pdf"></i>',
+                    //     exportOptions : {
+                    //         columns: [0,1,2,3,4,5,6,7]
+                    //     }
+                    // },
+                    // {
+                    //     extend: 'print',
+                    //     title: 'Mis Solicitudes',
+                    //     titleAttr: 'Mis Solicitudes',
+                    //     messageTop: 'Mis Solicitudes',
+                    //     text : '<i class="fas fa-print"></i>',
+                    //     exportOptions : {
+                    //         columns: [0,1,2,3,4,5,6,7]
+                    //     }
+                    // },
                     {
                         extend: 'excelHtml5',
                         text : '<i class="fas fa-file-excel"></i>',
-                        autoFiltre : true ,
-                        title: 'Mis Solicitudes',
+                        sheetName: 'Mis Solicitudes Radicadas',
+                        title: 'Mis Solicitudes Radicadas',
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
+                            columns: [0,1,2,3,4,5,6,7,8,9]
                         }
                     },
                     {
                         extend: 'copyHtml5',
                         text : '<i class="fas fa-copy"></i>',
-                        autoFiltre : true ,
+                       
                         titleAttr: 'COPIAR',
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
+                            columns: [0,1,2,3,4,5,6,7,8,9]
                         }
                     },
                     {
                         extend: 'searchBuilder',
                         config: {
-                            depthLimit: 2,
-                            columns: [0,1,2],
+                            
+                            columns: [0,1,2,3,4,5],
                             conditions: {
                                 string: {
                                     '!=': null,
@@ -635,6 +655,28 @@ $(document).ready(function () {
                                     '!ends': null,
                                     'starts': null,
                                     '!starts ': null
+                                },
+                                num: {
+                                    '!=': null,
+                                    '!null': null,
+                                    '<': null,
+                                    '<=': null,
+                                    '>': null,
+                                    '>=': null,
+                                    'null': null,
+                                    'between': null,
+                                    '!between': null
+                                },
+                                date: {
+                                    '!=': null,
+                                    '!null': null,
+                                    '<': null,
+                                    '<=': null,
+                                    '>': null,
+                                    '>=': null,
+                                    'null': null,
+                                    'between': null,
+                                    '!between': null
                                 }
                             }
                         } 
@@ -706,6 +748,7 @@ $(document).ready(function () {
                 "destroy" : true,
                 "autoWidth": true,
                 "responsive": true,
+                "autoFiltre" : true ,
                 "searching": true,
                 "info":     true,
                 "ordering": true,
@@ -717,61 +760,61 @@ $(document).ready(function () {
                 "deferRender": true,
                 "lengthChange": true,
                 "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":5,
+                "iDisplayLength":20 ,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
                 dom:  'Bflrtip',
-                order: [[2, 'asc'], [1, 'asc']],
+                order: [[2, 'asc'], [5, 'asc']],
                     rowGroup: {
                         dataSrc: 2
                     },
                 buttons: 
                 [
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A4',
-                        download: 'open',
-                        title: 'Mis Solicitudes',
-                        titleAttr: 'Mis Solicitudes',
-                        messageTop: 'Mis Solicitudes',
-                        text : '<i class="far fa-file-pdf"></i>',
-                        exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title: 'Mis Solicitudes',
-                        titleAttr: 'Mis Solicitudes',
-                        messageTop: 'Mis Solicitudes',
-                        text : '<i class="fas fa-print"></i>',
-                        exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
-                        }
-                    },
+                    // {
+                    //     extend: 'pdfHtml5',
+                    //     orientation: 'landscape',
+                    //     pageSize: 'A4',
+                    //     download: 'open',
+                    //     title: 'Mis Solicitudes',
+                    //     titleAttr: 'Mis Solicitudes',
+                    //     messageTop: 'Mis Solicitudes',
+                    //     text : '<i class="far fa-file-pdf"></i>',
+                    //     exportOptions : {
+                    //         columns: [0,1,2,3,4,5,6,7]
+                    //     }
+                    // },
+                    // {
+                    //     extend: 'print',
+                    //     title: 'Mis Solicitudes',
+                    //     titleAttr: 'Mis Solicitudes',
+                    //     messageTop: 'Mis Solicitudes',
+                    //     text : '<i class="fas fa-print"></i>',
+                    //     exportOptions : {
+                    //         columns: [0,1,2,3,4,5,6,7]
+                    //     }
+                    // },
                     {
                         extend: 'excelHtml5',
                         text : '<i class="fas fa-file-excel"></i>',
-                        autoFiltre : true ,
-                        title: 'Mis Solicitudes',
+                        sheetName: 'Solicitudes Asignadas',
+                        title: 'Solicitudes Asignadas',
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
+                            columns: [0,1,2,3,4,5,6,7,8,9]
                         }
                     },
                     {
                         extend: 'copyHtml5',
                         text : '<i class="fas fa-copy"></i>',
-                        autoFiltre : true ,
                         titleAttr: 'COPIAR',
+                        autoFilter: true,
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
+                            columns: [0,1,2,3,4,5,6,7,8,9]
                         }
                     },
                     {
                         extend: 'searchBuilder',
                         config: {
-                            depthLimit: 2,
-                            columns: [0,1,2],
+                            
+                            columns: [0,1,2,3,4,5,6,7,9],
                             conditions: {
                                 string: {
                                     '!=': null,
@@ -783,6 +826,28 @@ $(document).ready(function () {
                                     '!ends': null,
                                     'starts': null,
                                     '!starts ': null
+                                },
+                                num: {
+                                    '!=': null,
+                                    '!null': null,
+                                    '<': null,
+                                    '<=': null,
+                                    '>': null,
+                                    '>=': null,
+                                    'null': null,
+                                    'between': null,
+                                    '!between': null
+                                },
+                                date: {
+                                    '!=': null,
+                                    '!null': null,
+                                    '<': null,
+                                    '<=': null,
+                                    '>': null,
+                                    '>=': null,
+                                    'null': null,
+                                    'between': null,
+                                    '!between': null
                                 }
                             }
                         } 
@@ -861,61 +926,60 @@ $(document).ready(function () {
                 "deferRender": true,
                 "lengthChange": true,
                 "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":5,
+                "iDisplayLength":20,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
                 dom:  'Bflrtip',
-                order: [[2, 'asc'], [1, 'asc']],
+                order: [[2, 'asc'], [5, 'asc']],
                     rowGroup: {
                         dataSrc: 2
                     },
                 buttons: 
                 [
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A4',
-                        download: 'open',
-                        title: 'Mis Solicitudes',
-                        titleAttr: 'Mis Solicitudes',
-                        messageTop: 'Mis Solicitudes',
-                        text : '<i class="far fa-file-pdf"></i>',
-                        exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title: 'Mis Solicitudes',
-                        titleAttr: 'Mis Solicitudes',
-                        messageTop: 'Mis Solicitudes',
-                        text : '<i class="fas fa-print"></i>',
-                        exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
-                        }
-                    },
+                    // {
+                    //     extend: 'pdfHtml5',
+                    //     orientation: 'landscape',
+                    //     pageSize: 'A4',
+                    //     download: 'open',
+                    //     title: 'Mis Solicitudes',
+                    //     titleAttr: 'Mis Solicitudes',
+                    //     messageTop: 'Mis Solicitudes',
+                    //     text : '<i class="far fa-file-pdf"></i>',
+                    //     exportOptions : {
+                    //         columns: [0,1,2,3,4,5,6,7]
+                    //     }
+                    // },
+                    // {
+                    //     extend: 'print',
+                    //     title: 'Mis Solicitudes',
+                    //     titleAttr: 'Mis Solicitudes',
+                    //     messageTop: 'Mis Solicitudes',
+                    //     text : '<i class="fas fa-print"></i>',
+                    //     exportOptions : {
+                    //         columns: [0,1,2,3,4,5,6,7]
+                    //     }
+                    // },
                     {
                         extend: 'excelHtml5',
                         text : '<i class="fas fa-file-excel"></i>',
-                        autoFiltre : true ,
-                        title: 'Mis Solicitudes',
+                        sheetName: 'Solicitudes En Desarrollo',
+                        title: 'Solicitudes En Desarrollo',
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
+                            columns: [0,1,2,3,4,5,6,7,8,9]
                         }
                     },
                     {
                         extend: 'copyHtml5',
                         text : '<i class="fas fa-copy"></i>',
-                        autoFiltre : true ,
                         titleAttr: 'COPIAR',
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
+                            columns: [0,1,2,3,4,5,6,7,8,9]
                         }
                     },
                     {
                         extend: 'searchBuilder',
                         config: {
-                            depthLimit: 2,
-                            columns: [0,1,2],
+                            
+                            columns: [0,1,2,3,4,5,6,7,9],
                             conditions: {
                                 string: {
                                     '!=': null,
@@ -927,6 +991,28 @@ $(document).ready(function () {
                                     '!ends': null,
                                     'starts': null,
                                     '!starts ': null
+                                },
+                                num: {
+                                    '!=': null,
+                                    '!null': null,
+                                    '<': null,
+                                    '<=': null,
+                                    '>': null,
+                                    '>=': null,
+                                    'null': null,
+                                    'between': null,
+                                    '!between': null
+                                },
+                                date: {
+                                    '!=': null,
+                                    '!null': null,
+                                    '<': null,
+                                    '<=': null,
+                                    '>': null,
+                                    '>=': null,
+                                    'null': null,
+                                    'between': null,
+                                    '!between': null
                                 }
                             }
                         } 
@@ -953,7 +1039,7 @@ $(document).ready(function () {
                 datos += "<table id='tablesolicitudesFinal' class='table  table-striped table-bordered table-responsive '  >"; 
                 datos += '<thead >';
                         datos += '<tr class="table-light border-primary text-center align-middle ">';
-                            datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO SOLICITUD edward</th>';
+                            datos += '<th  class="border border-primary text-center align-middle ">CÓDIGO SOLICITUD</th>';
                             datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
                             datos += '<th  class="border border-primary text-center align-middle ">PRIORIDAD</th>';
                             datos += '<th  class="border border-primary text-center align-middle ">ESTADO DE LA SOLICITUD</th>';
@@ -1005,61 +1091,61 @@ $(document).ready(function () {
                 "deferRender": true,
                 "lengthChange": true,
                 "lengthMenu":	[[5, 10, 20, 25, 50, 100, -1], [5, 10, 20, 25, 50, "Todos"]],
-                "iDisplayLength":5,
+                "iDisplayLength":10,
                 "language": {"url": "../componente/libreria/idioma/es-mx.json"},
                 dom:  'Bflrtip',
-                order: [[2, 'asc'], [1, 'asc']],
+                order: [[2, 'asc'], [5, 'asc']],
                     rowGroup: {
                         dataSrc: 2
                     },
                 buttons: 
                 [
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A4',
-                        download: 'open',
-                        title: 'Mis Solicitudes',
-                        titleAttr: 'Mis Solicitudes',
-                        messageTop: 'Mis Solicitudes',
-                        text : '<i class="far fa-file-pdf"></i>',
-                        exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title: 'Mis Solicitudes',
-                        titleAttr: 'Mis Solicitudes',
-                        messageTop: 'Mis Solicitudes',
-                        text : '<i class="fas fa-print"></i>',
-                        exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
-                        }
-                    },
+                    // {
+                    //     extend: 'pdfHtml5',
+                    //     orientation: 'landscape',
+                    //     pageSize: 'A4',
+                    //     download: 'open',
+                    //     title: 'Mis Solicitudes',
+                    //     titleAttr: 'Mis Solicitudes',
+                    //     messageTop: 'Mis Solicitudes',
+                    //     text : '<i class="far fa-file-pdf"></i>',
+                    //     exportOptions : {
+                    //         columns: [0,1,2,3,4,5,6,7]
+                    //     }
+                    // },
+                    // {
+                    //     extend: 'print',
+                    //     title: 'Mis Solicitudes',
+                    //     titleAttr: 'Mis Solicitudes',
+                    //     messageTop: 'Mis Solicitudes',
+                    //     text : '<i class="fas fa-print"></i>',
+                    //     exportOptions : {
+                    //         columns: [0,1,2,3,4,5,6,7]
+                    //     }
+                    // },
                     {
                         extend: 'excelHtml5',
                         text : '<i class="fas fa-file-excel"></i>',
-                        autoFiltre : true ,
-                        title: 'Mis Solicitudes',
+                        sheetName: 'Solicitudes Finalizadas',
+                        title: 'Solicitudes Finalizadas',
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
+                            columns: [0,1,2,3,4,5,6,7,8,9]
                         }
                     },
                     {
                         extend: 'copyHtml5',
                         text : '<i class="fas fa-copy"></i>',
-                        autoFiltre : true ,
+                        
                         titleAttr: 'COPIAR',
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
+                            columns: [0,1,2,3,4,5,6,7,8,9]
                         }
                     },
                     {
                         extend: 'searchBuilder',
                         config: {
-                            depthLimit: 2,
-                            columns: [0,1,2],
+                            
+                            columns: [0,1,2,3,4,5,6,7,9],
                             conditions: {
                                 string: {
                                     '!=': null,
@@ -1071,6 +1157,28 @@ $(document).ready(function () {
                                     '!ends': null,
                                     'starts': null,
                                     '!starts ': null
+                                },
+                                num: {
+                                    '!=': null,
+                                    '!null': null,
+                                    '<': null,
+                                    '<=': null,
+                                    '>': null,
+                                    '>=': null,
+                                    'null': null,
+                                    'between': null,
+                                    '!between': null
+                                },
+                                date: {
+                                    '!=': null,
+                                    '!null': null,
+                                    '<': null,
+                                    '<=': null,
+                                    '>': null,
+                                    '>=': null,
+                                    'null': null,
+                                    'between': null,
+                                    '!between': null
                                 }
                             }
                         } 
@@ -1131,52 +1239,52 @@ $(document).ready(function () {
                         "lengthMenu":	[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
                         "iDisplayLength":5,
                         "language": {"url": "../componente/libreria/idioma/es-mx.json"},
-                        dom:  'Bfrtip',
-                        buttons: 
-                        [
-                            {
-                                extend: 'pdfHtml5',
-                                orientation: 'landscape',
-                                pageSize: 'A4',
-                                download: 'open',
+                        // dom:  'Bfrtip',
+                        // buttons: 
+                        // [
+                        //     {
+                        //         extend: 'pdfHtml5',
+                        //         orientation: 'landscape',
+                        //         pageSize: 'A4',
+                        //         download: 'open',
                                 
-                                title: 'Comentarios sobre la Solicitud',
-                                titleAttr: 'Comentarios sobre la Solicitud',
-                                messageTop: 'Comentarios sobre la Solicitud',
-                                text : '<i class="far fa-file-pdf"></i>',
-                                exportOptions : {
-                                    columns: [0,1,2,]
-                                }
-                            },
-                            {
-                                extend: 'print',
-                                title: 'Comentarios sobre la Solicitud',
-                                titleAttr: 'Comentarios sobre la Solicitud',
-                                messageTop: 'Comentarios sobre la Solicitud',
-                                text : '<i class="fas fa-print"></i>',
-                                exportOptions : {
-                                    columns: [0,1,2]
-                                }
-                            },
-                            {
-                                extend: 'excelHtml5',
-                                text : '<i class="fas fa-file-excel"></i>',
-                                autoFiltre : true ,
-                                title: 'Comentarios sobre la Solicitud',
-                                exportOptions : {
-                                    columns: [0,1,2]
-                                }
-                            },
-                            {
-                                extend: 'copyHtml5',
-                                text : '<i class="fas fa-copy"></i>',
-                                autoFiltre : true ,
-                                titleAttr: 'COPIAR',
-                                exportOptions : {
-                                    columns: [0,1,2]
-                                }
-                            }                
-                        ]
+                        //         title: 'Comentarios sobre la Solicitud',
+                        //         titleAttr: 'Comentarios sobre la Solicitud',
+                        //         messageTop: 'Comentarios sobre la Solicitud',
+                        //         text : '<i class="far fa-file-pdf"></i>',
+                        //         exportOptions : {
+                        //             columns: [0,1,2,]
+                        //         }
+                        //     },
+                        //     {
+                        //         extend: 'print',
+                        //         title: 'Comentarios sobre la Solicitud',
+                        //         titleAttr: 'Comentarios sobre la Solicitud',
+                        //         messageTop: 'Comentarios sobre la Solicitud',
+                        //         text : '<i class="fas fa-print"></i>',
+                        //         exportOptions : {
+                        //             columns: [0,1,2]
+                        //         }
+                        //     },
+                        //     {
+                        //         extend: 'excelHtml5',
+                        //         text : '<i class="fas fa-file-excel"></i>',
+                                
+                        //         title: 'Comentarios sobre la Solicitud',
+                        //         exportOptions : {
+                        //             columns: [0,1,2]
+                        //         }
+                        //     },
+                        //     {
+                        //         extend: 'copyHtml5',
+                        //         text : '<i class="fas fa-copy"></i>',
+                                
+                        //         titleAttr: 'COPIAR',
+                        //         exportOptions : {
+                        //             columns: [0,1,2]
+                        //         }
+                        //     }                
+                        // ]
                     }); 
                 }).fail(function(xhr, status, error){
                         $('#comentarios').html(error); 
