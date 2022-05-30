@@ -11,7 +11,7 @@
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"
-                        aria-selected="false">Tareas  Asignadas</button>
+                        aria-selected="false">Tareas  Iniciadas</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -20,7 +20,7 @@
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <br>
-                            <h2 class="card-title text-center"><b>Tareas Asignadas</b></h2>
+                            <h2 class="card-title text-center"><b>Tareas Iniciadas</b></h2>
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <form action="" class="form-group" id="iniciarTarea">
                                     <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>

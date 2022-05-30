@@ -213,11 +213,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                         class="fas fa-caret-right"></i> </a>
                                 <ul class="submenu dropdown-menu">
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasAsig.php"><i
-                                                class="fas fa-clipboard-list"></i> Tareas Asignadas</a></li>
+                                                class="fas fa-clipboard-list"></i> Tareas Iniciadas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasDes.php"><i
                                                 class="far fa-edit"></i> Tareas En Desarrollo</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
-                                                class="fas fa-sync-alt"></i> Tareas Devueltas</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-undo"></i> Tareas Devueltas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
                                                 class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
                                 </ul>
@@ -229,7 +228,18 @@ document.addEventListener("DOMContentLoaded", function() {
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareas.php"><i
                                                 class="fas fa-clipboard-list"></i> Solicitudes Asignadas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
-                                                class="far fa-edit"></i> Tareas En Desarrollo</a></li>
+                                                class="far fa-edit"></i> Tareas En Desarrollo <i class="fas fa-caret-right"></i></a>
+                                        <ul class="submenu dropdown-menu">
+                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="far fa-clipboard"></i> Elaboración</a></li>
+                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-undo"></i>  Devueltos</a></li>
+                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-check"></i> Revisión</a></li>
+                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-check-double"></i>Aprobación</a></li>
+                                        </ul>
+                                    </li>
+
+
+
+
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
                                                 class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
                                 </ul>

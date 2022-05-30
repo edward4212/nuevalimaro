@@ -413,40 +413,7 @@ class Solicitudes{
                sl.`prioridad`,
                sl.`tipo_solicitud`,
                td.`tipo_documento`,
-               sl.`codigo_documento`,
-               emp.`id_empleado`,
-               emp.`nombre_completo`,
-               sl.`solicitud`,
                sl.`fecha_solicitud`,
-               sl.`fecha_asignacion`,
-               sl.`ruta`,
-               sl.`documento`,
-               sl.`funcionario_asignado`,
-               sl.`estado_solicitud`,
-               us.`usuario`
-          
-               FROM solicitud AS sl
-               
-               INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
-               INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
-               INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
-               WHERE  sl.`estado_solicitud` = 'ASIGNADA' ";
-               $this->result = $this->conexion->query($this->sql);
-               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
-          } catch (Exception $e) {
-               $this->retorno = $e->getMessage();
-          }
-          return $this->retorno;
-     }
-
-     public function desarrolloTarea()
-     {
-          try {
-               $this->sql = "	SELECT
-               sl.`id_solicitud` ,
-               sl.`prioridad`,
-               sl.`tipo_solicitud`,
-               td.`tipo_documento`,
                sl.`codigo_documento`,
                emp.`id_empleado`,
                emp.`nombre_completo`,
@@ -469,6 +436,45 @@ class Solicitudes{
                INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
                INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
                WHERE  tre.`tarea_estado` ='CREADO'";
+               $this->result = $this->conexion->query($this->sql);
+               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+          return $this->retorno;
+     }
+
+     public function desarrolloTarea()
+     {
+          try {
+               $this->sql = "	SELECT
+               sl.`id_solicitud` ,
+               sl.`prioridad`,
+               sl.`tipo_solicitud`,
+               td.`tipo_documento`,
+               sl.`fecha_solicitud`,
+               sl.`codigo_documento`,
+               emp.`id_empleado`,
+               emp.`nombre_completo`,
+               sl.`solicitud`,
+               sl.`fecha_inicio_tarea`,
+               sl.`ruta`,
+               sl.`documento`,
+               us.`usuario`,
+               tre.`usuario_tarea_estado`,
+               tre.`tarea_estado`,
+               tre.`ruta`,
+               tre.`documento`,
+               tre.`fecha_tarea_estado`
+          
+               FROM tarea_estado AS tre
+               
+               INNER JOIN tarea AS tr ON tre.`id_tarea` = tr.`id_tarea`
+               INNER JOIN solicitud AS sl ON tr.`id_solicitud` = sl.`id_solicitud`
+               INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
+               INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
+               INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
+               WHERE tre.`tarea_estado` !='CREADO' AND tre.`tarea_estado` !='FINALIZADO' AND tre.`tarea_estado` !='DEVUELTO'  ";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
           } catch (Exception $e) {
