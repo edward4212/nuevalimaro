@@ -19,13 +19,11 @@
                     aria-labelledby="nav-solicitudes-tab">
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
-                            <br>
                             <h2 class="card-title text-center"><b>Tareas En Desarrollo</b></h2>
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <form action="" class="form-group" id="iniciarTarea">
                                     <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
                                     <input type="number" name="numIdSolicitud3" id="numIdSolicitud3" hidden>
-                                    <br>
                                     <h5 id="tareasDesarrollo"></h5>
                                 </form>
                             </div>

@@ -182,6 +182,27 @@ class Usuario{
                return $this->retorno;
      }
 
+     public function read3()
+     {
+          try {
+               $this->sql = "SELECT
+       
+               empl.`correo_empleado`
+               
+               FROM empleado AS empl
+               
+               INNER JOIN usuario AS usu ON usu.`id_empleado` = empl.`id_empleado`
+               
+               WHERE   usu.`usuario` = '$this->usuario'";
+               
+               $this->result = $this->conexion->query($this->sql);
+               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+                    
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
 
 
 

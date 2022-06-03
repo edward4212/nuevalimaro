@@ -60,6 +60,7 @@
                                                 <select class="form-control " id="empleado" name="empleado"
                                                     aria-label="E" aria-describedby="basic-addon1"></select>
                                             </div>
+                                            <input  type="text" class="form-control " id="empleadoCorreo" name="empleadoCorreo"  hidden>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" id="btnAgregarFunc" name="btnAgregarFunc"

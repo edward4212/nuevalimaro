@@ -126,6 +126,16 @@ div.dataTables_wrapper div.dataTables_filter {
   margin-bottom: 19px;
 }
 
+#tableTareasDesarrollo_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tableTareasDesarrollo_filter{
+  margin-bottom: 19px;
+}
+
+
 
 
 

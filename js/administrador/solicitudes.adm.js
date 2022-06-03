@@ -92,6 +92,7 @@ $(document).ready(function () {
     solicitudesAsignadas();
     solicitudesDesarrollo();
     solicitudesFinalizadas();
+    // correoFuncionario();
     
  /// todas las solicitudes radicadas///
     function buscar1() {
@@ -358,7 +359,7 @@ $(document).ready(function () {
     function buscarFuncionarios() {
 
         $.ajax({
-            url: '../controladorAdministrador/usuario/usuario.read.php',
+            url: '../controladorAdministrador/usuario/usuario.read2.php',
             type: 'POST',
             dataType: 'json',
             data: null,
@@ -373,6 +374,26 @@ $(document).ready(function () {
             $('#empleado').html(error);
         });
     }
+
+    $(document).on('click', '#empleado', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/usuario/usuario.read3.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#buscar2').serialize(),
+        }).done(function (json) {
+            var correo = "";
+            $.each(json, function (key, value) {
+                correo = value.correo_empleado;
+            });
+            $('#empleadoCorreo').val(correo);
+            
+        }).fail(function (xhr, status, error) {
+            $('#empleadoCorreo').val(error);
+        });
+    });
+
 
     /// ASIGNAR COMENTARIO A LA SOLICITUD///
     $(document).on('click', '#btnCrearcomentario', function (event) {
@@ -518,6 +539,22 @@ $(document).ready(function () {
             });
         })
     })
+
+        /// ASIGNAR COMENTARIO DE CREACION FUNCIONARIO///
+        $(document).on('click', '#btnAgregarFunc', function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: '../controladorAdministrador/solicitud/usuario.asignado.email.php',
+                type: 'POST',
+                dataType: 'json',
+                data: $('#buscar2').serialize(),
+            }).done(function (json) {
+
+            }).fail(function (xhr, status, error) {
+              
+            })
+        })
+    
 
     function buscar(){
         $.ajax({
