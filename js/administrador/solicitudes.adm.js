@@ -413,11 +413,9 @@ $(document).ready(function () {
                 Swal.fire({
                     icon: 'success',
                     title: 'Comentario Creado con Exito',
-                    showConfirmButton: false,
+                    showConfirmButton: true,
                     timer: 3000
-                }).then((result) => {
-                    cargarSol();
-                });
+                })
             }
         }).fail(function (xhr, status, error) {
             Swal.fire({
@@ -445,11 +443,9 @@ $(document).ready(function () {
                 Swal.fire({
                     icon: 'success',
                     title: 'Comentario Creado con éxito',
-                    showConfirmButton: false,
+                    showConfirmButton: true,
                     timer: 3000
-                }).then((result) => {
-                    cargarSol1();
-                });
+                })
             }
         }).fail(function (xhr, status, error) {
             Swal.fire({
@@ -477,11 +473,9 @@ $(document).ready(function () {
             Swal.fire({
                 icon: 'success',
                 title: 'Comentario Creado con éxito',
-                showConfirmButton: false,
+                showConfirmButton: true,
                 timer: 3000
-            }).then((result) => {
-                cargarSolDe();
-            });
+            })
         }
     }).fail(function (xhr, status, error) {
         Swal.fire({
@@ -509,11 +503,9 @@ $(document).ready(function () {
                 Swal.fire({
                     icon: 'success',
                     title: 'Funcionario asignado con éxito',
-                    showConfirmButton: false,
+                    showConfirmButton: true,
                     timer: 3000
-                }).then((result) => {
-                    cargarSol();
-                });
+                })
             }
         }).fail(function (xhr, status, error) {
             Swal.fire({

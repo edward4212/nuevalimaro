@@ -22,8 +22,8 @@
                             <h2 class="card-title text-center"><b>Tareas En Desarrollo</b></h2>
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <form action="" class="form-group" id="iniciarTarea">
-                                    <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
-                                    <input type="number" name="numIdSolicitud3" id="numIdSolicitud3" hidden>
+                                    <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden >
+                                    <input type="number" name="numIdSolicitud3" id="numIdSolicitud3" hidden >
                                     <h5 id="tareasDesarrollo"></h5>
                                 </form>
                             </div>
@@ -42,7 +42,7 @@
                                     </div>
                                     <form action="" class="form-group" id="buscar1">
                                         <div class="modal-body">
-                                            <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
+                                            <input type="number" name="numIdSolicitud2" id="numIdSolicitud2" hidden>
                                             <input type="number" name="numIdSolicitud1" id="numIdSolicitud1" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>
