@@ -514,7 +514,7 @@ class Solicitudes{
                INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
                INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
                INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
-               WHERE   tre.`usuario_tarea_estado` = '$this->usuario'  AND tre.`tarea_estado` ='CREADO' ";
+               WHERE   tre.`usuario_tarea_estado` = '$this->usuario'  AND tre.`tarea_estado` IN('CREADO','DEVUELTO') ";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
           } catch (Exception $e) {

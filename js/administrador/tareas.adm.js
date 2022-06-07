@@ -703,8 +703,10 @@ $(document).ready(function () {
                     datos += '<th  class="border border-primary text-center align-middle ">TIPO DE SOLICITUD</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">TIPO DE DOCUMENTO </th>';
                     datos += '<th  class="border border-primary text-center align-middle ">DESCRIPCIÓN DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">ESTADO DE LA TAREA</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE DE LA SOLICITUD</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">PROCESAR TAREA</th>';
                 datos += '</tr>';
             datos += '</thead>';
             datos += '<tbody>';
@@ -716,12 +718,14 @@ $(document).ready(function () {
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_solicitud + '</td>';
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.solicitud + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.tarea_estado + '</td>';
                     if (value.soportes == "") {
                         datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
                     } else {
                         datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.solicitante+'/solicitudes/'+value.carpeta+'/'+value.soportes+'">'+value.soportes+'   <i class="fas fa-download"></i></a></td>';
                     }
                     datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-file-import"></i></button></td>';  
                 datos += '</tr>';
             });
             datos += '</tbody>';
@@ -741,9 +745,9 @@ $(document).ready(function () {
                 "lengthMenu": [[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
                 "iDisplayLength": 20,
                 "language": { "url": "../componente/libreria/idioma/es-mx.json" },
-                order: [[3, 'asc'], [1, 'asc']],
+                order: [[6, 'asc']],
                 rowGroup: {
-                    dataSrc: [[3]]
+                    dataSrc: [[6]]
                 },
                 dom: 'Bflrtip',
                 buttons:
@@ -793,7 +797,7 @@ $(document).ready(function () {
                             extend: 'searchBuilder',
                             config: {
                                 
-                                columns: [0,1,2,3,4,6,7],
+                                columns: [0,1,2,3,4,6],
                                 conditions: {
                                     string: {
                                         '!=': null,

@@ -135,6 +135,16 @@ div.dataTables_wrapper div.dataTables_filter {
   margin-bottom: 19px;
 }
 
+#tableTareasAelaborar_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tableTareasAelaborar_filter{
+  margin-bottom: 19px;
+}
+
+
 
 
 
