@@ -90,11 +90,12 @@
                                             <input type="number" name="idTarea2" id="idTarea2">
                                             <input type="number" name="idTarea23" id="idTarea23">
                                             <input type="number" name="numIdSolicitudCom" id="numIdSolicitudCom">
+                                            <input type="text" name="ruta" id="ruta">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>
                                                 <label class="text-muted"> Caracteres restantes: <span></span></label>
                                                 <textarea type="text" class="form-control inicialM" rows="2"
-                                                    id="comentrioEmpleado" name="comentrioEmpleado" maxlength="600"
+                                                    id="comentarioTarea" name="comentarioTarea" maxlength="600"
                                                     required></textarea>
                                                 <br>
                                             </div>
@@ -107,8 +108,8 @@
                                                 name="empleadoCorreo">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Subir Documento*</b></h5>
-                                                <input type="file" class="form-control redondeado" id="fileSolicitud"
-                                                    name="fileSolicitud" multiple required>
+                                                <input type="file" class="form-control redondeado" id="fileTarea"
+                                                    name="fileTarea" multiple required>
                                             </div>
                                         </div>
                                         <div class="modal-footer">

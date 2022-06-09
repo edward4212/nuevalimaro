@@ -9,11 +9,12 @@ function comentarioAsi (id_solicitud){
     $("#numIdSolicitud1").val(id_solicitud);
 }
 
-function procesarTarea (id_tarea , id_solicitud){
+function procesarTarea (id_tarea , id_solicitud, ruta){
     $("#numIdSolicitud").val(id_solicitud);
     $("#numIdSolicitudCom").val(id_solicitud);
     $("#idTarea2").val(id_tarea);
     $("#idTarea23").val(id_tarea);
+    $("#ruta").val(ruta);
 }
 
 function iniciarTarea(id_solicitud) {
@@ -706,7 +707,7 @@ $(document).ready(function () {
             datos += "<table id='tableTareasAelaborar'   class='table  table-striped table-bordered table-responsive'>";
             datos += '<thead >';
                 datos += '<tr class="table-light border-primary text-center align-middle ">';
-                    datos += '<th  class="border border-primary text-center align-middle ">NÚMERO DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">NÚMERO DE LA TAREA</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
                     datos += '<th  class="border border-primary text-wrap align-middle ">PRIORIDAD</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">TIPO DE SOLICITUD</th>';
@@ -721,7 +722,7 @@ $(document).ready(function () {
             datos += '<tbody>';
             $.each(json, function (key, value) {
                 datos += '<tr class="align-middle" >';
-                    datos += '<td class=" border border-primary text-wrap align-middle" id="numIdSolicitud">' + value.id_solicitud + ' </td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle" id="numIdSolicitud">' + value.id_tarea + ' </td>';
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.fecha_solicitud + '</td>';
                     datos += '<td class=" border border-primary text-wrap">' + value.prioridad + '</td>';
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_solicitud + '</td>';
@@ -734,7 +735,7 @@ $(document).ready(function () {
                         datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.solicitante+'/solicitudes/'+value.carpeta+'/'+value.soportes+'">'+value.soportes+'   <i class="fas fa-download"></i></a></td>';
                     }
                     datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
-                    datos += '<td class=" border border-primary text-wrap align-middle"><button type="button" onclick="procesarTarea('+ value.id_tarea +','+value.id_solicitud+')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal12"><i class="fas fa-file-import"></i></button></td>';  
+                    datos += '<td class=" border border-primary text-wrap align-middle"><button type="button" onclick="procesarTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal12"><i class="fas fa-file-import"></i></button></td>';  
                 datos += '</tr>';
             });
             datos += '</tbody>';

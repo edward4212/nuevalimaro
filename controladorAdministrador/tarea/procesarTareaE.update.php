@@ -12,38 +12,33 @@ include_once "../../componente/Mailer/src/Exception.php";
 
 $id_tarea=  $_POST['idTarea2'];
 $id_solicitud = $_POST['numIdSolicitudCom'];
+$comentario = $_POST['comentarioTarea'];
+$usuario_tarea_estado = $_POST['empleado'];
+$ruta= $_POST['ruta'];
+$correo= $_POST['empleadoCorreo'];
 
 
-$foto=$_FILES["fileDocumento"]["tmp_name"];
-$tipo =$_FILES['fileDocumento']['type'];
-$tamaño =$_FILES['fileDocumento']['size'];
+$foto=$_FILES["fileTarea"]["tmp_name"];
+$tipo =$_FILES['fileTarea']['type'];
+$tamaño =$_FILES['fileTarea']['size'];
 
-$directorio = "../../documentos/macroprocesos/$macroproceso/$proceso/$tipDocCon/$codigo/$numero_version/";
+$directorio = "../../documentos/tareas/$id_tarea/$id_solicitud/$ruta/";
 
 if(!file_exists($directorio)){
     mkdir($directorio,0777,true);
-    $nombre = $_FILES['fileDocumento']['name'];   
-    move_uploaded_file($_FILES['fileDocumento']['tmp_name'],$directorio.$nombre);        
+    $nombre = $_FILES['fileTarea']['name'];   
+    move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);        
 }else{
     if(file_exists($directorio)){
-        $nombre = $_FILES['fileDocumento']['name'];
-        move_uploaded_file($_FILES['fileDocumento']['tmp_name'],$directorio.$nombre);
+        $nombre = $_FILES['fileTarea']['name'];
+        move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);
     }    
 }
 
 $documentoE = new \entidad\documento(); 
 
 $documentoE -> setNumeroVersion($numero_version);
-$documentoE -> setIdDocumento($id_documento);
-$documentoE -> setDescripcionVersion($descripcion_version);
-$documentoE -> setUsuarioCreacion($usuario_creacion);
-$documentoE -> setFechaCreacion($fecha_creacion);
-$documentoE -> setUsuarioRevision($usuario_revision);
-$documentoE -> setFechaRevision($fecha_revision);
-$documentoE -> setUsuarioAprobacion($usuario_aprobacion);
-$documentoE -> setFechaAprobacion($fecha_aprobacion);
-$documentoE -> setDocumento($nombre);
-$documentoE -> setVersionAnte($numero_version_ante);
+
 
 $documentoM= new \modelo\documento($documentoE);
 $resultado = $documentoM->creacionVersionamiento();
@@ -54,32 +49,28 @@ unset($documentoM);
 
 try {
 
-    $nombre_completo  = $_POST['txtNombreEmpleado'];
-    $usuario  = $_POST['txtUsuario'];
-    $emailTo =  $_POST['txtCorreoEmpleado'];
-    $clave  = $_POST['txtClaveInicial'];
-    $subject = "LIMARO - Creación De Usuario";
+    
+    $usuario_tarea_estado = $_POST['empleado'];
+    $emailTo =  $_POST['empleadoCorreo'];
+    $subject = "LIMARO - Asignación de Tarea";
     $bodyEmail = "
 
+
 FECHA: $fechaActual
-PARA: $nombre_completo - Funcionario COOPEAIPE
+PARA: $usuario_tarea_estado - Funcionario COOPEAIPE
 DE: Area De Calidad
-ASUNTO: Creación De Usuario
+ASUNTO: Asignación de Solicitud
 
-Su usuario dentro del sistema LIMARO SOFTWARE fue creado exitosamente con la siguiente información:
+Cordial Saludo,
 
-    Url de conexión: https://cop.limaro.co/login/login.php
-    Usuario: $usuario
-    Contraseña Inicial:  $clave
+Se le ha asignado una tarea para su desarrollo.
 
-Para ingresar por primera vez, el sistema solicitará activar el usuario, para lo cual debe dar clic en el botón 'Activar Usuario' y realizar cambio de contraseña; No olvide guardar la contraseña en un sitio seguro.
-
-Bienvenido(a)
+Cordialmente,
 
 LIMARO SOFTWARE - Software de gestión ISO 9001:2015 con funcionalidad de control de documentos
 
 Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje ya que es generado de manera automática y no es un canal oficial de comunicación de LIMARO SOFTWARE.";
-
+    
     $fromemail = "notificaciones@limaro.co";
     $fromname = "LIMARO";
     $host = "smtp.mi.com.co";
