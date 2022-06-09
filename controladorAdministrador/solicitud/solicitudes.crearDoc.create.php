@@ -52,7 +52,7 @@ $id_prioridad = $_POST['prioridad'];
 $id_tipoDocumento = $_POST['tipoDocumento'];
 $solicitud = $_POST['solicitud'];
 $fechaActual = date("Y-m-d H-i-s");
-$nombre = null ;
+$nombre = NULL ;
 
     $directorio = "../../documentos/usuarios/$usuario/solicitudes/$fechaActual/";
     if(!file_exists($directorio)){

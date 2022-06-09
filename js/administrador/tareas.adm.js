@@ -9,6 +9,12 @@ function comentarioAsi (id_solicitud){
     $("#numIdSolicitud1").val(id_solicitud);
 }
 
+function procesarTarea (id_tarea , id_solicitud){
+    $("#numIdSolicitud").val(id_solicitud);
+    $("#numIdSolicitudCom").val(id_solicitud);
+    $("#idTarea2").val(id_tarea);
+    $("#idTarea23").val(id_tarea);
+}
 
 function iniciarTarea(id_solicitud) {
     $("#numIdSolicitud3").val(id_solicitud);
@@ -47,7 +53,8 @@ $(document).ready(function () {
     asignada1();
     desarrollo();
     elaboracion();
-    
+    buscarFuncionarios();
+
     function asignada() {
         $.ajax({
             url: '../controladorAdministrador/tarea/solicitudes.read.3.php',
@@ -226,7 +233,9 @@ $(document).ready(function () {
                     title: 'Tarea Iniciada con éxito',
                     showConfirmButton: true,
                     timer: 3000
-                })
+                }).then((result) => {
+                    cargarSol1();
+                });
             }else{
                 Swal.fire({
                     icon: 'error',
@@ -725,7 +734,7 @@ $(document).ready(function () {
                         datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.solicitante+'/solicitudes/'+value.carpeta+'/'+value.soportes+'">'+value.soportes+'   <i class="fas fa-download"></i></a></td>';
                     }
                     datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
-                    datos += '<td class=" border border-primary text-wrap align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-file-import"></i></button></td>';  
+                    datos += '<td class=" border border-primary text-wrap align-middle"><button type="button" onclick="procesarTarea('+ value.id_tarea +','+value.id_solicitud+')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal12"><i class="fas fa-file-import"></i></button></td>';  
                 datos += '</tr>';
             });
             datos += '</tbody>';
@@ -842,5 +851,44 @@ $(document).ready(function () {
             $('#tareasAelaborar').html(error);
         });
     }
+
+    function buscarFuncionarios() {
+
+        $.ajax({
+            url: '../controladorAdministrador/usuario/usuario.read2.php',
+            type: 'POST',
+            dataType: 'json',
+            data: null,
+        }).done(function (json) {
+            var tipoDocumento = 0;
+            tipoDocumento += '<option disabled selected> - Seleccione un funcionario-</option>';
+            $.each(json, function (key, value) {
+                tipoDocumento += '<option value=' + value.usuario + '>' + value.usuario + '</option>';
+            });
+            $('#empleado').html(tipoDocumento);
+        }).fail(function (xhr, status, error) {
+            $('#empleado').html(error);
+        });
+    }
+
+    $(document).on('click', '#empleado', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/usuario/usuario.read3.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#buscar2').serialize(),
+        }).done(function (json) {
+            var correo = "";
+            $.each(json, function (key, value) {
+                correo = value.correo_empleado;
+            });
+            $('#empleadoCorreo').val(correo);
+            
+        }).fail(function (xhr, status, error) {
+            $('#empleadoCorreo').val(error);
+        });
+    });
+
 
 })

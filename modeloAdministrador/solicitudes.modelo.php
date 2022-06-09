@@ -425,7 +425,7 @@ class Solicitudes{
                tre.`usuario_tarea_estado`,
                tre.`tarea_estado`,
                tre.`ruta`,
-               tre.`documento`,
+               tre.`documento_tarea`,
                tre.`fecha_tarea_estado`
           
                FROM solicitud AS sl
@@ -464,7 +464,7 @@ class Solicitudes{
                tre.`usuario_tarea_estado`,
                tre.`tarea_estado`,
                tre.`ruta`,
-               tre.`documento`,
+               tre.`documento_tarea`,
                tre.`fecha_tarea_estado`
           
                FROM tarea_estado AS tre
@@ -504,7 +504,8 @@ class Solicitudes{
                tre.`usuario_tarea_estado`,
                tre.`tarea_estado`,
                tre.`ruta`,
-               tre.`documento`,
+               tre.`documento_tarea`,
+               tr.`id_tarea`,
                tre.`fecha_tarea_estado`
           
                FROM tarea_estado AS tre
