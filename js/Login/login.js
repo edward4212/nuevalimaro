@@ -10,7 +10,6 @@ $(document).ready(function () {
             if ((document.getElementById('txtUsuario').value ==="") && (document.getElementById('txtClave').value ==="")){
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error',
                     showConfirmButton: false,
                     title: '¡Campo usuario y contraseña vacío!',
                     timer: 2000
@@ -18,7 +17,6 @@ $(document).ready(function () {
             }else if (document.getElementById('txtUsuario').value ==="") {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error',
                         showConfirmButton: false,
                         title: '¡Campo usuario vacío!',
                         timer: 2000
@@ -26,7 +24,6 @@ $(document).ready(function () {
             }else if (document.getElementById('txtClave').value ==="") {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error',
                         showConfirmButton: false,
                         title: '¡Campo contraseña vacío!',
                         timer: 2000
@@ -40,7 +37,7 @@ $(document).ready(function () {
                             showConfirmButton: false,
                             timer: 2500
                           }).then((result) => {
-                            window.location.href = "../administrador/inicio.php";
+                             window.location= "../administrador/inicio.php";
                           });
                     }else if (obj[0].id_rol ==2) {
                         Swal.fire({
@@ -49,7 +46,7 @@ $(document).ready(function () {
                             showConfirmButton: false,
                             timer: 2500
                           }).then((result) => {
-                            window.location.href = "../empleado/inicio.php";
+                             window.location= "../empleado/inicio.php";
                           });
                     }else if (obj[0].id_rol ==3) {
                         Swal.fire({
@@ -58,7 +55,7 @@ $(document).ready(function () {
                             showConfirmButton: false,
                             timer: 2500
                           }).then((result) => {
-                            window.location.href = "../visitante/inicio.php";
+                             window.location= "../visitante/inicio.php";
                           });
                         }
                 }else if(obj[0].estadoUsuario =="CREADO"){
@@ -86,7 +83,7 @@ $(document).ready(function () {
             }else{
                 Swal.fire({
                     icon: 'error',
-                    title: '¡Por favor Ingrese La Información Correcta!',
+                    title: '¡Usuario o contraseña incorrecta!',
                     showConfirmButton: false,
                     timer: 2500
                 });
@@ -118,7 +115,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    window.location.href = "../login/login.php";
+                     window.location= "../login/login.php";
                 });
             }else  if(json =='0')
             {
@@ -128,7 +125,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    window.location.href = "../login/login.php";
+                     window.location= "../login/login.php";
                 });
             }
         }).fail(function(xhr, status, error){
@@ -138,7 +135,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 2500
             }).then((result) => {
-                window.location.href = "../login/login.php";
+                 window.location= "../login/login.php";
             });
         });
     });
