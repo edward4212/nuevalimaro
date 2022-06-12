@@ -30,6 +30,14 @@ class Solicitudes{
      public $usuario_comentario;
      public $fecha_comentario;
 
+     public $id_tarea_estado;
+     public $id_tarea;
+     public $usuario_tarea_estado;
+     public $fecha_tarea_estado;
+     public $tarea_estado;
+     public $ruta;
+     public $documento_tarea;
+
      // OTROS ATRIBUTOS //
      public $conexion;
      private $result;
@@ -59,6 +67,14 @@ class Solicitudes{
           $this->comentario = $solicitudesE->getComentario();
           $this->usuario_comentario = $solicitudesE->getUsuarioComentario();
           $this->fecha_comentario = $solicitudesE->getFechaComentario();
+
+          $this->id_tarea_estado = $solicitudesE->getIdTareaEstado();
+          $this->id_tarea = $solicitudesE->getIdTarea();
+          $this->usuario_tarea_estado = $solicitudesE->getUsuarioTareaEstado();
+          $this->fecha_tarea_estado = $solicitudesE->getFechaTareaEstado();
+          $this->tarea_estado = $solicitudesE->getTareaEstado();
+          $this->ruta = $solicitudesE->getRuta();
+          $this->documento_tarea = $solicitudesE->getDocumentoTarea();
 
           $this->conexion = \Conexion::singleton();
      }
@@ -326,7 +342,7 @@ class Solicitudes{
                INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
                INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
                INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
-               WHERE sl.`estado_solicitud` = 'EN DESARROLLO'";
+               WHERE sl.`estado_solicitud` = 'EN DESARROLLO' ";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
           } catch (Exception $e) {
@@ -474,7 +490,7 @@ class Solicitudes{
                INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
                INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
                INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
-               WHERE tre.`tarea_estado` !='CREADO' AND tre.`tarea_estado` !='FINALIZADO' AND tre.`tarea_estado` !='DEVUELTO'  ";
+               WHERE tre.`tarea_estado` !='CREADO' AND tre.`tarea_estado` !='FINALIZADO' AND tre.`tarea_estado` !='DEVUELTO' AND tre.`tarea_estado` !='CAMBIO' ";
                $this->result = $this->conexion->query($this->sql);
                $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
           } catch (Exception $e) {
@@ -523,6 +539,51 @@ class Solicitudes{
           }
           return $this->retorno;
      }
+
+     public function tareaElaborada()
+     {
+          try{
+               
+               $this->result = $this->conexion->prepare("INSERT INTO tarea_estado VALUES (NULL ,:id_tarea, :usuario_tarea_estado,CURRENT_TIMESTAMP(), 'REVISION', :ruta, :documento_tarea )");
+               $this->result->bindParam(':id_tarea', $this->id_tarea);
+               $this->result->bindParam(':usuario_tarea_estado', $this->usuario_tarea_estado);
+               $this->result->bindParam(':ruta', $this->ruta);
+               $this->result->bindParam(':documento_tarea', $this->documento_tarea);
+               $this->result->execute();    
+          } catch (Exception $e) {
+          
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
+     public function comentarioTareaElaborada()
+     {
+          try{
+               
+               $this->result = $this->conexion->prepare("INSERT INTO solicitud_comentario VALUES (NULL ,:id_solicitud, :comentario ,  :usuario_comentario , CURRENT_TIMESTAMP(), 'ACTIVO')");
+               $this->result->bindParam(':comentario', $this->comentario);
+               $this->result->bindParam(':id_solicitud', $this->id_solicitud);
+               $this->result->bindParam(':usuario_comentario', $this->usuario_comentario);
+               $this->result->execute();    
+          } catch (Exception $e) {
+          
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
+     public function actualizarTareaEstado()
+     {
+          try {
+               $this->sql = "UPDATE tarea_estado SET tarea_estado='CAMBIO' WHERE id_tarea=$this->id_tarea AND tarea_estado = 'CREADO'";
+               $this->result = $this->conexion->query($this->sql);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
 
 
 }

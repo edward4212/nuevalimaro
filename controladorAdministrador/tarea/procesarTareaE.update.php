@@ -12,17 +12,15 @@ include_once "../../componente/Mailer/src/Exception.php";
 
 $id_tarea=  $_POST['idTarea2'];
 $id_solicitud = $_POST['numIdSolicitudCom'];
+$usuario_comentario = $_SESSION['usuario'];
 $comentario = $_POST['comentarioTarea'];
 $usuario_tarea_estado = $_POST['empleado'];
 $ruta= $_POST['ruta'];
 $correo= $_POST['empleadoCorreo'];
+$fechaActual = date("Y-m-d H-i-s");
 
 
-$foto=$_FILES["fileTarea"]["tmp_name"];
-$tipo =$_FILES['fileTarea']['type'];
-$tamaño =$_FILES['fileTarea']['size'];
-
-$directorio = "../../documentos/tareas/$id_tarea/$id_solicitud/$ruta/";
+$directorio = "../../documentos/usuarios/$usuario_tarea_estado/tareas/$id_solicitud/$ruta/";
 
 if(!file_exists($directorio)){
     mkdir($directorio,0777,true);
@@ -35,17 +33,22 @@ if(!file_exists($directorio)){
     }    
 }
 
-$documentoE = new \entidad\documento(); 
+$solicitudesE = new \entidad\Solicitudes(); 
+$solicitudesE -> setIdTarea($id_tarea);
+$solicitudesE -> setIdSolicitud($id_solicitud);
+$solicitudesE -> setUsuarioComentario($usuario_comentario);
+$solicitudesE -> setComentario($comentario);
+$solicitudesE -> setUsuarioTareaEstado($usuario_tarea_estado);
+$solicitudesE -> setRuta($ruta);
+$solicitudesE -> setDocumentoTarea($nombre);
 
-$documentoE -> setNumeroVersion($numero_version);
+$solicitudesM= new \modelo\Solicitudes($solicitudesE);
+$resultado = $solicitudesM->tareaElaborada();
+$resultado = $solicitudesM->comentarioTareaElaborada();
+$resultado = $solicitudesM->actualizarTareaEstado();
 
-
-$documentoM= new \modelo\documento($documentoE);
-$resultado = $documentoM->creacionVersionamiento();
-$resultado = $documentoM->actualizarVersionamiento();
-
-unset($documentoE);
-unset($documentoM);
+unset($solicitudesE);
+unset($solicitudesM);
 
 try {
 
@@ -102,13 +105,8 @@ Este correo es de tipo informativo, agradecemos no dar respuesta a este mensaje 
     $mail ->Body =$bodyEmail;
 
     if(!$mail->send()){
-       echo ("no enviado"); 
+      
     }
-
-    echo ("enviado"); 
-
-
-
 } catch (Exception $e) {
     
 }

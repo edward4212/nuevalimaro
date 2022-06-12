@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Bogota');
 
 include_once "../../entidadAdministrador/solicitudes.entidad.php";
 include_once "../../modeloAdministrador/solicitudes.modelo.php";
@@ -14,7 +15,7 @@ $solicitudesE -> setIdSolicitud($idsolicitud);
 $solicitudesE -> setCarpeta($fechaActual);
 
 $directorio = "../../documentos/usuarios/$usuario/tareas/$idsolicitud/$fechaActual/";
-   
+
 if(!file_exists($directorio)){
     mkdir($directorio,0777,true);
     

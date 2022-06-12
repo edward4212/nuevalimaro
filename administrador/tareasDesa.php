@@ -83,7 +83,7 @@
                                         <button type="button" id="btnCerrarModal" class="btn-close"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="" class="form-group" id="buscar2"
+                                    <form class="form-group" id="buscar2"
                                         action="../controladorAdministrador/tarea/procesarTareaE.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
@@ -113,9 +113,8 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-primary" id="btnProcesarTarea"  type="submit"
-                                                name="btnProcesarTarea" > <i
-                                                    class="fas fa-plus"></i>Procesar Tarea</button>
+                                            <button type="submit" class="btn btn-primary mb-3"> <i
+                                                    class="fas fa-plus"></i>Procesar Tarea 1</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>

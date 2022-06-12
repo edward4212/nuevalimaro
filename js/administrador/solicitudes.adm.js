@@ -505,7 +505,9 @@ $(document).ready(function () {
                     title: 'Funcionario asignado con éxito',
                     showConfirmButton: true,
                     timer: 3000
-                })
+                }).then((result) => {
+                    cargarSol();
+                });
             }
         }).fail(function (xhr, status, error) {
             Swal.fire({
