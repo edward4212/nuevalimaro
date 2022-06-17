@@ -55,7 +55,8 @@ $(document).ready(function () {
     desarrollo();
     elaboracion();
     buscarFuncionarios();
-
+    revision();
+    
     function asignada() {
         $.ajax({
             url: '../controladorAdministrador/tarea/solicitudes.read.3.php',
@@ -890,6 +891,194 @@ $(document).ready(function () {
             $('#empleadoCorreo').val(error);
         });
     });
+
+    function revision() {
+        $.ajax({
+            url: '../controladorAdministrador/tarea/solicitudes.read.7.php',
+            type: 'POST',
+            dataType: 'json',
+            data: null,
+        }).done(function (json) {
+            var datos = '';
+            datos += "<table id='tableTareasArevisar'   class='table  table-striped table-bordered table-responsive'>";
+            datos += '<thead >';
+                datos += '<tr class="table-light border-primary text-center align-middle ">';
+                    datos += '<th  class="border border-primary text-center align-middle ">NÚMERO DE LA TAREA</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">PRIORIDAD DE LA TAREA</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">TIPO DE DOCUMENTO </th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">PROCESAR TAREA</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">DEVOLVER TAREA</th>';
+                datos += '</tr>';
+            datos += '</thead>';
+            datos += '<tbody>';
+            $.each(json, function (key, value) {
+                datos += '<tr class="align-middle" >';
+                    datos += '<td class=" border border-primary text-wrap align-middle" id="numIdSolicitud">' + value.id_tarea + ' </td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.fecha_solicitud + '</td>';
+                    datos += '<td class=" border border-primary text-wrap">' + value.prioridad + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
+                    datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.usuario_tarea_estado+'/tareas/'+value.id_tarea+'/'+value.ruta+'/'+value.documento_tarea+'">'+value.documento_tarea+'<i class="fas fa-download"></i></a></td>';
+                    datos += '<td class=" border border-primary text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
+                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="procesarTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal12"><i class="fas fa-file-import"></i></button></td>'; 
+                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="devolverTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal123"><i class="fas fa-file-import"></i></button></td>';  
+                datos += '</tr>';
+            });
+            datos += '</tbody>';
+            datos += '</table>';
+            $('#tareasArevisar').html(datos);
+            $('#tableTareasArevisar').DataTable({
+                "destroy": true,
+                "autoWidth": true,
+                "responsive": true,
+                "searching": true,
+                "info": true,
+                "ordering": true,
+                "colReorder": true,
+                "sZeroRecords": true,
+                "keys": true,
+                "deferRender": true,
+                "lengthMenu": [[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
+                "iDisplayLength": 20,
+                "language": { "url": "../componente/libreria/idioma/es-mx.json" },
+                order: [[6, 'asc']],
+                rowGroup: {
+                    dataSrc: [[2]]
+                },
+                dom: 'Bflrtip',
+                buttons:
+                    [
+                        // {
+                        //     extend: 'pdfHtml5',
+                        //     orientation: 'landscape',
+                        //     pageSize: 'A4',
+                        //     download: 'open',
+                        //     title: 'Solicitudes Registradas',
+                        //     titleAttr: 'Solicitudes Registradas',
+                        //     messageTop: 'Solicitudes Registradas',
+                        //     text: '<i class="far fa-file-pdf"></i>',
+                        //     exportOptions: {
+                        //         columns: [0, 1, 2, 3, 4,  6, 7, 8]
+                        //     }
+                        // },
+                        // {
+                        //     extend: 'print',
+                        //     title: 'Solicitudes Registradas',
+                        //     titleAttr: 'Solicitudes Registradas',
+                        //     messageTop: 'Solicitudes Registradas',
+                        //     text: '<i class="fas fa-print"></i>',
+                        //     exportOptions: {
+                        //         columns: [0, 1, 2, 3, 4,  6, 7, 8]
+                        //     }
+                        // },
+                        {
+                            extend: 'excelHtml5',
+                            text: '<i class="fas fa-file-excel"></i>',
+                            sheetName: 'Tareas en Desarrollo',
+                            title: 'Tareas en Desarrollos',
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4, 5,6,7]
+                            }
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: '<i class="fas fa-copy"></i>',
+                           
+                            titleAttr: 'COPIAR',
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4,5,6,7]
+                            }
+                        },
+                        {
+                            extend: 'searchBuilder',
+                            config: {
+                                
+                                columns: [0,1,2,3,4,6],
+                                conditions: {
+                                    string: {
+                                        '!=': null,
+                                        '!null': null,
+                                        'null': null,
+                                        'contains': null,
+                                        '!contains': null,
+                                        'ends': null,
+                                        '!ends': null,
+                                        'starts': null,
+                                        '!starts ': null
+                                    },
+                                    num: {
+                                        '!=': null,
+                                        '!null': null,
+                                        '<': null,
+                                        '<=': null,
+                                        '>': null,
+                                        '>=': null,
+                                        'null': null,
+                                        'between': null,
+                                        '!between': null
+                                    },
+                                    date: {
+                                        '!=': null,
+                                        '!null': null,
+                                        '<': null,
+                                        '<=': null,
+                                        '>': null,
+                                        '>=': null,
+                                        'null': null,
+                                        'between': null,
+                                        '!between': null
+                                    }
+                                }
+                            } 
+
+                        }
+                    ]
+            });
+        }).fail(function (xhr, status, error) {
+            $('#tareasArevisar').html(error);
+        });
+    }
+
+    // function buscarFuncionarios() {
+
+    //     $.ajax({
+    //         url: '../controladorAdministrador/usuario/usuario.read2.php',
+    //         type: 'POST',
+    //         dataType: 'json',
+    //         data: null,
+    //     }).done(function (json) {
+    //         var tipoDocumento = 0;
+    //         tipoDocumento += '<option disabled selected> - Seleccione un funcionario-</option>';
+    //         $.each(json, function (key, value) {
+    //             tipoDocumento += '<option value=' + value.usuario + '>' + value.usuario + '</option>';
+    //         });
+    //         $('#empleado').html(tipoDocumento);
+    //     }).fail(function (xhr, status, error) {
+    //         $('#empleado').html(error);
+    //     });
+    // }
+
+    // $(document).on('click', '#empleado', function (event) {
+    //     event.preventDefault();
+    //     $.ajax({
+    //         url: '../controladorAdministrador/usuario/usuario.read3.php',
+    //         type: 'POST',
+    //         dataType: 'json',
+    //         data: $('#buscar2').serialize(),
+    //     }).done(function (json) {
+    //         var correo = "";
+    //         $.each(json, function (key, value) {
+    //             correo = value.correo_empleado;
+    //         });
+    //         $('#empleadoCorreo').val(correo);
+            
+    //     }).fail(function (xhr, status, error) {
+    //         $('#empleadoCorreo').val(error);
+    //     });
+    // });
+
 
 
 })

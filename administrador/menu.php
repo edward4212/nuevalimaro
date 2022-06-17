@@ -231,14 +231,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                                 class="far fa-edit"></i> Tareas En Desarrollo <i class="fas fa-caret-right"></i></a>
                                         <ul class="submenu dropdown-menu">
                                             <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasDesa.php"><i class="far fa-clipboard"></i> Elaboración</a></li>
-                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-check"></i> Revisión</a></li>
+                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasRevi.php"><i class="fas fa-check"></i> Revisión</a></li>
                                             <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-check-double"></i>Aprobación</a></li>
                                         </ul>
                                     </li>
-
-
-
-
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
                                                 class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
                                 </ul>

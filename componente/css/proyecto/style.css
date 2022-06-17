@@ -144,6 +144,15 @@ div.dataTables_wrapper div.dataTables_filter {
   margin-bottom: 19px;
 }
 
+#tableTareasArevisar_length{
+  margin-block: 10px;
+  margin-right: 100%;
+}
+
+#tableTareasArevisar_filter{
+  margin-bottom: 19px;
+}
+
 
 
 

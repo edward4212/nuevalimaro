@@ -24,8 +24,8 @@
                             <h2 class="card-title text-center"><b>Tareas Por Elaborar</b></h2>
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <form action="" class="form-group" id="iniciarTarea">
-                                    <input type="number" name="numIdSolicitud" id="numIdSolicitud">
-                                    <input type="number" name="numIdSolicitud3" id="numIdSolicitud3">
+                                    <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
+                                    <input type="number" name="numIdSolicitud3" id="numIdSolicitud3" hidden>
                                     <br>
                                     <h5 id="tareasAelaborar"></h5>
                                 </form>
@@ -87,9 +87,9 @@
                                         action="../controladorAdministrador/tarea/procesarTareaE.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
-                                            <input type="number" name="idTarea2" id="idTarea2">
-                                            <input type="number" name="idTarea23" id="idTarea23">
-                                            <input type="number" name="numIdSolicitudCom" id="numIdSolicitudCom">
+                                            <input type="number" name="idTarea2" id="idTarea2" hidden>
+                                            <input type="number" name="idTarea23" id="idTarea23" hidden>
+                                            <input type="number" name="numIdSolicitudCom" id="numIdSolicitudCom" hidden>
                                             <input type="text" name="ruta" id="ruta">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>
@@ -105,7 +105,7 @@
                                                     aria-label="E" aria-describedby="basic-addon1" required></select>
                                             </div>
                                             <input type="text" class="form-control " id="empleadoCorreo"
-                                                name="empleadoCorreo">
+                                                name="empleadoCorreo" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Subir Documento*</b></h5>
                                                 <input type="file" class="form-control redondeado" id="fileTarea"
