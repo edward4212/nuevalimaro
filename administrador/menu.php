@@ -216,7 +216,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                                 class="fas fa-clipboard-list"></i> Tareas Iniciadas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasDes.php"><i
                                                 class="far fa-edit"></i> Tareas En Desarrollo</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-undo"></i> Tareas Devueltas</a></li>
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                                class="fas fa-undo"></i> Tareas Devueltas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
                                                 class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
                                 </ul>
@@ -228,11 +229,16 @@ document.addEventListener("DOMContentLoaded", function() {
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareas.php"><i
                                                 class="fas fa-clipboard-list"></i> Solicitudes Asignadas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
-                                                class="far fa-edit"></i> Tareas En Desarrollo <i class="fas fa-caret-right"></i></a>
+                                                class="far fa-edit"></i> Tareas En Desarrollo <i
+                                                class="fas fa-caret-right"></i></a>
                                         <ul class="submenu dropdown-menu">
-                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasDesa.php"><i class="far fa-clipboard"></i> Elaboración</a></li>
-                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasRevi.php"><i class="fas fa-check"></i> Revisión</a></li>
-                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i class="fas fa-check-double"></i>Aprobación</a></li>
+                                            <li><a class="dropdown-item" style="color: #0d6efd;"
+                                                    href="tareasDesa.php"><i class="far fa-clipboard"></i>
+                                                    Elaboración</a></li>
+                                            <li><a class="dropdown-item" style="color: #0d6efd;"
+                                                    href="tareasRevi.php"><i class="fas fa-check"></i> Revisión</a></li>
+                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                                        class="fas fa-check-double"></i>Aprobación</a></li>
                                         </ul>
                                     </li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
@@ -270,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="perfil.php" style="color: #0A58CD;"><i
                                         class="fas fa-user-alt"></i> Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="clave.php" style="color: #0A58CD;"><i class="fas fa-user-lock"></i> Cambiar Contraseña</a></li>
 
                         </ul>
                     </li>

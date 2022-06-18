@@ -43,9 +43,9 @@ $solicitudesE -> setRuta($ruta);
 $solicitudesE -> setDocumentoTarea($nombre);
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
-$resultado = $solicitudesM->tareaElaborada();
+$resultado = $solicitudesM->tareaRevisada();
 $resultado = $solicitudesM->comentarioTareaElaborada();
-$resultado = $solicitudesM->actualizarTareaEstado();
+$resultado = $solicitudesM->actualizarTareaEstadoRev();
 
 unset($solicitudesE);
 unset($solicitudesM);
@@ -63,7 +63,7 @@ if(($resultado !== null)){
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasDesa.php";
+            window.location.href = "../../administrador/tareasRevi.php";
         });
     });
     </script>';
@@ -81,7 +81,7 @@ echo '
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasDesa.php";
+            window.location.href = "../../administrador/tareasRevi.php";
         });
     });
     </script>';
@@ -103,7 +103,7 @@ ASUNTO: Asignación de Tarea
 
 Cordial Saludo,
 
-Se le ha asignado una tarea para su Revisión.
+Se le ha asignado una tarea para su Aprobación.
 
 Cordialmente,
 
