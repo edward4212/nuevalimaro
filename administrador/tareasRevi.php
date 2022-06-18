@@ -87,9 +87,59 @@
                                         action="../controladorAdministrador/tarea/procesarTareaE.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
-                                            <input type="number" name="idTarea2" id="idTarea2" hidden>
-                                            <input type="number" name="idTarea23" id="idTarea23" hidden>
-                                            <input type="number" name="numIdSolicitudCom" id="numIdSolicitudCom" hidden>
+                                            <input type="number" name="idTarea2" id="idTarea2" >
+                                            <input type="number" name="idTarea23" id="idTarea23" >
+                                            <input type="number" name="numIdSolicitudCom" id="numIdSolicitudCom" >
+                                            <input type="text" name="ruta" id="ruta">
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <h5><b>Agregar Comentario</b></h5>
+                                                <label class="text-muted"> Caracteres restantes: <span></span></label>
+                                                <textarea type="text" class="form-control inicialM" rows="2"
+                                                    id="comentarioTarea" name="comentarioTarea" maxlength="600"
+                                                    required></textarea>
+                                                <br>
+                                            </div>
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <h5><b>Seleccione el funcionario para Revisión</b></h5>
+                                                <select class="form-control " id="empleado" name="empleado"
+                                                    aria-label="E" aria-describedby="basic-addon1" required></select>
+                                            </div>
+                                            <input type="text" class="form-control " id="empleadoCorreo"
+                                                name="empleadoCorreo" >
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <h5><b>Subir Documento*</b></h5>
+                                                <input type="file" class="form-control redondeado" id="fileTarea"
+                                                    name="fileTarea" multiple required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary mb-3"> <i
+                                                    class="fas fa-plus"></i>Procesar Tarea 1</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
+                                                    class="fas fa-undo"></i> Volver</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal para procesar tares-->
+                        <div class="modal fade" id="exampleModalDevol" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Devolver Tarea</b>
+                                        </h5>
+                                        <button type="button" id="btnCerrarModal" class="btn-close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form class="form-group" id="buscar2"
+                                        action="../controladorAdministrador/tarea/procesarTareaE.update.php"
+                                        method="POST" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            <input type="number" name="idTarea2" id="idTarea2" >
+                                            <input type="number" name="idTarea23" id="idTarea23" >
+                                            <input type="number" name="numIdSolicitudCom" id="numIdSolicitudCom" >
                                             <input type="text" name="ruta" id="ruta">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>

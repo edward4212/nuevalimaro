@@ -64,10 +64,6 @@ function mapaprocesos (id_empresa){
     $("#numEmpresaMapa").val(id_empresa);
 }
 
-function cargar(){
-    window.location.href = "../administrador/inicio.php";
-}
-
 $(document).ready(function(){
     buscar();
 
@@ -196,7 +192,7 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 2500
                   }).then((result) => {
-                    cargar();
+                   window.location.reload();
                   });
             }).fail(function(xhr, status, error){
                 Swal.fire({
@@ -221,7 +217,7 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                        cargar();
+                       window.location.reload();
                     });
             }).fail(function(xhr, status, error){
                 Swal.fire({
@@ -246,7 +242,7 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 2500
                     }).then((result) => {
-                        cargar();
+                       window.location.reload();
                       });
             }).fail(function(xhr, status, error){
                 Swal.fire({
@@ -271,7 +267,7 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 2500
                     }).then((result) => {
-                        cargar();
+                       window.location.reload();
                       })
             }).fail(function(xhr, status, error){
                 Swal.fire({
@@ -296,7 +292,7 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 2500
                     }).then((result) => {
-                        cargar();
+                       window.location.reload();
                       })
             }).fail(function(xhr, status, error){
                 Swal.fire({

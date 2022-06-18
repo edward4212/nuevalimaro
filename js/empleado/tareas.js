@@ -1,7 +1,3 @@
-function cargar() {
-    window.location.href = "../empleado/tareas.php";
-}
-
 function comentario(id_solicitud) {
     $("#numIdSolicitud").val(id_solicitud);
     $("#numIdSolicitud1").val(id_solicitud);
@@ -230,7 +226,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 3000
             }).then((result) => {
-                cargar();
+                window.location.reload();
             })
         }).fail(function (xhr, status, error) {
             console.log(error);
@@ -252,7 +248,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 3000
             }).then((result) => {
-                cargar();
+                window.location.reload();
             })
         }).fail(function (xhr, status, error) {
             console.log(error);
@@ -389,7 +385,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 3000
             }).then((result) => {
-                cargar();
+                window.location.reload();
             })
         }).fail(function (xhr, status, error) {
             console.log(error);
@@ -426,7 +422,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 3000
             }).then((result) => {
-                cargar();
+                window.location.reload();
             })
         }).fail(function (xhr, status, error) {
             console.log(error);

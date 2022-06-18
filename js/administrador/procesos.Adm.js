@@ -1,12 +1,3 @@
-function cargar(){
-    window.location.href = "../administrador/macroprocesos.php";
-}
-
-function cargar5(){
-    window.location.href = "../administrador/procesos.php";
-}
-
-
 var inputs = "textarea[maxlength]";
 $(document).on('keyup', "[maxlength]", function (e) {
     var este = $(this),
@@ -93,7 +84,7 @@ $(document).ready(function(){
                 showConfirmButton: false,
                 timer: 2500
                 }).then((result) => {
-                cargar();
+                    window.location.reload();
                 });
             }
         }).fail(function(xhr, status, error){
@@ -248,7 +239,7 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 2500
                   }).then((result) => {
-                    cargar();
+                   window.location.reload();
                   });
                 }
             }).fail(function(xhr, status, error){
@@ -274,7 +265,7 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 2500
                   }).then((result) => {
-                    cargar();
+                   window.location.reload();
                   });
             }).fail(function(xhr, status, error){
                 Swal.fire({
@@ -348,7 +339,7 @@ $(document).ready(function(){
                         showConfirmButton: false,
                         timer: 2500
                     }).then((result) => {
-                        cargar5();
+                       window.location.reload();
                     });
                 }
             }).fail(function(xhr, status, error){
@@ -500,7 +491,7 @@ $(document).ready(function(){
                     showConfirmButton: false,
                     timer: 2500
                   }).then((result) => {
-                    cargar5();
+                   window.location.reload();
                   });
                 }
             }).fail(function(xhr, status, error){
@@ -532,7 +523,7 @@ $(document).ready(function(){
                         showConfirmButton: false,
                         timer: 2500
                     }).then((result) => {
-                        cargar5();
+                       window.location.reload();
                     });
                 }
             }).fail(function(xhr, status, error){

@@ -90,7 +90,7 @@
                                             <input type="number" name="idTarea2" id="idTarea2" hidden>
                                             <input type="number" name="idTarea23" id="idTarea23" hidden>
                                             <input type="number" name="numIdSolicitudCom" id="numIdSolicitudCom" hidden>
-                                            <input type="text" name="ruta" id="ruta">
+                                            <input type="text" name="ruta" id="ruta" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>
                                                 <label class="text-muted"> Caracteres restantes: <span></span></label>
@@ -106,6 +106,7 @@
                                             </div>
                                             <input type="text" class="form-control " id="empleadoCorreo"
                                                 name="empleadoCorreo" hidden>
+                                            <br>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Subir Documento*</b></h5>
                                                 <input type="file" class="form-control redondeado" id="fileTarea"
@@ -113,8 +114,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary mb-3"> <i
-                                                    class="fas fa-plus"></i>Procesar Tarea 1</button>
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-file-import"></i> Procesar Tarea </button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>

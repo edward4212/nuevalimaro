@@ -1,15 +1,3 @@
-function cargar() {
-window.location.href = "../administrador/usuarios.php";
-};
-
-function Rol() {
-    window.location.href = "../administrador/rol.php";
-    };
-
-function cargo() {
-window.location.href = "../administrador/cargo.php";
-};
-
 function modificarRol(id_rol, rol) {
     $("#numidRolMod").val(id_rol);
     $("#txtRolMod").val(rol);
@@ -203,7 +191,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    rol();
+                    window.location.reload();
                 });
             }
         }).fail(function (xhr, status, error) {
@@ -235,7 +223,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    rol();
+                    window.location.reload();
                 });
             };
         }).fail(function (xhr, status, error) {
@@ -267,7 +255,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    rol();
+                    window.location.reload();
                 });
             };
         }).fail(function (xhr, status, error) {
@@ -418,7 +406,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    cargo();
+                    window.location.reload();
                 });
             }
         }).fail(function (xhr, status, error) {
@@ -662,7 +650,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 2500
             }).then((result) => {
-                cargar();
+                window.location.reload();
             })
         }).fail(function (xhr, status, error) {
             Swal.fire({
@@ -671,7 +659,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 2500
             }).then((result) => {
-                    cargar();
+                    window.location.reload();
                 });
         })
     })
@@ -748,7 +736,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 2500
             }).then((result) => {
-                cargar();
+                window.location.reload();
             });
         }).fail(function (xhr, status, error) {
             Swal.fire({
@@ -773,7 +761,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 2500
             }).then((result) => {
-                cargar();
+                window.location.reload();
             })
         }).fail(function (xhr, status, error) {
             Swal.fire({

@@ -1,16 +1,3 @@
-
-function cargarSol() {
-    window.location.href = "../administrador/solicitudes.php";
-}
-
-function cargarSol1() {
-    window.location.href = "../administrador/solicitudesAs.php";
-}
-
-function cargarSolDe() {
-    window.location.href = "../administrador/solicitudesDe.php";
-}
-
 function comentarios(id_solicitud) {
     $("#numIdSolicitud").val(id_solicitud);
     $("#numIdSolicitud1").val(id_solicitud);
@@ -26,7 +13,6 @@ function comentario (codigo){
     $("#numIdSolicitud").val(codigo);
 }
 
-
 function comentarioAsig (id_solicitud){
     $("#numIdSolicitud").val(id_solicitud);
     $("#numIdSolicitud1").val(id_solicitud);
@@ -36,7 +22,6 @@ function comentarioDesa (id_solicitud){
     $("#numIdSolicitud").val(id_solicitud);
     $("#numIdSolicitud1").val(id_solicitud);
 }
-
 
 function actualizacion (codigo, tipo_documento,id_tipo_documento){
     $("#codigo").val(codigo);
@@ -78,7 +63,6 @@ $(document).on('keyup', "[maxlength]", function (e) {
         }	
     }	
 });
-
 
 $(document).ready(function () {
 
@@ -506,7 +490,7 @@ $(document).ready(function () {
                     showConfirmButton: true,
                     timer: 3000
                 }).then((result) => {
-                    cargarSol();
+                    window.location.reload();
                 });
             }
         }).fail(function (xhr, status, error) {

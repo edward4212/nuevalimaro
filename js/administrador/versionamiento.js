@@ -1,11 +1,3 @@
-function cargar1() {
-    window.location.href = "../administrador/versionamiento.php";
-}
-
-function cargar10() {
-    window.location.href = "../administrador/obsoletos.php";
-}
-
 
 function activarVersion(id_documento, nombre_documento, numero_version) {
     $("#idDocumentoAct").val(id_documento);
@@ -432,7 +424,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                     }).then((result) => {
-                        cargar10();
+                        window.location.reload();
                 });
             }
         }).fail(function(xhr, status, error){
@@ -465,7 +457,7 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 2500
                         }).then((result) => {
-                            cargar10();
+                            window.location.reload();
                     });
                 }
             }).fail(function(xhr, status, error){

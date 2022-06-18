@@ -1,12 +1,6 @@
-function cargar1() {
-    window.location.href = "../administrador/documentos.php";
-}
-
-function cargar2() {
-    window.location.href = "../administrador/registro.php";
-}
 
 var inputs = "textarea[maxlength]";
+
 $(document).on('keyup', "[maxlength]", function (e) {
     var este = $(this),
     maxlength = este.attr('maxlength'),
@@ -209,7 +203,7 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 2500
                     }).then((result) => {
-                        cargar1();
+                        window.location.reload();
                     });
                 }
                     
@@ -242,7 +236,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                     }).then((result) => {
-                        cargar1();
+                        window.location.reload();
                     });
                 }
         }).fail(function(xhr, status, error){
@@ -274,7 +268,7 @@ $(document).ready(function () {
                             showConfirmButton: false,
                             timer: 2500
                             }).then((result) => {
-                                cargar1();
+                                window.location.reload();
                         });
                     }
                 }).fail(function(xhr, status, error){
@@ -440,7 +434,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    cargar2();
+                    window.location.reload();
                 });
             } else {
                 Swal.fire({
@@ -614,7 +608,7 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2500
                 }).then((result) => {
-                    cargar2();
+                    window.location.reload();
                 });  
             }
         }).fail(function (xhr, status, error) {

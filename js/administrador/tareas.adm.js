@@ -1,8 +1,3 @@
-function cargarSol1() {
-
-    window.location.href = "../administrador/tareas.php";
-}
-
 function comentarioAsi (id_solicitud){
     $("#numIdSolicitud").val(id_solicitud);
     $("#numIdSolicitud2").val(id_solicitud);
@@ -10,6 +5,14 @@ function comentarioAsi (id_solicitud){
 }
 
 function procesarTarea (id_tarea , id_solicitud, ruta){
+    $("#numIdSolicitud").val(id_solicitud);
+    $("#numIdSolicitudCom").val(id_solicitud);
+    $("#idTarea2").val(id_tarea);
+    $("#idTarea23").val(id_tarea);
+    $("#ruta").val(ruta);
+}
+
+function devolverTarea (id_tarea , id_solicitud, ruta){
     $("#numIdSolicitud").val(id_solicitud);
     $("#numIdSolicitudCom").val(id_solicitud);
     $("#idTarea2").val(id_tarea);
@@ -49,6 +52,8 @@ $(document).on('keyup', "[maxlength]", function (e) {
         }	
     }	
 });
+
+
 $(document).ready(function () {
     asignada();
     asignada1();
@@ -236,7 +241,7 @@ $(document).ready(function () {
                     showConfirmButton: true,
                     timer: 3000
                 }).then((result) => {
-                    cargarSol1();
+                    window.location.reload();;
                 });
             }else{
                 Swal.fire({
@@ -399,7 +404,9 @@ $(document).ready(function () {
                     title: 'Comentario Creado con Exito',
                     showConfirmButton: true,
                     timer: 3000
-                })
+                }).then((result) => {
+                    window.location.reload();
+                });
             }
         }).fail(function (xhr, status, error) {
             Swal.fire({
@@ -715,7 +722,7 @@ $(document).ready(function () {
                     datos += '<th  class="border border-primary text-center align-middle ">TIPO DE DOCUMENTO </th>';
                     datos += '<th  class="border border-primary text-center align-middle ">DESCRIPCIÓN DE LA SOLICITUD</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">ESTADO DE LA TAREA</th>';
-                    datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">PROCESAR TAREA</th>';
                 datos += '</tr>';
@@ -730,10 +737,14 @@ $(document).ready(function () {
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.solicitud + '</td>';
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.tarea_estado + '</td>';
-                    if (value.soportes == "") {
-                        datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
-                    } else {
-                        datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.solicitante+'/solicitudes/'+value.carpeta+'/'+value.soportes+'">'+value.soportes+'   <i class="fas fa-download"></i></a></td>';
+                    if (value.tarea_estado == "CREADO"){
+                        if (value.soportes == "") {
+                            datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
+                        } else {
+                            datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.solicitante+'/solicitudes/'+value.carpeta+'/'+value.soportes+'">'+value.soportes+'   <i class="fas fa-download"></i></a></td>';
+                        }
+                    }else{
+                        datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.usuario_tarea_estado+'/tareas/'+value.id_tarea+'/'+value.ruta+'/'+value.documento_tarea+'">'+value.documento_tarea+'<i class="fas fa-download"></i></a></td>';
                     }
                     datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
                     datos += '<td class=" border border-primary text-wrap align-middle"><button type="button" onclick="procesarTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal12"><i class="fas fa-file-import"></i></button></td>';  
@@ -904,10 +915,10 @@ $(document).ready(function () {
             datos += '<thead >';
                 datos += '<tr class="table-light border-primary text-center align-middle ">';
                     datos += '<th  class="border border-primary text-center align-middle ">NÚMERO DE LA TAREA</th>';
-                    datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">FECHA DE LA ASIGNACIÓN</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">PRIORIDAD DE LA TAREA</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">TIPO DE DOCUMENTO </th>';
-                    datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE DE LA SOLICITUD</th>';
+                    datos += '<th  class="border border-primary text-center align-middle ">DOCUMENTO SOPORTE </th>';
                     datos += '<th  class="border border-primary text-center align-middle ">COMENTARIOS</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">PROCESAR TAREA</th>';
                     datos += '<th  class="border border-primary text-center align-middle ">DEVOLVER TAREA</th>';
@@ -917,13 +928,13 @@ $(document).ready(function () {
             $.each(json, function (key, value) {
                 datos += '<tr class="align-middle" >';
                     datos += '<td class=" border border-primary text-wrap align-middle" id="numIdSolicitud">' + value.id_tarea + ' </td>';
-                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.fecha_solicitud + '</td>';
+                    datos += '<td class=" border border-primary text-wrap align-middle">' + value.fecha_tarea_estado + '</td>';
                     datos += '<td class=" border border-primary text-wrap">' + value.prioridad + '</td>';
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
                     datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.usuario_tarea_estado+'/tareas/'+value.id_tarea+'/'+value.ruta+'/'+value.documento_tarea+'">'+value.documento_tarea+'<i class="fas fa-download"></i></a></td>';
                     datos += '<td class=" border border-primary text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
                     datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="procesarTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal12"><i class="fas fa-file-import"></i></button></td>'; 
-                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="devolverTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal123"><i class="fas fa-file-import"></i></button></td>';  
+                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="devolverTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalDevol"><i class="fas fa-undo"></i></i></button></td>';  
                 datos += '</tr>';
             });
             datos += '</tbody>';
@@ -1041,43 +1052,43 @@ $(document).ready(function () {
         });
     }
 
-    // function buscarFuncionarios() {
+    function buscarFuncionarios() {
 
-    //     $.ajax({
-    //         url: '../controladorAdministrador/usuario/usuario.read2.php',
-    //         type: 'POST',
-    //         dataType: 'json',
-    //         data: null,
-    //     }).done(function (json) {
-    //         var tipoDocumento = 0;
-    //         tipoDocumento += '<option disabled selected> - Seleccione un funcionario-</option>';
-    //         $.each(json, function (key, value) {
-    //             tipoDocumento += '<option value=' + value.usuario + '>' + value.usuario + '</option>';
-    //         });
-    //         $('#empleado').html(tipoDocumento);
-    //     }).fail(function (xhr, status, error) {
-    //         $('#empleado').html(error);
-    //     });
-    // }
+        $.ajax({
+            url: '../controladorAdministrador/usuario/usuario.read2.php',
+            type: 'POST',
+            dataType: 'json',
+            data: null,
+        }).done(function (json) {
+            var tipoDocumento = 0;
+            tipoDocumento += '<option disabled selected> - Seleccione un funcionario-</option>';
+            $.each(json, function (key, value) {
+                tipoDocumento += '<option value=' + value.usuario + '>' + value.usuario + '</option>';
+            });
+            $('#empleado').html(tipoDocumento);
+        }).fail(function (xhr, status, error) {
+            $('#empleado').html(error);
+        });
+    }
 
-    // $(document).on('click', '#empleado', function (event) {
-    //     event.preventDefault();
-    //     $.ajax({
-    //         url: '../controladorAdministrador/usuario/usuario.read3.php',
-    //         type: 'POST',
-    //         dataType: 'json',
-    //         data: $('#buscar2').serialize(),
-    //     }).done(function (json) {
-    //         var correo = "";
-    //         $.each(json, function (key, value) {
-    //             correo = value.correo_empleado;
-    //         });
-    //         $('#empleadoCorreo').val(correo);
+    $(document).on('click', '#empleado', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../controladorAdministrador/usuario/usuario.read3.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $('#buscar2').serialize(),
+        }).done(function (json) {
+            var correo = "";
+            $.each(json, function (key, value) {
+                correo = value.correo_empleado;
+            });
+            $('#empleadoCorreo').val(correo);
             
-    //     }).fail(function (xhr, status, error) {
-    //         $('#empleadoCorreo').val(error);
-    //     });
-    // });
+        }).fail(function (xhr, status, error) {
+            $('#empleadoCorreo').val(error);
+        });
+    });
 
 
 
