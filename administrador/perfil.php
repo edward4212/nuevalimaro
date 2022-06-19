@@ -18,12 +18,12 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-perfil" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row">
-                        <div class="col-md-4 col-xs-12 col-sm-12">
+                        <div class="col-md-3 col-xs-12 col-sm-12">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <h5 class="card-title text-center"><b>Foto de Perfil</b></h5>
                                     <img src="../documentos/usuarios/<?php $usuario= $_SESSION['usuario']; echo $usuario;?>/imagen/<?php $img_empleado= $_SESSION['img_empleado']; echo $img_empleado; ?>"
-                                        class="card-img-top imgPerfil" alt="...">
+                                        class="card-img-top imgPerfil zoom" alt="...">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" id="" class="btn btn-primary text-center"
@@ -32,26 +32,21 @@
                                 <br>
                             </div>
                         </div>
-                        <div class="col-md-4 col-xs-12 col-sm-12">
+                        <div class="col-md-6 col-xs-12 col-sm-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title"><b>Nombre Funcionario</b></h5>
-                                    <p class="card-text"><?php $nombre= $_SESSION['nombre_completo']; echo $nombre; ?>
-                                    </p>
-                                    <h5 class="card-title"><b>Cargo</b></h5>
-                                    <p class="card-text"><?php $cargo= $_SESSION['cargo']; echo $cargo; ?> </p>
-                                    <h5 class="card-title"><b>Correo Electrónico</b></h5>
-                                    <p class="card-text"><?php $correo= $_SESSION['correo_empleado']; echo $correo; ?>
-                                    </p>
+                                    <h5 class="card-title"><b>Nombre Funcionario : </b> <?php $nombre= $_SESSION['nombre_completo']; echo $nombre; ?></h5>
+                                    <h5 class="card-title"><b>Cargo : </b><?php $cargo= $_SESSION['cargo']; echo $cargo; ?></h5>
+                                    <h5 class="card-title"><b>Correo Electrónico : </b> <?php $correo= $_SESSION['correo_empleado']; echo $correo; ?></h5>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-xs-12 col-sm-12">
+                        <div class="col-md-3 col-xs-12 col-sm-12">
                             <div class="card text-center">
                                 <div class="card-body">
                                     <h5 class="card-title"><b>Manual de Funciones</b></h5>
                                         <?php if ($_SESSION['manual_funciones'] != null): ?>
-                                            <a class="btn btn-primary" href="../documentos/cargos/<?php $cargo= $_SESSION['cargo']; echo $cargo;?>/<?php $manual_funciones= $_SESSION['manual_funciones']; echo $manual_funciones;?>">Descargar Manual de Funciones <i class="fas fa-download"></i></a>
+                                            <a class="btn btn-primary" href="../documentos/cargos/<?php $cargo= $_SESSION['cargo']; echo $cargo;?>/<?php $manual_funciones= $_SESSION['manual_funciones']; echo $manual_funciones;?>">Descargar <i class="fas fa-download"></i></a>
                                         <?php else: ?>   
                                             <h5>No se ha cargado el manual de Funciones</h5>
                                         <?php endif ?>
@@ -70,7 +65,7 @@
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form class="row g-3 form-group"
-                                        action="../controladorAdministrador/imagen.update.php" method="POST"
+                                        action="../controladorAdministrador/usuario/imagen.update.php" method="POST"
                                         enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="row">

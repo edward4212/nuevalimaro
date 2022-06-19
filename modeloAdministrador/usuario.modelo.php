@@ -204,6 +204,17 @@ class Usuario{
                return $this->retorno;
      }
 
+     
+     public function updateImg()
+     {
+          try {
+               $this->sql = "UPDATE empleado SET img_empleado = '$this->img_empleado' WHERE id_empleado = '$this->id_empleado'";
+               $this->result = $this->conexion->query($this->sql);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
 
 
 }

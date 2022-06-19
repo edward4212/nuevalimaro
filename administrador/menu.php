@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasDes.php"><i
                                                 class="far fa-edit"></i> Tareas En Desarrollo</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
-                                                class="fas fa-undo"></i> Tareas Devueltas</a></li>
+                                                class="fas fa-reply-all"></i>Tareas Devueltas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
                                                 class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
                                 </ul>
@@ -276,7 +276,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="perfil.php" style="color: #0A58CD;"><i
                                         class="fas fa-user-alt"></i> Mi Perfil</a></li>
-                            <li><a class="dropdown-item" href="clave.php" style="color: #0A58CD;"><i class="fas fa-user-lock"></i> Cambiar Contraseña</a></li>
+                            <li><a class="dropdown-item" href="clave.php" style="color: #0A58CD;"><i
+                                        class="fas fa-user-lock"></i> Cambiar Contraseña</a></li>
 
                         </ul>
                     </li>

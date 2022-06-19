@@ -10,14 +10,30 @@ function procesarTarea (id_tarea , id_solicitud, ruta){
     $("#idTarea2").val(id_tarea);
     $("#idTarea23").val(id_tarea);
     $("#ruta").val(ruta);
+    
+    
 }
 
-function devolverTarea (id_tarea , id_solicitud, ruta){
+function procesarTarea1 (id_tarea , id_solicitud, ruta,documento_tarea){
     $("#numIdSolicitud").val(id_solicitud);
     $("#numIdSolicitudCom").val(id_solicitud);
     $("#idTarea2").val(id_tarea);
     $("#idTarea23").val(id_tarea);
     $("#ruta").val(ruta);
+    $("#documento1").val(documento_tarea);
+    
+    
+}
+
+function devolverTarea (id_tarea , id_solicitud, ruta){
+    $("#numIdSolicitudDev").val(id_solicitud);
+    $("#numIdSolicitudComDev").val(id_solicitud);
+    $("#idTarea2Dev").val(id_tarea);
+    $("#idTarea23Dev").val(id_tarea);
+    $("#rutaDev").val(ruta);
+    
+
+    
 }
 
 function iniciarTarea(id_solicitud) {
@@ -61,7 +77,8 @@ $(document).ready(function () {
     elaboracion();
     buscarFuncionarios();
     revision();
-    
+    buscarFuncionariosDev();
+
     function asignada() {
         $.ajax({
             url: '../controladorAdministrador/tarea/solicitudes.read.3.php',
@@ -743,8 +760,10 @@ $(document).ready(function () {
                         } else {
                             datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.solicitante+'/solicitudes/'+value.carpeta+'/'+value.soportes+'">'+value.soportes+'   <i class="fas fa-download"></i></a></td>';
                         }
-                    }else{
+                    }else if (value.tarea_estado == "DEVUELTO"){
                         datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.usuario_tarea_estado+'/tareas/'+value.id_tarea+'/'+value.ruta+'/'+value.documento_tarea+'">'+value.documento_tarea+'<i class="fas fa-download"></i></a></td>';
+                    }else{
+                        datos += '<td class=" border border-primary text-wrap align-middle">Sin Documento Soporte</td>';
                     }
                     datos += '<td class=" border border-primary  text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
                     datos += '<td class=" border border-primary text-wrap align-middle"><button type="button" onclick="procesarTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal12"><i class="fas fa-file-import"></i></button></td>';  
@@ -933,8 +952,8 @@ $(document).ready(function () {
                     datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
                     datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/usuarios/'+value.usuario_tarea_estado+'/tareas/'+value.id_tarea+'/'+value.ruta+'/'+value.documento_tarea+'">'+value.documento_tarea+'<i class="fas fa-download"></i></a></td>';
                     datos += '<td class=" border border-primary text-center align-middle"><button type="button"  id="btnVerComentarios" onclick="comentarioAsi(' + value.id_solicitud + ')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="far fa-comment-dots"></i></button></td>';
-                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="procesarTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal12"><i class="fas fa-file-import"></i></button></td>'; 
-                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="devolverTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalDevol"><i class="fas fa-undo"></i></i></button></td>';  
+                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="procesarTarea1('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\',\''+value.documento_tarea+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal12"><i class="fas fa-file-import"></i></button></td>'; 
+                    datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="devolverTarea('+ value.id_tarea +','+value.id_solicitud+',\''+value.ruta+'\',\''+value.documento_tarea+'\')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalDevol"><i class="fas fa-reply-all"></i></button></td>';  
                 datos += '</tr>';
             });
             datos += '</tbody>';
@@ -1052,7 +1071,7 @@ $(document).ready(function () {
         });
     }
 
-    function buscarFuncionarios() {
+    function buscarFuncionariosDev() {
 
         $.ajax({
             url: '../controladorAdministrador/usuario/usuario.read2.php',
@@ -1065,28 +1084,28 @@ $(document).ready(function () {
             $.each(json, function (key, value) {
                 tipoDocumento += '<option value=' + value.usuario + '>' + value.usuario + '</option>';
             });
-            $('#empleado').html(tipoDocumento);
+            $('#empleadoDev').html(tipoDocumento);
         }).fail(function (xhr, status, error) {
-            $('#empleado').html(error);
+            $('#empleadoDev').html(error);
         });
     }
 
-    $(document).on('click', '#empleado', function (event) {
+    $(document).on('click', '#empleadoDev', function (event) {
         event.preventDefault();
         $.ajax({
-            url: '../controladorAdministrador/usuario/usuario.read3.php',
+            url: '../controladorAdministrador/usuario/usuario.read4.php',
             type: 'POST',
             dataType: 'json',
-            data: $('#buscar2').serialize(),
+            data: $('#buscar12').serialize(),
         }).done(function (json) {
             var correo = "";
             $.each(json, function (key, value) {
                 correo = value.correo_empleado;
             });
-            $('#empleadoCorreo').val(correo);
+            $('#empleadoCorreoDev').val(correo);
             
         }).fail(function (xhr, status, error) {
-            $('#empleadoCorreo').val(error);
+            $('#empleadoCorreoDev').val(error);
         });
     });
 

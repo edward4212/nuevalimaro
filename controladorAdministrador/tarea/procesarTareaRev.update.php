@@ -10,10 +10,16 @@ include_once "../../componente/Mailer/src/PHPMailer.php";
 include_once "../../componente/Mailer/src/SMTP.php";
 include_once "../../componente/Mailer/src/Exception.php";
 
-$id_tarea=  $_POST['idTarea2'];
+$usuario = $_SESSION['usuario'];
+$nombre =  $_POST['documento1'];
+
+$id_tarea =  $_POST['idTarea2'];
 $id_solicitud = $_POST['numIdSolicitudCom'];
 $usuario_comentario = $_SESSION['usuario'];
-$comentario = $_POST['comentarioTarea'];
+$comentarios = $_POST['comentarioTarea'];
+$comentarios1 =  ucwords($comentarios);
+$text="Revisión: ";
+$comentario = $text.$comentarios1;
 $usuario_tarea_estado = $_POST['empleado'];
 $ruta= $_POST['ruta'];
 $correo= $_POST['empleadoCorreo'];
@@ -22,16 +28,22 @@ $fechaActual = date("Y-m-d H-i-s");
 
 $directorio = "../../documentos/usuarios/$usuario_tarea_estado/tareas/$id_solicitud/$ruta/";
 
+// if(!file_exists($directorio)){
+//     mkdir($directorio,0777,true);
+//     $nombre = $_FILES['fileTarea']['name'];   
+//     move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);        
+// }else{
+//     if(file_exists($directorio)){
+//         $nombre = $_FILES['fileTarea']['name'];
+//         move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);
+//     }    
+// }
+
 if(!file_exists($directorio)){
     mkdir($directorio,0777,true);
-    $nombre = $_FILES['fileTarea']['name'];   
-    move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);        
-}else{
-    if(file_exists($directorio)){
-        $nombre = $_FILES['fileTarea']['name'];
-        move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);
-    }    
+    copy("../../documentos/usuarios/$usuario/tareas/$id_solicitud/$ruta/$nombre","../../documentos/usuarios/$usuario_tarea_estado/tareas/$id_solicitud/$ruta/$nombre");     
 }
+
 
 $solicitudesE = new \entidad\Solicitudes(); 
 $solicitudesE -> setIdTarea($id_tarea);
@@ -50,42 +62,42 @@ $resultado = $solicitudesM->actualizarTareaEstadoRev();
 unset($solicitudesE);
 unset($solicitudesM);
 
-if(($resultado !== null)){
-    echo '
-    <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
-    <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-    <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
-    <script>    
-    jQuery(function(){
-        Swal.fire({
-            icon: "error",
-            title: "Error al asignar la tarea",
-            showConfirmButton: false,
-            timer: 3000
-            }).then(function() {
-            window.location.href = "../../administrador/tareasRevi.php";
-        });
-    });
-    </script>';
-}else{
+// if(($resultado !== null)){
+//     echo '
+//     <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
+//     <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+//     <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
+//     <script>    
+//     jQuery(function(){
+//         Swal.fire({
+//             icon: "error",
+//             title: "Error al asignar la tarea",
+//             showConfirmButton: false,
+//             timer: 3000
+//             }).then(function() {
+//             window.location.href = "../../administrador/tareasRevi.php";
+//         });
+//     });
+//     </script>';
+// }else{
 
-echo '
-    <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
-    <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-    <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
-    <script>    
-    jQuery(function(){
-        Swal.fire({
-            icon: "success",
-            title: "Tarea asignada con éxito",
-            showConfirmButton: false,
-            timer: 3000
-            }).then(function() {
-            window.location.href = "../../administrador/tareasRevi.php";
-        });
-    });
-    </script>';
-}
+// echo '
+//     <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
+//     <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+//     <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
+//     <script>    
+//     jQuery(function(){
+//         Swal.fire({
+//             icon: "success",
+//             title: "Tarea asignada con éxito",
+//             showConfirmButton: false,
+//             timer: 3000
+//             }).then(function() {
+//             window.location.href = "../../administrador/tareasRevi.php";
+//         });
+//     });
+//     </script>';
+// }
 
 try {
 
