@@ -10,18 +10,17 @@ include_once "../../componente/Mailer/src/PHPMailer.php";
 include_once "../../componente/Mailer/src/SMTP.php";
 include_once "../../componente/Mailer/src/Exception.php";
 
-$id_tarea=  $_POST['idTarea2'];
-$id_solicitud = $_POST['numIdSolicitudCom'];
+$id_tarea=  $_POST['idTarea2Dev'];
+$id_solicitud = $_POST['numIdSolicitudComDev'];
 $usuario_comentario = $_SESSION['usuario'];
 $comentarios = $_POST['comentarioTarea'];
 $comentarios1 =  ucwords($comentarios);
 $text="Devolución: ";
 $comentario = $text.$comentarios1;
-$usuario_tarea_estado = $_POST['empleado'];
-$ruta= $_POST['ruta'];
-$correo= $_POST['empleadoCorreo'];
+$usuario_tarea_estado = $_POST['empleadoDev'];
+$ruta= $_POST['rutaDev'];
+$correo= $_POST['empleadoCorreoDev'];
 $fechaActual = date("Y-m-d H-i-s");
-
 
 $directorio = "../../documentos/usuarios/$usuario_tarea_estado/tareas/$id_solicitud/$ruta/";
 
@@ -48,53 +47,53 @@ $solicitudesE -> setDocumentoTarea($nombre);
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 $resultado = $solicitudesM->tareaDevuelta();
 $resultado = $solicitudesM->comentarioTareaElaborada();
-$resultado = $solicitudesM->actualizarTareaEstado();
+$resultado = $solicitudesM->actualizarTareaEstadoRev();
 
 unset($solicitudesE);
 unset($solicitudesM);
 
-if(($resultado !== null)){
-    echo '
-    <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
-    <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-    <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
-    <script>    
-    jQuery(function(){
-        Swal.fire({
-            icon: "error",
-            title: "Error al asignar la tarea",
-            showConfirmButton: false,
-            timer: 3000
-            }).then(function() {
-            window.location.href = "../../administrador/tareasRevi.php";
-        });
-    });
-    </script>';
-}else{
+// if(($resultado !== null)){
+//     echo '
+//     <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
+//     <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+//     <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
+//     <script>    
+//     jQuery(function(){
+//         Swal.fire({
+//             icon: "error",
+//             title: "Error al asignar la tarea",
+//             showConfirmButton: false,
+//             timer: 3000
+//             }).then(function() {
+//             window.location.href = "../../administrador/tareasRevi.php";
+//         });
+//     });
+//     </script>';
+// }else{
 
-echo '
-    <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
-    <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-    <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
-    <script>    
-    jQuery(function(){
-        Swal.fire({
-            icon: "success",
-            title: "Tarea asignada con éxito",
-            showConfirmButton: false,
-            timer: 3000
-            }).then(function() {
-            window.location.href = "../../administrador/tareasRevi.php";
-        });
-    });
-    </script>';
-}
+// echo '
+//     <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
+//     <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+//     <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
+//     <script>    
+//     jQuery(function(){
+//         Swal.fire({
+//             icon: "success",
+//             title: "Tarea asignada con éxito",
+//             showConfirmButton: false,
+//             timer: 3000
+//             }).then(function() {
+//             window.location.href = "../../administrador/tareasRevi.php";
+//         });
+//     });
+//     </script>';
+// }
 
 try {
 
     
-    $usuario_tarea_estado = $_POST['empleado'];
-    $emailTo =  $_POST['empleadoCorreo'];
+    $usuario_tarea_estado = $_POST['empleadoDev'];
+    $emailTo =  $_POST['empleadoCorreoDev'];
     $subject = "LIMARO - Devolución de Tarea";
     $bodyEmail = "
 

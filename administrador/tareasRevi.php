@@ -65,7 +65,7 @@
                                             <h5 id="comentarios"></h5>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> <i
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>
                                     </form>
@@ -87,11 +87,11 @@
                                         action="../controladorAdministrador/tarea/procesarTareaRev.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
-                                            <input type="number" name="idTarea2" id="idTarea2" >
-                                            <input type="number" name="idTarea23" id="idTarea23" >
-                                            <input type="number" name="numIdSolicitudCom" id="numIdSolicitudCom" >
-                                            <input type="text" name="ruta" id="ruta" >
-                                            <input type="text" name="documento1" id="documento1" >
+                                            <input type="number" name="idTarea2" id="idTarea2" hidden>
+                                            <input type="number" name="idTarea23" id="idTarea23" hidden>
+                                            <input type="number" name="numIdSolicitudCom" id="numIdSolicitudCom" hidden>
+                                            <input type="text" name="ruta" id="ruta" hidden>
+                                            <input type="text" name="documento1" id="documento1" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>
                                                 <label class="text-muted"> Caracteres restantes: <span></span></label>
@@ -106,12 +106,7 @@
                                                     aria-label="E" aria-describedby="basic-addon1" required></select>
                                             </div>
                                             <input type="text" class="form-control " id="empleadoCorreo"
-                                                name="empleadoCorreo">
-                                            <!-- <div class="col-md-12 col-xs-12 col-sm-12">
-                                                <h5><b>Subir Documento*</b></h5>
-                                                <input type="file" class="form-control redondeado" id="fileTarea"
-                                                    name="fileTarea" multiple required>
-                                            </div> -->
+                                                name="empleadoCorreo" hidden>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary"><i
@@ -138,10 +133,11 @@
                                         action="../controladorAdministrador/tarea/procesarTareaDev.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
-                                            <input type="number" name="idTarea2Dev" id="idTarea2Dev">
-                                            <input type="number" name="idTarea23Dev" id="idTarea23Dev">
-                                            <input type="number" name="numIdSolicitudComDev" id="numIdSolicitudComDev">
-                                            <input type="text" name="rutaDev" id="rutaDev">
+                                            <input type="number" name="idTarea2Dev" id="idTarea2Dev" hidden>
+                                            <input type="number" name="idTarea23Dev" id="idTarea23Dev" hidden>
+                                            <input type="number" name="numIdSolicitudComDev" id="numIdSolicitudComDev"
+                                                hidden>
+                                            <input type="text" name="rutaDev" id="rutaDev" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Agregar Comentario</b></h5>
                                                 <label class="text-muted"> Caracteres restantes: <span></span></label>
@@ -156,7 +152,7 @@
                                                     aria-label="E" aria-describedby="basic-addon1" required></select>
                                             </div>
                                             <input type="text" class="form-control " id="empleadoCorreoDev"
-                                                name="empleadoCorreoDev">
+                                                name="empleadoCorreoDev" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h5><b>Subir Documento*</b></h5>
                                                 <input type="file" class="form-control redondeado" id="fileTarea"

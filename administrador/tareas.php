@@ -64,7 +64,7 @@
                                             <h5 id="comentarios"></h5>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> <i
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>
                                     </form>

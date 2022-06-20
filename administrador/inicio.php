@@ -80,7 +80,7 @@
                                     <div class="modal-footer">
                                         <button type="submit" id="btnModificarNomEmp" class="btn btn-primary"><i
                                                 class="far fa-edit"></i> Modificar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                 class="fas fa-undo"></i> Volver</button>
                                     </div>
                                 </form>
@@ -110,7 +110,7 @@
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i>
                                             Modificar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                 class="fas fa-undo"></i> Volver</button>
                                     </div>
                                 </form>
@@ -174,7 +174,7 @@
                                     <div class="modal-footer">
                                         <button type="submit" id="btnModificarMisionEmp" class="btn btn-primary"><i
                                                 class="far fa-edit"></i> Modificar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                 class="fas fa-undo"></i> Volver</button>
                                     </div>
                                 </form>
@@ -205,7 +205,7 @@
                                     <div class="modal-footer">
                                         <button type="submit" id="btnModificarvisionEmp" class="btn btn-primary"><i
                                                 class="far fa-edit"></i> Modificar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                 class="fas fa-undo"></i> Volver</button>
                                     </div>
                                 </form>
@@ -268,7 +268,7 @@
                                     <div class="modal-footer">
                                         <button type="submit" id="btnModificarPoliEmp" class="btn btn-primary"><i
                                                 class="far fa-edit"></i> Modificar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                 class="fas fa-undo"></i> Volver</button>
                                     </div>
                                 </form>
@@ -299,7 +299,7 @@
                                     <div class="modal-footer">
                                         <button type="submit" id="btnModificarObjetivoEmp" class="btn btn-primary"><i
                                                 class="far fa-edit"></i> Modificar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                 class="fas fa-undo"></i> Volver</button>
                                     </div>
                                 </form>
@@ -347,7 +347,7 @@
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i>
                                             Modificar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                 class="fas fa-undo"></i> Volver</button>
                                     </div>
                                 </form>
@@ -396,7 +396,7 @@
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i>
                                             Modificar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                 class="fas fa-undo"></i> Volver</button>
                                     </div>
                                 </form>

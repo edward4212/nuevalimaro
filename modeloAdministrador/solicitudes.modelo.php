@@ -653,6 +653,23 @@ class Solicitudes{
                return $this->retorno;
      }
 
+     public function tareaDevuelta()
+     {
+          try{
+               
+               $this->result = $this->conexion->prepare("INSERT INTO tarea_estado VALUES (NULL ,:id_tarea, :usuario_tarea_estado,CURRENT_TIMESTAMP(), 'DEVUELTO', :ruta, :documento_tarea )");
+               $this->result->bindParam(':id_tarea', $this->id_tarea);
+               $this->result->bindParam(':usuario_tarea_estado', $this->usuario_tarea_estado);
+               $this->result->bindParam(':ruta', $this->ruta);
+               $this->result->bindParam(':documento_tarea', $this->documento_tarea);
+               $this->result->execute();    
+          } catch (Exception $e) {
+          
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
 
 }
 

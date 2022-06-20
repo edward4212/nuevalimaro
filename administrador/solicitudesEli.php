@@ -78,7 +78,7 @@
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i>
                                                 Crear Solicitud</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>
                                     </form>

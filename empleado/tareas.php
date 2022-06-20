@@ -93,7 +93,7 @@
                                             <button class="btn btn-primary" id="btnRevisionTarea"
                                                 name="btnRevisionTarea" data-bs-dismiss="modal"> <i
                                                     class="fas fa-plus"></i>Iniciar Aprobación</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> <i
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
                                                     class="fas fa-undo"></i> Volver</button>
                                             <button type="button" class="btn btn-danger"
                                                 data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
@@ -244,7 +244,7 @@
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-dismiss="modal" id="btnDevolverTareaApr" name="btnDevolverTareaApr"><i
                                                 class="fas fa-times-circle"></i>Devolver Tarea</button>
-                                        <button type="button" class="btn btn-primary" data-bs-target="#modaltareaApr"
+                                        <button type="button" class="btn btn-secondary" data-bs-target="#modaltareaApr"
                                             data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-undo"></i>
                                             Volver</button>
                                     </div>
