@@ -10,15 +10,12 @@ include_once "../../componente/Mailer/src/PHPMailer.php";
 include_once "../../componente/Mailer/src/SMTP.php";
 include_once "../../componente/Mailer/src/Exception.php";
 
-$usuario = $_SESSION['usuario'];
-$nombre =  $_POST['documento1'];
-
-$id_tarea =  $_POST['idTarea2'];
+$id_tarea=  $_POST['idTarea2'];
 $id_solicitud = $_POST['numIdSolicitudCom'];
 $usuario_comentario = $_SESSION['usuario'];
 $comentarios = $_POST['comentarioTarea'];
 $comentarios1 =  ucwords($comentarios);
-$text="Revisión: ";
+$text="Devolución: ";
 $comentario = $text.$comentarios1;
 $usuario_tarea_estado = $_POST['empleado'];
 $ruta= $_POST['ruta'];
@@ -28,22 +25,16 @@ $fechaActual = date("Y-m-d H-i-s");
 
 $directorio = "../../documentos/usuarios/$usuario_tarea_estado/tareas/$id_solicitud/$ruta/";
 
-// if(!file_exists($directorio)){
-//     mkdir($directorio,0777,true);
-//     $nombre = $_FILES['fileTarea']['name'];   
-//     move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);        
-// }else{
-//     if(file_exists($directorio)){
-//         $nombre = $_FILES['fileTarea']['name'];
-//         move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);
-//     }    
-// }
-
 if(!file_exists($directorio)){
     mkdir($directorio,0777,true);
-    copy("../../documentos/usuarios/$usuario/tareas/$id_solicitud/$ruta/$nombre","../../documentos/usuarios/$usuario_tarea_estado/tareas/$id_solicitud/$ruta/$nombre");     
+    $nombre = $_FILES['fileTarea']['name'];   
+    move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);        
+}else{
+    if(file_exists($directorio)){
+        $nombre = $_FILES['fileTarea']['name'];
+        move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);
+    }    
 }
-
 
 $solicitudesE = new \entidad\Solicitudes(); 
 $solicitudesE -> setIdTarea($id_tarea);
@@ -55,9 +46,9 @@ $solicitudesE -> setRuta($ruta);
 $solicitudesE -> setDocumentoTarea($nombre);
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
-$resultado = $solicitudesM->tareaRevisada();
+$resultado = $solicitudesM->tareaDevuelta();
 $resultado = $solicitudesM->comentarioTareaElaborada();
-$resultado = $solicitudesM->actualizarTareaEstadoRev();
+$resultado = $solicitudesM->actualizarTareaEstado();
 
 unset($solicitudesE);
 unset($solicitudesM);
@@ -104,18 +95,18 @@ try {
     
     $usuario_tarea_estado = $_POST['empleado'];
     $emailTo =  $_POST['empleadoCorreo'];
-    $subject = "LIMARO - Asignación de Tarea";
+    $subject = "LIMARO - Devolución de Tarea";
     $bodyEmail = "
 
 
 FECHA: $fechaActual
 PARA: $usuario_tarea_estado - Funcionario COOPEAIPE
 DE: Area De Calidad
-ASUNTO: Asignación de Tarea
+ASUNTO: Devolución de Tarea
 
 Cordial Saludo,
 
-Se le ha asignado una tarea para su Aprobación.
+Se ha devuelto una tarea para su gestión.
 
 Cordialmente,
 

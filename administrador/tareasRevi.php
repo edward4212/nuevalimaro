@@ -135,7 +135,7 @@
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form class="form-group" id="buscar12"
-                                        action="../controladorAdministrador/tarea/procesarTareaE.update.php"
+                                        action="../controladorAdministrador/tarea/procesarTareaDev.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <input type="number" name="idTarea2Dev" id="idTarea2Dev">
