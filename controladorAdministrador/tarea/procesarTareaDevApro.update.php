@@ -10,6 +10,7 @@ include_once "../../componente/Mailer/src/PHPMailer.php";
 include_once "../../componente/Mailer/src/SMTP.php";
 include_once "../../componente/Mailer/src/Exception.php";
 
+
 $id_tarea=  $_POST['idTarea2Dev'];
 $id_solicitud = $_POST['numIdSolicitudComDev'];
 $usuario_comentario = $_SESSION['usuario'];

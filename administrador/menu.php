@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                                 class="fas fa-clipboard-list"></i> Tareas Iniciadas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasDes.php"><i
                                                 class="far fa-edit"></i> Tareas En Desarrollo</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasDev.php"><i
                                                 class="fas fa-reply-all"></i>Tareas Devueltas</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
                                                 class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                                     Elaboración</a></li>
                                             <li><a class="dropdown-item" style="color: #0d6efd;"
                                                     href="tareasRevi.php"><i class="fas fa-check"></i> Revisión</a></li>
-                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasApr.php"><i
                                                         class="fas fa-check-double"></i>Aprobación</a></li>
                                         </ul>
                                     </li>

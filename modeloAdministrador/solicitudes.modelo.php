@@ -670,6 +670,114 @@ class Solicitudes{
                return $this->retorno;
      }
 
+     
+     public function devueltas()
+     {
+          try {
+               $this->sql = "	SELECT
+               sl.`id_solicitud` ,
+               sl.`prioridad`,
+               sl.`tipo_solicitud`,
+               td.`tipo_documento`,
+               sl.`fecha_solicitud`,
+               sl.`codigo_documento`,
+               emp.`id_empleado`,
+               emp.`nombre_completo`,
+               sl.`solicitud`,
+               sl.`fecha_inicio_tarea`,
+               sl.`ruta`,
+               sl.`documento`,
+               us.`usuario`,
+               tre.`usuario_tarea_estado`,
+               tre.`tarea_estado`,
+               tre.`ruta`,
+               tre.`documento_tarea`,
+               tre.`fecha_tarea_estado`
+          
+               FROM tarea_estado AS tre
+               
+               INNER JOIN tarea AS tr ON tre.`id_tarea` = tr.`id_tarea`
+               INNER JOIN solicitud AS sl ON tr.`id_solicitud` = sl.`id_solicitud`
+               INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
+               INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
+               INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
+               WHERE tre.`tarea_estado` ='DEVUELTO' ";
+               $this->result = $this->conexion->query($this->sql);
+               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+          return $this->retorno;
+     }
+
+     public function aprobartarea()
+     {
+          try {
+               $this->sql = "	SELECT
+               sl.`id_solicitud`,
+               sl.`id_empleado`,
+               sl.`prioridad`,
+               sl.`tipo_solicitud`,
+               td.`tipo_documento`,
+               sl.`fecha_solicitud`,
+               sl.`codigo_documento`,
+               emp.`id_empleado`,
+               emp.`nombre_completo`,
+               sl.`solicitud`,
+               sl.`fecha_inicio_tarea`,
+               sl.`ruta` AS carpeta,
+               sl.`documento` AS soportes,
+               us.`usuario` AS solicitante ,
+               tre.`usuario_tarea_estado`,
+               tre.`tarea_estado`,
+               tre.`ruta`,
+               tre.`documento_tarea`,
+               tr.`id_tarea`,
+               tre.`fecha_tarea_estado`
+          
+               FROM tarea_estado AS tre
+               
+               INNER JOIN tarea AS tr ON tre.`id_tarea` = tr.`id_tarea`
+               INNER JOIN solicitud AS sl ON tr.`id_solicitud` = sl.`id_solicitud`
+               INNER JOIN tipo_documento AS td ON sl.`id_tipo_documento` = td.`id_tipo_documento`
+               INNER JOIN empleado AS emp ON sl.`id_empleado` = emp.`id_empleado`
+               INNER JOIN usuario AS us ON emp.`id_empleado` = us.`id_empleado`
+               WHERE   tre.`usuario_tarea_estado` = '$this->usuario'  AND tre.`tarea_estado` = 'APROBACION' ";
+               $this->result = $this->conexion->query($this->sql);
+               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+          return $this->retorno;
+     }
+
+     public function actualizarTareaEstadoApr()
+     {
+          try {
+               $this->sql = "UPDATE tarea_estado SET tarea_estado='CAMBIO' WHERE id_tarea=$this->id_tarea AND tarea_estado = 'APROBACION'";
+               $this->result = $this->conexion->query($this->sql);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
+     public function tareaAprobada()
+     {
+          try{
+               
+               $this->result = $this->conexion->prepare("INSERT INTO tarea_estado VALUES (NULL ,:id_tarea, :usuario_tarea_estado,CURRENT_TIMESTAMP(), 'FINALIZADO', :ruta, :documento_tarea )");
+               $this->result->bindParam(':id_tarea', $this->id_tarea);
+               $this->result->bindParam(':usuario_tarea_estado', $this->usuario_tarea_estado);
+               $this->result->bindParam(':ruta', $this->ruta);
+               $this->result->bindParam(':documento_tarea', $this->documento_tarea);
+               $this->result->execute();    
+          } catch (Exception $e) {
+          
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
 
 }
 
