@@ -234,11 +234,11 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <ul class="submenu dropdown-menu">
                                             <li><a class="dropdown-item" style="color: #0d6efd;"
                                                     href="tareasDesa.php"><i class="far fa-clipboard"></i>
-                                                    Elaboración</a></li>
+                                                    Elaborar Documento</a></li>
                                             <li><a class="dropdown-item" style="color: #0d6efd;"
-                                                    href="tareasRevi.php"><i class="fas fa-check"></i> Revisión</a></li>
+                                                    href="tareasRevi.php"><i class="fas fa-check"></i> Revisiar Documento</a></li>
                                             <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasApr.php"><i
-                                                        class="fas fa-check-double"></i>Aprobación</a></li>
+                                                        class="fas fa-check-double"></i>Aprobar Documento</a></li>
                                         </ul>
                                     </li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
