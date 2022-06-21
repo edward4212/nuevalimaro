@@ -18,7 +18,7 @@ $id_solicitud = $_POST['numIdSolicitudCom'];
 $usuario_comentario = $_SESSION['usuario'];
 $comentarios = $_POST['comentarioTarea'];
 $comentarios1 =  ucwords($comentarios);
-$text="Revisión: ";
+$text="Aprobación: ";
 $comentario = $text.$comentarios1;
 $usuario_tarea_estado = $_POST['empleado'];
 $ruta= $_POST['ruta'];
@@ -58,55 +58,57 @@ $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 $resultado = $solicitudesM->tareaAprobada();
 $resultado = $solicitudesM->comentarioTareaElaborada();
 $resultado = $solicitudesM->actualizarTareaEstadoApr();
+$resultado = $solicitudesM->estatusSolicitudFinalizada();
+$resultado = $solicitudesM->comentarioSolicFinal();
 
 unset($solicitudesE);
 unset($solicitudesM);
 
-// if(($resultado !== null)){
-//     echo '
-//     <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
-//     <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-//     <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
-//     <script>    
-//     jQuery(function(){
-//         Swal.fire({
-//             icon: "error",
-//             title: "Error al asignar la tarea",
-//             showConfirmButton: false,
-//             timer: 3000
-//             }).then(function() {
-//             window.location.href = "../../administrador/tareasRevi.php";
-//         });
-//     });
-//     </script>';
-// }else{
+if(($resultado !== null)){
+    echo '
+    <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
+    <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+    <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
+    <script>    
+    jQuery(function(){
+        Swal.fire({
+            icon: "error",
+            title: "Error al aprobar la tarea",
+            showConfirmButton: false,
+            timer: 3000
+            }).then(function() {
+            window.location.href = "../../administrador/tareasApr.php";
+        });
+    });
+    </script>';
+}else{
 
-// echo '
-//     <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
-//     <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
-//     <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
-//     <script>    
-//     jQuery(function(){
-//         Swal.fire({
-//             icon: "success",
-//             title: "Tarea asignada con éxito",
-//             showConfirmButton: false,
-//             timer: 3000
-//             }).then(function() {
-//             window.location.href = "../../administrador/tareasRevi.php";
-//         });
-//     });
-//     </script>';
-// }
+echo '
+    <link rel="stylesheet" href="../../componente/css/globales/sweetalert2.min.css"> 
+    <script src="../../componente/libreria/globales/sweetalert2.all.min.js"></script> 
+    <script type="text/javascript" src="../../componente/libreria/globales/jquery-3.6.0.js"></script>
+    <script>    
+    jQuery(function(){
+        Swal.fire({
+            icon: "success",
+            title: "Tarea aprobada con éxito",
+            showConfirmButton: false,
+            timer: 3000
+            }).then(function() {
+            window.location.href = "../../administrador/tareasApr.php";
+        });
+    });
+    </script>';
+}
 
 try {
 
     
     $usuario_tarea_estado = $_POST['empleado'];
     $emailTo =  $_POST['empleadoCorreo'];
-    $subject = "LIMARO - Asignación de Tarea";
     $nombre =  $_POST['documento1'];
     $usuario = $_SESSION['usuario'];
+    $subject = "LIMARO - Aprobación de Tarea";
     $bodyEmail = "
 
 
@@ -117,7 +119,9 @@ ASUNTO: Aprobación de Tarea
 
 Cordial Saludo,
 
-Se ha aprobado una tarea favor realizar el versionamiento del documento : $nombre.
+Se ha aprobado una tarea.
+
+Realizar el versionamiento del documento : $nombre.
 
 Cordialmente,
 

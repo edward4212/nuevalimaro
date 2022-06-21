@@ -779,6 +779,31 @@ class Solicitudes{
                return $this->retorno;
      }
 
+     public function estatusSolicitudFinalizada()
+     {
+          try {
+               $this->sql = "UPDATE solicitud SET estado_solicitud='FINALIZADA',  fecha_solucion=  CURRENT_TIMESTAMP() WHERE id_solicitud=$this->id_solicitud";
+               $this->result = $this->conexion->query($this->sql);
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
+
+     public function comentarioSolicFinal()
+     {
+          try{
+               
+               $this->result = $this->conexion->prepare("INSERT INTO solicitud_comentario VALUES (NULL ,:id_solicitud,'Solicitud Finalizada con éxito, se aprobó lo solicitado' ,  :usuario_comentario , CURRENT_TIMESTAMP(), 'ACTIVO')");
+               $this->result->bindParam(':id_solicitud', $this->id_solicitud);
+               $this->result->bindParam(':usuario_comentario', $this->usuario_comentario);
+               $this->result->execute();    
+          } catch (Exception $e) {
+          
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
 }
 
 ?>

@@ -48,7 +48,7 @@ $solicitudesE -> setDocumentoTarea($nombre);
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
 $resultado = $solicitudesM->tareaDevuelta();
 $resultado = $solicitudesM->comentarioTareaElaborada();
-$resultado = $solicitudesM->actualizarTareaEstadoRev();
+$resultado = $solicitudesM->actualizarTareaEstadoApr();
 
 unset($solicitudesE);
 unset($solicitudesM);
@@ -66,7 +66,7 @@ if(($resultado !== null)){
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasRevi.php";
+            window.location.href = "../../administrador/tareasApr.php";
         });
     });
     </script>';
@@ -84,7 +84,7 @@ echo '
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasRevi.php";
+            window.location.href = "../../administrador/tareasApr.php";
         });
     });
     </script>';
