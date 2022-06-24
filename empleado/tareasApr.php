@@ -84,7 +84,7 @@
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form class="form-group" id="buscar2"
-                                        action="../controladorAdministrador/tarea/procesarTareaApro.update.php"
+                                        action="../controladorAdministrador/tarea/procesarTareaAproe.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <input type="number" name="idTarea2" id="idTarea2" hidden>
@@ -130,7 +130,7 @@
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form class="form-group" id="buscar12"
-                                        action="../controladorAdministrador/tarea/procesarTareaDevApro.update.php"
+                                        action="../controladorAdministrador/tarea/procesarTareaDevAproe.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <input type="number" name="idTarea2Dev" id="idTarea2Dev" hidden>

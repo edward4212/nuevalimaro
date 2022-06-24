@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                                 class="far fa-edit"></i> Tareas En Desarrollo</a></li>
                                     <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasDev.php"><i
                                                 class="fas fa-reply-all"></i>Tareas Devueltas</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasFin.php"><i
                                                 class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
                                 </ul>
                             </li>
@@ -236,12 +236,12 @@ document.addEventListener("DOMContentLoaded", function() {
                                                     href="tareasDesa.php"><i class="far fa-clipboard"></i>
                                                     Elaborar Documento</a></li>
                                             <li><a class="dropdown-item" style="color: #0d6efd;"
-                                                    href="tareasRevi.php"><i class="fas fa-check"></i> Revisiar Documento</a></li>
+                                                    href="tareasRevi.php"><i class="fas fa-check"></i> Revisar Documento</a></li>
                                             <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasApr.php"><i
                                                         class="fas fa-check-double"></i>Aprobar Documento</a></li>
                                         </ul>
                                     </li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
+                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasFn.php"><i
                                                 class="fas fa-times-circle"></i> Tareas Finalizadas</a></li>
                                 </ul>
                             </li>

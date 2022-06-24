@@ -216,6 +216,34 @@ class Usuario{
                return $this->retorno;
      }
 
+     public function read5()
+     {
+          try {
+               $this->sql = "SELECT
+               usu.`id_usuario`,
+               empl.`id_empleado`,
+               empl.`nombre_completo`,
+               empl.`correo_empleado`,
+               usu.`usuario`,
+               ca.`cargo`,
+               usu.`estado`,
+               rol.`id_rol`,
+               rol.`rol`
+
+               FROM empleado AS empl
+               
+               INNER JOIN usuario AS usu ON usu.`id_empleado` = empl.`id_empleado`
+               INNER JOIN rol ON rol.`id_rol` = usu.`id_rol`
+               INNER JOIN cargo AS ca ON ca.`id_cargo` = empl.`id_cargo`
+               WHERE  usu.`estado` = 'ACTIVO' AND rol.`id_rol`= '1' ";
+               $this->result = $this->conexion->query($this->sql);
+               $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+                    
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+               return $this->retorno;
+     }
 
 }
 

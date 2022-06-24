@@ -24,7 +24,7 @@ $(document).ready(function () {
                datos += '<thead >';
                     datos += '<tr class="table-light border-primary ">';
                         datos += '<th  class="text-center align-middle border border-primary " >MACROPROCESO</th>' ;
-                        datos += '<th  class="text-center align-middle border border-primary ">PROCESO</th>';
+                        datos += '<th  class="text-center align-middle border border-primary  " hidden >PROCESO</th>';
                         datos += '<th  class="text-center align-middle border border-primary ">TIPO DOCUMENTO</th>';
                         datos += '<th  class="text-center align-middle border border-primary "> CÓDIGO Y NOMBRE DOCUMENTO</th>';
                         datos += '<th  class="text-center align-middle border border-primary "> OBJETIVO DEL DOCUMENTO</th>';
@@ -37,7 +37,7 @@ $(document).ready(function () {
                     $.each(json, function(key, value){
                         datos += '<tr class="align-middle" >';
                         datos += '<td class=" border border-primary  text-wrap">' + value.macroproceso + '</td>';
-                            datos += '<td class=" border border-primary  text-center align-middle">'+value.proceso+'</td>'; 
+                            datos += '<td class=" border border-primary  text-center align-middle" hidden>'+value.proceso+':'+value.objetivo+'</td>'; 
                             datos += '<td class=" border border-primary text-center ">'+value.tipo_documento+'</td>';
                             datos += '<td class=" border border-primary text-wrap">'+value.codigo+' '+value.nombre_documento+'</td>';
                             datos += '<td class=" border border-primary text-wrap">'+value.nombre_documento+'</td>';

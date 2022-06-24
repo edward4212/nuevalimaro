@@ -12,7 +12,7 @@
                 <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <button class="nav-link active " id="nav-solicitudes-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes"
-                        aria-selected="false">Tareas Por Aprobar</button>
+                        aria-selected="false">Tareas Por Revisar</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -21,13 +21,13 @@
                     <div class="row ">
                         <div class="col-md-12 col-xs-12 col-sm-12">
                             <br>
-                            <h2 class="card-title text-center"><b>Tareas Por Aprobar</b></h2>
+                            <h2 class="card-title text-center"><b>Tareas Por Revisar</b></h2>
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <form action="" class="form-group" id="iniciarTarea">
                                     <input type="number" name="numIdSolicitud" id="numIdSolicitud" hidden>
                                     <input type="number" name="numIdSolicitud3" id="numIdSolicitud3" hidden>
                                     <br>
-                                    <h5 id="tareasAprobar"></h5>
+                                    <h5 id="tareasArevisar"></h5>
                                 </form>
                             </div>
 
@@ -84,7 +84,7 @@
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form class="form-group" id="buscar2"
-                                        action="../controladorAdministrador/tarea/procesarTareaApro.update.php"
+                                        action="../controladorAdministrador/tarea/procesarTareaReve.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <input type="number" name="idTarea2" id="idTarea2" hidden>
@@ -101,16 +101,16 @@
                                                 <br>
                                             </div>
                                             <div class="col-md-12 col-xs-12 col-sm-12">
-                                                <h5><b>Seleccione el funcionario para notificar aprobación</b></h5>
-                                                <select class="form-control " id="empleadoApro" name="empleadoApro"
+                                                <h5><b>Seleccione el funcionario para Aprobación</b></h5>
+                                                <select class="form-control " id="empleado" name="empleado"
                                                     aria-label="E" aria-describedby="basic-addon1" required></select>
                                             </div>
-                                            <input type="text" class="form-control " id="empleadoCorreoApro"
-                                                name="empleadoCorreoApro" hidden>
+                                            <input type="text" class="form-control " id="empleadoCorreo"
+                                                name="empleadoCorreo" hidden>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary"><i
-                                                    class="fas fa-file-import"></i> Aprobar Tarea</button>
+                                                    class="fas fa-file-import"></i> Procesar Tarea</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
                                                     class="fas fa-undo"></i> Volver</button>
                                         </div>
@@ -130,7 +130,7 @@
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form class="form-group" id="buscar12"
-                                        action="../controladorAdministrador/tarea/procesarTareaDevApro.update.php"
+                                        action="../controladorAdministrador/tarea/procesarTareaDeve.update.php"
                                         method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <input type="number" name="idTarea2Dev" id="idTarea2Dev" hidden>
@@ -150,8 +150,8 @@
                                                 <h5><b>Seleccione el funcionario para Devolución</b></h5>
                                                 <select class="form-control " id="empleadoDev" name="empleadoDev"
                                                     aria-label="E" aria-describedby="basic-addon1" required></select>
+                                                <br>
                                             </div>
-                                            <br>
                                             <input type="text" class="form-control " id="empleadoCorreoDev"
                                                 name="empleadoCorreoDev" hidden>
                                             <div class="col-md-12 col-xs-12 col-sm-12">

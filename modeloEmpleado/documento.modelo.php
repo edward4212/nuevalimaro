@@ -66,6 +66,7 @@ class Documento{
                doc.`nombre_documento`,
                pr.`id_proceso`,
                pr.`proceso`,
+               pr.`objetivo`,
                pr.`sigla_proceso`,
                tdoc.`id_tipo_documento`,
                tdoc.`tipo_documento` ,

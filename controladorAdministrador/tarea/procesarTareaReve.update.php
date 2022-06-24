@@ -18,11 +18,11 @@ $id_solicitud = $_POST['numIdSolicitudCom'];
 $usuario_comentario = $_SESSION['usuario'];
 $comentarios = $_POST['comentarioTarea'];
 $comentarios1 =  ucwords($comentarios);
-$text="Aprobación: ";
+$text="Revisión: ";
 $comentario = $text.$comentarios1;
-$usuario_tarea_estado = $_POST['empleadoApro'];
+$usuario_tarea_estado = $_POST['empleado'];
 $ruta= $_POST['ruta'];
-$correo= $_POST['empleadoCorreoApro'];
+$correo= $_POST['empleadoCorreo'];
 $fechaActual = date("Y-m-d H-i-s");
 
 
@@ -55,11 +55,9 @@ $solicitudesE -> setRuta($ruta);
 $solicitudesE -> setDocumentoTarea($nombre);
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
-$resultado = $solicitudesM->tareaAprobada();
+$resultado = $solicitudesM->tareaRevisada();
 $resultado = $solicitudesM->comentarioTareaElaborada();
-$resultado = $solicitudesM->actualizarTareaEstadoApr();
-$resultado = $solicitudesM->estatusSolicitudFinalizada();
-$resultado = $solicitudesM->comentarioSolicFinal();
+$resultado = $solicitudesM->actualizarTareaEstadoRev();
 
 unset($solicitudesE);
 unset($solicitudesM);
@@ -73,11 +71,11 @@ if(($resultado !== null)){
     jQuery(function(){
         Swal.fire({
             icon: "error",
-            title: "Error al aprobar la tarea",
+            title: "Error al asignar la tarea",
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasApr.php";
+            window.location.href = "../../empleado/tareasRevi.php";
         });
     });
     </script>';
@@ -91,11 +89,11 @@ echo '
     jQuery(function(){
         Swal.fire({
             icon: "success",
-            title: "Tarea aprobada con éxito",
+            title: "Tarea asignada con éxito",
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasApr.php";
+            window.location.href = "../../empleado/tareasRevi.php";
         });
     });
     </script>';
@@ -104,24 +102,20 @@ echo '
 try {
 
     
-    $usuario_tarea_estado = $_POST['empleadoApro'];
-    $emailTo =  $_POST['empleadoCorreoApro'];
-    $nombre =  $_POST['documento1'];
-    $usuario = $_SESSION['usuario'];
-    $subject = "LIMARO - Aprobación de Tarea";
+    $usuario_tarea_estado = $_POST['empleado'];
+    $emailTo =  $_POST['empleadoCorreo'];
+    $subject = "LIMARO - Asignación de Tarea";
     $bodyEmail = "
 
 
 FECHA: $fechaActual
 PARA: $usuario_tarea_estado - Funcionario COOPEAIPE
 DE: Area De Calidad
-ASUNTO: Aprobación de Tarea
+ASUNTO: Asignación de Tarea
 
 Cordial Saludo,
 
-Se ha aprobado una tarea.
-
-Realizar el versionamiento del documento : $nombre.
+Se le ha asignado una tarea para su Aprobación.
 
 Cordialmente,
 

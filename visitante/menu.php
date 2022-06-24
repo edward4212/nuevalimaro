@@ -132,62 +132,12 @@ document.addEventListener("DOMContentLoaded", function() {
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i
-                                class="fas fa-th-list"></i> Solicitudes </a>
-                        <ul class="dropdown-menu" style="background-color: #f8f9fa!important;">
-                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"> <i
-                                        class="fas fa-file-signature"></i> Radicar Solicitudes <i
-                                        class="fas fa-caret-right"></i> </a>
-                                <ul class="submenu dropdown-menu">
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudes.php"><i
-                                                class="fas fa-clipboard-list"></i> Mis Solicitudes Radicadas</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesCr.php"><i
-                                                class="far fa-edit"></i> Crear Documento</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesAct.php"><i
-                                                class="fas fa-sync-alt"></i> Actualizar Documento</a></li>
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="solicitudesEli.php"><i
-                                                class="fas fa-times-circle"></i> Eliminar Documento</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i
-                                class="fas fa-tasks"></i> Tareas</a>
-                        <ul class="dropdown-menu" style="background-color: #f8f9fa!important;">
-                            <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
-                                        class="fas fa-file-signature"></i> Tareas <i class="fas fa-caret-right"></i>
-                                </a>
-                                <ul class="submenu dropdown-menu">
-                                    <li><a class="dropdown-item" style="color: #0d6efd;" href="#"><i
-                                                class="far fa-edit"></i> Tareas En Desarrollo <i
-                                                class="fas fa-caret-right"></i></a>
-                                        <ul class="submenu dropdown-menu">
-                                            <li><a class="dropdown-item" style="color: #0d6efd;"
-                                                    href="tareasRevi.php"><i class="fas fa-check"></i> Revisar Documento</a></li>
-                                            <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasApr.php"><i
-                                                        class="fas fa-check-double"></i>Aprobar Documento</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
                         <a href="perfil.php" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false"><img href="perfil.php"
                                 src="../documentos/usuarios/<?php $usuario= $_SESSION['usuario']; echo $usuario;?>/imagen/<?php $img_empleado= $_SESSION['img_empleado']; echo $img_empleado; ?>"
                                 alt="mdo" width="32" height="32" class="rounded-circle">
                             <?php $usuario= $_SESSION['usuario']; echo $usuario;?>
                         </a>
-                        <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="perfil.php" style="color: #0A58CD;"><i
-                                        class="fas fa-user-alt"></i> Mi Perfil</a></li>
-                            <li><a class="dropdown-item" href="clave.php" style="color: #0A58CD;"><i
-                                        class="fas fa-user-lock"></i> Cambiar Contraseña</a></li>
-
-                        </ul>
                     </li>
                 </ul>
             </div>

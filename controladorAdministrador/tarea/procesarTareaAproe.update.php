@@ -77,7 +77,7 @@ if(($resultado !== null)){
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasApr.php";
+            window.location.href = "../../empleado/tareasApr.php";
         });
     });
     </script>';
@@ -95,7 +95,7 @@ echo '
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasApr.php";
+            window.location.href = "../../empleado/tareasApr.php";
         });
     });
     </script>';

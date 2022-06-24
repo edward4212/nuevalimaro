@@ -10,40 +10,31 @@ include_once "../../componente/Mailer/src/PHPMailer.php";
 include_once "../../componente/Mailer/src/SMTP.php";
 include_once "../../componente/Mailer/src/Exception.php";
 
-$usuario = $_SESSION['usuario'];
-$nombre =  $_POST['documento1'];
 
-$id_tarea =  $_POST['idTarea2'];
-$id_solicitud = $_POST['numIdSolicitudCom'];
+$id_tarea=  $_POST['idTarea2Dev'];
+$id_solicitud = $_POST['numIdSolicitudComDev'];
 $usuario_comentario = $_SESSION['usuario'];
 $comentarios = $_POST['comentarioTarea'];
 $comentarios1 =  ucwords($comentarios);
-$text="Aprobación: ";
+$text="Devolución: ";
 $comentario = $text.$comentarios1;
-$usuario_tarea_estado = $_POST['empleadoApro'];
-$ruta= $_POST['ruta'];
-$correo= $_POST['empleadoCorreoApro'];
+$usuario_tarea_estado = $_POST['empleadoDev'];
+$ruta= $_POST['rutaDev'];
+$correo= $_POST['empleadoCorreoDev'];
 $fechaActual = date("Y-m-d H-i-s");
-
 
 $directorio = "../../documentos/usuarios/$usuario_tarea_estado/tareas/$id_solicitud/$ruta/";
 
-// if(!file_exists($directorio)){
-//     mkdir($directorio,0777,true);
-//     $nombre = $_FILES['fileTarea']['name'];   
-//     move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);        
-// }else{
-//     if(file_exists($directorio)){
-//         $nombre = $_FILES['fileTarea']['name'];
-//         move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);
-//     }    
-// }
-
 if(!file_exists($directorio)){
     mkdir($directorio,0777,true);
-    copy("../../documentos/usuarios/$usuario/tareas/$id_solicitud/$ruta/$nombre","../../documentos/usuarios/$usuario_tarea_estado/tareas/$id_solicitud/$ruta/$nombre");     
+    $nombre = $_FILES['fileTarea']['name'];   
+    move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);        
+}else{
+    if(file_exists($directorio)){
+        $nombre = $_FILES['fileTarea']['name'];
+        move_uploaded_file($_FILES['fileTarea']['tmp_name'],$directorio.$nombre);
+    }    
 }
-
 
 $solicitudesE = new \entidad\Solicitudes(); 
 $solicitudesE -> setIdTarea($id_tarea);
@@ -55,11 +46,9 @@ $solicitudesE -> setRuta($ruta);
 $solicitudesE -> setDocumentoTarea($nombre);
 
 $solicitudesM= new \modelo\Solicitudes($solicitudesE);
-$resultado = $solicitudesM->tareaAprobada();
+$resultado = $solicitudesM->tareaDevuelta();
 $resultado = $solicitudesM->comentarioTareaElaborada();
 $resultado = $solicitudesM->actualizarTareaEstadoApr();
-$resultado = $solicitudesM->estatusSolicitudFinalizada();
-$resultado = $solicitudesM->comentarioSolicFinal();
 
 unset($solicitudesE);
 unset($solicitudesM);
@@ -73,11 +62,11 @@ if(($resultado !== null)){
     jQuery(function(){
         Swal.fire({
             icon: "error",
-            title: "Error al aprobar la tarea",
+            title: "Error al devolver la tarea",
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasApr.php";
+            window.location.href = "../../empleado/tareasApr.php";
         });
     });
     </script>';
@@ -91,11 +80,11 @@ echo '
     jQuery(function(){
         Swal.fire({
             icon: "success",
-            title: "Tarea aprobada con éxito",
+            title: "Tarea devuelta con éxito",
             showConfirmButton: false,
             timer: 3000
             }).then(function() {
-            window.location.href = "../../administrador/tareasApr.php";
+            window.location.href = "../../empleado/tareasApr.php";
         });
     });
     </script>';
@@ -104,24 +93,20 @@ echo '
 try {
 
     
-    $usuario_tarea_estado = $_POST['empleadoApro'];
-    $emailTo =  $_POST['empleadoCorreoApro'];
-    $nombre =  $_POST['documento1'];
-    $usuario = $_SESSION['usuario'];
-    $subject = "LIMARO - Aprobación de Tarea";
+    $usuario_tarea_estado = $_POST['empleadoDev'];
+    $emailTo =  $_POST['empleadoCorreoDev'];
+    $subject = "LIMARO - Devolución de Tarea";
     $bodyEmail = "
 
 
 FECHA: $fechaActual
 PARA: $usuario_tarea_estado - Funcionario COOPEAIPE
 DE: Area De Calidad
-ASUNTO: Aprobación de Tarea
+ASUNTO: Devolución de Tarea
 
 Cordial Saludo,
 
-Se ha aprobado una tarea.
-
-Realizar el versionamiento del documento : $nombre.
+Se ha devuelto una tarea para su gestión.
 
 Cordialmente,
 
