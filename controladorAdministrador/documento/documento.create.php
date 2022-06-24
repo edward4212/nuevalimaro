@@ -16,7 +16,7 @@ $s ="-";
 $e =" ";
 $codigoConca = $sigla_proceso.$s.$sigla_tipo_documento.$s.$codigo;
 $nombre_documentos = $_POST['nombreDoc'];   
-$nombre_documento = ucwords($nombre_documentos);
+$nombre_documento = strtoupper($nombre_documentos);
 $usuario_crecion = $_SESSION['usuario'];
 $objetivo_documento = $_POST['txtObjetivoproceso'];
 

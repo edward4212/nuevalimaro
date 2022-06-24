@@ -124,6 +124,35 @@ class Documento{
           return $this->retorno;
      }
 
+     public function readed()
+     { try {
+          $this->sql = "SELECT 
+          doc.`id_documento`,
+          mpr.`macroproceso`,
+          doc.`codigo`,
+          doc.`nombre_documento`,
+          doc.`objetivo_documento`,
+          pr.`id_proceso`,
+          pr.`proceso`,
+          pr.`sigla_proceso`,
+          tdoc.`id_tipo_documento`,
+          tdoc.`tipo_documento` ,
+          tdoc.`sigla_tipo_documento` 
+          FROM documento AS doc
+          INNER JOIN tipo_documento AS tdoc ON doc.`id_tipo_documento` = tdoc.`id_tipo_documento`
+          INNER JOIN proceso AS pr ON doc.`id_proceso` = pr.`id_proceso`
+          INNER JOIN macroproceso AS mpr ON pr.`id_macroproceso` = mpr.`id_macroproceso`
+          ORDER BY LENGTH( doc.`codigo`), codigo ";
+          $this->result = $this->conexion->query($this->sql);
+          $this->retorno = $this->result->fetchAll(PDO::FETCH_ASSOC);
+               
+          } catch (Exception $e) {
+               $this->retorno = $e->getMessage();
+          }
+          return $this->retorno;
+     }
+
+
      public function actualizarNombreDoc()
      {
           try {

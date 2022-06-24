@@ -131,20 +131,20 @@ document.addEventListener("DOMContentLoaded", function() {
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="macroprocesos.php"><i
                                         class="fas fa-cogs"></i>
-                                    Gestión de Macroprocesos</a>
+                                    Macroprocesos</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="procesos.php"><i class="fas fa-cog"></i>
-                                    Gestión de Procesos</a>
+                                    Procesos</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="documentos.php"><i class="fas fa-book"></i>
-                                    Gestión de Tipo de Documentos</a>
+                                    Tipo de Documentos</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="registro.php"><i
                                         class="far fa-address-book"></i>
-                                    Gestión de Registro de Documentos</a>
+                                    Registro de Documentos</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="vigentes.php"><i class="fas fa-list"></i>
@@ -254,15 +254,15 @@ document.addEventListener("DOMContentLoaded", function() {
                         <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="usuarios.php"><i class="fas fa-users"></i>
-                                    Gestión de Usuarios</a>
+                                    Usuarios</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="cargo.php"><i class="fas fa-user-plus"></i>
-                                    Gestión de Cargos</a>
+                                    Cargos</a>
                             </li>
                             <li class="nav-item col-6 col-md-auto">
                                 <a class="nav-link p-2 dropdown-item" href="rol.php"><i class="fas fa-user-tag"></i>
-                                    Gestión de Roles</a>
+                                    Roles</a>
                             </li>
                         </ul>
                     </li>

@@ -6,7 +6,7 @@ include_once "../../modeloAdministrador/documento.modelo.php";
 $documentoE = new \entidad\Documento();
 $documentoM= new \modelo\Documento($documentoE);
 
-$resultado = $documentoM->read();
+$resultado = $documentoM->readed();
 
 unset($documentoE);
 unset($documentoM);
