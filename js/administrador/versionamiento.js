@@ -43,7 +43,7 @@ $(document).ready(function () {
                             datos += '<td class=" border border-primary text-wrap">'+value.nombre_documento+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.numero_version+'</td>';
                             datos += '<td class=" border border-primary text-center align-middle">'+value.fecha_aprobacion+'</td>';
-                            datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/macroprocesos/'+value.macroproceso+'/'+value.proceso+'/'+value.sigla_tipo_documento+' - '+value.tipo_documento+ '/'+value.codigo+ '/'+value.numero_version+ '/' +value.documento+'"><i class="fas fa-download"></i></a></td>';
+                            datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/macroprocesos/'+value.macroproceso+'/'+value.sigla_proceso+'/'+value.sigla_tipo_documento+'/'+value.codigo+ '/'+value.numero_version+ '/' +value.documento+'"><i class="fas fa-download"></i></a></td>';
                         datos += '</tr>';
                     });
                 datos += '</tbody>';
@@ -298,7 +298,7 @@ $(document).ready(function () {
                             datos += '<td class=" border border-primary text-wrap align-middle">' + value.tipo_documento + '</td>';
                             datos += '<td class=" border border-primary text-wrap">' + value.codigo + ' - ' + value.nombre_documento + '</td>';
                             datos += '<td class=" border border-primary text-center align-middle">' + value.numero_version + '</td>';
-                            datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/macroprocesos/'+value.macroproceso+'/'+value.proceso+'/'+value.sigla_tipo_documento+' - '+value.tipo_documento+ '/'+value.codigo+ '/'+value.numero_version+ '/' +value.documento+'"><i class="fas fa-download"></i></a></td>';
+                            datos += '<td class=" border border-primary text-center align-middle"><a class="btn btn-primary" href="../documentos/macroprocesos/'+value.macroproceso+'/'+value.sigla_proceso+'/'+value.sigla_tipo_documento+'/'+value.codigo+ '/'+value.numero_version+ '/' +value.documento+'"><i class="fas fa-download"></i></a></td>';
                             datos += '<td class=" border border-primary text-wrap">' + value.fecha_obsoleto + '</td>';
                             datos += '<td class=" border border-primary text-center align-middle"><button type="button" onclick="activarVersion('+value.id_documento+',\''+value.nombre_documento+'\','+value.numero_version+')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activarVersion"><i class="fa fa-exclamation-triangle"></i></button></td>';
                         datos += '</tr>';
