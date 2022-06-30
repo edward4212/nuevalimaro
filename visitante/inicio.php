@@ -129,7 +129,7 @@
         </div>
     </main>
     <?php include_once "footer.php" ?>
-    <script src="../js/empleado/inicio.js"></script>
+    <script src="../js/visitante/inicio.js"></script>
 </body>
 
 </html>

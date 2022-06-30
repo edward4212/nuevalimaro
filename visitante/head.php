@@ -3,8 +3,8 @@ include_once("../controladorLogin/logueo.read.php");
     if (!isset($_SESSION['id_rol'])) {
         header("location: ../login/login.php");
     } else {
-        if ($_SESSION['id_rol']!=2) {
-          header('location: ../empleado/inicio.php');
+        if ($_SESSION['id_rol']!=3) {
+          header('location: ../visitante/inicio.php');
         }
     }
     

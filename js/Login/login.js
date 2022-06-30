@@ -51,7 +51,7 @@ $(document).ready(function () {
                     }else if (obj[0].id_rol ==3) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Te damos la bienvenida ', 
+                            title: 'Te damos la bienvenida '+obj[0].nombre_completo , 
                             showConfirmButton: false,
                             timer: 2500
                           }).then((result) => {

@@ -131,8 +131,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a href="perfil.php" class="nav-link dropdown-toggle p-2" id="navbarDropdownMenuLink"
+                    <li class="nav-item ">
+                        <a href="perfil.php" class="nav-link" id="navbarDropdownMenuLink"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false"><img href="perfil.php"
                                 src="../documentos/usuarios/<?php $usuario= $_SESSION['usuario']; echo $usuario;?>/imagen/<?php $img_empleado= $_SESSION['img_empleado']; echo $img_empleado; ?>"
                                 alt="mdo" width="32" height="32" class="rounded-circle">

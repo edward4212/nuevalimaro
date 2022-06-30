@@ -35,7 +35,7 @@
         </div>
     </main>
     <?php include_once "footer.php" ?>
-    <script src="../js/empleado/documento.js"></script>
+    <script src="../js/visitante/documento.js"></script>
 </body>
 
 </html>
