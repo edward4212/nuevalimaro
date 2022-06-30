@@ -7,7 +7,8 @@ class Conexion extends PDO
     
     private function __construct()
     {
-        parent::__construct('mysql:dbname=nuevalimaro;host=localhost','root','');
+        // parent::__construct('mysql:dbname=nuevalimaro;host=localhost','root','');
+        parent::__construct('mysql:dbname=ulimaro2se_coopeaipe2;host=localhost','ulimaro2se_edward','Kddbjw8b3d%');
         $this->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     }
 
