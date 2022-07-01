@@ -236,7 +236,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                                     href="tareasDesa.php"><i class="far fa-clipboard"></i>
                                                     Elaborar Documento</a></li>
                                             <li><a class="dropdown-item" style="color: #0d6efd;"
-                                                    href="tareasRevi.php"><i class="fas fa-check"></i> Revisar Documento</a></li>
+                                                    href="tareasRevi.php"><i class="fas fa-check"></i> Revisar
+                                                    Documento</a></li>
                                             <li><a class="dropdown-item" style="color: #0d6efd;" href="tareasApr.php"><i
                                                         class="fas fa-check-double"></i>Aprobar Documento</a></li>
                                         </ul>
@@ -278,6 +279,9 @@ document.addEventListener("DOMContentLoaded", function() {
                                         class="fas fa-user-alt"></i> Mi Perfil</a></li>
                             <li><a class="dropdown-item" href="clave.php" style="color: #0A58CD;"><i
                                         class="fas fa-user-lock"></i> Cambiar Contraseña</a></li>
+                            <li> <a class="dropdown-item" style="color: #0A58CD;" target="_blank"
+                                    href="https://aula.limaro.co/cop/"><i class="fas fa-graduation-cap"></i>
+                                    Aula Virtual</a></li>
 
                         </ul>
                     </li>

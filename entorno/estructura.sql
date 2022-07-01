@@ -12,10 +12,6 @@ MySQL - 5.5.5-10.4.21-MariaDB : Database - nuevalimaro
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`nuevalimaro` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-
-USE `nuevalimaro`;
-
 /*Table structure for table `cargo` */
 
 DROP TABLE IF EXISTS `cargo`;
@@ -27,7 +23,7 @@ CREATE TABLE `cargo` (
   `estado` enum('ACTIVO','INACTIVO') NOT NULL DEFAULT 'ACTIVO',
   PRIMARY KEY (`id_cargo`),
   UNIQUE KEY `cargo` (`cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `documento` */
 
@@ -46,7 +42,7 @@ CREATE TABLE `documento` (
   KEY `id_proceso_` (`id_proceso`),
   CONSTRAINT `id_proceso_` FOREIGN KEY (`id_proceso`) REFERENCES `proceso` (`id_proceso`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `id_tipo_documento_` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=417 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `empleado` */
 
@@ -66,7 +62,7 @@ CREATE TABLE `empleado` (
   KEY `id_cargo` (`id_cargo`),
   CONSTRAINT `id_cargo` FOREIGN KEY (`id_cargo`) REFERENCES `cargo` (`id_cargo`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `id_empresa` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `empresa` */
 
@@ -109,7 +105,7 @@ CREATE TABLE `macroproceso` (
   `estado` enum('ACTIVO','INACTIVO') NOT NULL DEFAULT 'ACTIVO',
   PRIMARY KEY (`id_macroproceso`),
   UNIQUE KEY `macroproceso` (`macroproceso`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `proceso` */
 
@@ -137,7 +133,7 @@ CREATE TABLE `rol` (
   `estado` enum('ACTIVO','INACTIVO') NOT NULL DEFAULT 'ACTIVO',
   PRIMARY KEY (`id_rol`),
   UNIQUE KEY `rol` (`rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `solicitud` */
 
@@ -164,7 +160,7 @@ CREATE TABLE `solicitud` (
   KEY `id_tipo_documento` (`id_tipo_documento`),
   CONSTRAINT `id_empleado_sol` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `id_tipo_documento` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `solicitud_comentario` */
 
@@ -180,7 +176,7 @@ CREATE TABLE `solicitud_comentario` (
   PRIMARY KEY (`id_solicitud_comentario`),
   KEY `id_solicitud_` (`id_solicitud`),
   CONSTRAINT `id_solicitud_` FOREIGN KEY (`id_solicitud`) REFERENCES `solicitud` (`id_solicitud`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `tarea` */
 
@@ -192,7 +188,7 @@ CREATE TABLE `tarea` (
   PRIMARY KEY (`id_tarea`),
   KEY `solicitud` (`id_solicitud`),
   CONSTRAINT `solictud` FOREIGN KEY (`id_solicitud`) REFERENCES `solicitud` (`id_solicitud`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `tarea_estado` */
 
@@ -209,7 +205,7 @@ CREATE TABLE `tarea_estado` (
   PRIMARY KEY (`id_tarea_estado`),
   KEY `id_tarea _as` (`id_tarea`),
   CONSTRAINT `id_tarea _as` FOREIGN KEY (`id_tarea`) REFERENCES `tarea` (`id_tarea`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `tipo_documento` */
 
@@ -223,7 +219,7 @@ CREATE TABLE `tipo_documento` (
   PRIMARY KEY (`id_tipo_documento`),
   UNIQUE KEY `tipo_documento` (`tipo_documento`),
   UNIQUE KEY `sigla_tipo_documento` (`sigla_tipo_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `usuario` */
 
@@ -242,7 +238,7 @@ CREATE TABLE `usuario` (
   KEY `id_empleado` (`id_empleado`),
   CONSTRAINT `id_empleado` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `id_rol` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `versionamiento` */
 
@@ -265,7 +261,7 @@ CREATE TABLE `versionamiento` (
   PRIMARY KEY (`id_versionamiento`),
   KEY `id_documento` (`id_documento`),
   CONSTRAINT `id_documentoV` FOREIGN KEY (`id_documento`) REFERENCES `documento` (`id_documento`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=466 DEFAULT CHARSET=utf8mb4;
 
 /* Procedure structure for procedure `createDocumento` */
 
@@ -273,7 +269,7 @@ CREATE TABLE `versionamiento` (
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `createDocumento`(iN id_documento int, id_proceso TINYINT, id_tipo_documento tinyint,
+/*!50003 CREATE DEFINER=CURRENT_USER  PROCEDURE `createDocumento`(iN id_documento int, id_proceso TINYINT, id_tipo_documento tinyint,
   codigo varchar(10),nombre_documento varchar(500), objetivo_documento TEXT)
 BEGIN
  INSERT INTO documento VALUES (NULL, id_proceso, id_tipo_documento,codigo,nombre_documento,objetivo_documento);
@@ -286,7 +282,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `createVersionamiento`(in id_documento INT, id_proceso TINYINT, id_tipo_documento tinyint,
+/*!50003 CREATE DEFINER=CURRENT_USER  PROCEDURE `createVersionamiento`(in id_documento INT, id_proceso TINYINT, id_tipo_documento tinyint,
   codigo VARCHAR(10), nombre_documento VARCHAR(500), objetivo_documento TEXT,
   id_versionamiento int, numero_version int,
  descripcion_version text, usuario_creacion varchar(200), fecha_creacion timestamp,
@@ -322,7 +318,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `create_comentario_sol`(in id_solicitud BIGINT, id_empleado TINYINT, 
+/*!50003 CREATE DEFINER=CURRENT_USER  PROCEDURE `create_comentario_sol`(in id_solicitud BIGINT, id_empleado TINYINT, 
     prioridad ENUM('IMPORTANTE - URGENTE','IMPORTANTE - NO URGENTE','NO IMPORTANTE - URGENTE','NO IMPORTANTE - NO URGENTE'),
     id_tipo_documento TINYINT, tipo_solicitud ENUM('CREACIÓN','ACTUALIZACIÓN','ELIMINACIÓN'), 
      estado_solicitud ENUM('CREADA','ASIGNADA','EN DESARROLLO','FINALIZADA'), codigo_documento VARCHAR(200),
@@ -357,7 +353,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `create_empleado`( IN id_empleado INT, nombre_completo VARCHAR(200),
+/*!50003 CREATE DEFINER=CURRENT_USER  PROCEDURE `create_empleado`( IN id_empleado INT, nombre_completo VARCHAR(200),
 img_empleado VARCHAR(200), correo_empleado VARCHAR(200), id_cargo INT, id_empresa INT, estado_empleado  ENUM('ACTIVO','INACTIVO'))
 BEGIN
 INSERT INTO empleado VALUES (NULL, nombre_completo,'usuario.png',correo_empleado,id_cargo,'1','ACTIVO');
@@ -370,7 +366,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `create_solicitud`(IN id_solicitud bigint, id_empleado tinyint, 
+/*!50003 CREATE DEFINER=CURRENT_USER  PROCEDURE `create_solicitud`(IN id_solicitud bigint, id_empleado tinyint, 
     prioridad enum('IMPORTANTE - URGENTE','IMPORTANTE - NO URGENTE','NO IMPORTANTE - URGENTE','NO IMPORTANTE - NO URGENTE'),
     id_tipo_documento tinyint, tipo_solicitud enum('CREACIÓN','ACTUALIZACIÓN','ELIMINACIÓN'), 
      estado_solicitud enum('CREADA','ASIGNADA','EN DESARROLLO','FINALIZADA'), codigo_documento varchar(200),
@@ -388,7 +384,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `create_tarea`(IN id_tarea bigint(20), id_solicitud bigint(7)  )
+/*!50003 CREATE DEFINER=CURRENT_USER  PROCEDURE `create_tarea`(IN id_tarea bigint(20), id_solicitud bigint(7)  )
 BEGIN
     
 	INSERT INTO tarea VALUES (NULL, id_solicitud );
@@ -402,7 +398,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `create_tarea_estado`(in id_tarea BIGINT(20), id_solicitud BIGINT(7), id_tarea_estado bigint(20),  
+/*!50003 CREATE DEFINER=CURRENT_USER  PROCEDURE `create_tarea_estado`(in id_tarea BIGINT(20), id_solicitud BIGINT(7), id_tarea_estado bigint(20),  
     usuario_tarea_estado varchar(200), fecha_tarea_estado timestamp,tarea_estado enum('CREADO','REVISION','APROBACION','DEVUELTO','CAMBIO'),
      ruta VARCHAR(200), documento_tarea varchar(200) )
 BEGIN
@@ -433,7 +429,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `create_usuario`(IN id_usuario INT, usuario VARCHAR(50), clave VARCHAR(50),
+/*!50003 CREATE DEFINER=CURRENT_USER  PROCEDURE `create_usuario`(IN id_usuario INT, usuario VARCHAR(50), clave VARCHAR(50),
     id_rol INT,  estado ENUM('ACTIVO','INACTIVO','CREADO'),id_empleado INT, nombre_completo VARCHAR(200),
 img_empleado VARCHAR(200), correo_empleado VARCHAR(200), id_cargo INT, id_empresa INT, estadoEmpl  ENUM('ACTIVO','INACTIVO'))
 BEGIN
